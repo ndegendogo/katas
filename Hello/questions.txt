@@ -1,0 +1,118 @@
+——————————————————————————————————————————
+1) Hello Java
+
+Languages: Java
+Primary Language: Java
+Keywords: Java, Hello World, stdout, compiling Java, running Java
+
+a) Program Hello World in Java.
+The program shall display the following text on the screen:
+
+$ java Hello
+
+Hello, world!
+
+b) How do you compile Java programs?
+c) How do you run Java programs?
+d) What is the signature of the main method?
+e) What happens if you change something about the signature of the main method?
+f) What is the relationship between the file name and the class name?
+g) Can you explain why you need to run the program with java Hello, not
+java Hello.class?
+
+h) Could you use a filename without the suffix .java? 
+i) Could you create a filename without the suffix .class?
+
+j) How would you test the program?
+
+k) What happens if you call the program like this?
+
+$ java Hello Foo Bar
+
+
+——————————————————————————————————————————
+2) Hello Make
+
+Languages: make, bash
+Primary Language: make
+Keywords: Hello World, stdout, Makefiles
+
+a) Program Hello World as Makefile.
+The program shall display the following text on the screen:
+
+$ make -s
+
+Hello, world!
+
+$ make -s hello
+
+Hello, world!
+
+$ make -s all
+
+Hello, world!
+
+$ make -s foo
+
+make: *** No rule to make target `foo'. Stop.
+
+b) What is purpose of make?
+c) How do you run Makefiles?
+d) How do you execute commands in Makefiles?
+
+——————————————————————————————————————————
+Hello Ant
+
+Languages: Ant, XML
+Primary Language: Ant
+Keywords: Hello World, stdout, Ant, build.xml
+
+a) Program Hello World as Ant build.xml script.
+
+The program shall display the following text on the screen:
+
+$ ant -q
+
+   [echo] Hello, world!
+
+
+BUILD SUCCESSFUL
+
+Total time: 0 seconds
+
+$ ant -q all
+
+   [echo] Hello, world!
+
+
+BUILD SUCCESSFUL
+
+Total time: 0 seconds
+
+$ ant -q hello
+
+   [echo] Hello, world!
+
+
+BUILD SUCCESSFUL
+
+Total time: 0 seconds
+
+$ ant -q foo
+
+
+BUILD FAILED
+
+Target "foo" does not exist in the project "null".
+
+
+Total time: 0 seconds
+
+b) How do you write ant scripts?
+c) How do you run ant scripts?
+d) What is project element and target element?
+e) What error you get when you remove the project element? 
+f) What is the error you get when you remove the target element?
+g) What are the attributes of project element?
+h) What are the attributes of target element?
+
