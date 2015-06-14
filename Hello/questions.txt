@@ -13,21 +13,61 @@ $ java Hello
 Hello, world!
 
 b) How do you compile Java programs?
-c) How do you run Java programs?
-d) What is the signature of the main method?
-e) What happens if you change something about the signature of the main method?
-f) What is the relationship between the file name and the class name?
-g) Can you explain why you need to run the program with java Hello, not
-java Hello.class?
+Commandline:
 
-h) Could you use a filename without the suffix .java? 
+javac Hello.java
+
+Commandline is fine for very simple programs like this one: only one single class, only default package.
+If the program is larger, you need to add options - then a makefile or ant file helps.
+Alternatively use an IDE like Eclipse.
+
+c) How do you run Java programs?
+java Hello
+
+d) What is the signature of the main method?
+    public static void main(String[]);
+
+e) What happens if you change something about the signature of the main method?
+It compiles, but cannot run:
+- the runtime needs public to access the method.
+- the runtime needs static because it starts with no instance of the class created.
+- the runtime needs the parameters and return type because this is the method signature it looks for.
+
+f) What is the relationship between the file name and the class name?
+The strongly recommended default is to match the file name with the class name, 
+although it is possible to put a non-public class into a file with different name.
+But if I try this with a public class, I get a compile-time error message. 
+
+g) Can you explain why you need to run the program with java Hello, not java Hello.class?
+Hello is the name of the class, whereas Hello.class is the name of the class file which contains this class.
+The Java language is designed to be platform-independent, but files and their names differ between operating systems,
+and the mapping between a class and its class file is implementation-specific.
+So the platform-independent way is to use not the class file name, but the class name. 
+
+h) Could you use a filename without the suffix .java?
+The Java spec does not mandate this filename suffix, so a compliant Java implementation is allowed even for systems
+with filenames (8 + 3). However, on Windows and Unix systems the usual strategy is to use the .java extension for
+Java source files. In any case, the Java compiler needs to support it if other extensions shall be used.
+I did not find any option for this.
+
 i) Could you create a filename without the suffix .class?
+The mapping between a class and its class file is implementation-specific, but on Windows and Unix systems the usual strategy
+is to use the .class extension for class files. 
+Besides this, .jar files and zip files are supported by the Java bootstrap class loader (supplied by the Java runtime).
+I did not find an option for the compiler to generate a class file with different extension, 
+nor for the Java runtime to load such a class file.
+I guess that a user-defined class loader would be needed then.
 
 j) How would you test the program?
+A simple program like this I just run and observe the output.
+In more complex situations I could use unit tests or other testing methods, it depends.
 
 k) What happens if you call the program like this?
 
 $ java Hello Foo Bar
+
+Foo Bar are the arguments for the Java program.
+I can access them via the String[] parameter given to the main method.
 
 
 ——————————————————————————————————————————
