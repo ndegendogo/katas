@@ -97,8 +97,17 @@ $ make -s foo
 make: *** No rule to make target `foo'. Stop.
 
 b) What is purpose of make?
+Purpose is to support a build process with dependencies.
+Usually the build process has several steps,
+such as preprocessor - compiler - assembler - linker.
+make supports an incremental build: when I modify only one source file, then it is not necessary to compile the other source files. 
+
 c) How do you run Makefiles?
+I call 'make' from the commandline and give a list of the targets to be built.
+If I give no target, it defaults to the first target in the makefile.
+
 d) How do you execute commands in Makefiles?
+I use shell commands, each on a line, and precede them with a tab.
 
 ——————————————————————————————————————————
 Hello Ant
