@@ -158,10 +158,40 @@ Target "foo" does not exist in the project "null".
 Total time: 0 seconds
 
 b) How do you write ant scripts?
-c) How do you run ant scripts?
-d) What is project element and target element?
-e) What error you get when you remove the project element? 
-f) What is the error you get when you remove the target element?
-g) What are the attributes of project element?
-h) What are the attributes of target element?
+Ant scripts are written in XML syntax. The default name is build.xml, but I can use any other name.
+The hierarchy of the XML elements is: project - target - task.
 
+c) How do you run ant scripts?
+From the commandline:
+ant [options] [targets]
+
+popular options are:
+-q                   // quiet output
+-f <buildfile> 	     // if I don't use the default name
+
+
+d) What is project element and target element?
+project is the top-level XML element in an ant file.
+It has target elements as child elements.
+A target is "something I want build", I can reference it from the command line.
+
+e) What error you get when you remove the project element? 
+The build fails, I get the error message 'Unexpected element "{}target"'
+
+f) What is the error you get when you remove the target element?
+When I remove all target elements it is still legal syntax, but I cannot use it to build anything.
+I get an error message about a non-existing target.
+When I call it with no targets and have no defaut target specified the (empty) build succeeds.
+
+g) What are the attributes of project element?
+name	        its name
+default		the default target
+basedir		the base directoriy for the source files of the targets.
+All these are optional attributes.
+
+h) What are the attributes of target element?
+The most important are:
+name		its name, this one is mandatory (else I couldn't reference it)
+depends		list of prerequsites
+There are more attributes: 'description' can be used to document a target. 
+'if' and 'unless' can be used for conditional builds.
