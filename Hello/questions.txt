@@ -49,6 +49,7 @@ The Java spec does not mandate this filename suffix, so a compliant Java impleme
 with filenames (8 + 3). However, on Windows and Unix systems the usual strategy is to use the .java extension for
 Java source files. In any case, the Java compiler needs to support it if other extensions shall be used.
 I did not find any option for this.
+=> Feedback from Nelkinda: No. The suffix .java is mandatory.
 
 i) Could you create a filename without the suffix .class?
 The mapping between a class and its class file is implementation-specific, but on Windows and Unix systems the usual strategy
