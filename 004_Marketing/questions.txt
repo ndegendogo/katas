@@ -1,0 +1,36 @@
+——————————————————————————————————————————
+Marketing
+Software craftsmen also need to know about marketing, for many reasons.
+
+Marketing: PLC
+- What is the PLC?
+- What are the four stages of the PLC?
+- Using Google Drive and its attached applications, create a chart which shows C, Java, Cobol, Fortran, Ada, Ruby, groovy, Scala, Lisp, C#, Clojure, all languages that you ever wrote a program in and five more programming languages of your choice in their PLC. Which language was most difficult to put? Can you speculate conclusions from this difficulty?
+- Using the PLC, explain the difference between invention and innovation.
+- Using the PLC, explain a primary strength of Apple.
+- Using the PLC, explain why EMV should be worried about Apple's activities.
+- Is knowing and understanding the PLC useful? Describe at least two impacts that this could have on your life or career.
+
+——————————————————————————————————————————
+Marketing: Maslow's pyramid of needs
+- Using Maslow's pyramid of needs, explain the job choices of the following people: you, me, Steve Jobs, the average Western engineer at the age of 45, the average Western engineer at the age of 25, the average Indian engineer at the age of 25.
+- How is this related to life span, Urbanisation, divorce rates, marriage type (arranged vs love) and job choice?
+- Does this impact productivity? How?
+- Connect Apple and its marketing strategy with the pyramid of needs.
+
+——————————————————————————————————————————
+Marketing: segmentation
+- Segment the TV market by age demographics. How big is each in Germany? (If you cannot access real numbers from GfK or Bundesamt für Statistik, make up realistically looking numbers based on common for a fictional Alemania in a parallel universe)
+- Segment the TV market by educational demographics. How big is each segment?
+- Describe the limitations of one-dimensional demographic segmentation.
+- Expand this list of demographic segmentation criteria with at least 5 entries: age, education
+- Segment the computer market into segments. Here are two segments to start with: mainframes, smartphones. Try to identify at least 5 more significant segments.
+- Given the list of computer market segments, for each of the segments, specify the market share of the (usual three) dominant operating systems in that market. Start with your common sense, and then refine it with Internet research (Forbes, Gardener, Top500 etc).
+- Sort the segments by size and craft a chart showing the market share of the dominant operating systems over the segments.
+- Reason about the shape of the chart.
+- Name a few benefits and drawbacks of cloud computing.
+- How does cloud computing impact these computer market segments today and in future?
+- What's the position and forecast for Microsoft?
+- What's the position and forecast for Linux?
+- What's the position and forecast for Apple?
+

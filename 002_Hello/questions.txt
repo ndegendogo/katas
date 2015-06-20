@@ -1,0 +1,16 @@
+——————————————————————————————————————————
+Another question on Make:
+Which of these approaches is best?
+
+1. Declaring all .PHONY targets as .PHONY at the start of the file.
+2. Declaring each .PHONY target individually right before the target itself (as you've done it).
+3. Declaring all .PHONY targets as .PHONY at the end of the file.
+4. Declaring all .PHONY targets as .PHONY in a separate makefile and including that makefile.
+
+Explain your answer with terms of software architecture.
+
+——————————————————————————————————————————
+Java Build Systems: 
+besides make and ant, there are two more very popular build systems which are relevant for Java: maven and gradle.
+1. Write Hello, world in maven.
+2. Write Hello, world in gradle.

@@ -1,0 +1,8 @@
+——————————————————————————————————————————
+Code Katas Preparation
+Prepare yourself with the following topics:
+- the programs "echo", "cat", "head", "tail", "sort", "wc" (Basic Features and most important options only)
+- Roman numbers (normative form only, 1990 is MCMXC and not MXM)
+- Bowling rules (game process w/ respect to score)
+I guess you already know a lot about these things, so I hope that your preparation will be quick.
+
