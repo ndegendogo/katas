@@ -1,0 +1,8 @@
+<project default="all">
+    <target name="all" depends="hello">
+    </target>
+
+    <target name="hello">
+        <echo message="Hello, world!"/>
+    </target>
+</project>
