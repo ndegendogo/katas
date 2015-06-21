@@ -1,0 +1,7 @@
+.PHONY: all, hello
+
+all: hello
+
+hello:
+	echo "Hello, world!"
+

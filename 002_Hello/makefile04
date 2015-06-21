@@ -1,0 +1,8 @@
+include phony_targets.mak
+
+
+all: hello
+
+hello:
+	echo "Hello, world!"
+
