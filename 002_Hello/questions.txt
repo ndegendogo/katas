@@ -9,6 +9,43 @@ Which of these approaches is best?
 
 Explain your answer with terms of software architecture.
 
+Maintainability / Extensibility / Changeability:
+We try to anticipate which are the stable requirements / features, and which are volatile
+and we expect to change often. It is a good idea to encapsulate the unstable features, 
+so that it will be a local change at one place only.
+- Additional targets: very likely.
+  (2) is grouped by target, here it is easiest to add targets.
+  In all other variants, another phony target needs modification at 2 places.
+  In (4) even in 2 files.
+- Extended build rules: likely
+  With regard to this extension, all 4 variants are equal.
+- Modified dependencies: can happen, but less likely
+  The structure of dependencies is most clearly visible in (4), see below.
+- phony target to non-phony and vice versa: very unlikely.
+
+
+Readability:
+The makefile contains the following information:
+- list of targets
+- their structure of dependencies
+- build rules for each target
+- .PHONY statements 
+(2) is hard to read. The .PHONY statements are a technical detail and not so interesting,
+    but they clutter the file and disturb reading, it is hard to focus on the dependencies.
+    We have no separation of concerns. 
+In the other three solutions, the targets with their dependencies are clear visible,
+and separated from the .PHONY property.
+(3) is better than (1) because it puts the uninteresting detail at the end.
+(4) is even better because here we can fully focus on the targets and their dependency structure. 
+Sorted by readability (from hardest to easiest): (2) - (1) - (3) - (4)
+Note: originally, I had rated (4) as second-hardest to read, because it confused me that
+the information was distributed into two files. But a good naming mitigates this.
+
+Readability is more important than Changeability, because we can expect a file far more often to be read
+than to be modified (maybe 10 times, 20, 30, or even 100 times).
+=> (4) is best.
+
+
 ——————————————————————————————————————————
 Java Build Systems: 
 besides make and ant, there are two more very popular build systems which are relevant for Java: maven and gradle.
