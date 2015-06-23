@@ -1,7 +1,7 @@
 <project default="all">
-    <target name="all" depends="hello"/>
+    <target name="all" depends="hello" description="Build all targets" />
 
-    <target name="hello">
+    <target name="hello" description="Print a greeting" >
         <echo message="Hello, world!"/>
     </target>
 </project>
