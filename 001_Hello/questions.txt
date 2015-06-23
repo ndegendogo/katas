@@ -198,4 +198,9 @@ There are more attributes: 'description' can be used to document a target.
 'if' and 'unless' can be used for conditional builds.
 
 i) What do you see if you run ant -projecthelp?
+I see a pure list of the available targets.
+The main target list is empty. all and hello are listed as other targets.
+
 j) How can you make the output of ant -projecthelp more convenient?
+Using the description attribute for the targets.
+Note: as soon as I do so, the targets with description are listed as main targets.
