@@ -17,6 +17,9 @@ so that it will be a local change at one place only.
   (2) is grouped by target, here it is easiest to add targets.
   In all other variants, another phony target needs modification at 2 places.
   In (4) even in 2 files.
+- Rename targets: very likely.
+  Maintainability: as above in „additional targets“, or even worse for the distributed solution (4),
+  because it can easily be forgotten to modify the target name in the .PHONY statement.
 - Extended build rules: likely
   With regard to this extension, all 4 variants are equal.
 - Modified dependencies: can happen, but less likely
@@ -45,7 +48,10 @@ Readability is more important than Changeability, because we can expect a file f
 than to be modified (maybe 10 times, 20, 30, or even 100 times).
 => (4) is best.
 
-
+Feedback from Christian Hujer, Nelkinda: 
+Maintainability is both Changeability and Readability.
+(2) is most cohesive, all information regarding one target are colocated and close together.
+I
 ——————————————————————————————————————————
 Java Build Systems: 
 besides make and ant, there are two more very popular build systems which are relevant for Java: maven and gradle.
