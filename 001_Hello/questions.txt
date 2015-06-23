@@ -196,3 +196,6 @@ name		its name, this one is mandatory (else I couldn't reference it)
 depends		list of prerequsites
 There are more attributes: 'description' can be used to document a target. 
 'if' and 'unless' can be used for conditional builds.
+
+i) What do you see if you run ant -projecthelp?
+j) How can you make the output of ant -projecthelp more convenient?
