@@ -17,21 +17,14 @@ public class ConvertToRoman {
     }
 
     private void convert() {
-        {
-            final int value = 5;
-            final String digit = "V";
-            while (arabicNumber >= value) {
-                arabicNumber -=value;
-                roman.append(digit);
-            }
-        }
-        {
-            final int value = 1;
-            final String digit = "I";
-            while (arabicNumber >= value) {
-                arabicNumber -=value;
-                roman.append(digit);
-            }
+        makeSequence(5, "V");
+        makeSequence(1, "I");
+    }
+
+    private void makeSequence(final int value, final String digit) {
+        while (arabicNumber >= value) {
+            arabicNumber -=value;
+            roman.append(digit);
         }
     }
 
