@@ -23,4 +23,10 @@ public class ConvertToRomanTest {
         final String roman = ConvertToRoman.arabToRoman("3");
         assertTrue("III".equals(roman));
     }
+    
+    @Test
+    public void numberWithDigitV() {
+        final String roman = ConvertToRoman.arabToRoman("7");
+        assertTrue("VII".equals(roman));
+    }
 }
