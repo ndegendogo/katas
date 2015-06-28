@@ -2,9 +2,14 @@ package de.kifaru.ndegendogo.kata.romanNumbers;
 
 public class ConvertToRoman {
 
+    static String arabToRoman(String arabic) {
+        return "";
+    }
+
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
-        System.out.println("Hello World!");
+        String arabic = args[0];
+        String roman = arabToRoman(arabic);
+        System.out.println(roman);
     }
 
 }
