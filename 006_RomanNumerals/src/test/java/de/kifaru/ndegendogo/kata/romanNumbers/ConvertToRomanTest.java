@@ -54,4 +54,11 @@ public class ConvertToRomanTest {
         final String roman = converter.arabToRoman();
         assertTrue("MMDCCLXXVII".equals(roman));
     }
+
+    @Test
+    public void numberWithDigitIV() {
+        ConvertToRoman converter = new ConvertToRoman("4");
+        final String roman = converter.arabToRoman();
+        assertTrue("IV".equals(roman));
+    }
 }
