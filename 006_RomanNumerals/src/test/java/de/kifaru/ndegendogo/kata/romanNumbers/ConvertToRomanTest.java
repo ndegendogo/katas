@@ -40,4 +40,11 @@ public class ConvertToRomanTest {
         final String roman = converter.arabToRoman();
         assertTrue("XIII".equals(roman));
     }
+
+    @Test
+    public void numberWithDigitL() {
+        ConvertToRoman converter = new ConvertToRoman("61");
+        final String roman = converter.arabToRoman();
+        assertTrue("LXI".equals(roman));
+    }
 }
