@@ -47,4 +47,11 @@ public class ConvertToRomanTest {
         final String roman = converter.arabToRoman();
         assertTrue("LXI".equals(roman));
     }
+
+    @Test
+    public void numberWithDigitsMDC() {
+        ConvertToRoman converter = new ConvertToRoman("2777");
+        final String roman = converter.arabToRoman();
+        assertTrue("MMDCCLXXVII".equals(roman));
+    }
 }
