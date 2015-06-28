@@ -2,15 +2,20 @@ package de.kifaru.ndegendogo.kata.romanNumbers;
 
 public class ConvertToRoman {
 
+    private StringBuilder roman;
+
+    ConvertToRoman() {
+        roman = new StringBuilder();
+    }
+
     String arabToRoman(String arabicString) {
         Integer arabicNumber = new Integer(arabicString);
-        StringBuilder roman = new StringBuilder();
-        convert(arabicNumber, roman);
+        convert(arabicNumber);
         final String result = roman.toString();
         return result;
     }
 
-    void convert(Integer arabicNumber, StringBuilder roman) {
+    void convert(Integer arabicNumber) {
         while (arabicNumber >= 5) {
             arabicNumber -=5;
             roman.append("V");
