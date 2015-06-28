@@ -10,7 +10,7 @@ public class ConvertToRoman {
         arabicNumber = new Integer(arabicString);
     }
 
-    String arabToRoman(String arabicString) {
+    String arabToRoman() {
         convert();
         final String result = roman.toString();
         return result;
@@ -30,7 +30,7 @@ public class ConvertToRoman {
     public static void main(String[] args) {
         String arabic = args[0];
         ConvertToRoman converter = new ConvertToRoman(arabic);
-        String roman = converter.arabToRoman(arabic);
+        String roman = converter.arabToRoman();
         System.out.println(roman);
     }
 
