@@ -61,4 +61,11 @@ public class ConvertToRomanTest {
         final String roman = converter.getRoman();
         assertTrue("IV".equals(roman));
     }
+
+    @Test
+    public void numberWithDigits4() {
+        ConvertToRoman converter = new ConvertToRoman("1444");
+        final String roman = converter.getRoman();
+        assertTrue("MCDXLIV".equals(roman));
+    }
 }
