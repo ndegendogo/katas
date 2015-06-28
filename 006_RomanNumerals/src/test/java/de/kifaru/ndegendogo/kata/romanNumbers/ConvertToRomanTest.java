@@ -8,28 +8,28 @@ public class ConvertToRomanTest {
 
     @Test
     public void singleDigitI() {
-        ConvertToRoman converter = new ConvertToRoman();
+        ConvertToRoman converter = new ConvertToRoman("1");
         final String roman = converter.arabToRoman("1");
         assertTrue("I".equals(roman));
     }
 
     @Test
     public void multipleDigitI() {
-        ConvertToRoman converter = new ConvertToRoman();
+        ConvertToRoman converter = new ConvertToRoman("2");
         final String roman = converter.arabToRoman("2");
         assertTrue("II".equals(roman));
     }
 
     @Test
     public void tripleDigitI() {
-        ConvertToRoman converter = new ConvertToRoman();
+        ConvertToRoman converter = new ConvertToRoman("3");
         final String roman = converter.arabToRoman("3");
         assertTrue("III".equals(roman));
     }
     
     @Test
     public void numberWithDigitV() {
-        ConvertToRoman converter = new ConvertToRoman();
+        ConvertToRoman converter = new ConvertToRoman("7");
         final String roman = converter.arabToRoman("7");
         assertTrue("VII".equals(roman));
     }

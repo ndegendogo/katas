@@ -3,19 +3,20 @@ package de.kifaru.ndegendogo.kata.romanNumbers;
 public class ConvertToRoman {
 
     private StringBuilder roman;
+    private Integer arabicNumber;
 
-    ConvertToRoman() {
+    ConvertToRoman(String arabicString) {
         roman = new StringBuilder();
+        arabicNumber = new Integer(arabicString);
     }
 
     String arabToRoman(String arabicString) {
-        Integer arabicNumber = new Integer(arabicString);
-        convert(arabicNumber);
+        convert();
         final String result = roman.toString();
         return result;
     }
 
-    void convert(Integer arabicNumber) {
+    void convert() {
         while (arabicNumber >= 5) {
             arabicNumber -=5;
             roman.append("V");
@@ -28,7 +29,7 @@ public class ConvertToRoman {
 
     public static void main(String[] args) {
         String arabic = args[0];
-        ConvertToRoman converter = new ConvertToRoman();
+        ConvertToRoman converter = new ConvertToRoman(arabic);
         String roman = converter.arabToRoman(arabic);
         System.out.println(roman);
     }
