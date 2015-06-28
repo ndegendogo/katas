@@ -19,8 +19,10 @@ public class ConvertToRoman {
     private void convert() {
         makeSequence(1000, "M");
         makeSequence(500, "D");
+        makeSequence(400, "CD");
         makeSequence(100, "C");
         makeSequence(50, "L");
+        makeSequence(40, "XL");
         makeSequence(10, "X");
         makeSequence(5, "V");
         makeSequence(4, "IV");
