@@ -2,7 +2,7 @@ package de.kifaru.ndegendogo.kata.romanNumbers;
 
 public class ConvertToRoman {
 
-    static String arabToRoman(String arabicString) {
+    String arabToRoman(String arabicString) {
         Integer arabicNumber = new Integer(arabicString);
         StringBuilder roman = new StringBuilder();
         convert(arabicNumber, roman);
@@ -10,7 +10,7 @@ public class ConvertToRoman {
         return result;
     }
 
-    static void convert(Integer arabicNumber, StringBuilder roman) {
+    void convert(Integer arabicNumber, StringBuilder roman) {
         while (arabicNumber >= 5) {
             arabicNumber -=5;
             roman.append("V");
@@ -23,7 +23,8 @@ public class ConvertToRoman {
 
     public static void main(String[] args) {
         String arabic = args[0];
-        String roman = arabToRoman(arabic);
+        ConvertToRoman converter = new ConvertToRoman();
+        String roman = converter.arabToRoman(arabic);
         System.out.println(roman);
     }
 
