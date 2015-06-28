@@ -11,6 +11,10 @@ public class ConvertToRoman {
     }
 
     static void convert(Integer arabicNumber, StringBuilder roman) {
+        while (arabicNumber >= 5) {
+            arabicNumber -=5;
+            roman.append("V");
+        }
         while (arabicNumber > 0) {
             arabicNumber -=1;
             roman.append("I");
