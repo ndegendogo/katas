@@ -33,4 +33,11 @@ public class ConvertToRomanTest {
         final String roman = converter.arabToRoman();
         assertTrue("VII".equals(roman));
     }
+
+    @Test
+    public void numberWithDigitX() {
+        ConvertToRoman converter = new ConvertToRoman("13");
+        final String roman = converter.arabToRoman();
+        assertTrue("XIII".equals(roman));
+    }
 }
