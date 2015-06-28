@@ -16,14 +16,22 @@ public class ConvertToRoman {
         return result;
     }
 
-    void convert() {
-        while (arabicNumber >= 5) {
-            arabicNumber -=5;
-            roman.append("V");
+    private void convert() {
+        {
+            final int value = 5;
+            final String digit = "V";
+            while (arabicNumber >= value) {
+                arabicNumber -=value;
+                roman.append(digit);
+            }
         }
-        while (arabicNumber >= 1) {
-            arabicNumber -=1;
-            roman.append("I");
+        {
+            final int value = 1;
+            final String digit = "I";
+            while (arabicNumber >= value) {
+                arabicNumber -=value;
+                roman.append(digit);
+            }
         }
     }
 
