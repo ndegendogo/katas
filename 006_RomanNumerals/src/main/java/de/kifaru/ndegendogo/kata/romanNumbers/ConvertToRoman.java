@@ -5,11 +5,16 @@ public class ConvertToRoman {
     static String arabToRoman(String arabicString) {
         Integer arabicNumber = new Integer(arabicString);
         StringBuilder roman = new StringBuilder();
+        convert(arabicNumber, roman);
+        final String result = roman.toString();
+        return result;
+    }
+
+    static void convert(Integer arabicNumber, StringBuilder roman) {
         while (arabicNumber > 0) {
-            roman.append("I");
             arabicNumber -=1;
+            roman.append("I");
         }
-        return roman.toString();
     }
 
     public static void main(String[] args) {
