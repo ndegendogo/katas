@@ -15,7 +15,7 @@ public class ConvertToRoman {
             arabicNumber -=5;
             roman.append("V");
         }
-        while (arabicNumber > 0) {
+        while (arabicNumber >= 1) {
             arabicNumber -=1;
             roman.append("I");
         }
