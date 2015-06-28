@@ -17,4 +17,10 @@ public class ConvertToRomanTest {
         final String roman = ConvertToRoman.arabToRoman("2");
         assertTrue("II".equals(roman));
     }
+
+    @Test
+    public void tripleDigitI() {
+        final String roman = ConvertToRoman.arabToRoman("3");
+        assertTrue("III".equals(roman));
+    }
 }
