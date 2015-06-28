@@ -17,6 +17,7 @@ public class ConvertToRoman {
     }
 
     private void convert() {
+        makeSequence(10, "X");
         makeSequence(5, "V");
         makeSequence(1, "I");
     }
