@@ -11,7 +11,7 @@ public class ConvertToRoman {
         convert();
     }
 
-    String arabToRoman() {
+    String getRoman() {
         final String result = roman.toString();
         return result;
     }
@@ -37,7 +37,7 @@ public class ConvertToRoman {
     public static void main(String[] args) {
         String arabic = args[0];
         ConvertToRoman converter = new ConvertToRoman(arabic);
-        String roman = converter.arabToRoman();
+        String roman = converter.getRoman();
         System.out.println(roman);
     }
 
