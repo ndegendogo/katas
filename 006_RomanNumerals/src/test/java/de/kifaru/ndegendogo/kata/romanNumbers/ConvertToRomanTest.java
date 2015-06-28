@@ -68,4 +68,11 @@ public class ConvertToRomanTest {
         final String roman = converter.getRoman();
         assertTrue("MCDXLIV".equals(roman));
     }
+
+    @Test
+    public void numberWithDigits9() {
+        ConvertToRoman converter = new ConvertToRoman("2999");
+        final String roman = converter.getRoman();
+        assertTrue("MMCMXCIX".equals(roman));
+    }
 }
