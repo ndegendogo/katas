@@ -23,6 +23,7 @@ public class ConvertToRoman {
         makeSequence(50, "L");
         makeSequence(10, "X");
         makeSequence(5, "V");
+        makeSequence(4, "IV");
         makeSequence(1, "I");
     }
 
