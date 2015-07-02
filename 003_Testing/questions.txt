@@ -1,13 +1,40 @@
 ——————————————————————————————————————————
 Testing:
-Now let's see how we would test Hello.java. Of course it seems overkill doing so. Indeed the simplicity of Hello.java doesn't justify testing. Testing Hello.java in a real world scenario would be insane. It would be like applying double-entry book-keeping when you have no real business and all you do is selling your used bicycle to your friend. But even if it looks insane, maybe you applied double-entry book-keeping, balance charts and depreciation for the sake of learning and understanding these techniques?
+Now let's see how we would test Hello.java. 
+Of course it seems overkill doing so. 
+Indeed the simplicity of Hello.java doesn't justify testing. 
+Testing Hello.java in a real world scenario would be insane. 
+It would be like applying double-entry book-keeping when you have no real business and all you do is selling your used bicycle to your friend. 
+But even if it looks insane, maybe you applied double-entry book-keeping, balance charts and depreciation for the sake of learning and understanding these techniques?
 
-Thus we will test Hello.java purely for the sake of exercise. The nice thing about Hello.java is that it is so simple that we can put all our focus on testing aspects without any distraction.
+Thus we will test Hello.java purely for the sake of exercise. 
+The nice thing about Hello.java is that it is so simple that we can put all our focus on testing aspects without any distraction.
 
 1. I could test Hello.java by running the program and verifying its output.
 1.1 What type of test is this? Give at least three terms used by the industry for this type of test.
+
+* blackbox test
+* acceptance test
+* manual tests: the concept of manual vs automatted tests is orthogonal to blackbox vs whitebox.
+  Still most manual tests are blackbox tests, although even manual whitebox tests are possible 
+  (e.g. using a debugger and manipulating the variables and program flow).
+  And of course automatted blackbox tests are very common.
+* system test: this usually implies a larger and more complex system under test, 
+  where the parts (components) have been tested separately, and now it is tested as a whole.
+
 1.2 Which term is the primary term used by software craftsmen and agilists for this type of test?
-1.3 You rewrite Hello in a different language? Can this type of test be reused? What constrains the reuse of this type of test?
+
+Acceptance test.
+
+1.3 You rewrite Hello in a different language? 
+    Can this type of test be reused? 
+    What constrains the reuse of this type of test?
+
+A blackbox test verifies the requirements, and is independent from the implementation language.
+In case of an automatted test the constraint is on the environment it needs to run.
+And of course it must somehow be able to „couple“ to the interface of the system under test.
+In case of a manual test the constraint is on the effort / time needed to perform the test.
+
 1.4 Try to write a makefile which performs the test.
 1.5 Try to write an ant script which performs the test.
 1.6 Try to write a maven script which performs the test.
@@ -15,19 +42,53 @@ Thus we will test Hello.java purely for the sake of exercise. The nice thing abo
 
 2. I could test Hello.java by calling its methods and verifying their behavior or state changes.
 2.1 What type of test is this? Give at least three terms used by the industry for this type of test.
+
+* whitebox test
+* unit test / component test
+* regression test: this is not equivalent to a whitebox test.
+  Key point here is an automatted test. Second key is fast feedback => fast runtime. Third is a good coverage.
+  For these reasons a regression test is done often on the lower layers of a large system => unit test
+  (a system test would not be fast enough, and a smoke test has too little coverage). 
+
 2.2 Which term is the primary term used by software craftsmen for this type of test?
-2.3 You rewrite Hello in a different language. Can this type of test be reused? What constrains the reuse of this type of test?
+
+Regression test? Unit test? I am not sure..
+
+2.3 You rewrite Hello in a different language. Can this type of test be reused? 
+    What constrains the reuse of this type of test?
+
+Very limited reuse in a different language, because it must link to the executable and needs access to its implementation.
+
 2.4 Write such a test using JUnit without modifying Hello.java.
 2.5 Write such a test using TestNG without modifying Hello.java.
-2.6 While it was possible to write these tests, there was a major issue that had to be solved. What was that issue and how did you solve it?
+2.6 While it was possible to write these tests, there was a major issue that had to be solved. 
+    What was that issue and how did you solve it?
 2.7 What change would make testing of Hello.java easier? Try to explain this using the SOLID principles.
 2.8 How would the design have looked like if you would've first written the tests?
 2.9 Change the design of Hello, world to simplify your tests.
-2.10 Imagine, Hello, world would be a huge application. What impact has the influence of tests on the application architecture / design? How is this related to the SOLID principles? How is this related to the primary value of Software? How is this related to Conway's law?
+2.10 Imagine, Hello, world would be a huge application. 
+     What impact has the influence of tests on the application architecture / design? 
+     How is this related to the SOLID principles? 
+     How is this related to the primary value of Software? 
+     How is this related to Conway's law?
 
 ——————————————————————————————————————————
 3. TDD and pair programming
-- Which types of tests were not mentioned in 1. and 2.? Name at least four and try to describe how they fit in the picture.
+- Which types of tests were not mentioned in 1. and 2.? 
+  Name at least four and try to describe how they fit in the picture.
+
+  * static tests: a static test is performed on the source code of the system under test (SUT), 
+    whereas in a dynamic test the SUT is executed.
+    Static test can be manual (e.g. code review), or tool-based / automatted (e.g. lint, checkstyle, findbugs, ..)
+  * manual tests: I have mentioned them above - but maybe you expected this answer here?
+    Examples for manual tests: beta test, user interface test (if it is easy to use).
+  * smoke test: usually a very fast (automatted) blackbox test, with coverage focussed on the most essential use cases.
+  * all kinds of performance tests and stress tests (load test, low memory, tear test, ..).
+    Purpose is verification of correct behavior and non-functional requirements like timing constraints 
+    under extreme, but still valid conditions.
+  * fuzzy testing: a specific type of blackbox test with randomized input.
+    Intention is to verify robustness of the SUT against invalid input.
+
 - What is the RGF-cycle?
 - What are the three laws of TDD?
 - What are the names of the roles in pair programming? 
