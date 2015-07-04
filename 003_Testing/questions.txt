@@ -53,6 +53,7 @@ In case of a manual test the constraint is on the effort / time needed to perfor
 2.2 Which term is the primary term used by software craftsmen for this type of test?
 
 Regression test? Unit test? I am not sure..
+=> Feedback Nelkinda: Unit test is the common term for this type of test.
 
 2.3 You rewrite Hello in a different language. Can this type of test be reused? 
     What constrains the reuse of this type of test?
@@ -88,6 +89,7 @@ Very limited reuse in a different language, because it must link to the executab
     under extreme, but still valid conditions.
   * fuzzy testing: a specific type of blackbox test with randomized input.
     Intention is to verify robustness of the SUT against invalid input.
+=> Feedback Nelkinda: integration test
 
 - What is the RGF-cycle?
 - What are the three laws of TDD?
