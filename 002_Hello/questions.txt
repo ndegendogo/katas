@@ -51,7 +51,7 @@ than to be modified (maybe 10 times, 20, 30, or even 100 times).
 Feedback from Christian Hujer, Nelkinda: 
 Maintainability is both Changeability and Readability.
 (2) is most cohesive, all information regarding one target are colocated and close together.
-I
+
 ——————————————————————————————————————————
 Java Build Systems: 
 besides make and ant, there are two more very popular build systems which are relevant for Java: maven and gradle.
