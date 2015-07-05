@@ -11,7 +11,7 @@ public class ConvertToRoman {
     static String convert(String arabicString) {
         ConvertToRoman converter = new ConvertToRoman();
         converter.roman = new StringBuilder();
-        converter.arabicNumber = new Integer(arabicString);
+        converter.arabicNumber = Integer.parseInt(arabicString);
         converter.convert();
         final String result = converter.roman.toString();
         return result;
