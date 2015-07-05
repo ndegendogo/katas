@@ -2,77 +2,42 @@ package de.kifaru.ndegendogo.kata.romanNumbers;
 
 import static org.junit.Assert.*;
 
+import java.util.Arrays;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameters;
 
+@RunWith(value = Parameterized.class)
 public class ConvertToRomanTest {
-
-    @Test
-    public void singleDigitI() {
-        ConvertToRoman converter = new ConvertToRoman("1");
-        final String roman = converter.getRoman();
-        assertTrue("I".equals(roman));
+    private String arab;
+    private String expectedRoman;
+    
+    public ConvertToRomanTest(String arab, String expectedRoman) {
+        this.arab = arab;
+        this.expectedRoman = expectedRoman; 
     }
-
-    @Test
-    public void doubleDigitI() {
-        ConvertToRoman converter = new ConvertToRoman("2");
-        final String roman = converter.getRoman();
-        assertTrue("II".equals(roman));
-    }
-
-    @Test
-    public void tripleDigitI() {
-        ConvertToRoman converter = new ConvertToRoman("3");
-        final String roman = converter.getRoman();
-        assertTrue("III".equals(roman));
+            
+    @Parameters(name = "{index}: {0} => {1}")
+    public static Iterable<Object[]> data() {
+        return Arrays.asList(new Object[][] {
+            { "1", "I" },
+            { "2", "II" },
+            { "3", "III" },
+            { "7", "VII" },
+            { "13", "XIII" },
+            { "61", "LXI" },
+            { "2777", "MMDCCLXXVII" },
+            { "4", "IV" },
+            { "1444", "MCDXLIV" },
+            { "2999", "MMCMXCIX" },
+        } );
     }
     
     @Test
-    public void numberWithDigitV() {
-        ConvertToRoman converter = new ConvertToRoman("7");
+    public void testConversion() {
+        ConvertToRoman converter = new ConvertToRoman(arab);
         final String roman = converter.getRoman();
-        assertTrue("VII".equals(roman));
-    }
-
-    @Test
-    public void numberWithDigitX() {
-        ConvertToRoman converter = new ConvertToRoman("13");
-        final String roman = converter.getRoman();
-        assertTrue("XIII".equals(roman));
-    }
-
-    @Test
-    public void numberWithDigitL() {
-        ConvertToRoman converter = new ConvertToRoman("61");
-        final String roman = converter.getRoman();
-        assertTrue("LXI".equals(roman));
-    }
-
-    @Test
-    public void numberWithDigitsMDC() {
-        ConvertToRoman converter = new ConvertToRoman("2777");
-        final String roman = converter.getRoman();
-        assertTrue("MMDCCLXXVII".equals(roman));
-    }
-
-    @Test
-    public void numberWithDigitIV() {
-        ConvertToRoman converter = new ConvertToRoman("4");
-        final String roman = converter.getRoman();
-        assertTrue("IV".equals(roman));
-    }
-
-    @Test
-    public void numberWithDigits4() {
-        ConvertToRoman converter = new ConvertToRoman("1444");
-        final String roman = converter.getRoman();
-        assertTrue("MCDXLIV".equals(roman));
-    }
-
-    @Test
-    public void numberWithDigits9() {
-        ConvertToRoman converter = new ConvertToRoman("2999");
-        final String roman = converter.getRoman();
-        assertTrue("MMCMXCIX".equals(roman));
+        assertTrue(expectedRoman.equals(roman));
     }
 }
