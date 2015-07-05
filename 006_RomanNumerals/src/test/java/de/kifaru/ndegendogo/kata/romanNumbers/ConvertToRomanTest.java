@@ -36,7 +36,7 @@ public class ConvertToRomanTest {
     
     @Test
     public void testConversion() {
-        final String roman = ConvertToRoman.getRoman(arab);
+        final String roman = ConvertToRoman.convert(arab);
         assertTrue(expectedRoman.equals(roman));
     }
 }
