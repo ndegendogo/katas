@@ -5,6 +5,7 @@ all: hello
 hello:
 	echo "Hello, world!"
 
+.PHONY: cleanJava
 cleanJava:
 	rm -f *.class
 
