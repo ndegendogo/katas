@@ -8,10 +8,10 @@ public class ConvertToRoman {
     ConvertToRoman(String arabicString) {
         roman = new StringBuilder();
         arabicNumber = new Integer(arabicString);
-        convert();
     }
 
     String getRoman() {
+        convert();
         final String result = roman.toString();
         return result;
     }
