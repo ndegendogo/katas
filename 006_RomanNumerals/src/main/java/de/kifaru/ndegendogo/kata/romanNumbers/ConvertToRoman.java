@@ -5,7 +5,7 @@ public class ConvertToRoman {
     private StringBuilder roman;
     private Integer arabicNumber;
 
-    ConvertToRoman(String arabicString) {
+    private ConvertToRoman(String arabicString) {
     }
 
     static String getRoman(String arabicString) {
