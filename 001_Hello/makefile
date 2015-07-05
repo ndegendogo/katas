@@ -18,7 +18,12 @@ runJava: Hello.class
 
 .PHONY: testJava
 testJava: Hello.class
-	expected="Hello, world!"; actual=$$(java Hello); if [ "$$actual" == "$$expected" ]; then echo ok; else echo fail; fi
+	expected="Hello, world!"; \
+	actual=$$(java Hello); \
+	if [ "$$actual" == "$$expected" ]; \
+	then echo ok; \
+	else echo fail; \
+	fi
 
 Hello.class: Hello.java
 	javac Hello.java
