@@ -6,11 +6,11 @@ public class ConvertToRoman {
     private Integer arabicNumber;
 
     ConvertToRoman(String arabicString) {
-        roman = new StringBuilder();
-        arabicNumber = new Integer(arabicString);
     }
 
     String getRoman(String arabicString) {
+        roman = new StringBuilder();
+        arabicNumber = new Integer(arabicString);
         convert();
         final String result = roman.toString();
         return result;
