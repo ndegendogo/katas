@@ -22,7 +22,7 @@ testJava: Hello.class
 	actual=$$(java Hello); \
 	if [ "$$actual" == "$$expected" ]; \
 	then echo ok; \
-	else echo fail; \
+	else echo fail; exit 1; \
 	fi
 
 Hello.class: Hello.java
