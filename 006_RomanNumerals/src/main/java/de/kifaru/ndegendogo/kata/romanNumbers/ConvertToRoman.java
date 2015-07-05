@@ -8,11 +8,12 @@ public class ConvertToRoman {
     ConvertToRoman(String arabicString) {
     }
 
-    String getRoman(String arabicString) {
-        roman = new StringBuilder();
-        arabicNumber = new Integer(arabicString);
-        convert();
-        final String result = roman.toString();
+    static String getRoman(String arabicString) {
+        ConvertToRoman converter = new ConvertToRoman(arabicString);
+        converter.roman = new StringBuilder();
+        converter.arabicNumber = new Integer(arabicString);
+        converter.convert();
+        final String result = converter.roman.toString();
         return result;
     }
 
@@ -42,7 +43,7 @@ public class ConvertToRoman {
     public static void main(String[] args) {
         String arabic = args[0];
         ConvertToRoman converter = new ConvertToRoman(arabic);
-        String roman = converter.getRoman(arabic);
+        String roman = ConvertToRoman.getRoman(arabic);
         System.out.println(roman);
     }
 
