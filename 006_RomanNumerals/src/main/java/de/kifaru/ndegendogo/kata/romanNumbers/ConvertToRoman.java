@@ -5,13 +5,13 @@ public class ConvertToRoman {
     private StringBuilder roman;
     private int arabicNumber;
 
-    private ConvertToRoman() {
+    private ConvertToRoman(int arabicNumber) {
+        roman = new StringBuilder();
+        this.arabicNumber = arabicNumber;
     }
 
     static String convert(int arabicNumber) {
-        ConvertToRoman converter = new ConvertToRoman();
-        converter.roman = new StringBuilder();
-        converter.arabicNumber = arabicNumber;
+        ConvertToRoman converter = new ConvertToRoman(arabicNumber);
         converter.convert();
         final String result = converter.roman.toString();
         return result;
