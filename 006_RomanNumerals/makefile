@@ -8,7 +8,8 @@ build: bin/de/kifaru/ndegendogo/kata/romanNumbers/ConvertToRoman.class
 clean:
 	rm -rf bin
 
-bin/de/kifaru/ndegendogo/kata/romanNumbers/ConvertToRoman.class: src/main/java/de/kifaru/ndegendogo/kata/romanNumbers/ConvertToRoman.java
-	test -d bin || mkdir bin
+bin/de/kifaru/ndegendogo/kata/romanNumbers/ConvertToRoman.class: bin src/main/java/de/kifaru/ndegendogo/kata/romanNumbers/ConvertToRoman.java
 	javac -d bin src/main/java/de/kifaru/ndegendogo/kata/romanNumbers/ConvertToRoman.java
 	
+bin:
+	mkdir bin
