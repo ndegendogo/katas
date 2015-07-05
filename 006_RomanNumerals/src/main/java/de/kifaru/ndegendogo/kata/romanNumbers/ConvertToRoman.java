@@ -5,11 +5,11 @@ public class ConvertToRoman {
     private StringBuilder roman;
     private Integer arabicNumber;
 
-    private ConvertToRoman(String arabicString) {
+    private ConvertToRoman() {
     }
 
     static String convert(String arabicString) {
-        ConvertToRoman converter = new ConvertToRoman(arabicString);
+        ConvertToRoman converter = new ConvertToRoman();
         converter.roman = new StringBuilder();
         converter.arabicNumber = new Integer(arabicString);
         converter.convert();
@@ -18,22 +18,22 @@ public class ConvertToRoman {
     }
 
     private void convert() {
-        makeSequence(1000, "M");
-        makeSequence(900, "CM");
-        makeSequence(500, "D");
-        makeSequence(400, "CD");
-        makeSequence(100, "C");
-        makeSequence(90, "XC");
-        makeSequence(50, "L");
-        makeSequence(40, "XL");
-        makeSequence(10, "X");
-        makeSequence(9, "IX");
-        makeSequence(5, "V");
-        makeSequence(4, "IV");
-        makeSequence(1, "I");
+        appendDigits(1000, "M");
+        appendDigits(900, "CM");
+        appendDigits(500, "D");
+        appendDigits(400, "CD");
+        appendDigits(100, "C");
+        appendDigits(90, "XC");
+        appendDigits(50, "L");
+        appendDigits(40, "XL");
+        appendDigits(10, "X");
+        appendDigits(9, "IX");
+        appendDigits(5, "V");
+        appendDigits(4, "IV");
+        appendDigits(1, "I");
     }
 
-    private void makeSequence(final int value, final String digit) {
+    private void appendDigits(final int value, final String digit) {
         while (arabicNumber >= value) {
             arabicNumber -=value;
             roman.append(digit);
@@ -41,8 +41,8 @@ public class ConvertToRoman {
     }
 
     public static void main(String[] args) {
-        String arabic = args[0];
-        String roman = ConvertToRoman.convert(arabic);
+        String arabicString = args[0];
+        String roman = ConvertToRoman.convert(arabicString);
         System.out.println(roman);
     }
 
