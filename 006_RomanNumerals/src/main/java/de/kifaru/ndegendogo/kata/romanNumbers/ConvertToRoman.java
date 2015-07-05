@@ -42,7 +42,6 @@ public class ConvertToRoman {
 
     public static void main(String[] args) {
         String arabic = args[0];
-        ConvertToRoman converter = new ConvertToRoman(arabic);
         String roman = ConvertToRoman.getRoman(arabic);
         System.out.println(roman);
     }
