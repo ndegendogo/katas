@@ -3,7 +3,7 @@ package de.kifaru.ndegendogo.kata.romanNumbers;
 public class ConvertToRoman {
 
     private StringBuilder roman;
-    private Integer arabicNumber;
+    private int arabicNumber;
 
     private ConvertToRoman() {
     }
