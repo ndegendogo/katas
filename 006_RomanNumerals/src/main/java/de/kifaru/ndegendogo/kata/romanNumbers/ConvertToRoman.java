@@ -8,10 +8,10 @@ public class ConvertToRoman {
     private ConvertToRoman() {
     }
 
-    static String convert(String arabicString) {
+    static String convert(int arabicNumber) {
         ConvertToRoman converter = new ConvertToRoman();
         converter.roman = new StringBuilder();
-        converter.arabicNumber = Integer.parseInt(arabicString);
+        converter.arabicNumber = arabicNumber;
         converter.convert();
         final String result = converter.roman.toString();
         return result;
@@ -42,7 +42,8 @@ public class ConvertToRoman {
 
     public static void main(String[] args) {
         String arabicString = args[0];
-        String roman = ConvertToRoman.convert(arabicString);
+        int arabicNumber = Integer.parseInt(arabicString);
+        String roman = ConvertToRoman.convert(arabicNumber);
         System.out.println(roman);
     }
 

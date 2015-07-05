@@ -3,6 +3,7 @@ package de.kifaru.ndegendogo.kata.romanNumbers;
 import static org.junit.Assert.*;
 
 import java.util.Arrays;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -10,11 +11,11 @@ import org.junit.runners.Parameterized.Parameters;
 
 @RunWith(value = Parameterized.class)
 public class ConvertToRomanTest {
-    private String arab;
+    private String arabicString;
     private String expectedRoman;
     
     public ConvertToRomanTest(String arab, String expectedRoman) {
-        this.arab = arab;
+        this.arabicString = arab;
         this.expectedRoman = expectedRoman; 
     }
             
@@ -36,7 +37,8 @@ public class ConvertToRomanTest {
     
     @Test
     public void testConversion() {
-        final String roman = ConvertToRoman.convert(arab);
+        int arabic = Integer.parseInt(arabicString);
+        final String roman = ConvertToRoman.convert(arabic);
         assertTrue(expectedRoman.equals(roman));
     }
 }
