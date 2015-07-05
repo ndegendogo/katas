@@ -9,6 +9,6 @@ clean:
 	rm -rf bin
 
 bin/de/kifaru/ndegendogo/kata/romanNumbers/ConvertToRoman.class: src/main/java/de/kifaru/ndegendogo/kata/romanNumbers/ConvertToRoman.java
-	mkdir bin
+	test -d bin || mkdir bin
 	javac -d bin src/main/java/de/kifaru/ndegendogo/kata/romanNumbers/ConvertToRoman.java
 	
