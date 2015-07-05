@@ -11,33 +11,32 @@ import org.junit.runners.Parameterized.Parameters;
 
 @RunWith(value = Parameterized.class)
 public class ConvertToRomanTest {
-    private String arabicString;
+    private int arabic;
     private String expectedRoman;
     
-    public ConvertToRomanTest(String arab, String expectedRoman) {
-        this.arabicString = arab;
+    public ConvertToRomanTest(int arabic, String expectedRoman) {
+        this.arabic = arabic;
         this.expectedRoman = expectedRoman; 
     }
             
     @Parameters(name = "{index}: {0} => {1}")
     public static Iterable<Object[]> data() {
         return Arrays.asList(new Object[][] {
-            { "1", "I" },
-            { "2", "II" },
-            { "3", "III" },
-            { "7", "VII" },
-            { "13", "XIII" },
-            { "61", "LXI" },
-            { "2777", "MMDCCLXXVII" },
-            { "4", "IV" },
-            { "1444", "MCDXLIV" },
-            { "2999", "MMCMXCIX" },
+            { 1, "I" },
+            { 2, "II" },
+            { 3, "III" },
+            { 7, "VII" },
+            { 13, "XIII" },
+            { 61, "LXI" },
+            { 2777, "MMDCCLXXVII" },
+            { 4, "IV" },
+            { 1444, "MCDXLIV" },
+            { 2999, "MMCMXCIX" },
         } );
     }
     
     @Test
     public void testConversion() {
-        int arabic = Integer.parseInt(arabicString);
         final String roman = ConvertToRoman.convert(arabic);
         assertTrue(expectedRoman.equals(roman));
     }
