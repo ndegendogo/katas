@@ -92,15 +92,58 @@ Very limited reuse in a different language, because it must link to the executab
 => Feedback Nelkinda: integration test
 
 - What is the RGF-cycle?
+  R(ed) - G(reen) - re-F(actor).
+  This is a procedure you follow in TDD (Test Driven Development):
+  Red => write a unit test that fails (e.g. for a planned extension of the code).
+  If you perform the unit tests in an IDE, then the failing test is indicated red.
+  Green => modify the production code so that the new test succeeds 
+  (and, of course, all other unit tests written before).
+  If you perform the unit tests in an IDE, then all tests passing is indicated green.
+  re-Factor => clean-up and refactor production code and tests as needed.
+  Verify if still all unit tests are passing.
+  Note: two years ago I learnt a TDD variant in a training with Ralf Westphal and Stefan Lieser;
+  they called it „TDD as you mean it“, it is quite funny.
+  In this procedure you write *only* unit tests, still following the RGF cycle.
+  This means, you write the code to fix a red test _inline_ into this one test, 
+  with no risk to break any other test.
+  The production code then evolves out of these unit tests during the refactoring steps.
+
 - What are the three laws of TDD?
-- What are the names of the roles in pair programming? 
+  (1) start with a unit test, write the test before the code.
+  (2) add only a minimum test which is failing.
+      This can be a failure at runtime or even at compile-time.
+  (3) add a minimum fix / extension to the production code to make it passing again.
+  Following this procedure strictly means that you switch frequently between test and production code,
+  and both evolve in parallel.
+
+- What are the names of the roles in pair programming?
+  Driver and navigator.
+
 - Which role has the keyboard?
+  The driver.
+
 - Which role is responsible for tactics / local thinking?
+  The driver.
+
 - Which role is responsible for strategy / global thinking?
-- What is ping pong? How is ping pong related to TDD?
-- If one developer is more experienced than the other, does this influence the roles? How? By what should you measure success in that case?
-- Can you do TDD without pair programming? What do you lose? What do you gain?
-- Can you do pair programming without TDD? What do you lose? What do you gain?
+  The navigator.
+
+- What is ping pong? 
+  How is ping pong related to TDD?
+  Ping pong is a TDD variant with pair programming.
+  The pair switches roles in the rhythm of the RGF cycle.
+  One writes the next test, and then his partner writes the related production code.
+  In the next cycle with swapped roles.
+
+- If one developer is more experienced than the other, does this influence the roles? 
+  How? 
+  By what should you measure success in that case?
+- Can you do TDD without pair programming? 
+  What do you lose? 
+  What do you gain?
+- Can you do pair programming without TDD? 
+  What do you lose? 
+  What do you gain?
 - What is the single assert rule?
 - What are the "4 As"?
 - What is BDD? How do the 4 As relate to BDD?
