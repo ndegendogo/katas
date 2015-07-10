@@ -8,7 +8,7 @@ public class ConvertToRomanTest {
 
     @Test
     public void singleDigitI() {
-        final String roman = ConvertToRoman.arabToRoman("1");
+        final String roman = ConvertToRoman.arabToRoman(1);
         assertTrue("I".equals(roman));
     }
 
