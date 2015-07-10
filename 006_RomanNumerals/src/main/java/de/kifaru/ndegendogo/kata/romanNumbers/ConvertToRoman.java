@@ -3,6 +3,9 @@ package de.kifaru.ndegendogo.kata.romanNumbers;
 public class ConvertToRoman {
 
     static String arabToRoman(int arabic) {
+        if (arabic > 1) {
+            return "II";
+        }
         return "I";
     }
 
