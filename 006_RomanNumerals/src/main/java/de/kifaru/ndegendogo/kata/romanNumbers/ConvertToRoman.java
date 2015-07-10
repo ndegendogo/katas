@@ -7,8 +7,7 @@ public class ConvertToRoman {
     }
 
     public static void main(String[] args) {
-        String arabicString = args[0];
-        int arabic = Integer.parseInt(arabicString);
+        int arabic = Integer.parseInt(args[0]);
         String roman = arabToRoman(arabic);
         System.out.println(roman);
     }
