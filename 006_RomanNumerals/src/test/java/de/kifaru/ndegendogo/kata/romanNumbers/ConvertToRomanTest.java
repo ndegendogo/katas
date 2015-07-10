@@ -9,7 +9,7 @@ public class ConvertToRomanTest {
     @Test
     public void singleDigitI() {
         final String roman = ConvertToRoman.arabToRoman(1);
-        assertTrue("I".equals(roman));
+        assertEquals("I", roman);
     }
 
 }
