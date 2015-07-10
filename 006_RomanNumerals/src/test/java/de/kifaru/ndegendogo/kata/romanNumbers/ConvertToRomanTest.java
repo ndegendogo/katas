@@ -12,4 +12,9 @@ public class ConvertToRomanTest {
         assertEquals("I", roman);
     }
 
+    @Test
+    public void twoDigitsII() {
+        final String roman = ConvertToRoman.arabToRoman(2);
+        assertEquals("II", roman);
+    }
 }
