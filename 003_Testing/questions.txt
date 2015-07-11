@@ -145,17 +145,65 @@ Very limited reuse in a different language, because it must link to the executab
   In the next cycle with swapped roles.
 
 - If one developer is more experienced than the other, does this influence the roles? 
-  How? 
+  How?
+  In most cases, the less experienced will feel more comfortable in the role as driver,
+  because in this role he has more control over the speed.
+  Still it is recommended that they swap roles also in this case.
+
   By what should you measure success in that case?
+  Hmm .. I do not understand why we need a different KPI in this case.
+  It is pretty normal that not all developers have the same experience in all topics of a project.
+  Using LOC as measurement of progress / success is never a good idea.
+  A better KPI is features done (fulfilling functional and also nonfunctional requirements, including code quality).
+  And in case you want a sustainable team (in very most cases you want this), 
+  you can also take the knowledge transfer into account.
+
 - Can you do TDD without pair programming? 
+  Sure. TDD and pair programming are independent concepts.
+
   What do you lose? 
+  Without pair programming you lose:
+  * the second pair of eyes and immediate feedback
+  * more divers design ideas / solution ideas.
+  * knowledge transfer in the team.
+  You can compensate this with more reviews, but the feedback loop is not so tight then.
+
   What do you gain?
+  Without pair programming you have more autonomy, because you need not synchronize with a peer.
+  You can follow your own speed and your own schedule of preferred working hours.
+
 - Can you do pair programming without TDD? 
+  Yes, this is possible.
+
   What do you lose? 
+  Without TDD you lose the permanent affirmation that nothing is broken.
+  In a pair the risk of fingerpointing is much higher than if I break it on my own.
+
   What do you gain?
+  TDD is not always possible or efficient. 
+  It needs a very fast build process / turnaround times to be efficient, and of course an environment with unit tests.
+  Still in such cases you can perform pair programming for its benefits (4 eyes, knowledge transfer),
+  and apply other QA.
+
 - What is the single assert rule?
+  According to the Single Responsibility Principle (SRP), it is recommended that a test case has a good focus
+  and tests one aspect only. This is expressed as a single assertion.
+  Multiple assertions in a test case can be an indicator that it tests more than one aspect and should be split.
+
 - What are the "4 As"?
+  This is a recommended structure for implementation of a test case:
+  A(rrange): prepare the preconditions
+  A(ct): invoke the function under test
+  A(ssert): verify the postconditions
+  A(nihilate): cleanup
+
 - What is BDD? How do the 4 As relate to BDD?
+  BDD is Behaviour Driven Development. This is similar to TDD, but with more focus to verify 
+  only the external visible behaviour of a system, not its internal state.
+  A recommended naming scheme for test cases follows the Given-When-Then scheme:
+  Given = the preconditions                    => Arrange
+  When = the trigger to the system under test  => Act
+  Then = the observable response of the system => Assert
 
 ——————————————————————————————————————————
 4. Java arrays
