@@ -8,13 +8,17 @@ public class ConvertToRomanTest {
 
     @Test
     public void singleDigitI() {
-        final String roman = ConvertToRoman.arabToRoman(1);
-        assertEquals("I", roman);
+        final int arabic = 1;
+        final String expectedRoman = "I";
+        final String roman = ConvertToRoman.arabToRoman(arabic);
+        assertEquals(expectedRoman, roman);
     }
 
     @Test
     public void twoDigitsII() {
-        final String roman = ConvertToRoman.arabToRoman(2);
-        assertEquals("II", roman);
+        final int arabic = 2;
+        final String expectedRoman = "II";
+        final String roman = ConvertToRoman.arabToRoman(arabic);
+        assertEquals(expectedRoman, roman);
     }
 }
