@@ -22,16 +22,18 @@ public class ConvertToRomanTest {
 
     @Test
     public void singleDigitI() {
-        final int arabic = 1;
-        final String expectedRoman = "I";
+        final TestVector vector = new TestVector(1, "I");
+        final int arabic = vector.arabic;
+        final String expectedRoman = vector.expectedRoman;
         final String roman = ConvertToRoman.arabToRoman(arabic);
         assertEquals(expectedRoman, roman);
     }
 
     @Test
     public void twoDigitsII() {
-        final int arabic = 2;
-        final String expectedRoman = "II";
+        final TestVector vector = new TestVector(2, "II");
+        final int arabic = vector.arabic;
+        final String expectedRoman = vector.expectedRoman;
         final String roman = ConvertToRoman.arabToRoman(arabic);
         assertEquals(expectedRoman, roman);
     }
