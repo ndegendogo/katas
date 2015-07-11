@@ -12,12 +12,6 @@ public class ConvertToRomanTest {
             this.arabic = arabic;
             this.expectedRoman = expectedRoman;
         }
-        int getArabic() {
-            return arabic;
-        }
-        String getExpectedRoman() {
-            return expectedRoman;
-        }
     }
 
     @Test
