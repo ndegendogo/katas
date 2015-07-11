@@ -4,9 +4,8 @@ public class ConvertToRoman {
 
     static String arabToRoman(int arabic) {
         StringBuffer roman = new StringBuffer();
+        roman.append("I");
         if (arabic > 1) {
-            roman.append("II");
-        } else {
             roman.append("I");
         }
         return roman.toString();
