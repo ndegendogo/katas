@@ -149,6 +149,8 @@ Very limited reuse in a different language, because it must link to the executab
   In most cases, the less experienced will feel more comfortable in the role as driver,
   because in this role he has more control over the speed.
   Still it is recommended that they swap roles also in this case.
+=> Feedback Nelkinda: Additionally, it is recommended that the less experienced programmer
+   is more in the driver seat.
 
   By what should you measure success in that case?
   Hmm .. I do not understand why we need a different KPI in this case.
