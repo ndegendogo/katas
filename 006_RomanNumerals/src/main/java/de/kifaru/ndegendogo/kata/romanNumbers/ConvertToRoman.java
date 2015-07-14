@@ -3,7 +3,7 @@ package de.kifaru.ndegendogo.kata.romanNumbers;
 public class ConvertToRoman {
 
     static String arabToRoman(int arabic) {
-        StringBuffer roman = new StringBuffer();
+        StringBuilder roman = new StringBuilder();
         roman.append("I");
         if (arabic > 1) {
             roman.append("I");
