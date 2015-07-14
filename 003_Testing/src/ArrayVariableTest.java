@@ -16,6 +16,11 @@ public class ArrayVariableTest {
     int var5[][];   // this format is discouraged
     int[] var6[];   // and this format is even more confusing
 
+    // initialized arrays
+    int[][] var7 = {{0, 1, 2}, {3, 4}, {5, 6, 7, 8}};
+    Integer[][] var8 = {{0, 1, 2}, {3, 4}, {5, 6, 7, 8}};
+    String[] var9 = {"the", "quick", "brown", "fox"};
+    
     @Test
     public void arrayDeclarationsDontAllocateObject() {
         assertNull(var1);
