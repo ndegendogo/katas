@@ -17,8 +17,12 @@ public class ArrayVariableTest {
     int[] var6[];   // and this format is even more confusing
 
     @Test
-    public void test() {
-        fail();
+    public void arrayDeclarationsDontAllocateObject() {
+        assertNull(var1);
+        assertNull(var2);
+        assertNull(var3);
+        assertNull(var4);
+        assertNull(var5);
+        assertNull(var6);
     }
-
 }
