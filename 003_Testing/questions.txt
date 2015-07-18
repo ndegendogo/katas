@@ -212,7 +212,6 @@ Very limited reuse in a different language, because it must link to the executab
 - What are the three possible syntax variants for declaring a Java variable of array type?
     int[] var1;
     int var2[];     // this format is discouraged
-    Array var3;
   For multi-dimensional arrays, the square brackets can be after the element type (this format is recommended),
   or after the variable name (this format is discouraged), or even mixed positions (this is even more confusing).
   Always one pair of square brackets per dimension.
@@ -220,15 +219,16 @@ Very limited reuse in a different language, because it must link to the executab
     int var5[][];   // this format is discouraged
     int[] var6[];   // and this format is even more confusing
   In all these cases, no array is allocated.
+  An array variable may be initialised with a literal, or the array constructed at runtime.
 
-  An array variable may be initialised with a literal. The literal values for the elements are separated with comma,
+  The literal values for the elements are separated with comma,
   and every dimension is enclosed in curly brackets. This works even if the element type is not primitive,
   as long as it can be expressed as a literal.
   A multi-dimensional array need not be rectangular.
     int[][] var7 = {{0, 1, 2}, {3, 4}, {5, 6, 7, 8}};
     Integer[][] var8 = {{0, 1, 2}, {3, 4}, {5, 6, 7, 8}};
     String[] var9 = {"the", "quick", "brown", "fox"};
-
+    int[][] var13 = new int[5][6];
 
 - Which of these is "unnatural" for Java and why? 
   The format with the brackets after the variable is unnatural, because the square brackets are part of 
@@ -244,13 +244,5 @@ Very limited reuse in a different language, because it must link to the executab
   This format should be avoided as it is discouraged, and gives no benefit.
 
 - Which of these is very limited in where it can be used?
-  Array is very generic, at compile-time neither its element type nor its dimension are known.
-  For this reason it cannot be initialised with a literal.
-  At runtime it can be used for any type of array, however, assignment from variable from another array type
-  needs a lot of casts, and still then is likely to throw a ClassCastException,
-  because it is neither a subtype nor a supertype of the other explicit array types.
-Question: is such an assignment possible? Because I didn’t succeed.
-
 - What is the benefit of this syntax variant?
-  The type is very generic and can be used as parameter type for methods which process any type of array.
 
