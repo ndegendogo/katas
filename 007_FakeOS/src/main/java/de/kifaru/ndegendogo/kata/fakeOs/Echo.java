@@ -3,7 +3,7 @@ package de.kifaru.ndegendogo.kata.fakeOs;
 public class Echo {
 
     public static void main(String... args) {
-        final String resultString = getResult("");
+        final String resultString = getResult(args[0]);
         System.out.println(resultString);
     }
 
