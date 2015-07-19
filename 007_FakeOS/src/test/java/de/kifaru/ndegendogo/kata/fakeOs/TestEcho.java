@@ -8,6 +8,7 @@ public class TestEcho {
 
     @Test
     public void singleArgument() {
-        Echo.getResult("hello");
+        final String result = Echo.getResult("hello");
+        assertEquals(result, "hello");
     }
 }
