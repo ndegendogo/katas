@@ -9,10 +9,14 @@ public class Echo {
 
     public static String getResult(String... params) {
         StringBuilder builder = new StringBuilder();
-        builder.append(params[0]);
-        builder.append(' ');
+        {
+            final String string = params[0];
+            builder.append(string);
+            builder.append(' ');
+        }
         if (params.length > 1) {
-            builder.append(params[1]);
+            final String string = params[1];
+            builder.append(string);
             builder.append(' ');
         }
         return builder.toString().trim();
