@@ -1,0 +1,15 @@
+for Fake OS, Product Management has decided to take the next step.
+Part of this is providing command line programs that resemble specific
+UNIX command line programs.
+
+Story 1: Echo.java which prints zero or more strings, then a newline.
+Story 2: Cat.java which concatenates files or stdin to stdout.
+Story 3: Head.java which prints the first 10 lines from files or stdin
+to stdout.
+Story 4: Tail.java which prints the last 10 lines from files or stdin to stdout.
+Story 5: Sort.java which sorts lines from files or stdin to stdout.
+Story 6: WC.java which counts characters, words and lines from files
+or stdin to stdout.
+
+I'm the product owner. Also discuss the acceptance criteria and
+definition of done with me.

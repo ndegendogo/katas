@@ -1,0 +1,23 @@
+implement Roman Numerals with TDD.
+
+Here's the task:
+
+Marketing has decided that we no longer number the games of the game
+serials with Arabic numbers but with Roman numerals.
+
+Story 1: As a game developer, I need a program that converts an Arabic
+number into a Roman numeral.
+Story 2: As a sales person, I need a program that converts a Roman
+numeral into an Arabic number.
+
+I am your product owner. When in doubt, ask me any time.
+I want to see this as if it were a full-fledged product, starting with
+estimation and interface design.
+Use TDD for the implementation. Roman Numerals is ideal for TDD.
+
+Hints: Be as strict with the process as possible: Extract methods
+whenever possible ("braces are an opportunity to extract").
+The funny thing about Roman Numerals is, the more strict you are, the
+faster, more correct and more maintainable the solution becomes.
+More Hints: 1990 is MCMXC but not MXM. 1999 is MCMXCIX but not MCMIC or MIM.
+
