@@ -8,13 +8,15 @@ public class Echo {
     }
 
     public static String getResult(String... params) {
-        String resultString;
+        StringBuilder builder = new StringBuilder();
         if (params.length == 1) {
-            resultString = params[0];
+            builder.append(params[0]);
         } else {
-            resultString = params[0] + ' ' + params[1];
+            builder.append(params[0]);
+            builder.append(' ');
+            builder.append(params[1]);
         }
-        return resultString;
+        return builder.toString();
     }
 
 }
