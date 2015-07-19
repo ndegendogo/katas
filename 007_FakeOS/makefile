@@ -13,5 +13,8 @@ test_echo: Echo.class
 clean:
 	rm -rf bin
 
-Echo.class: src/main/java/de/kifaru/ndegendogo/kata/fakeOs/Echo.java
-#	javac -cp bin -d bin -sourcepath src/main/java
+Echo.class: src/main/java/de/kifaru/ndegendogo/kata/fakeOs/Echo.java bin
+	javac -cp bin -d bin src/main/java/de/kifaru/ndegendogo/kata/fakeOs/Echo.java
+
+bin:
+	mkdir bin
