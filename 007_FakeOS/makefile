@@ -9,5 +9,9 @@ test_echo: Echo.class
 #	java Echo
 #	test `echo hello` = `java Echo hello`
 
+.PHONY: clean
+clean:
+	rm -rf bin
+
 Echo.class: src/main/java/de/kifaru/ndegendogo/kata/fakeOs/Echo.java
 #	javac -cp bin -d bin -sourcepath src/main/java
