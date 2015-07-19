@@ -11,4 +11,10 @@ public class TestEcho {
         final String result = Echo.getResult("hello");
         assertEquals(result, "hello");
     }
+
+    @Test
+    public void anotherSingleArgument() {
+        final String result = Echo.getResult("world");
+        assertEquals(result, "world");
+    }
 }
