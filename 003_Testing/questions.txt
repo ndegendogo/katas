@@ -212,6 +212,8 @@ Very limited reuse in a different language, because it must link to the executab
 - What are the three possible syntax variants for declaring a Java variable of array type?
     int[] var1;
     int var2[];     // this format is discouraged
+    int args...     // this format can *only* be used as parameter declaration of a function.
+
   For multi-dimensional arrays, the square brackets can be after the element type (this format is recommended),
   or after the variable name (this format is discouraged), or even mixed positions (this is even more confusing).
   Always one pair of square brackets per dimension.
@@ -244,5 +246,10 @@ Very limited reuse in a different language, because it must link to the executab
   This format should be avoided as it is discouraged, and gives no benefit.
 
 - Which of these is very limited in where it can be used?
+  It is possible to declare a method signature with a variable number of parameters using the ... syntax. 
+  On the callee side, this last parameter is then accessed as the elements of an array. 
+
 - What is the benefit of this syntax variant?
+  On the caller side, it is not necessary to construct an array for the variable number of arguments.
+  They can be passed simply as list.
 
