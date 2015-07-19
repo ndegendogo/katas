@@ -47,7 +47,7 @@ public class ArrayVariableTest {
             result.append(parameters[i]);
             result.append(' ');
         }
-        assertEquals("Hello world! ", result);
+        assertEquals("Hello world! ", result.toString());
     }
 
 }
