@@ -40,13 +40,19 @@ public class ArrayVariableTest {
     }
     
     @Test
-    public void variableNumberOfMethodParams() {
+    public void variableNumberOfMethodParamsAsArray() {
         String[] parameters = {"Hello", "world!"};
         final String string = composeString(parameters);
         assertEquals("Hello world! ", string);
     }
 
-    private String composeString(String[] parameters) {
+    @Test
+    public void variableNumberOfMethodParamsAsList() {
+        final String string = composeString("Hello", "world!");
+        assertEquals("Hello world! ", string);
+    }
+
+    private String composeString(String... parameters) {
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < parameters.length; i++) {
             result.append(parameters[i]);
