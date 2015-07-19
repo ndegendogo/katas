@@ -7,8 +7,8 @@ public class Echo {
         System.out.println(resultString);
     }
 
-    public static String getResult(String dummy) {
-        final String resultString = dummy;
+    public static String getResult(String param) {
+        final String resultString = param;
         return resultString;
     }
 
