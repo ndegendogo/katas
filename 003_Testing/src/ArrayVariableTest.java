@@ -42,14 +42,18 @@ public class ArrayVariableTest {
     @Test
     public void variableNumberOfMethodParamsAsArray() {
         String[] parameters = {"Hello", "world!"};
-        final String string = composeString(parameters);
-        assertEquals("Hello world! ", string);
+        final String string1 = composeString(parameters);
+        assertEquals("Hello world! ", string1);
+        final String string2 = composeStringFromArray(parameters);
+        assertEquals("Hello world! ", string2);
     }
 
     @Test
     public void variableNumberOfMethodParamsAsList() {
-        final String string = composeString("Hello", "world!");
-        assertEquals("Hello world! ", string);
+        final String string1 = composeString("Hello", "world!");
+        assertEquals("Hello world! ", string1);
+//        final String string2 = composeStringFromArray("Hello", "world!"); not allowed.
+//        assertEquals("Hello world! ", string2);
     }
 
     private String composeString(String... parameters) {
@@ -61,4 +65,12 @@ public class ArrayVariableTest {
         return result.toString();
     }
 
+    private String composeStringFromArray(String[] parameters) {
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < parameters.length; i++) {
+            result.append(parameters[i]);
+            result.append(' ');
+        }
+        return result.toString();
+    }
 }
