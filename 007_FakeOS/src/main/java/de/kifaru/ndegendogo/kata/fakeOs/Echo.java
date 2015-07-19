@@ -8,7 +8,7 @@ public class Echo {
     }
 
     public static String getResult(String dummy) {
-        final String resultString = "hello";
+        final String resultString = dummy;
         return resultString;
     }
 
