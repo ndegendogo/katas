@@ -39,4 +39,15 @@ public class ArrayVariableTest {
         assertNull(var6);
     }
     
+    @Test
+    public void variableNumberOfMethodParams() {
+        String[] parameters = {"Hello", "world!"};
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < parameters.length; i++) {
+            result.append(parameters[i]);
+            result.append(' ');
+        }
+        assertEquals("Hello world! ", result);
+    }
+
 }
