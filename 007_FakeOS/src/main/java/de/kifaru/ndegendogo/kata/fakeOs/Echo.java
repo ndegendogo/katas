@@ -9,10 +9,8 @@ public class Echo {
 
     public static String getResult(String... params) {
         StringBuilder builder = new StringBuilder();
-        if (params.length == 1) {
-            builder.append(params[0]);
-        } else {
-            builder.append(params[0]);
+        builder.append(params[0]);
+        if (params.length > 1) {
             builder.append(' ');
             builder.append(params[1]);
         }
