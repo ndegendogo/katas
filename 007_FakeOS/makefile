@@ -11,11 +11,7 @@ test: test_echo
 
 .PHONY: test_echo
 test_echo: bin/$(PACKAGEPATH)Echo.class
-	$(JAVACALL)Echo
-	test "`echo hello`" = "hello"
-	test "`echo hello world`" = "hello world"
-#	test "`echo hello`" = "world"
-#	test "`echo hello`" = "`$(JAVACALL)Echo`"
+	test "`echo hello`" = "`$(JAVACALL)Echo hello`"
 
 .PHONY: clean
 clean:
