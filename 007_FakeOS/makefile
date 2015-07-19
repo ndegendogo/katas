@@ -4,7 +4,10 @@ SOURCEPATH=src/main/java/
 JAVACALL=java -cp bin $(PACKAGE)
 
 .PHONY: all
-all:
+all: build
+
+.PHONY: build
+build: bin/$(PACKAGEPATH)Echo.class 
 
 .PHONY: test
 test: test_echo
