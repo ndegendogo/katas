@@ -212,7 +212,7 @@ Very limited reuse in a different language, because it must link to the executab
 - What are the three possible syntax variants for declaring a Java variable of array type?
     int[] var1;
     int var2[];     // this format is discouraged
-    int args...     // this format can *only* be used as parameter declaration of a function.
+    int... args     // this format can *only* be used as parameter declaration of a function.
 
   For multi-dimensional arrays, the square brackets can be after the element type (this format is recommended),
   or after the variable name (this format is discouraged), or even mixed positions (this is even more confusing).
