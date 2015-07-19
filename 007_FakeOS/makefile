@@ -6,7 +6,7 @@ test: test_echo
 
 .PHONY: test_echo
 test_echo: bin/de/kifaru/ndegendogo/kata/fakeOs/Echo.class
-#	java Echo
+	java -cp bin de.kifaru.ndegendogo.kata.fakeOs.Echo
 #	test `echo hello` = `java Echo hello`
 
 .PHONY: clean
