@@ -9,12 +9,7 @@ public class Echo {
 
     public static String getResult(String... params) {
         StringBuilder builder = new StringBuilder();
-        {
-            final String string = params[0];
-            appendString(builder, string);
-        }
-        if (params.length > 1) {
-            final String string = params[1];
+        for(String string: params) {
             appendString(builder, string);
         }
         return builder.toString().trim();
