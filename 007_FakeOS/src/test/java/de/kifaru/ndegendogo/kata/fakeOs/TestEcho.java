@@ -23,4 +23,10 @@ public class TestEcho {
         final String result = Echo.getResult("Hello", "world");
         assertEquals(result, "Hello world");
     }
+
+    @Test
+    public void noArgument() {
+        final String result = Echo.getResult();
+        assertEquals(result, "");
+    }
 }
