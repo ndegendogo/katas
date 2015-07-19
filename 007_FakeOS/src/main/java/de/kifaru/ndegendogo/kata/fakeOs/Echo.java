@@ -7,16 +7,16 @@ public class Echo {
         System.out.println(resultString);
     }
 
-    public static String getResult(String... params) {
+    public static String getResult(String... args) {
         StringBuilder builder = new StringBuilder();
-        for(String string: params) {
-            appendString(builder, string);
+        for(String arg: args) {
+            appendArg(builder, arg);
         }
         return builder.toString().trim();
     }
 
-    public static void appendString(StringBuilder builder, final String string) {
-        builder.append(string);
+    public static void appendArg(StringBuilder builder, final String arg) {
+        builder.append(arg);
         builder.append(' ');
     }
 
