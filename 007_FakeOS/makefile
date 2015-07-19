@@ -14,6 +14,7 @@ test_echo: bin/$(PACKAGEPATH)Echo.class
 	test "`echo hello`" = "`$(JAVACALL)Echo hello`"
 	test "`echo world`" = "`$(JAVACALL)Echo world`"
 	test "`echo`" = "`$(JAVACALL)Echo`"
+	test "`echo Hello world!`" = "`$(JAVACALL)Echo Hello world!`"
 
 .PHONY: clean
 clean:
