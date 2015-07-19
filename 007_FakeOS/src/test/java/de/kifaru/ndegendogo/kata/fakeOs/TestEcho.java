@@ -17,4 +17,10 @@ public class TestEcho {
         final String result = Echo.getResult("world");
         assertEquals(result, "world");
     }
+    
+    @Test
+    public void twoArguments() {
+        final String result = Echo.getResult("Hello", "world");
+        assertEquals(result, "Hello world");
+    }
 }
