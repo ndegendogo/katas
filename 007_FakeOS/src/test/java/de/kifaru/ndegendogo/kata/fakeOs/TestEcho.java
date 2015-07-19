@@ -8,6 +8,6 @@ public class TestEcho {
 
     @Test
     public void singleArgument() {
-        assertTrue(true);
+        Echo.getResult("hello");
     }
 }
