@@ -1,3 +1,8 @@
+PACKAGE=de.kifaru.ndegendogo.kata.fakeOs.
+PACKAGEPATH=de/kifaru/ndegendogo/kata/fakeOs/
+SOURCEPATH=src/main/java/
+
+
 .PHONY: all
 all:
 
@@ -5,16 +10,16 @@ all:
 test: test_echo
 
 .PHONY: test_echo
-test_echo: bin/de/kifaru/ndegendogo/kata/fakeOs/Echo.class
-	java -cp bin de.kifaru.ndegendogo.kata.fakeOs.Echo
+test_echo: bin/$(PACKAGEPATH)Echo.class
+	java -cp bin $(PACKAGE)Echo
 #	test `echo hello` = `java Echo hello`
 
 .PHONY: clean
 clean:
 	rm -rf bin
 
-bin/de/kifaru/ndegendogo/kata/fakeOs/Echo.class: src/main/java/de/kifaru/ndegendogo/kata/fakeOs/Echo.java bin
-	javac -cp bin -d bin src/main/java/de/kifaru/ndegendogo/kata/fakeOs/Echo.java
+bin/$(PACKAGEPATH)Echo.class: $(SOURCEPATH)$(PACKAGEPATH)Echo.java bin
+	javac -cp bin -d bin $(SOURCEPATH)$(PACKAGEPATH)Echo.java
 
 bin:
 	mkdir bin
