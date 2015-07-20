@@ -12,6 +12,13 @@ build: bin/$(PACKAGEPATH)Echo.class bin/$(PACKAGEPATH)TestEcho.class
 .PHONY: test
 test: test_echo
 
+# verify output of my Echo, use the original echo command as reference.
+assertEcho:=test "`echo $(1)`" = "`$(JAVACALL)Echo $(1)`"
+
+.PHONY test_echo: thisWorksNotAsExpected
+thisWorksNotAsExpected: bin/$(PACKAGEPATH)Echo.class
+	$(call assertEcho,hello)
+
 .PHONY test_echo: echoWithOneWordPrintsThisWord
 echoWithOneWordPrintsThisWord: bin/$(PACKAGEPATH)Echo.class
 	test "`echo hello`" = "`$(JAVACALL)Echo hello`"
