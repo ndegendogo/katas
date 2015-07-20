@@ -1,7 +1,7 @@
 PACKAGE=de.kifaru.ndegendogo.kata.fakeOs.
 PACKAGEPATH=de/kifaru/ndegendogo/kata/fakeOs/
 SOURCEPATH=src/main/java/
-JAVACALL=java -cp bin $(PACKAGE)
+JAVACALL=java -cp bin/ $(PACKAGE)
 
 .PHONY: all
 all: build
@@ -23,7 +23,7 @@ test_echo: bin/$(PACKAGEPATH)Echo.class
 clean:
 	rm -rf bin/
 
-bin/$(PACKAGEPATH)Echo.class: $(SOURCEPATH)$(PACKAGEPATH)Echo.java | bin/
+bin/%.class: $(SOURCEPATH)%.java | bin/
 	javac -cp bin/ -d bin/ $<
 
 bin/:
