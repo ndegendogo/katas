@@ -12,11 +12,20 @@ build: bin/$(PACKAGEPATH)Echo.class bin/$(PACKAGEPATH)TestEcho.class
 .PHONY: test
 test: test_echo
 
-.PHONY: test_echo
-test_echo: bin/$(PACKAGEPATH)Echo.class
+.PHONY test_echo: echoWithOneWordPrintsThisWord
+echoWithOneWordPrintsThisWord: bin/$(PACKAGEPATH)Echo.class
 	test "`echo hello`" = "`$(JAVACALL)Echo hello`"
+
+.PHONY test_echo: echoWithAnotherWordPrintsThisOtherWord
+echoWithAnotherWordPrintsThisOtherWord: bin/$(PACKAGEPATH)Echo.class
 	test "`echo world`" = "`$(JAVACALL)Echo world`"
+
+.PHONY test_echo: echoWithoutParametersPrintsNothing
+echoWithoutParametersPrintsNothing: bin/$(PACKAGEPATH)Echo.class
 	test "`echo`" = "`$(JAVACALL)Echo`"
+
+.PHONY test_echo: echoWithFullSentencePrintsFullSentence
+echoWithFullSentencePrintsFullSentence: bin/$(PACKAGEPATH)Echo.class
 	test "`echo Hello world!`" = "`$(JAVACALL)Echo Hello world!`"
 
 .PHONY: clean
