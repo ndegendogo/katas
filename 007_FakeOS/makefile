@@ -7,7 +7,7 @@ JAVACALL=java -cp bin $(PACKAGE)
 all: build
 
 .PHONY: build
-build: bin/$(PACKAGEPATH)Echo.class 
+build: bin/$(PACKAGEPATH)Echo.class bin/$(PACKAGEPATH)TestEcho.class
 
 .PHONY: test
 test: test_echo
@@ -23,7 +23,7 @@ test_echo: bin/$(PACKAGEPATH)Echo.class
 clean:
 	rm -rf bin
 
-bin/$(PACKAGEPATH)Echo.class: $(SOURCEPATH)$(PACKAGEPATH)Echo.java bin
+bin/$(PACKAGEPATH)Echo.class: $(SOURCEPATH)$(PACKAGEPATH)Echo.java | bin
 	javac -cp bin -d bin $(SOURCEPATH)$(PACKAGEPATH)Echo.java
 
 bin:
