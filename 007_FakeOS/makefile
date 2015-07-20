@@ -24,7 +24,7 @@ clean:
 	rm -rf bin/
 
 bin/$(PACKAGEPATH)Echo.class: $(SOURCEPATH)$(PACKAGEPATH)Echo.java | bin/
-	javac -cp bin -d bin $(SOURCEPATH)$(PACKAGEPATH)Echo.java
+	javac -cp bin/ -d bin/ $<
 
 bin/:
 	mkdir $@
