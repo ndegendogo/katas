@@ -27,4 +27,4 @@ bin/$(PACKAGEPATH)Echo.class: $(SOURCEPATH)$(PACKAGEPATH)Echo.java | bin/
 	javac -cp bin -d bin $(SOURCEPATH)$(PACKAGEPATH)Echo.java
 
 bin/:
-	mkdir bin/
+	mkdir $@
