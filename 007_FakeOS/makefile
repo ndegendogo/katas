@@ -13,27 +13,23 @@ build: bin/$(PACKAGEPATH)Echo.class bin/$(PACKAGEPATH)TestEcho.class
 test: test_echo
 
 # verify output of my Echo, use the original echo command as reference.
-assertEcho:=test "`echo $(1)`" = "`$(JAVACALL)Echo $(1)`"
-
-.PHONY test_echo: thisWorksNotAsExpected
-thisWorksNotAsExpected: bin/$(PACKAGEPATH)Echo.class
-	$(call assertEcho,hello)
+assertEcho=test "`echo $(1)`" = "`$(JAVACALL)Echo $(1)`"
 
 .PHONY test_echo: echoWithOneWordPrintsThisWord
 echoWithOneWordPrintsThisWord: bin/$(PACKAGEPATH)Echo.class
-	test "`echo hello`" = "`$(JAVACALL)Echo hello`"
+	$(call assertEcho,hello)
 
 .PHONY test_echo: echoWithAnotherWordPrintsThisOtherWord
 echoWithAnotherWordPrintsThisOtherWord: bin/$(PACKAGEPATH)Echo.class
-	test "`echo world`" = "`$(JAVACALL)Echo world`"
+	$(call assertEcho,world)
 
 .PHONY test_echo: echoWithoutParametersPrintsNothing
 echoWithoutParametersPrintsNothing: bin/$(PACKAGEPATH)Echo.class
-	test "`echo`" = "`$(JAVACALL)Echo`"
+	$(call assertEcho,)
 
 .PHONY test_echo: echoWithFullSentencePrintsFullSentence
 echoWithFullSentencePrintsFullSentence: bin/$(PACKAGEPATH)Echo.class
-	test "`echo Hello world!`" = "`$(JAVACALL)Echo Hello world!`"
+	$(call assertEcho,Hello world!)
 
 .PHONY: clean
 clean:
