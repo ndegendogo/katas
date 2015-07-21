@@ -34,6 +34,7 @@ echoWithFullSentencePrintsFullSentence: bin/$(PACKAGEPATH)Echo.class
 .PHONY: clean
 clean:
 	rm -rf bin/
+	echo $(RM)
 
 bin/%.class: $(SOURCEPATH)%.java | bin/
 	javac -cp bin/ -d bin/ $<
