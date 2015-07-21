@@ -1,10 +1,10 @@
-SOURCEPATH=src/main/java/
-PACKAGEPATH=de/kifaru/ndegendogo/kata/fakeOs/
-PACKAGE=de.kifaru.ndegendogo.kata.fakeOs.
+SOURCEPATH:=src/main/java/
+PACKAGEPATH:=de/kifaru/ndegendogo/kata/fakeOs/
+PACKAGE:=de.kifaru.ndegendogo.kata.fakeOs.
 JAVA:=java
 JAVAFLAGS:=-cp bin/
-RUN.class=$(JAVA) $(JAVAFLAGS)
-RUNECHO=$(RUN.class) $(PACKAGE)Echo
+RUN.class:=$(JAVA) $(JAVAFLAGS)
+RUNECHO:=$(RUN.class) $(PACKAGE)Echo
 
 .PHONY: all
 all: build
