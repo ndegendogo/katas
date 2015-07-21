@@ -1,7 +1,10 @@
-PACKAGE=de.kifaru.ndegendogo.kata.fakeOs.
-PACKAGEPATH=de/kifaru/ndegendogo/kata/fakeOs/
 SOURCEPATH=src/main/java/
-JAVACALL=java -cp bin/ $(PACKAGE)
+PACKAGEPATH=de/kifaru/ndegendogo/kata/fakeOs/
+PACKAGE=de.kifaru.ndegendogo.kata.fakeOs.
+JAVA:=java
+JAVAFLAGS:=-cp bin/
+RUN.class=$(JAVA) $(JAVAFLAGS)
+RUNECHO=$(RUN.class) $(PACKAGE)Echo
 
 .PHONY: all
 all: build
@@ -13,7 +16,7 @@ build: bin/$(PACKAGEPATH)Echo.class bin/$(PACKAGEPATH)TestEcho.class
 test: test_echo
 
 # verify output of my Echo, use the original echo command as reference.
-assertEcho=test "`echo $(1)`" = "`$(JAVACALL)Echo $(1)`"
+assertEcho=test "`echo $(1)`" = "`$(RUNECHO) $(1)`"
 
 .PHONY test_echo: echoWithOneWordPrintsThisWord
 echoWithOneWordPrintsThisWord: bin/$(PACKAGEPATH)Echo.class
@@ -33,8 +36,7 @@ echoWithFullSentencePrintsFullSentence: bin/$(PACKAGEPATH)Echo.class
 
 .PHONY: clean
 clean:
-	rm -rf bin/
-	echo $(RM)
+	$(RM) -r bin/
 
 bin/%.class: $(SOURCEPATH)%.java | bin/
 	javac -cp bin/ -d bin/ $<
