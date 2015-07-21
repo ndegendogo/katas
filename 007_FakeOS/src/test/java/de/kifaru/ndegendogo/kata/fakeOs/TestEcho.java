@@ -35,4 +35,10 @@ public class TestEcho {
         final String result = Echo.getResult("hello ");
         assertEquals(result, "hello ");
     }
+
+    @Test
+    public void emptyArgument() {
+        final String result = Echo.getResult("");
+        assertEquals(result, "");
+    }
 }
