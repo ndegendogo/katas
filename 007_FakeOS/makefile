@@ -34,6 +34,10 @@ echoWithoutParametersPrintsNothing: bin/$(PACKAGEPATH)Echo.class
 echoWithFullSentencePrintsFullSentence: bin/$(PACKAGEPATH)Echo.class
 	$(call assertEcho, Hello world!)
 
+.PHONY test_echo: echoWithTrailingSpacesPreservesTheSpaces
+echoWithTrailingSpacesPreservesTheSpaces: bin/$(PACKAGEPATH)Echo.class
+	$(call assertEcho, 'hello ')
+
 .PHONY: clean
 clean:
 	$(RM) -r bin/
