@@ -29,4 +29,10 @@ public class TestEcho {
         final String result = Echo.getResult();
         assertEquals(result, "");
     }
+
+    @Test
+    public void argumentWithTrailingSpace() {
+        final String result = Echo.getResult("hello ");
+        assertEquals(result, "hello ");
+    }
 }
