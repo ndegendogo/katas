@@ -16,15 +16,15 @@ build: bin/$(PACKAGEPATH)Echo.class bin/$(PACKAGEPATH)TestEcho.class
 test: test_echo
 
 # verify output of my Echo, use the original echo command as reference.
-assertEcho=test "`echo $(1)`" = "`$(RUNECHO) $(1)`"
+assertEcho=test "`echo$(1)`" = "`$(RUNECHO)$(1)`"
 
 .PHONY test_echo: echoWithOneWordPrintsThisWord
 echoWithOneWordPrintsThisWord: bin/$(PACKAGEPATH)Echo.class
-	$(call assertEcho,hello)
+	$(call assertEcho, hello)
 
 .PHONY test_echo: echoWithAnotherWordPrintsThisOtherWord
 echoWithAnotherWordPrintsThisOtherWord: bin/$(PACKAGEPATH)Echo.class
-	$(call assertEcho,world)
+	$(call assertEcho, world)
 
 .PHONY test_echo: echoWithoutParametersPrintsNothing
 echoWithoutParametersPrintsNothing: bin/$(PACKAGEPATH)Echo.class
@@ -32,7 +32,7 @@ echoWithoutParametersPrintsNothing: bin/$(PACKAGEPATH)Echo.class
 
 .PHONY test_echo: echoWithFullSentencePrintsFullSentence
 echoWithFullSentencePrintsFullSentence: bin/$(PACKAGEPATH)Echo.class
-	$(call assertEcho,Hello world!)
+	$(call assertEcho, Hello world!)
 
 .PHONY: clean
 clean:
