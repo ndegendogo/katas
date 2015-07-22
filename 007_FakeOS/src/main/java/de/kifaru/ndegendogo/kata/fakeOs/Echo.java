@@ -12,19 +12,14 @@ public class Echo {
         for(String arg: args) {
             appendArg(builder, arg);
         }
-        final String string = builder.toString();
-        String result;
-        if (args.length == 0) {
-            result = string;
-        } else {
-            result = string.substring(0, string.length() - 1);
-        }
-        return result;
+        return builder.toString();
     }
 
     public static void appendArg(StringBuilder builder, final String arg) {
+        if (builder.length() > 0) {
+            builder.append(' ');
+        }
         builder.append(arg);
-        builder.append(' ');
     }
 
 }
