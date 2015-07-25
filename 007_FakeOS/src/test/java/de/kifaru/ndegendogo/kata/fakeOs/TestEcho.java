@@ -2,6 +2,11 @@ package de.kifaru.ndegendogo.kata.fakeOs;
 
 import static org.junit.Assert.*;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Spliterator;
+import java.util.stream.Stream;
+
 import org.junit.Test;
 
 public class TestEcho {
@@ -40,5 +45,14 @@ public class TestEcho {
     public void emptyArgument() {
         final String result = Echo.getResult("");
         assertEquals("", result);
+    }
+    
+    @Test
+    public void constructStream() {
+        final List <String> list = Arrays.asList("Hello");
+        final Stream <String> stream = list.stream();
+        Object[] array = stream.toArray();
+        assertEquals(1, array.length);
+        assertEquals("Hello", array[0]);
     }
 }
