@@ -25,19 +25,16 @@ UNITTEST_CLASSES:=$(PACKAGE)TestEcho \
 
 
 .PHONY: all
-all: build_all test run_unittests
+all: build_all test unittest
 
 .PHONY: build_all
-build_all: build build_unittests
+build_all: $(ALL_CLASSFILES)
 
 .PHONY: build
 build: $(CLASSFILES)
 
-.PHONY: build_unittests
-build_unittests: $(ALL_CLASSFILES) 
-
-.PHONY: run_unittests
-run_unittests: build_unittests
+.PHONY: unittest
+unittest: build_all
 	$(RUN_UNITTEST) $(UNITTEST_CLASSES)
 
 .PHONY: test
