@@ -13,37 +13,37 @@ public class TestEcho {
 
     @Test
     public void singleArgument() {
-        final String result = Echo.getResult("hello");
+        final String result = Echo.joinStrings("hello");
         assertEquals("hello", result);
     }
 
     @Test
     public void anotherSingleArgument() {
-        final String result = Echo.getResult("world");
+        final String result = Echo.joinStrings("world");
         assertEquals("world", result);
     }
     
     @Test
     public void twoArguments() {
-        final String result = Echo.getResult("Hello", "world");
+        final String result = Echo.joinStrings("Hello", "world");
         assertEquals("Hello world", result);
     }
 
     @Test
     public void noArgument() {
-        final String result = Echo.getResult();
+        final String result = Echo.joinStrings();
         assertEquals("", result);
     }
 
     @Test
     public void argumentWithTrailingSpace() {
-        final String result = Echo.getResult("hello ");
+        final String result = Echo.joinStrings("hello ");
         assertEquals("hello ", result);
     }
 
     @Test
     public void emptyArgument() {
-        final String result = Echo.getResult("");
+        final String result = Echo.joinStrings("");
         assertEquals("", result);
     }
     

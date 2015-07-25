@@ -7,12 +7,12 @@ import java.util.stream.Stream;
 public class Echo {
 
     public static void main(String... args) {
-        final String resultString = getResult(args);
+        final String resultString = joinStrings(args);
         System.out.println(resultString);
     }
 
-    public static String getResult(String... args) {
-        final Stream<String> stream = Arrays.stream(args);
+    public static String joinStrings(String... strings) {
+        final Stream<String> stream = Arrays.stream(strings);
         return stream.collect(Collectors.joining(" "));
     }
 
