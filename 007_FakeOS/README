@@ -1,0 +1,14 @@
+NAME
+     Echo is a Java program which writes its arguments to the standard output.
+     You need a Java 8 runtime environment installed.
+
+SYNOPSIS
+
+     java -cp bin/ de.kifaru.ndegendogo.kata.fakeOs.Echo [string ...]
+
+DESCRIPTION
+     The Echo program writes any specified operands, separated by single blank (` ') characters and followed by a newline
+     (`\n') character, to the standard output.
+
+EXIT STATUS
+     The Echo program exits 0 on success.
