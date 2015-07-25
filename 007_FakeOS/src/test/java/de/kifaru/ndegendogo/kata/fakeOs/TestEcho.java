@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Spliterator;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.junit.Test;
@@ -55,4 +55,13 @@ public class TestEcho {
         assertEquals(1, array.length);
         assertEquals("Hello", array[0]);
     }
+    
+    @Test
+    public void joinStream() {
+        final List <String> list = Arrays.asList("Hello");
+        final Stream <String> stream = list.stream();
+        String result = stream.collect(Collectors.joining());
+        assertEquals("Hello", result);
+    }
+
 }
