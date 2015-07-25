@@ -7,8 +7,7 @@ import java.util.stream.Stream;
 public class Echo {
 
     public static void main(final String... args) {
-        final String resultString = joinStrings(args);
-        System.out.println(resultString);
+        System.out.println(joinStrings(args));
     }
 
     static String joinStrings(final String... strings) {
