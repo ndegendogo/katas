@@ -26,12 +26,10 @@ public class TestEcho {
         );
     }
 
-    private String nameOfTest;
     private String[] arguments;
     private String expectedResult;
     
     public TestEcho(String nameOfTest, String[] arguments, String expectedResult) {
-        this.nameOfTest = nameOfTest;
         this.arguments = arguments;
         this.expectedResult = expectedResult;
     }
