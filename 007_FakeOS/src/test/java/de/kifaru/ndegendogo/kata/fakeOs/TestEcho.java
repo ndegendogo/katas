@@ -60,7 +60,7 @@ public class TestEcho {
     public void joinStream() {
         final List<String> list = Arrays.asList("Hello");
         final Stream<String> stream = list.stream();
-        String result = stream.collect(Collectors.joining());
+        final String result = stream.collect(Collectors.joining());
         assertEquals("Hello", result);
     }
 
@@ -68,7 +68,7 @@ public class TestEcho {
     public void joinStreamsWithDelimiters() {
         final List<String> list = Arrays.asList("Hello,", "world!");
         final Stream<String> stream = list.stream();
-        String result = stream.collect(Collectors.joining(" "));
+        final String result = stream.collect(Collectors.joining(" "));
         assertEquals("Hello, world!", result);
     }
 }
