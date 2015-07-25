@@ -1,5 +1,9 @@
 package de.kifaru.ndegendogo.kata.fakeOs;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 public class Echo {
 
     public static void main(String... args) {
@@ -8,14 +12,8 @@ public class Echo {
     }
 
     public static String getResult(String... args) {
-        StringBuilder builder = new StringBuilder();
-        for(String arg: args) {
-            if (builder.length() > 0) {
-                builder.append(' ');
-            }
-            builder.append(arg);
-        }
-        return builder.toString();
+        final Stream<String> stream = Arrays.stream(args);
+        return stream.collect(Collectors.joining(" "));
     }
 
 }

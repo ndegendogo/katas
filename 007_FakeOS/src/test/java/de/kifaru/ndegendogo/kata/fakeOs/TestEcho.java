@@ -49,8 +49,8 @@ public class TestEcho {
     
     @Test
     public void constructStream() {
-        final List <String> list = Arrays.asList("Hello");
-        final Stream <String> stream = list.stream();
+        final List<String> list = Arrays.asList("Hello");
+        final Stream<String> stream = list.stream();
         Object[] array = stream.toArray();
         assertEquals(1, array.length);
         assertEquals("Hello", array[0]);
@@ -58,16 +58,16 @@ public class TestEcho {
     
     @Test
     public void joinStream() {
-        final List <String> list = Arrays.asList("Hello");
-        final Stream <String> stream = list.stream();
+        final List<String> list = Arrays.asList("Hello");
+        final Stream<String> stream = list.stream();
         String result = stream.collect(Collectors.joining());
         assertEquals("Hello", result);
     }
 
     @Test
     public void joinStreamsWithDelimiters() {
-        final List <String> list = Arrays.asList("Hello,", "world!");
-        final Stream <String> stream = list.stream();
+        final List<String> list = Arrays.asList("Hello,", "world!");
+        final Stream<String> stream = list.stream();
         String result = stream.collect(Collectors.joining(" "));
         assertEquals("Hello, world!", result);
     }
