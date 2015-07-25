@@ -64,4 +64,11 @@ public class TestEcho {
         assertEquals("Hello", result);
     }
 
+    @Test
+    public void joinStreamsWithDelimiters() {
+        final List <String> list = Arrays.asList("Hello,", "world!");
+        final Stream <String> stream = list.stream();
+        String result = stream.collect(Collectors.joining());
+        assertEquals("Hello, world!", result);
+    }
 }
