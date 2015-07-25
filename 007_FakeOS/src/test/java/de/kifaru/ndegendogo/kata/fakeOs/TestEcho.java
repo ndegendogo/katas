@@ -13,45 +13,39 @@ public class TestEcho {
 
     @Test
     public void singleArgument() {
-        final String result = Echo.joinStrings("hello");
-        assertEquals("hello", result);
+        assertEquals("hello", Echo.joinStrings("hello"));
     }
 
     @Test
     public void anotherSingleArgument() {
-        final String result = Echo.joinStrings("world");
-        assertEquals("world", result);
+        assertEquals("world", Echo.joinStrings("world"));
     }
     
     @Test
     public void twoArguments() {
-        final String result = Echo.joinStrings("Hello", "world");
-        assertEquals("Hello world", result);
+        assertEquals("Hello world", Echo.joinStrings("Hello", "world"));
     }
 
     @Test
     public void noArgument() {
-        final String result = Echo.joinStrings();
-        assertEquals("", result);
+        assertEquals("", Echo.joinStrings());
     }
 
     @Test
     public void argumentWithTrailingSpace() {
-        final String result = Echo.joinStrings("hello ");
-        assertEquals("hello ", result);
+        assertEquals("hello ", Echo.joinStrings("hello "));
     }
 
     @Test
     public void emptyArgument() {
-        final String result = Echo.joinStrings("");
-        assertEquals("", result);
+        assertEquals("", Echo.joinStrings(""));
     }
     
     @Test
     public void constructStream() {
         final List<String> list = Arrays.asList("Hello");
         final Stream<String> stream = list.stream();
-        Object[] array = stream.toArray();
+        final Object[] array = stream.toArray();
         assertEquals(1, array.length);
         assertEquals("Hello", array[0]);
     }
