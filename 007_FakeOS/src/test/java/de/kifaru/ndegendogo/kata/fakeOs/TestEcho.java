@@ -16,12 +16,12 @@ public class TestEcho {
     @Parameters(name = "{0}")
     public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][] {
-            {"singleArgument", new String[]{"hello"}, "hello"},
-            {"anotherSingleArgument", new String[]{"world"}, "world"},
-            {"twoArguments", new String[] {"Hello", "world"}, "Hello world"},
-            {"noArgument", new String[] {}, ""},
-            {"argumentWithTrailingSpace", new String[] {"hello "}, "hello "},
-            {"emptyArgument", new String[] {""}, ""},
+            {"singleArgument", "hello", new String[]{"hello"}},
+            {"anotherSingleArgument", "world", new String[]{"world"}},
+            {"twoArguments", "Hello world", new String[] {"Hello", "world"}},
+            {"noArgument", "", new String[] {}},
+            {"argumentWithTrailingSpace", "hello ", new String[] {"hello "}},
+            {"emptyArgument", "", new String[] {""}},
         }
         );
     }
@@ -29,9 +29,9 @@ public class TestEcho {
     private String[] arguments;
     private String expectedResult;
     
-    public TestEcho(String nameOfTest, String[] arguments, String expectedResult) {
-        this.arguments = arguments;
+    public TestEcho(String nameOfTest, String expectedResult, String... arguments) {
         this.expectedResult = expectedResult;
+        this.arguments = arguments;
     }
     
     @Test
