@@ -11,7 +11,7 @@ public class Echo {
         System.out.println(resultString);
     }
 
-    public static String joinStrings(final String... strings) {
+    static String joinStrings(final String... strings) {
         final Stream<String> stream = Arrays.stream(strings);
         return stream.collect(Collectors.joining(" "));
     }
