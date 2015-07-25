@@ -13,34 +13,38 @@ public class TestEcho {
 
     @Test
     public void singleArgument() {
-        assertEquals("hello", Echo.joinStrings("hello"));
+        testJoinStrings("hello", new String[] {"hello"});
     }
 
     @Test
     public void anotherSingleArgument() {
-        assertEquals("world", Echo.joinStrings("world"));
+        testJoinStrings("world", new String[] {"world"});
     }
     
     @Test
     public void twoArguments() {
-        assertEquals("Hello world", Echo.joinStrings("Hello", "world"));
+        testJoinStrings("Hello world", new String[] {"Hello", "world"});
     }
 
     @Test
     public void noArgument() {
-        assertEquals("", Echo.joinStrings());
+        testJoinStrings("", new String[] {});
     }
 
     @Test
     public void argumentWithTrailingSpace() {
-        assertEquals("hello ", Echo.joinStrings("hello "));
+        testJoinStrings("hello ", new String[] {"hello "});
     }
 
     @Test
     public void emptyArgument() {
-        assertEquals("", Echo.joinStrings(""));
+        testJoinStrings("", new String[] {""});
     }
     
+    private void testJoinStrings(final String expectedResult, final String[] arguments) {
+        assertEquals(expectedResult, Echo.joinStrings(arguments));
+    }
+
     @Test
     public void constructStream() {
         final List<String> list = Arrays.asList("Hello");
