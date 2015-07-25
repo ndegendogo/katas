@@ -1,13 +1,15 @@
 SOURCEPATH:=src/main/java/
 UNITTESTPATH:=src/test/java/
-JUNIT:=/Applications/eclipse/plugins/org.junit_4.11.0.v201303080030/junit.jar
+PLUGINSPATH:=/Applications/eclipse/plugins/
+JUNIT:=$(PLUGINSPATH)org.junit_4.11.0.v201303080030/junit.jar
+HAMCREST:=$(PLUGINSPATH)org.hamcrest.core_1.3.0.v201303031735.jar
 PACKAGEPATH:=de/kifaru/ndegendogo/kata/fakeOs/
 PACKAGE:=de.kifaru.ndegendogo.kata.fakeOs.
 CLASSPATH:=bin/
 CLASSPATH_UNITTEST:=bin/:$(JUNIT)
 JAVA:=java
 JAVAFLAGS:=-cp $(CLASSPATH)
-JAVAFLAGS_UNITTEST:=-cp $(CLASSPATH_UNITTEST)
+JAVAFLAGS_UNITTEST:=-cp bin/:$(JUNIT):$(HAMCREST)
 JAVACFLAGS:=-cp $(CLASSPATH) -d $(CLASSPATH)
 JAVACFLAGS_UNITTEST:=-cp $(CLASSPATH_UNITTEST) -d $(CLASSPATH)
 RUN.class:=$(JAVA) $(JAVAFLAGS)
