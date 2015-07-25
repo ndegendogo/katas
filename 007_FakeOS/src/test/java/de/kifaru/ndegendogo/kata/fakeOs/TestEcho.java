@@ -3,43 +3,47 @@ package de.kifaru.ndegendogo.kata.fakeOs;
 import static org.junit.Assert.*;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameters;
 
+@RunWith(Parameterized.class)
 public class TestEcho {
 
-    @Test
-    public void singleArgument() {
-        testJoinStrings("hello", new String[] {"hello"});
+    @Parameters(name = "{0}")
+    public static Collection<Object[]> data() {
+        return Arrays.asList(new Object[][] {
+            {"singleArgument", new String[]{"hello"}, "hello"},
+            {"anotherSingleArgument", new String[]{"world"}, "world"},
+            {"twoArguments", new String[] {"Hello", "world"}, "Hello world"},
+            {"noArgument", new String[] {}, ""},
+            {"argumentWithTrailingSpace", new String[] {"hello "}, "hello "},
+            {"emptyArgument", new String[] {""}, ""},
+        }
+        );
     }
 
     @Test
-    public void anotherSingleArgument() {
-        testJoinStrings("world", new String[] {"world"});
+    public void testJoinStrings1() {
+        assertEquals(expectedResult, Echo.joinStrings(arguments));
+    }
+
+    private String nameOfTest;
+    private String[] arguments;
+    private String expectedResult;
+    
+    public TestEcho(String nameOfTest, String[] arguments, String expectedResult) {
+        this.nameOfTest = nameOfTest;
+        this.arguments = arguments;
+        this.expectedResult = expectedResult;
     }
     
-    @Test
-    public void twoArguments() {
-        testJoinStrings("Hello world", new String[] {"Hello", "world"});
-    }
-
-    @Test
-    public void noArgument() {
-        testJoinStrings("", new String[] {});
-    }
-
-    @Test
-    public void argumentWithTrailingSpace() {
-        testJoinStrings("hello ", new String[] {"hello "});
-    }
-
-    @Test
-    public void emptyArgument() {
-        testJoinStrings("", new String[] {""});
-    }
     
     private void testJoinStrings(final String expectedResult, final String[] arguments) {
         assertEquals(expectedResult, Echo.joinStrings(arguments));
