@@ -79,9 +79,14 @@ echoWithTrailingSpacesPreservesTheSpaces: $(CLASSFILE_ECHO)
 echoWithEmptyArgumentPrintsNothing: $(CLASSFILE_ECHO)
 	$(call assertEcho, '')
 
+
 .PHONY test_cat: catOneFileWithSingleLine
 catOneFileWithSingleLine: $(CLASSFILE_CAT)
 	$(call assertCat, data/file1)
+
+.PHONY test_cat: catAnotherSingleFileWithSingleLine
+catAnotherSingleFileWithSingleLine: $(CLASSFILE_CAT)
+	$(call assertCat, data/file2)
 
 
 
