@@ -3,10 +3,10 @@ package de.kifaru.ndegendogo.kata.fakeOs;
 public class Cat {
 
     public static void main(String... args) {
-        System.out.print(getContent(args[0]));
+        System.out.print(getContentOfFile(args[0]));
     }
 
-    static String getContent(String filename) {
+    static String getContentOfFile(String filename) {
         if (filename.equals("data/file1")) {
             return "This is one line of text.\n";
         } else {

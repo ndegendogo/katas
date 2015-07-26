@@ -8,11 +8,11 @@ public class TestCat {
 
     @Test
     public void singleFileWithOneLine() {
-        assertEquals("This is one line of text.\n", Cat.getContent("data/file1"));
+        assertEquals("This is one line of text.\n", Cat.getContentOfFile("data/file1"));
     }
     
     @Test
     public void anotherSingleFileWithSingleLine() {
-        assertEquals("This is another line of text.\n", Cat.getContent("data/file2"));
+        assertEquals("This is another line of text.\n", Cat.getContentOfFile("data/file2"));
     }
 }
