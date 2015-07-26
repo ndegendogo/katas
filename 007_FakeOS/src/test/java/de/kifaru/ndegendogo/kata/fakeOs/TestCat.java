@@ -8,7 +8,7 @@ public class TestCat {
 
     @Test
     public void singleFileWithOneLine() {
-        assertEquals("This is one line of text.\n", Cat.getContent(null));
+        assertEquals("This is one line of text.\n", Cat.getContent("data/file1"));
     }
     
 }
