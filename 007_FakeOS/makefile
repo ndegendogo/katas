@@ -40,7 +40,7 @@ build_all: $(ALL_CLASSFILES)
 build: $(CLASSFILES)
 
 .PHONY: test
-test: test_echo testcat
+test: test_echo test_cat
 
 .PHONY: unittest
 unittest: build_all
@@ -79,8 +79,10 @@ echoWithTrailingSpacesPreservesTheSpaces: $(CLASSFILE_ECHO)
 echoWithEmptyArgumentPrintsNothing: $(CLASSFILE_ECHO)
 	$(call assertEcho, '')
 
-.PHONY test_cat:
-	
+.PHONY test_cat: catOneFileWithSingleLine
+catOneFileWithSingleLine: $(CLASSFILE_CAT)
+	$(call assertCat, data/file1)
+
 
 
 $(CLASSPATH)%.class: $(SOURCEPATH)%.java | $(CLASSPATH)
