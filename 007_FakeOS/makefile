@@ -16,8 +16,11 @@ RUNECHO:=$(RUN.class) $(PACKAGE)Echo
 RUNCAT:=$(RUN.class) $(PACKAGE)Cat
 RUN_UNITTEST:=$(JAVA) $(JAVAFLAGS_UNITTEST) org.junit.runner.JUnitCore
 
-CLASSFILES:=$(CLASSPATH)$(PACKAGEPATH)Echo.class \
-            $(CLASSPATH)$(PACKAGEPATH)Cat.class \
+CLASSFILE_ECHO:=$(CLASSPATH)$(PACKAGEPATH)Echo.class
+CLASSFILE_CAT:=$(CLASSPATH)$(PACKAGEPATH)Cat.class
+
+CLASSFILES:=$(CLASSFILE_ECHO) \
+            $(CLASSFILE_CAT) \
 
 UNITTEST_CLASSFILES:=$(CLASSPATH)$(PACKAGEPATH)TestEcho.class \
                      $(CLASSPATH)$(PACKAGEPATH)TestStreams.class \
@@ -53,31 +56,31 @@ assertCat=test "`cat$(1)`" = "`$(RUNCAT)$(1)`"
 
 # the test cases for the blackbox tests
 .PHONY test_echo: echoWithOneWordPrintsThisWord
-echoWithOneWordPrintsThisWord: $(CLASSPATH)$(PACKAGEPATH)Echo.class
+echoWithOneWordPrintsThisWord: $(CLASSFILE_ECHO)
 	$(call assertEcho, hello)
 
 .PHONY test_echo: echoWithAnotherWordPrintsThisOtherWord
-echoWithAnotherWordPrintsThisOtherWord: $(CLASSPATH)$(PACKAGEPATH)Echo.class
+echoWithAnotherWordPrintsThisOtherWord: $(CLASSFILE_ECHO)
 	$(call assertEcho, world)
 
 .PHONY test_echo: echoWithoutParametersPrintsNothing
-echoWithoutParametersPrintsNothing: $(CLASSPATH)$(PACKAGEPATH)Echo.class
+echoWithoutParametersPrintsNothing: $(CLASSFILE_ECHO)
 	$(call assertEcho,)
 
 .PHONY test_echo: echoWithFullSentencePrintsFullSentence
-echoWithFullSentencePrintsFullSentence: $(CLASSPATH)$(PACKAGEPATH)Echo.class
+echoWithFullSentencePrintsFullSentence: $(CLASSFILE_ECHO)
 	$(call assertEcho, Hello world!)
 
 .PHONY test_echo: echoWithTrailingSpacesPreservesTheSpaces
-echoWithTrailingSpacesPreservesTheSpaces: $(CLASSPATH)$(PACKAGEPATH)Echo.class
+echoWithTrailingSpacesPreservesTheSpaces: $(CLASSFILE_ECHO)
 	$(call assertEcho, 'hello ')
 
 .PHONY test_echo: echoWithEmptyArgumentPrintsNothing
-echoWithEmptyArgumentPrintsNothing: $(CLASSPATH)$(PACKAGEPATH)Echo.class
+echoWithEmptyArgumentPrintsNothing: $(CLASSFILE_ECHO)
 	$(call assertEcho, '')
 
 .PHONY test_cat:
-
+	
 
 
 $(CLASSPATH)%.class: $(SOURCEPATH)%.java | $(CLASSPATH)
