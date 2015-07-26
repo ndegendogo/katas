@@ -22,14 +22,14 @@ CLASSFILE_CAT:=$(CLASSPATH)$(PACKAGEPATH)Cat.class
 CLASSFILES:=$(CLASSFILE_ECHO) \
             $(CLASSFILE_CAT) \
 
-UNITTEST_CLASSFILES:=$(CLASSPATH)$(PACKAGEPATH)TestEcho.class \
-                     $(CLASSPATH)$(PACKAGEPATH)TestStreams.class \
-                     $(CLASSPATH)$(PACKAGEPATH)TestCat.class \
+UNITTEST_MODULES:=TestEcho \
+                  TestStreams \
+                  TestCat \
 
+UNITTEST_CLASSFILES:=$(foreach module,$(UNITTEST_MODULES),$(CLASSPATH)$(PACKAGEPATH)$(module).class)
 ALL_CLASSFILES:=$(CLASSFILES) $(UNITTEST_CLASSFILES)
-UNITTEST_CLASSES:=$(PACKAGE)TestEcho \
-                  $(PACKAGE)TestStreams \
-                  $(PACKAGE)TestCat \
+
+UNITTEST_CLASSES:=$(foreach module,$(UNITTEST_MODULES),$(PACKAGE)$(module))
 
 
 .PHONY: all
