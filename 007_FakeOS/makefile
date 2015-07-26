@@ -13,9 +13,12 @@ JAVACFLAGS:=-cp $(CLASSPATH) -d $(CLASSPATH)
 JAVACFLAGS_UNITTEST:=-cp $(CLASSPATH):$(JUNIT) -d $(CLASSPATH)
 RUN.class:=$(JAVA) $(JAVAFLAGS)
 RUNECHO:=$(RUN.class) $(PACKAGE)Echo
+RUNCAT:=$(RUN.class) $(PACKAGE)Cat
 RUN_UNITTEST:=$(JAVA) $(JAVAFLAGS_UNITTEST) org.junit.runner.JUnitCore
 
-CLASSFILES:=$(CLASSPATH)$(PACKAGEPATH)Echo.class
+CLASSFILES:=$(CLASSPATH)$(PACKAGEPATH)Echo.class \
+            $(CLASSPATH)$(PACKAGEPATH)Cat.class \
+
 UNITTEST_CLASSFILES:=$(CLASSPATH)$(PACKAGEPATH)TestEcho.class \
                      $(CLASSPATH)$(PACKAGEPATH)TestStreams.class \
 
@@ -33,16 +36,22 @@ build_all: $(ALL_CLASSFILES)
 .PHONY: build
 build: $(CLASSFILES)
 
+.PHONY: test
+test: test_echo testcat
+
 .PHONY: unittest
 unittest: build_all
 	$(RUN_UNITTEST) $(UNITTEST_CLASSES)
 
-.PHONY: test
-test: test_echo
+.PHONY: clean
+clean:
+	$(RM) -r $(CLASSPATH)
 
-# verify output of my Echo, use the original echo command as reference.
+# verify output of the fakeOS programs, use the original shell commands as reference.
 assertEcho=test "`echo$(1)`" = "`$(RUNECHO)$(1)`"
+assertCat=test "`cat$(1)`" = "`$(RUNCAT)$(1)`"
 
+# the test cases for the blackbox tests
 .PHONY test_echo: echoWithOneWordPrintsThisWord
 echoWithOneWordPrintsThisWord: $(CLASSPATH)$(PACKAGEPATH)Echo.class
 	$(call assertEcho, hello)
@@ -67,9 +76,9 @@ echoWithTrailingSpacesPreservesTheSpaces: $(CLASSPATH)$(PACKAGEPATH)Echo.class
 echoWithEmptyArgumentPrintsNothing: $(CLASSPATH)$(PACKAGEPATH)Echo.class
 	$(call assertEcho, '')
 
-.PHONY: clean
-clean:
-	$(RM) -r $(CLASSPATH)
+.PHONY test_cat:
+
+
 
 $(CLASSPATH)%.class: $(SOURCEPATH)%.java | $(CLASSPATH)
 	javac $(JAVACFLAGS) $<
