@@ -24,10 +24,12 @@ CLASSFILES:=$(CLASSFILE_ECHO) \
 
 UNITTEST_CLASSFILES:=$(CLASSPATH)$(PACKAGEPATH)TestEcho.class \
                      $(CLASSPATH)$(PACKAGEPATH)TestStreams.class \
+                     $(CLASSPATH)$(PACKAGEPATH)TestCat.class \
 
 ALL_CLASSFILES:=$(CLASSFILES) $(UNITTEST_CLASSFILES)
 UNITTEST_CLASSES:=$(PACKAGE)TestEcho \
                   $(PACKAGE)TestStreams \
+                  $(PACKAGE)TestCat \
 
 
 .PHONY: all
