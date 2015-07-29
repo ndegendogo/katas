@@ -90,6 +90,21 @@ catOneFileWithSingleLine: $(CLASSFILE_CAT)
 catAnotherSingleFileWithSingleLine: $(CLASSFILE_CAT)
 	$(call assertCat, data/file2)
 
+.PHONY test_cat: catSingleLineWithUnixEnding
+catSingleLineWithUnixEnding: $(CLASSFILE_CAT)
+	$(call assertCat, data/singleLineUnix)
+
+.PHONY test_cat: catSingleLineWithWindowsEnding
+catSingleLineWithWindowsEnding: $(CLASSFILE_CAT)
+	$(call assertCat, data/singleLineWindows)
+
+.PHONY test_cat: catSingleLineWithMacEnding
+catSingleLineWithMacEnding: $(CLASSFILE_CAT)
+	$(call assertCat, data/singleLineMac)
+
+.PHONY test_cat: catSingleLineWithoutEnding
+catSingleLineWithoutEnding: $(CLASSFILE_CAT)
+	$(call assertCat, data/singleLineNoEnd)
 
 
 $(CLASSPATH)%.class: $(SOURCEPATH)%.java | $(CLASSPATH)
