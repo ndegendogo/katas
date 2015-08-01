@@ -105,8 +105,8 @@ catSingleLineWithWindowsEnding: $(CLASSFILE_CAT)
 catSingleLineWithMacEnding: $(CLASSFILE_CAT)
 	$(call assertCat, data/singleLineMac)
 
-#.PHONY test_cat: catSingleLineWithoutEnding
-.PHONY: catSingleLineWithoutEnding
+.PHONY test_cat: catSingleLineWithoutEnding
+#.PHONY: catSingleLineWithoutEnding
 catSingleLineWithoutEnding: $(CLASSFILE_CAT)
 	$(call assertCat, data/singleLineNoEnd)
 
