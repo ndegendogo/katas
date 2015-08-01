@@ -12,13 +12,13 @@ public class Cat {
     }
 
     static String getContentOfFile(String filename) {
-        String result;
+        StringBuilder result = new StringBuilder();
         if (filename.equals("data/file1")) {
-            result = "This is one line of text.\n";
+            result.append("This is one line of text.\n");
         } else {
-            result = "This is another line of text.\n";
+            result.append("This is another line of text.\n");
         }
-        return result;
+        return result.toString();
     }
 
 }
