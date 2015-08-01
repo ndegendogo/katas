@@ -54,7 +54,8 @@ clean:
 
 # verify output of the fakeOS programs, use the original shell commands as reference.
 assertEcho=test "`echo$(1)`" = "`$(RUNECHO)$(1)`"
-assertCat=test "`cat$(1)`" = "`$(RUNCAT)$(1)`"
+#assertCat=test "`cat$(1)`" = "`$(RUNCAT)$(1)`"
+assertCat=cat$(1) > tmp; $(RUNCAT)$(1) | diff - tmp > nul
 
 # the test cases for the blackbox tests
 .PHONY test_echo: echoWithOneWordPrintsThisWord
