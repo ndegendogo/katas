@@ -54,8 +54,7 @@ clean:
 
 # verify output of the fakeOS programs, use the original shell commands as reference.
 assertEcho=test "`echo$(1)`" = "`$(RUNECHO)$(1)`"
-#assertCat=test "`cat$(1)`" = "`$(RUNCAT)$(1)`"
-assertCat=cat$(1) > tmp; $(RUNCAT)$(1) | diff - tmp > nul
+assertCat=cat$(1) > tmp; $(RUNCAT)$(1) | diff - tmp > /dev/null
 
 # the test cases for the blackbox tests
 .PHONY test_echo: echoWithOneWordPrintsThisWord
@@ -91,19 +90,23 @@ catOneFileWithSingleLine: $(CLASSFILE_CAT)
 catAnotherSingleFileWithSingleLine: $(CLASSFILE_CAT)
 	$(call assertCat, data/file2)
 
-.PHONY test_cat: catSingleLineWithUnixEnding
+#.PHONY test_cat: catSingleLineWithUnixEnding
+.PHONY: catSingleLineWithUnixEnding
 catSingleLineWithUnixEnding: $(CLASSFILE_CAT)
 	$(call assertCat, data/singleLineUnix)
 
-.PHONY test_cat: catSingleLineWithWindowsEnding
+#.PHONY test_cat: catSingleLineWithWindowsEnding
+.PHONY: catSingleLineWithWindowsEnding
 catSingleLineWithWindowsEnding: $(CLASSFILE_CAT)
 	$(call assertCat, data/singleLineWindows)
 
-.PHONY test_cat: catSingleLineWithMacEnding
+#.PHONY test_cat: catSingleLineWithMacEnding
+.PHONY: catSingleLineWithMacEnding
 catSingleLineWithMacEnding: $(CLASSFILE_CAT)
 	$(call assertCat, data/singleLineMac)
 
-.PHONY test_cat: catSingleLineWithoutEnding
+#.PHONY test_cat: catSingleLineWithoutEnding
+.PHONY: catSingleLineWithoutEnding
 catSingleLineWithoutEnding: $(CLASSFILE_CAT)
 	$(call assertCat, data/singleLineNoEnd)
 
