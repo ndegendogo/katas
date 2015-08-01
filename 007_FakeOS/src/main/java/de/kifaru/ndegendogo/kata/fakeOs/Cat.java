@@ -1,8 +1,13 @@
 package de.kifaru.ndegendogo.kata.fakeOs;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 public class Cat {
 
-    public static void main(String... args) {
+    public static void main(String... args) throws FileNotFoundException, IOException {
         System.out.print(getContentOfFile(args[0]));
 //        System.out.print("SingleLine");
 //        System.out.print("SingleLine\r\r");  // catSingleLineWithMacEnding
@@ -11,12 +16,17 @@ public class Cat {
 //      System.out.print("SingleLine\n\n");  // catSingleLineWithUnixEnding
     }
 
-    static String getContentOfFile(String filename) {
+    static String getContentOfFile(String filename) throws FileNotFoundException, IOException {
         StringBuilder result = new StringBuilder();
-        if (filename.equals("data/file1")) {
-            result.append("This is one line of text.\n");
-        } else {
-            result.append("This is another line of text.\n");
+        try (FileInputStream file = new FileInputStream(filename);
+             InputStreamReader in = new InputStreamReader(file);) {
+            int numberOfBytes;
+            do {
+                numberOfBytes = in.read();
+                if (numberOfBytes > 0) {
+                    result.append((char)numberOfBytes);
+                }
+            } while (numberOfBytes > 0);
         }
         return result.toString();
     }
