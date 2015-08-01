@@ -2,25 +2,36 @@ package de.kifaru.ndegendogo.kata.fakeOs;
 
 import static org.junit.Assert.*;
 
-import org.junit.Test;
+import java.util.Arrays;
 
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameters;
+
+@RunWith(value = Parameterized.class)
 public class TestCat {
 
-    @Test
-    public void singleFileWithOneLine() {
-        final String expectedContent = "This is one line of text.\n";
-        final String filename = "data/file1";
-        testContentOfFile(expectedContent, filename);
+    @Parameters(name = "{0}")
+    public static Iterable<Object[]> data() {
+        return Arrays.asList(new Object[][] {
+            {"singleFileWithOneLine", "This is one line of text.\n", "data/file1"},
+            {"anotherSingleFileWithSingleLine", "This is another line of text.\n", "data/file2"}
+        });
     }
-
-    @Test
-    public void anotherSingleFileWithSingleLine() {
-        final String expectedContent = "This is another line of text.\n";
-        final String filename = "data/file2";
-        testContentOfFile(expectedContent, filename);
+    
+    private final String testName;
+    private final String expectedContent;
+    private final String filename;
+    
+    public TestCat(final String testName, final String expectedContent, final String filename) {
+        this.testName = testName;
+        this.expectedContent = expectedContent;
+        this.filename = filename;
     }
-
-    private void testContentOfFile(final String expectedContent, final String filename) {
-        assertEquals(expectedContent, Cat.getContentOfFile(filename));
+    
+    @Test
+    public void testContentOfFile() {
+        assertEquals(this.expectedContent, Cat.getContentOfFile(this.filename));
     }
 }
