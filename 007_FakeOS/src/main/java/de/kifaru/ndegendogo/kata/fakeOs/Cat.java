@@ -12,16 +12,19 @@ import java.nio.file.Paths;
 public class Cat {
 
     public static void main(String... args) throws FileNotFoundException, IOException {
-        final String filename = args[0];
-        Path path = Paths.get(filename);
-        OutputStream out = System.out;
-        Files.copy(path, out);
+        printFile(args[0]);
 
 //        System.out.print("SingleLine");
 //        System.out.print("SingleLine\r\r");  // catSingleLineWithMacEnding
 //        System.out.print("SingleLine\r\n\r\n");  // catSingleLineWithWindowsEnding
 //        System.out.print("SingleLine\n"); // catSingleLineWithoutEnding
 //      System.out.print("SingleLine\n\n");  // catSingleLineWithUnixEnding
+    }
+
+    private static void printFile(final String filename) throws IOException {
+        final OutputStream out = System.out;
+        final Path path = Paths.get(filename);
+        Files.copy(path, out);
     }
 
     static String getContentOfFile(String filename) throws FileNotFoundException, IOException {
