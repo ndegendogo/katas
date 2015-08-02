@@ -12,7 +12,8 @@ import java.nio.file.Paths;
 public class Cat {
 
     public static void main(String... args) throws FileNotFoundException, IOException {
-        printFile(args[0]);
+        Cat cat = new Cat();
+        cat.printFile(args[0]);
 
 //        System.out.print("SingleLine");
 //        System.out.print("SingleLine\r\r");  // catSingleLineWithMacEnding
@@ -21,7 +22,7 @@ public class Cat {
 //      System.out.print("SingleLine\n\n");  // catSingleLineWithUnixEnding
     }
 
-    private static void printFile(final String filename) throws IOException {
+    private void printFile(final String filename) throws IOException {
         final OutputStream out = System.out;
         final Path path = Paths.get(filename);
         Files.copy(path, out);
