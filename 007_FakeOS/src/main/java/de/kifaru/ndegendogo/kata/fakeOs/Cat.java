@@ -11,10 +11,14 @@ import java.nio.file.Paths;
 
 public class Cat {
 
-    private OutputStream out;
+    private final OutputStream out;
 
-    public static void main(String... args) throws FileNotFoundException, IOException {
-        Cat cat = new Cat();
+    public Cat(final OutputStream out) {
+        this.out = out;
+    }
+    
+    public static void main(final String... args) throws FileNotFoundException, IOException {
+        final Cat cat = new Cat(System.out);
         cat.printFile(args[0]);
 
 //        System.out.print("SingleLine");
@@ -25,7 +29,6 @@ public class Cat {
     }
 
     private void printFile(final String filename) throws IOException {
-        out = System.out;
         final Path path = Paths.get(filename);
         Files.copy(path, out);
     }
