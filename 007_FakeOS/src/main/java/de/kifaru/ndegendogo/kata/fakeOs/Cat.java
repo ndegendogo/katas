@@ -11,6 +11,8 @@ import java.nio.file.Paths;
 
 public class Cat {
 
+    private OutputStream out;
+
     public static void main(String... args) throws FileNotFoundException, IOException {
         Cat cat = new Cat();
         cat.printFile(args[0]);
@@ -23,7 +25,7 @@ public class Cat {
     }
 
     private void printFile(final String filename) throws IOException {
-        final OutputStream out = System.out;
+        out = System.out;
         final Path path = Paths.get(filename);
         Files.copy(path, out);
     }
