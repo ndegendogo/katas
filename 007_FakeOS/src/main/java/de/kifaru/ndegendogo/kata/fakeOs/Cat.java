@@ -28,7 +28,7 @@ public class Cat {
 //      System.out.print("SingleLine\n\n");  // catSingleLineWithUnixEnding
     }
 
-    private void printFile(final String filename) throws IOException {
+    void printFile(final String filename) throws IOException {
         final Path path = Paths.get(filename);
         Files.copy(path, stdout);
     }
