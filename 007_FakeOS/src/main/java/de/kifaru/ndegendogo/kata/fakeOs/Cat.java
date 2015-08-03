@@ -11,10 +11,10 @@ import java.nio.file.Paths;
 
 public class Cat {
 
-    private final OutputStream out;
+    private final OutputStream stdout;
 
-    public Cat(final OutputStream out) {
-        this.out = out;
+    public Cat(final OutputStream stdout) {
+        this.stdout = stdout;
     }
     
     public static void main(final String... args) throws FileNotFoundException, IOException {
@@ -30,7 +30,7 @@ public class Cat {
 
     private void printFile(final String filename) throws IOException {
         final Path path = Paths.get(filename);
-        Files.copy(path, out);
+        Files.copy(path, stdout);
     }
 
     static String getContentOfFile(String filename) throws FileNotFoundException, IOException {
