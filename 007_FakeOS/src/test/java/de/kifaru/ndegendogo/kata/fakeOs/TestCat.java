@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.Arrays;
 
 import org.junit.Test;
@@ -35,5 +36,23 @@ public class TestCat {
     @Test
     public void testContentOfFile() throws FileNotFoundException, IOException {
         assertEquals(this.expectedContent, Cat.getContentOfFile(this.filename));
+    }
+
+    @Test
+    public void testPrintFile() throws IOException {
+        final MockStdOut stdout = new MockStdOut();
+        final Cat cat = new Cat(stdout);
+        cat.printFile(filename);
+        assertEquals(expectedContent, stdout.sink.toString());
+    }
+
+    private class MockStdOut extends OutputStream {
+        final StringBuilder sink = new StringBuilder();
+
+        @Override
+        public void write(int b) throws IOException {
+            sink.append((char)b);
+        }
+        
     }
 }
