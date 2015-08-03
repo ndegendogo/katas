@@ -34,11 +34,6 @@ public class TestCat {
     }
     
     @Test
-    public void testContentOfFile() throws FileNotFoundException, IOException {
-        assertEquals(this.expectedContent, Cat.getContentOfFile(this.filename));
-    }
-
-    @Test
     public void testPrintFile() throws IOException {
         final MockStdOut stdout = new MockStdOut();
         final Cat cat = new Cat(stdout);
