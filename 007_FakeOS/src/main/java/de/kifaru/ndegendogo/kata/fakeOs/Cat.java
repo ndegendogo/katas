@@ -1,5 +1,6 @@
 package de.kifaru.ndegendogo.kata.fakeOs;
 
+import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -25,9 +26,11 @@ public class Cat {
     }
 
     void printFile(final String filename) throws IOException {
-        try (FileInputStream input = new FileInputStream(filename)) {
+        try (FileInputStream input = new FileInputStream(filename);
+            BufferedInputStream bufferedIn = new BufferedInputStream(input); 
+        ) {
             do {
-                int nextByte = input.read();
+                int nextByte = bufferedIn.read();
                 if (nextByte == -1) {
                     break;
                 }
