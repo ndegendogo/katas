@@ -29,14 +29,18 @@ public class Cat {
         try (FileInputStream input = new FileInputStream(filename);
             BufferedInputStream bufferedIn = new BufferedInputStream(input); 
         ) {
-            do {
-                int nextByte = bufferedIn.read();
-                if (nextByte == -1) {
-                    break;
-                }
-                stdout.write(nextByte);
-            } while (true);
+            copyStream(bufferedIn);
         }
+    }
+
+    private void copyStream(final BufferedInputStream bufferedIn) throws IOException {
+        do {
+            int nextByte = bufferedIn.read();
+            if (nextByte == -1) {
+                break;
+            }
+            stdout.write(nextByte);
+        } while (true);
         stdout.flush();
     }
 
