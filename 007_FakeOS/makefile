@@ -51,60 +51,8 @@ unittest: build_all
 clean:
 	$(RM) -r $(CLASSPATH)
 
-# verify output of the fakeOS programs, use the original shell commands as reference.
-assertEcho=test "`echo$(1)`" = "`$(RUNECHO)$(1)`"
-assertCat=cat$(1) > tmp; $(RUNCAT)$(1) | diff - tmp > /dev/null
-
-# the test cases for the blackbox tests
-.PHONY test_echo: echoWithOneWordPrintsThisWord
-echoWithOneWordPrintsThisWord: $(CLASSFILE_ECHO)
-	$(call assertEcho, hello)
-
-.PHONY test_echo: echoWithAnotherWordPrintsThisOtherWord
-echoWithAnotherWordPrintsThisOtherWord: $(CLASSFILE_ECHO)
-	$(call assertEcho, world)
-
-.PHONY test_echo: echoWithoutParametersPrintsNothing
-echoWithoutParametersPrintsNothing: $(CLASSFILE_ECHO)
-	$(call assertEcho,)
-
-.PHONY test_echo: echoWithFullSentencePrintsFullSentence
-echoWithFullSentencePrintsFullSentence: $(CLASSFILE_ECHO)
-	$(call assertEcho, Hello world!)
-
-.PHONY test_echo: echoWithTrailingSpacesPreservesTheSpaces
-echoWithTrailingSpacesPreservesTheSpaces: $(CLASSFILE_ECHO)
-	$(call assertEcho, 'hello ')
-
-.PHONY test_echo: echoWithEmptyArgumentPrintsNothing
-echoWithEmptyArgumentPrintsNothing: $(CLASSFILE_ECHO)
-	$(call assertEcho, '')
-
-
-.PHONY test_cat: catOneFileWithSingleLine
-catOneFileWithSingleLine: $(CLASSFILE_CAT)
-	$(call assertCat, data/file1)
-
-.PHONY test_cat: catAnotherSingleFileWithSingleLine
-catAnotherSingleFileWithSingleLine: $(CLASSFILE_CAT)
-	$(call assertCat, data/file2)
-
-.PHONY test_cat: catSingleLineWithUnixEnding
-catSingleLineWithUnixEnding: $(CLASSFILE_CAT)
-	$(call assertCat, data/singleLineUnix)
-
-.PHONY test_cat: catSingleLineWithWindowsEnding
-catSingleLineWithWindowsEnding: $(CLASSFILE_CAT)
-	$(call assertCat, data/singleLineWindows)
-
-.PHONY test_cat: catSingleLineWithMacEnding
-catSingleLineWithMacEnding: $(CLASSFILE_CAT)
-	$(call assertCat, data/singleLineMac)
-
-.PHONY test_cat: catSingleLineWithoutEnding
-catSingleLineWithoutEnding: $(CLASSFILE_CAT)
-	$(call assertCat, data/singleLineNoEnd)
-
+include TestEcho.mak
+include TestCat.mak
 
 $(CLASSPATH)%.class: $(SOURCEPATH)%.java | $(CLASSPATH)
 	javac $(JAVACFLAGS) $<
