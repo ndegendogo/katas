@@ -1,7 +1,7 @@
 SOURCEPATH:=src/main/java/
 UNITTESTPATH:=src/test/java/
 PLUGINSPATH:=/Applications/eclipse/plugins/
-JUNIT:=$(PLUGINSPATH)org.junit_4.11.0.v201303080030/junit.jar
+JUNIT:=$(JUNIT_HOME)/junit.jar
 HAMCREST:=$(PLUGINSPATH)org.hamcrest.core_1.3.0.v201303031735.jar
 PACKAGEPATH:=de/kifaru/ndegendogo/kata/fakeOs/
 PACKAGE:=de.kifaru.ndegendogo.kata.fakeOs.
