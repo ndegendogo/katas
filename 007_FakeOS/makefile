@@ -1,12 +1,11 @@
+include $(or $(wildcard UserConfig.mak), DefaultUserConfig.mak)
+
+
 SOURCEPATH:=src/main/java/
 UNITTESTPATH:=src/test/java/
-PLUGINSPATH:=/Applications/eclipse/plugins/
-JUNIT:=$(JUNIT_HOME)/junit.jar
-HAMCREST:=$(PLUGINSPATH)org.hamcrest.core_1.3.0.v201303031735.jar
 PACKAGEPATH:=de/kifaru/ndegendogo/kata/fakeOs/
 PACKAGE:=de.kifaru.ndegendogo.kata.fakeOs.
 CLASSPATH:=bin/
-JAVA:=java
 JAVAFLAGS:=-cp $(CLASSPATH)
 JAVAFLAGS_UNITTEST:=-cp $(CLASSPATH):$(JUNIT):$(HAMCREST)
 JAVACFLAGS:=-cp $(CLASSPATH) -d $(CLASSPATH)
