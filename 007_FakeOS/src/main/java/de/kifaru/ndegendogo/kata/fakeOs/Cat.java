@@ -17,7 +17,7 @@ public class Cat {
     
     public static void main(final String... args) throws FileNotFoundException, IOException {
         final Cat cat = new Cat(System.out);
-        cat.printFile(args[0]);
+        cat.printFile(args[0], System.out);
 
 //        System.out.print("SingleLine");
 //        System.out.print("SingleLine\r\r");  // catSingleLineWithMacEnding
@@ -26,7 +26,7 @@ public class Cat {
 //      System.out.print("SingleLine\n\n");  // catSingleLineWithUnixEnding
     }
 
-    void printFile(final String filename) throws IOException {
+    void printFile(final String filename, final OutputStream stdout) throws IOException {
         try (FileInputStream input = new FileInputStream(filename);
             BufferedInputStream bufferedIn = new BufferedInputStream(input); 
         ) {

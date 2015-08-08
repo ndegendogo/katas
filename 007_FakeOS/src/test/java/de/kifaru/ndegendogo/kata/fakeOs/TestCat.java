@@ -37,7 +37,7 @@ public class TestCat {
     public void testPrintFile() throws IOException {
         final MockStdOut stdout = new MockStdOut();
         final Cat cat = new Cat(stdout);
-        cat.printFile(filename);
+        cat.printFile(filename, stdout);
         assertEquals(expectedContent, stdout.sink.toString());
     }
 
