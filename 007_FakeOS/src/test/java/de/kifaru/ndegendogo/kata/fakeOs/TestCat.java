@@ -35,12 +35,12 @@ public class TestCat {
     
     @Test
     public void testPrintFile() throws IOException {
-        final MockStdOut stdout = new MockStdOut();
-        Cat.printFile(filename, stdout);
-        assertEquals(expectedContent, stdout.sink.toString());
+        final MockOutputStream output = new MockOutputStream();
+        Cat.printFile(filename, output);
+        assertEquals(expectedContent, output.sink.toString());
     }
 
-    private class MockStdOut extends OutputStream {
+    private class MockOutputStream extends OutputStream {
         final StringBuilder sink = new StringBuilder();
 
         @Override

@@ -19,11 +19,11 @@ public class Cat {
 //      System.out.print("SingleLine\n\n");  // catSingleLineWithUnixEnding
     }
 
-    static void printFile(final String filename, final OutputStream stdout) throws IOException {
+    static void printFile(final String filename, final OutputStream to) throws IOException {
         try (FileInputStream input = new FileInputStream(filename);
             BufferedInputStream bufferedIn = new BufferedInputStream(input); 
         ) {
-            copyStream(bufferedIn, stdout);
+            copyStream(bufferedIn, to);
         }
     }
 
