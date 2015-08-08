@@ -4,6 +4,7 @@ import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 
 public class Cat {
@@ -29,19 +30,19 @@ public class Cat {
         try (FileInputStream input = new FileInputStream(filename);
             BufferedInputStream bufferedIn = new BufferedInputStream(input); 
         ) {
-            copyStream(bufferedIn);
+            copyStream(bufferedIn, stdout);
         }
     }
 
-    private void copyStream(final BufferedInputStream bufferedIn) throws IOException {
+    private static void copyStream(final InputStream from, final OutputStream to) throws IOException {
         do {
-            int nextByte = bufferedIn.read();
+            int nextByte = from.read();
             if (nextByte == -1) {
                 break;
             }
-            stdout.write(nextByte);
+            to.write(nextByte);
         } while (true);
-        stdout.flush();
+        to.flush();
     }
 
 }
