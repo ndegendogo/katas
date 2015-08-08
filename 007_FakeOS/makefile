@@ -1,3 +1,4 @@
+# setup environment. You may override this with your own UserConfig.mak file.
 include $(or $(wildcard UserConfig.mak), DefaultUserConfig.mak)
 
 
@@ -11,8 +12,6 @@ JAVAFLAGS_UNITTEST:=-cp $(CLASSPATH):$(JUNIT):$(HAMCREST)
 JAVACFLAGS:=-cp $(CLASSPATH) -d $(CLASSPATH)
 JAVACFLAGS_UNITTEST:=-cp $(CLASSPATH):$(JUNIT) -d $(CLASSPATH)
 RUN.class:=$(JAVA) $(JAVAFLAGS)
-RUNECHO:=$(RUN.class) $(PACKAGE)Echo
-RUNCAT:=$(RUN.class) $(PACKAGE)Cat
 RUN_UNITTEST:=$(JAVA) $(JAVAFLAGS_UNITTEST) org.junit.runner.JUnitCore
 
 CLASSFILE_ECHO:=$(CLASSPATH)$(PACKAGEPATH)Echo.class
@@ -51,6 +50,7 @@ unittest: build_all
 clean:
 	$(RM) -r $(CLASSPATH)
 
+# blackbox tests for FakeOS
 include TestEcho.mak
 include TestCat.mak
 

@@ -1,3 +1,5 @@
+RUNECHO:=$(RUN.class) $(PACKAGE)Echo
+
 # verify output of the fakeOS programs, use the original shell commands as reference.
 assertEcho=test "`echo$(1)`" = "`$(RUNECHO)$(1)`"
 
