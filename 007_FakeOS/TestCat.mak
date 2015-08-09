@@ -1,7 +1,7 @@
 RUNCAT:=$(RUN.class) $(PACKAGE)Cat
 
 # verify output of the fakeOS programs, use the original shell commands as reference.
-assertCat=cat$(1) > expectedOutputOf_$@; $(RUNCAT)$(1) | diff - expectedOutputOf_$@ > /dev/null
+assertCat=$(RUNCAT)$(1) | diff - expectedOutputOf_$@ > /dev/null
 
 .SECONDEXPANSION:
 
