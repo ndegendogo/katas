@@ -47,7 +47,7 @@ unittest: build_all
 	$(RUN_UNITTEST) $(UNITTEST_CLASSES)
 
 .PHONY: clean
-clean:
+clean: cleanExpectedOutputFiles
 	$(RM) -r $(CLASSPATH)
 
 # blackbox tests for FakeOS

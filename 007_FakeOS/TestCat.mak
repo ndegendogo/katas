@@ -7,9 +7,6 @@ assertCat=$(RUNCAT)$(1) | diff - expectedOutputOf_$@ > /dev/null
 
 paramsFor_catOneFileWithSingleLine:=data/file1
 
-expectedOutputOf_%: $$(paramsFor_%)
-	cat $<  > $@
-
 .PHONY test_cat: catOneFileWithSingleLine
 catOneFileWithSingleLine: expectedOutputOf_$$@ $(CLASSFILE_CAT)
 	$(call assertCat, $(paramsFor_$@))
@@ -44,4 +41,10 @@ paramsFor_catSingleLineWithoutEnding:=data/singleLineNoEnd
 catSingleLineWithoutEnding: expectedOutputOf_$$@ $(CLASSFILE_CAT)
 	$(call assertCat, $(paramsFor_$@))
 
+.PHONY cleanExpectedOutputFiles:
+cleanExpectedOutputFiles:
+	$(RM) expectedOutputOf_*
+
+expectedOutputOf_%: $$(paramsFor_%)
+	cat $<  > $@
 
