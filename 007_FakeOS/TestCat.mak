@@ -12,7 +12,7 @@ expectedOutputOf_catOneFileWithSingleLine:
 
 .PHONY test_cat: catOneFileWithSingleLine
 catOneFileWithSingleLine: expectedOutputOf_$$@ $(CLASSFILE_CAT)
-	$(call assertCat, data/file1)
+	$(call assertCat, $(paramsFor_$@))
 
 paramsFor_catAnotherSingleFileWithSingleLine:=data/file2
 
@@ -21,7 +21,7 @@ expectedOutputOf_catAnotherSingleFileWithSingleLine:
 
 .PHONY test_cat: catAnotherSingleFileWithSingleLine
 catAnotherSingleFileWithSingleLine: expectedOutputOf_$$@ $(CLASSFILE_CAT)
-	$(call assertCat, data/file2)
+	$(call assertCat, $(paramsFor_$@))
 
 paramsFor_catSingleLineWithUnixEnding:=data/singleLineUnix
 
@@ -30,7 +30,7 @@ expectedOutputOf_catSingleLineWithUnixEnding:
 
 .PHONY test_cat: catSingleLineWithUnixEnding
 catSingleLineWithUnixEnding: expectedOutputOf_$$@ $(CLASSFILE_CAT)
-	$(call assertCat, data/singleLineUnix)
+	$(call assertCat, $(paramsFor_$@))
 
 paramsFor_catSingleLineWithWindowsEnding:=data/singleLineWindows
 
@@ -39,7 +39,7 @@ expectedOutputOf_catSingleLineWithWindowsEnding:
 
 .PHONY test_cat: catSingleLineWithWindowsEnding
 catSingleLineWithWindowsEnding: expectedOutputOf_$$@ $(CLASSFILE_CAT)
-	$(call assertCat, data/singleLineWindows)
+	$(call assertCat, $(paramsFor_$@))
 
 paramsFor_catSingleLineWithMacEnding:=data/singleLineMac
 
@@ -48,7 +48,7 @@ expectedOutputOf_catSingleLineWithMacEnding:
 
 .PHONY test_cat: catSingleLineWithMacEnding
 catSingleLineWithMacEnding: expectedOutputOf_$$@ $(CLASSFILE_CAT)
-	$(call assertCat, data/singleLineMac)
+	$(call assertCat, $(paramsFor_$@))
 
 paramsFor_catSingleLineWithoutEnding:=data/singleLineNoEnd
 
@@ -57,6 +57,6 @@ expectedOutputOf_catSingleLineWithoutEnding:
 
 .PHONY test_cat: catSingleLineWithoutEnding
 catSingleLineWithoutEnding: expectedOutputOf_$$@ $(CLASSFILE_CAT)
-	$(call assertCat, data/singleLineNoEnd)
+	$(call assertCat, $(paramsFor_$@))
 
 
