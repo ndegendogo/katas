@@ -1,31 +1,26 @@
+ECHO_TESTCASES:=echoWithOneWordPrintsThisWord \
+                echoWithAnotherWordPrintsThisOtherWord \
+                echoWithoutParametersPrintsNothing \
+                echoWithFullSentencePrintsFullSentence \
+                echoWithTrailingSpacesPreservesTheSpaces \
+                echoWithEmptyArgumentPrintsNothing \
+
+paramsFor_echoWithOneWordPrintsThisWord:=hello
+paramsFor_echoWithAnotherWordPrintsThisOtherWord:=world
+paramsFor_echoWithoutParametersPrintsNothing:=
+paramsFor_echoWithFullSentencePrintsFullSentence:=Hello world!
+paramsFor_echoWithTrailingSpacesPreservesTheSpaces:='hello '
+paramsFor_echoWithEmptyArgumentPrintsNothing:=''
+
+.PHONY: test_echo
+test_echo: $(ECHO_TESTCASES)
+
+.PHONY: $(ECHO_TESTCASES)
+$(ECHO_TESTCASES): echo%: $(CLASSFILES)
+	$(call assertEcho, $(paramsFor_$@))
+
 RUNECHO:=$(RUN.class) $(PACKAGE)Echo
 
-# verify output of the fakeOS programs, use the original shell commands as reference.
+# verify output of the fakeOS Echo program, use the original shell command as reference.
 assertEcho=test "`echo$(1)`" = "`$(RUNECHO)$(1)`"
-
-# the test cases for the blackbox tests
-.PHONY test_echo: echoWithOneWordPrintsThisWord
-echoWithOneWordPrintsThisWord: $(CLASSFILES)
-	$(call assertEcho, hello)
-
-.PHONY test_echo: echoWithAnotherWordPrintsThisOtherWord
-echoWithAnotherWordPrintsThisOtherWord: $(CLASSFILES)
-	$(call assertEcho, world)
-
-.PHONY test_echo: echoWithoutParametersPrintsNothing
-echoWithoutParametersPrintsNothing: $(CLASSFILES)
-	$(call assertEcho,)
-
-.PHONY test_echo: echoWithFullSentencePrintsFullSentence
-echoWithFullSentencePrintsFullSentence: $(CLASSFILES)
-	$(call assertEcho, Hello world!)
-
-.PHONY test_echo: echoWithTrailingSpacesPreservesTheSpaces
-echoWithTrailingSpacesPreservesTheSpaces: $(CLASSFILES)
-	$(call assertEcho, 'hello ')
-
-.PHONY test_echo: echoWithEmptyArgumentPrintsNothing
-echoWithEmptyArgumentPrintsNothing: $(CLASSFILES)
-	$(call assertEcho, '')
-
 
