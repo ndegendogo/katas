@@ -1,50 +1,38 @@
-RUNCAT:=$(RUN.class) $(PACKAGE)Cat
-
-# verify output of the fakeOS programs, use the original shell commands as reference.
-assertCat=$(RUNCAT)$(1) | diff - expectedOutputOf_$@ > /dev/null
-
-.SECONDEXPANSION:
+CAT_TESTCASES:=catOneFileWithSingleLine \
+                 catAnotherSingleFileWithSingleLine \
+                 catSingleLineWithUnixEnding \
+                 catSingleLineWithWindowsEnding \
+                 catSingleLineWithMacEnding \
+                 catSingleLineWithoutEnding \
 
 paramsFor_catOneFileWithSingleLine:=data/file1
-
-.PHONY test_cat: catOneFileWithSingleLine
-catOneFileWithSingleLine: expectedOutputOf_$$@ $(CLASSFILE_CAT)
-	$(call assertCat, $(paramsFor_$@))
-
 paramsFor_catAnotherSingleFileWithSingleLine:=data/file2
-
-.PHONY test_cat: catAnotherSingleFileWithSingleLine
-catAnotherSingleFileWithSingleLine: expectedOutputOf_$$@ $(CLASSFILE_CAT)
-	$(call assertCat, $(paramsFor_$@))
-
 paramsFor_catSingleLineWithUnixEnding:=data/singleLineUnix
-
-.PHONY test_cat: catSingleLineWithUnixEnding
-catSingleLineWithUnixEnding: expectedOutputOf_$$@ $(CLASSFILE_CAT)
-	$(call assertCat, $(paramsFor_$@))
-
 paramsFor_catSingleLineWithWindowsEnding:=data/singleLineWindows
-
-.PHONY test_cat: catSingleLineWithWindowsEnding
-catSingleLineWithWindowsEnding: expectedOutputOf_$$@ $(CLASSFILE_CAT)
-	$(call assertCat, $(paramsFor_$@))
-
 paramsFor_catSingleLineWithMacEnding:=data/singleLineMac
-
-.PHONY test_cat: catSingleLineWithMacEnding
-catSingleLineWithMacEnding: expectedOutputOf_$$@ $(CLASSFILE_CAT)
-	$(call assertCat, $(paramsFor_$@))
-
 paramsFor_catSingleLineWithoutEnding:=data/singleLineNoEnd
 
-.PHONY test_cat: catSingleLineWithoutEnding
-catSingleLineWithoutEnding: expectedOutputOf_$$@ $(CLASSFILE_CAT)
+.PHONY: test_cat 
+test_cat: $(CAT_TESTCASES) 
+
+.PHONY: $(CAT_TESTCASES)
+$(CAT_TESTCASES): cat%: expectedOutputOf_cat% $(CLASSFILE_CAT)
 	$(call assertCat, $(paramsFor_$@))
+
+RUNCAT:=$(RUN.class) $(PACKAGE)Cat
+
+# verify output of the fakeOS Cat program, use the original shell command as reference.
+assertCat=$(RUNCAT)$(1) | diff - expectedOutputOf_$@ > /dev/null
+
+
 
 .PHONY cleanExpectedOutputFiles:
 cleanExpectedOutputFiles:
 	$(RM) expectedOutputOf_*
 
-expectedOutputOf_%: $$(paramsFor_%)
+
+.SECONDEXPANSION:
+
+expectedOutputOf_cat%: $$(paramsFor_cat%)
 	cat $<  > $@
 
