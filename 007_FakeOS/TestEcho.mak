@@ -5,27 +5,27 @@ assertEcho=test "`echo$(1)`" = "`$(RUNECHO)$(1)`"
 
 # the test cases for the blackbox tests
 .PHONY test_echo: echoWithOneWordPrintsThisWord
-echoWithOneWordPrintsThisWord: $(CLASSFILE_ECHO)
+echoWithOneWordPrintsThisWord: $(CLASSFILES)
 	$(call assertEcho, hello)
 
 .PHONY test_echo: echoWithAnotherWordPrintsThisOtherWord
-echoWithAnotherWordPrintsThisOtherWord: $(CLASSFILE_ECHO)
+echoWithAnotherWordPrintsThisOtherWord: $(CLASSFILES)
 	$(call assertEcho, world)
 
 .PHONY test_echo: echoWithoutParametersPrintsNothing
-echoWithoutParametersPrintsNothing: $(CLASSFILE_ECHO)
+echoWithoutParametersPrintsNothing: $(CLASSFILES)
 	$(call assertEcho,)
 
 .PHONY test_echo: echoWithFullSentencePrintsFullSentence
-echoWithFullSentencePrintsFullSentence: $(CLASSFILE_ECHO)
+echoWithFullSentencePrintsFullSentence: $(CLASSFILES)
 	$(call assertEcho, Hello world!)
 
 .PHONY test_echo: echoWithTrailingSpacesPreservesTheSpaces
-echoWithTrailingSpacesPreservesTheSpaces: $(CLASSFILE_ECHO)
+echoWithTrailingSpacesPreservesTheSpaces: $(CLASSFILES)
 	$(call assertEcho, 'hello ')
 
 .PHONY test_echo: echoWithEmptyArgumentPrintsNothing
-echoWithEmptyArgumentPrintsNothing: $(CLASSFILE_ECHO)
+echoWithEmptyArgumentPrintsNothing: $(CLASSFILES)
 	$(call assertEcho, '')
 
 
