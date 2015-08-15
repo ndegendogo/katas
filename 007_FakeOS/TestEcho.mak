@@ -18,9 +18,12 @@ test_echo: $(ECHO_TESTCASES)
 .PHONY: $(ECHO_TESTCASES)
 $(ECHO_TESTCASES): echo%: $(CLASSFILES)
 	$(call assertEcho, $(paramsFor_$@))
+	$(call statusEcho, $(paramsFor_$@))
 
 RUNECHO:=$(RUN.class) $(PACKAGE)Echo
 
 # verify output of the fakeOS Echo program, use the original shell command as reference.
 assertEcho=test "`echo$(1)`" = "`$(RUNECHO)$(1)`"
 
+# verify exit status of the fakeOs Echo program, use the original shell command as reference.
+statusEcho=test "`echo$(1)`>/dev/null; `echo $$?`" = "`$(RUNECHO)$(1)`>/dev/null; `echo $$?`" 
