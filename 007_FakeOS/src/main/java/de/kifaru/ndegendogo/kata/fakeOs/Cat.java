@@ -10,7 +10,11 @@ import java.io.OutputStream;
 public class Cat {
 
     public static void main(final String... args) throws FileNotFoundException, IOException {
-        printFile(args[0], System.out);
+        if (args.length > 0) {
+            printFile(args[0], System.out);
+        } else {
+            copyStream(System.in, System.out);
+        }
         
 //        System.out.print("SingleLine");
 //        System.out.print("SingleLine\r\r");  // catSingleLineWithMacEnding
