@@ -1,4 +1,4 @@
-CAT_TESTCASES:=catOneFileWithSingleLine \
+CAT_GOODTESTCASES:=catOneFileWithSingleLine \
                  catAnotherSingleFileWithSingleLine \
                  catSingleLineWithUnixEnding \
                  catSingleLineWithWindowsEnding \
@@ -7,6 +7,8 @@ CAT_TESTCASES:=catOneFileWithSingleLine \
                  catMultipleFiles \
                  catNoParameters \
                  catDashParameter \
+
+CAT_BADTESTCASES:=catNonExistingFile \
 
 paramsFor_catOneFileWithSingleLine:=data/file1
 paramsFor_catAnotherSingleFileWithSingleLine:=data/file2
@@ -20,24 +22,28 @@ paramsFor_catNoParameters:= < data/singleLineUnix
 filesFor_catNoParameters:=data/singleLineUnix
 paramsFor_catDashParameter:= - < data/singleLineUnix
 filesFor_catDashParameter:=data/singleLineUnix
+paramsFor_catNonExistingFile:=data/nonExistingFile 
+filesFor_catNonExistingFile:=
 
 .PHONY: test_cat 
-test_cat: $(CAT_TESTCASES)
+test_cat: $(CAT_GOODTESTCASES) $(CAT_BADTESTCASES)
 
-.PHONY: $(CAT_TESTCASES)
-$(CAT_TESTCASES): cat%: expectedOutputOf_cat% $(CLASSFILES)
+.PHONY: $(CAT_GOODTESTCASES)
+$(CAT_GOODTESTCASES): cat%: expectedOutputOf_cat% $(CLASSFILES)
 	$(call statusCat, $(paramsFor_$@))
 	$(call assertCat, $(paramsFor_$@))
 
+.PHONY: $(CAT_BADTESTCASES)
+$(CAT_BADTESTCASES): cat%: $(CLASSFILES)
+	$(call statusCat, $(paramsFor_$@))
 
 RUNCAT:=$(RUN.class) $(PACKAGE)Cat
-
-# verify output of the fakeOS Cat program, use the original shell command as reference.
-assertCat=$(RUNCAT)$(1) | diff - expectedOutputOf_$@ > /dev/null
 
 # verify exit status of the fakeOs Cat program, use the original shell command as reference.
 statusCat=test "`cat$(1) >/dev/null; echo $$?`" = "`$(RUNCAT)$(1)>/dev/null; echo $$?`" 
 
+# verify output of the fakeOS Cat program, use the original shell command as reference.
+assertCat=$(RUNCAT)$(1) | diff - expectedOutputOf_$@ > /dev/null
 
 
 .PHONY: cleanExpectedOutputFiles
