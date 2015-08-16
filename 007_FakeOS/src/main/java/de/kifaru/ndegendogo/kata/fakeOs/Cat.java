@@ -10,18 +10,23 @@ import java.io.OutputStream;
 public class Cat {
 
     public static void main(final String... args) throws FileNotFoundException, IOException {
-        String[] filenames;
-        if (args.length == 0) {
-            filenames = new String[] {"-"};
-        } else {
-            filenames = args;
-        }
+        String[] filenames = getFilenames(args);
         String firstFileName = filenames[0];
         if ("-".equals(firstFileName)) {
             copyStream(System.in, System.out);
         } else {
             printFile(firstFileName, System.out);
         }
+    }
+
+    private static String[] getFilenames(final String... args) {
+        String[] filenames;
+        if (args.length == 0) {
+            filenames = new String[] {"-"};
+        } else {
+            filenames = args;
+        }
+        return filenames;
     }
 
     static void printFile(final String filename, final OutputStream to) throws IOException {
