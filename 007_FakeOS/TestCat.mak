@@ -4,6 +4,7 @@ CAT_TESTCASES:=catOneFileWithSingleLine \
                  catSingleLineWithWindowsEnding \
                  catSingleLineWithMacEnding \
                  catSingleLineWithoutEnding \
+                 catMultipleFiles \
 
 paramsFor_catOneFileWithSingleLine:=data/file1
 paramsFor_catAnotherSingleFileWithSingleLine:=data/file2
@@ -11,6 +12,7 @@ paramsFor_catSingleLineWithUnixEnding:=data/singleLineUnix
 paramsFor_catSingleLineWithWindowsEnding:=data/singleLineWindows
 paramsFor_catSingleLineWithMacEnding:=data/singleLineMac
 paramsFor_catSingleLineWithoutEnding:=data/singleLineNoEnd
+paramsFor_catMultipleFiles:=data/file1 data/singleLineUnix data/singleLineWindows 
 
 # note: automatted test with console input redirects from a file; true console input must be tested manually.
 CAT_TESTCASES_:=catNoParameters \
@@ -60,7 +62,8 @@ cleanExpectedOutputFiles:
 .SECONDEXPANSION:
 
 expectedOutputOf_cat%: $$(paramsFor_cat%)
-	cat $<  > $@
+	echo $+
+	cat $+  > $@
 
 expectedOutputOf_catNoParameters: $(paramsFor_catNoParameters)
 	cat < $< > $@
