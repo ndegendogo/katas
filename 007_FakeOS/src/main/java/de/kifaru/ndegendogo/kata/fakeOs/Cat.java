@@ -11,11 +11,12 @@ public class Cat {
 
     public static void main(final String... args) throws FileNotFoundException, IOException {
         final String[] filenames = getFilenames(args);
-        final String firstFileName = filenames[0];
-        if (isFromConsole(firstFileName)) {
-            copyStream(System.in, System.out);
-        } else {
-            printFile(firstFileName, System.out);
+        for (final String name:filenames) {
+            if (isFromConsole(name)) {
+                copyStream(System.in, System.out);
+            } else {
+                printFile(name, System.out);
+            }
         }
     }
 
