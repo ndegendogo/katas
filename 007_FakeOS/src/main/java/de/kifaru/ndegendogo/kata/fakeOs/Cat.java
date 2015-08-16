@@ -16,6 +16,16 @@ public class Cat {
         }
     }
 
+    private static String[] getFilenames(final String... args) {
+        String[] filenames;
+        if (args.length == 0) {
+            filenames = new String[] {"-"};
+        } else {
+            filenames = args;
+        }
+        return filenames;
+    }
+
     private static void printFile(final String name) throws IOException {
         if (isFromConsole(name)) {
             copyStream(System.in, System.out);
@@ -28,21 +38,13 @@ public class Cat {
         return "-".equals(name);
     }
 
-    private static String[] getFilenames(final String... args) {
-        String[] filenames;
-        if (args.length == 0) {
-            filenames = new String[] {"-"};
-        } else {
-            filenames = args;
-        }
-        return filenames;
-    }
-
     static void copyFile(final String filename, final OutputStream to) throws IOException {
         try (FileInputStream input = new FileInputStream(filename);
             BufferedInputStream bufferedIn = new BufferedInputStream(input); 
         ) {
             copyStream(bufferedIn, to);
+        } catch (FileNotFoundException e) {
+            System.exit(5);
         }
     }
 
