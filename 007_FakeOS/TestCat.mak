@@ -7,6 +7,7 @@ CAT_GOODTESTCASES:=catOneFileWithSingleLine \
                  catMultipleFiles \
                  catNoParameters \
                  catDashParameter \
+                 catEmptyFile \
 
 CAT_BADTESTCASES:=catNonExistingFile \
                   catDirectory \
@@ -26,6 +27,7 @@ filesFor_catDashParameter:=data/singleLineUnix
 paramsFor_catNonExistingFile:=data/nonExistingFile 
 paramsFor_catDirectory:=data
 paramsFor_catReadProtected:=data/readProtected
+paramsFor_catEmptyFile:=data/empty
 
 .PHONY: test_cat 
 test_cat: $(CAT_GOODTESTCASES) $(CAT_BADTESTCASES) catReadProtected
