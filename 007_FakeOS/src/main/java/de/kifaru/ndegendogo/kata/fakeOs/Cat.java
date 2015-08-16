@@ -11,7 +11,12 @@ public class Cat {
 
     public static void main(final String... args) throws FileNotFoundException, IOException {
         if (args.length > 0) {
-            printFile(args[0], System.out);
+            if ("-".equals(args[0])) {
+                // single dash means read from stdin
+                copyStream(System.in, System.out);
+            } else {
+                printFile(args[0], System.out);
+            }
         } else {
             copyStream(System.in, System.out);
         }
