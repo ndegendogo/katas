@@ -9,6 +9,7 @@ CAT_GOODTESTCASES:=catOneFileWithSingleLine \
                  catDashParameter \
 
 CAT_BADTESTCASES:=catNonExistingFile \
+                  catDirectory \
 
 paramsFor_catOneFileWithSingleLine:=data/file1
 paramsFor_catAnotherSingleFileWithSingleLine:=data/file2
@@ -23,7 +24,7 @@ filesFor_catNoParameters:=data/singleLineUnix
 paramsFor_catDashParameter:= - < data/singleLineUnix
 filesFor_catDashParameter:=data/singleLineUnix
 paramsFor_catNonExistingFile:=data/nonExistingFile 
-filesFor_catNonExistingFile:=
+paramsFor_catDirectory:=data
 
 .PHONY: test_cat 
 test_cat: $(CAT_GOODTESTCASES) $(CAT_BADTESTCASES)
