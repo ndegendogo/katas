@@ -44,7 +44,7 @@ public class Cat {
         ) {
             copyStream(bufferedIn, to);
         } catch (FileNotFoundException e) {
-            System.exit(5);
+            System.exit(1);
         }
     }
 
