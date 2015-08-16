@@ -10,8 +10,8 @@ import java.io.OutputStream;
 public class Cat {
 
     public static void main(final String... args) throws FileNotFoundException, IOException {
-        String[] filenames = getFilenames(args);
-        String firstFileName = filenames[0];
+        final String[] filenames = getFilenames(args);
+        final String firstFileName = filenames[0];
         if (isFromConsole(firstFileName)) {
             copyStream(System.in, System.out);
         } else {
@@ -19,7 +19,7 @@ public class Cat {
         }
     }
 
-    private static boolean isFromConsole(String fileName) {
+    private static boolean isFromConsole(final String fileName) {
         return "-".equals(fileName);
     }
 
