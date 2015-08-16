@@ -32,18 +32,16 @@ RUNCAT:=$(RUN.class) $(PACKAGE)Cat
 
 # verify output of the fakeOS Cat program, use the original shell command as reference.
 assertCat=$(RUNCAT)$(1) | diff - expectedOutputOf_$@ > /dev/null
-assertCat_=$(RUNCAT) < $(1) | diff - expectedOutputOf_$@ > /dev/null
 assertCat_2=$(RUNCAT) $(1) < $(2) | diff - expectedOutputOf_$@ > /dev/null
 
 # verify exit status of the fakeOs Cat program, use the original shell command as reference.
 statusCat=test "`cat$(1) >/dev/null; echo $$?`" = "`$(RUNCAT)$(1)>/dev/null; echo $$?`" 
-statusCat_=test "`cat < $(1) >/dev/null; echo $$?`" = "`$(RUNCAT) < $(1) >/dev/null; echo $$?`" 
 statusCat_2=test "`cat $(1) < $(2) >/dev/null; echo $$?`" = "`$(RUNCAT) $(1) < $(2) >/dev/null; echo $$?`" 
 
 .PHONY: catNoParameters
 catNoParameters: expectedOutputOf_catNoParameters $(CLASSFILES)
-	$(call statusCat_, $(paramsFor_$@))
-	$(call assertCat_, $(paramsFor_$@))
+	$(call statusCat_2, , $(paramsFor_$@))
+	$(call assertCat_2, , $(paramsFor_$@))
 
 .PHONY: catDashParameter
 catDashParameter: expectedOutputOf_catDashParameter $(CLASSFILES)
