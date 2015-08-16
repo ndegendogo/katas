@@ -24,8 +24,8 @@ public class Cat {
         }
     }
 
-    private static boolean isFromConsole(final String fileName) {
-        return "-".equals(fileName);
+    private static boolean isFromConsole(final String name) {
+        return "-".equals(name);
     }
 
     private static String[] getFilenames(final String... args) {
