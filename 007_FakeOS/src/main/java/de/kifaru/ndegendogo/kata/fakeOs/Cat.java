@@ -10,22 +10,11 @@ import java.io.OutputStream;
 public class Cat {
 
     public static void main(final String... args) throws FileNotFoundException, IOException {
-        if (args.length > 0) {
-            if ("-".equals(args[0])) {
-                // single dash means read from stdin
-                copyStream(System.in, System.out);
-            } else {
-                printFile(args[0], System.out);
-            }
-        } else {
+        if ((args.length == 0) || ("-".equals(args[0]))) {
             copyStream(System.in, System.out);
+        } else {
+            printFile(args[0], System.out);
         }
-        
-//        System.out.print("SingleLine");
-//        System.out.print("SingleLine\r\r");  // catSingleLineWithMacEnding
-//        System.out.print("SingleLine\r\n\r\n");  // catSingleLineWithWindowsEnding
-//        System.out.print("SingleLine\n"); // catSingleLineWithoutEnding
-//      System.out.print("SingleLine\n\n");  // catSingleLineWithUnixEnding
     }
 
     static void printFile(final String filename, final OutputStream to) throws IOException {
