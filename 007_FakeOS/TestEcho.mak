@@ -26,4 +26,4 @@ RUNECHO:=$(RUN.class) $(PACKAGE)Echo
 assertEcho=test "`echo$(1)`" = "`$(RUNECHO)$(1)`"
 
 # verify exit status of the fakeOs Echo program, use the original shell command as reference.
-statusEcho=test "`echo$(1)`>/dev/null; `echo $$?`" = "`$(RUNECHO)$(1)`>/dev/null; `echo $$?`" 
+statusEcho=test "`echo$(1)>/dev/null; echo $$?`" = "`$(RUNECHO)$(1)>/dev/null; echo $$?`" 
