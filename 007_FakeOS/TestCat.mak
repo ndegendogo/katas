@@ -25,9 +25,10 @@ paramsFor_catDashParameter:= - < data/singleLineUnix
 filesFor_catDashParameter:=data/singleLineUnix
 paramsFor_catNonExistingFile:=data/nonExistingFile 
 paramsFor_catDirectory:=data
+paramsFor_catReadProtected:=data/readProtected
 
 .PHONY: test_cat 
-test_cat: $(CAT_GOODTESTCASES) $(CAT_BADTESTCASES)
+test_cat: $(CAT_GOODTESTCASES) $(CAT_BADTESTCASES) catReadProtected
 
 .PHONY: $(CAT_GOODTESTCASES)
 $(CAT_GOODTESTCASES): cat%: expectedOutputOf_cat% $(CLASSFILES)
@@ -37,6 +38,13 @@ $(CAT_GOODTESTCASES): cat%: expectedOutputOf_cat% $(CLASSFILES)
 .PHONY: $(CAT_BADTESTCASES)
 $(CAT_BADTESTCASES): cat%: $(CLASSFILES)
 	$(call statusCat, $(paramsFor_$@))
+
+.PHONY: catReadProtected
+catReadProtected: $(CLASSFILES)
+	chmod a-r $(paramsFor_$@)
+	$(call statusCat, $(paramsFor_$@))
+	chmod a+r $(paramsFor_$@)
+
 
 RUNCAT:=$(RUN.class) $(PACKAGE)Cat
 
