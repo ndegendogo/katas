@@ -51,7 +51,7 @@ expectedOutputOf_cat%: $$(paramsFor_cat%)
 	cat $+  > $@
 
 expectedOutputOf_catNoParameters: $(filesFor_catNoParameters)
-	cat < $< > $@
+	cat $(paramsFor_catNoParameters) > $@
 
 expectedOutputOf_catDashParameter: $(filesFor_catDashParameter)
-	cat - < $< > $@
+	cat $(filesFor_catDashParameter) > $@
