@@ -15,7 +15,7 @@ public class Cat {
             if (isFromConsole(name)) {
                 copyStream(System.in, System.out);
             } else {
-                printFile(name, System.out);
+                copyFile(name, System.out);
             }
         }
     }
@@ -34,7 +34,7 @@ public class Cat {
         return filenames;
     }
 
-    static void printFile(final String filename, final OutputStream to) throws IOException {
+    static void copyFile(final String filename, final OutputStream to) throws IOException {
         try (FileInputStream input = new FileInputStream(filename);
             BufferedInputStream bufferedIn = new BufferedInputStream(input); 
         ) {
