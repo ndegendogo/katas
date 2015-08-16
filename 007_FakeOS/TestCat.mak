@@ -18,7 +18,7 @@ test_cat: $(CAT_TESTCASES)
 .PHONY: $(CAT_TESTCASES)
 $(CAT_TESTCASES): cat%: expectedOutputOf_cat% $(CLASSFILES)
 	$(call statusCat, $(paramsFor_$@))
-#	$(call assertCat, $(paramsFor_$@))
+	$(call assertCat, $(paramsFor_$@))
 
 RUNCAT:=$(RUN.class) $(PACKAGE)Cat
 
