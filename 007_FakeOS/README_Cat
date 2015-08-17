@@ -1,0 +1,14 @@
+NAME
+     Cat is a Java program which reads files and writes their content to the standard output.
+     You need a Java 8 runtime environment installed.
+
+SYNOPSIS
+
+     java -cp bin/ de.kifaru.ndegendogo.kata.fakeOs.Cat [file ...]
+
+DESCRIPTION
+     The Cat program reads files and writes their content to the standard output.
+     The files are processed in command-line order. If file is a single dash ('-') or absent, it reads from the standard input.
+
+EXIT STATUS
+     The Cat program exits 0 on success, and >0 if an error occurs. 
