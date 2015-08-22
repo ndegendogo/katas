@@ -17,13 +17,7 @@ public class Cat {
     }
 
     private static String[] getFilenames(final String... args) {
-        String[] filenames;
-        if (args.length == 0) {
-            filenames = new String[] {"-"};
-        } else {
-            filenames = args;
-        }
-        return filenames;
+        return (args.length == 0) ? new String[] {"-"} : args;
     }
 
     private static void printFile(final String name) throws IOException {
