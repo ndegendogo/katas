@@ -2,6 +2,7 @@ package de.kifaru.ndegendogo.kata.fakeOs;
 
 import static org.junit.Assert.*;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -35,9 +36,9 @@ public class TestCat {
     
     @Test
     public void testPrintFile() throws IOException {
-        final MockOutputStream output = new MockOutputStream();
+        final ByteArrayOutputStream output = new ByteArrayOutputStream();
         Cat.copyFile(filename, output);
-        assertEquals(expectedContent, output.sink.toString());
+        assertEquals(expectedContent, output.toString());
     }
 
     private class MockOutputStream extends OutputStream {
