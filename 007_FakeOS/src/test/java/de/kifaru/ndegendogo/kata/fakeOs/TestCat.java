@@ -40,14 +40,5 @@ public class TestCat {
         Cat.copyFile(filename, output);
         assertEquals(expectedContent, output.toString());
     }
-
-    private class MockOutputStream extends OutputStream {
-        final StringBuilder sink = new StringBuilder();
-
-        @Override
-        public void write(int b) throws IOException {
-            sink.append((char)b);
-        }
-        
-    }
+    
 }
