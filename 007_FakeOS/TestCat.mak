@@ -1,4 +1,4 @@
-CAT_GOODTESTCASES:=catOneFileWithSingleLine \
+CAT_TESTCASES:=catOneFileWithSingleLine \
                  catAnotherSingleFileWithSingleLine \
                  catSingleLineWithUnixEnding \
                  catSingleLineWithWindowsEnding \
@@ -8,9 +8,8 @@ CAT_GOODTESTCASES:=catOneFileWithSingleLine \
                  catNoParameters \
                  catDashParameter \
                  catEmptyFile \
-
-CAT_BADTESTCASES:=catNonExistingFile \
-                  catDirectory \
+                 catNonExistingFile \
+                 catDirectory \
 
 paramsFor_catOneFileWithSingleLine:=data/file1
 paramsFor_catAnotherSingleFileWithSingleLine:=data/file2
@@ -30,15 +29,10 @@ paramsFor_catReadProtected:=data/readProtected
 paramsFor_catEmptyFile:=data/empty
 
 .PHONY: test_cat 
-test_cat: $(CAT_GOODTESTCASES) $(CAT_BADTESTCASES) catReadProtected
+test_cat: $(CAT_TESTCASES) catReadProtected
 
-.PHONY: $(CAT_GOODTESTCASES)
-$(CAT_GOODTESTCASES): cat%: $(CLASSFILES)
-	$(call statusCat, $(paramsFor_$@))
-	$(call assertCatIfGoodcase, $(paramsFor_$@), expectedOutputOf_$@)
-
-.PHONY: $(CAT_BADTESTCASES)
-$(CAT_BADTESTCASES): cat%: $(CLASSFILES)
+.PHONY: $(CAT_TESTCASES)
+$(CAT_TESTCASES): cat%: $(CLASSFILES)
 	$(call statusCat, $(paramsFor_$@))
 	$(call assertCatIfGoodcase, $(paramsFor_$@), expectedOutputOf_$@)
 
