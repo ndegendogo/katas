@@ -45,10 +45,11 @@ public class Cat {
     static void copyStream(final InputStream from, final OutputStream to) throws IOException {
         do {
             int nextByte = from.read();
-            if (nextByte == -1) {
+            if (nextByte != -1) {
+                to.write(nextByte);
+            } else {
                 break;
             }
-            to.write(nextByte);
         } while (true);
         to.flush();
     }
