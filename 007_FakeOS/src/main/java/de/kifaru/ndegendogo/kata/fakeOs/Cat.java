@@ -42,7 +42,7 @@ public class Cat {
         }
     }
 
-    private static void copyStream(final InputStream from, final OutputStream to) throws IOException {
+    static void copyStream(final InputStream from, final OutputStream to) throws IOException {
         do {
             int nextByte = from.read();
             if (nextByte == -1) {
