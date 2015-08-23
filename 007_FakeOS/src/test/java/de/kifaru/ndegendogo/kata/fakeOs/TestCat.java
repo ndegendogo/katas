@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.StringBufferInputStream;
 import java.util.Arrays;
 
 import org.junit.Test;
@@ -38,5 +39,12 @@ public class TestCat {
         Cat.copyFile(filename, output);
         assertEquals(expectedContent, output.toString());
     }
-    
+
+    @Test
+    public void testCopyStream() throws IOException {
+        final StringBufferInputStream input = new StringBufferInputStream(expectedContent);
+        final ByteArrayOutputStream output = new ByteArrayOutputStream();
+        Cat.copyStream(input, output);
+        assertEquals(expectedContent, output.toString());
+    }
 }
