@@ -44,8 +44,8 @@ public class Cat {
 
     static void copyStream(final InputStream from, final OutputStream to) throws IOException {
         do {
-            int nextByte = from.read();
-            if (nextByte != -1) {
+            int nextByte;
+            if ((nextByte = from.read()) != -1) {
                 to.write(nextByte);
             } else {
                 break;
