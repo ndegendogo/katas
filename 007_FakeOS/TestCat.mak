@@ -35,11 +35,12 @@ test_cat: $(CAT_GOODTESTCASES) $(CAT_BADTESTCASES) catReadProtected
 .PHONY: $(CAT_GOODTESTCASES)
 $(CAT_GOODTESTCASES): cat%: expectedOutputOf_cat% $(CLASSFILES)
 	$(call statusCat, $(paramsFor_$@))
-	$(call assertCat, $(paramsFor_$@))
+	$(call assertCatIfGoodcase, $(paramsFor_$@))
 
 .PHONY: $(CAT_BADTESTCASES)
 $(CAT_BADTESTCASES): cat%: $(CLASSFILES)
 	$(call statusCat, $(paramsFor_$@))
+	$(call assertCatIfGoodcase, $(paramsFor_$@))
 
 .PHONY: catReadProtected
 catReadProtected: $(CLASSFILES)
@@ -55,6 +56,9 @@ statusCat=test "`cat$(1) >/dev/null; echo $$?`" = "`$(RUNCAT)$(1)>/dev/null; ech
 
 # verify output of the fakeOS Cat program, use the original shell command as reference.
 assertCat=$(RUNCAT)$(1) | diff - expectedOutputOf_$@ > /dev/null
+
+# verify output of the fakeOS Cat program for a good-case test case, use the original shell command as reference.
+assertCatIfGoodcase=! cat$(1) >/dev/null || $(call assertCat, $(1)) 
 
 
 .PHONY: cleanExpectedOutputFiles
