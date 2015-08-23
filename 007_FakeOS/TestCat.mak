@@ -65,14 +65,3 @@ assertCatIfGoodcase=! cat$(1) > $(2) || $(call assertCat, $(1))
 cleanExpectedOutputFiles:
 	$(RM) expectedOutputOf_*
 
-
-.SECONDEXPANSION:
-
-expectedOutputOf_cat%: $$(paramsFor_cat%)
-	cat $+  > $@
-
-expectedOutputOf_catNoParameters: $(filesFor_catNoParameters)
-	cat $(paramsFor_catNoParameters) > $@
-
-expectedOutputOf_catDashParameter: $(filesFor_catDashParameter)
-	cat $(filesFor_catDashParameter) > $@
