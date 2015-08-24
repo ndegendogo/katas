@@ -33,8 +33,7 @@ test_cat: $(CAT_TESTCASES) catReadProtected
 
 .PHONY: $(CAT_TESTCASES)
 $(CAT_TESTCASES): cat%: $(CLASSFILES)
-	$(call statusCat, $(paramsFor_$@))
-	$(call assertCatIfGoodcase, $(paramsFor_$@), expectedOutputOf_$@)
+	$(call performTestcaseForCat, $(paramsFor_$@), expectedOutputOf_$@, actualOutputOf_$@)
 
 .PHONY: catReadProtected
 catReadProtected: $(CLASSFILES)
@@ -45,17 +44,11 @@ catReadProtected: $(CLASSFILES)
 
 RUNCAT:=$(RUN.class) $(PACKAGE)Cat
 
-# verify exit status of the fakeOs Cat program, use the original shell command as reference.
-statusCat=test "`cat$(1) >/dev/null; echo $$?`" = "`$(RUNCAT)$(1)>/dev/null; echo $$?`" 
+# verify exit status and output of the fakeOs Cat program, use the original shell command as reference.
+performTestcaseForCat=cat$(1) > $(2); expectedStatus=$$?; $(RUNCAT)$(1) > $(3); actualStatus=$$?; test $$expectedStatus = $$actualStatus && (test ! $$expectedStatus || diff $(2) $(3) > /dev/null)
 
-# verify output of the fakeOS Cat program, use the original shell command as reference.
-assertCat=$(RUNCAT)$(1) | diff - expectedOutputOf_$@ > /dev/null
-
-# verify output of the fakeOS Cat program for a good-case test case, use the original shell command as reference.
-assertCatIfGoodcase=! cat$(1) > $(2) || $(call assertCat, $(1)) 
-
-
-.PHONY: cleanExpectedOutputFiles
-cleanExpectedOutputFiles:
+.PHONY: cleanTempOutputFiles
+cleanTempOutputFiles:
 	$(RM) expectedOutputOf_*
+	$(RM) actualOutputOf_*
 
