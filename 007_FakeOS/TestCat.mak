@@ -45,7 +45,12 @@ catReadProtected: $(CLASSFILES)
 RUNCAT:=$(RUN.class) $(PACKAGE)Cat
 
 # verify exit status and output of the fakeOs Cat program, use the original shell command as reference.
-performTestcaseForCat=cat$(1) > $(2); expectedStatus=$$?; $(RUNCAT)$(1) > $(3); actualStatus=$$?; test $$expectedStatus = $$actualStatus && (test ! $$expectedStatus || diff $(2) $(3) > /dev/null)
+performTestcaseForCat= \
+    cat$(1) > $(2); \
+    expectedStatus=$$?; \
+    $(RUNCAT)$(1) > $(3); \
+    actualStatus=$$?; \
+    test $$expectedStatus = $$actualStatus && (test ! $$expectedStatus || diff $(2) $(3) > /dev/null)
 
 .PHONY: cleanTempOutputFiles
 cleanTempOutputFiles:
