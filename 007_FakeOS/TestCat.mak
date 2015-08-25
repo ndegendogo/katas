@@ -20,9 +20,7 @@ paramsFor_catSingleLineWithoutEnding:=data/singleLineNoEnd
 paramsFor_catMultipleFiles:=data/file1 data/singleLineUnix data/singleLineWindows 
 # note: automatted test with console input redirects from a file; true console input must be tested manually.
 paramsFor_catNoParameters:= < data/singleLineUnix
-filesFor_catNoParameters:=data/singleLineUnix
 paramsFor_catDashParameter:= - < data/singleLineUnix
-filesFor_catDashParameter:=data/singleLineUnix
 paramsFor_catNonExistingFile:=data/nonExistingFile 
 paramsFor_catDirectory:=data
 paramsFor_catReadProtected:=data/readProtected
