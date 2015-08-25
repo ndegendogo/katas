@@ -36,7 +36,7 @@ $(CAT_TESTCASES): cat%: $(CLASSFILES)
 .PHONY: catReadProtected
 catReadProtected: $(CLASSFILES)
 	chmod a-r $(paramsFor_$@)
-	$(call statusCat, $(paramsFor_$@))
+	$(call performTestcaseForCat, $(paramsFor_$@), expectedOutputOf_$@, actualOutputOf_$@)
 	chmod a+r $(paramsFor_$@)
 
 
