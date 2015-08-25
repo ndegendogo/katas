@@ -23,7 +23,6 @@ paramsFor_catNoParameters:= < data/singleLineUnix
 paramsFor_catDashParameter:= - < data/singleLineUnix
 paramsFor_catNonExistingFile:=data/nonExistingFile 
 paramsFor_catDirectory:=data
-paramsFor_catReadProtected:=data/readProtected
 paramsFor_catEmptyFile:=data/empty
 
 .PHONY: test_cat 
@@ -34,10 +33,11 @@ $(CAT_TESTCASES): cat%: $(CLASSFILES)
 	$(call performTestcaseForCat, $(paramsFor_$@), expectedOutputOf_$@, actualOutputOf_$@)
 
 .PHONY: catReadProtected
-catReadProtected: $(CLASSFILES)
-	chmod a-r $(paramsFor_$@)
-	$(call performTestcaseForCat, $(paramsFor_$@), expectedOutputOf_$@, actualOutputOf_$@)
-	chmod a+r $(paramsFor_$@)
+catReadProtected: params:=data/readProtected
+catReadProtected: $(CLASSFILES) 
+	chmod a-r $(params)
+	$(call performTestcaseForCat, $(params), expectedOutputOf_$@, actualOutputOf_$@)
+	chmod a+r $(params)
 
 
 RUNCAT:=$(RUN.class) $(PACKAGE)Cat
