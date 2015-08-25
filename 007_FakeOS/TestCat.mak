@@ -11,26 +11,46 @@ CAT_TESTCASES:=catOneFileWithSingleLine \
                  catNonExistingFile \
                  catDirectory \
 
-paramsFor_catOneFileWithSingleLine:=data/file1
-paramsFor_catAnotherSingleFileWithSingleLine:=data/file2
-paramsFor_catSingleLineWithUnixEnding:=data/singleLineUnix
-paramsFor_catSingleLineWithWindowsEnding:=data/singleLineWindows
-paramsFor_catSingleLineWithMacEnding:=data/singleLineMac
-paramsFor_catSingleLineWithoutEnding:=data/singleLineNoEnd
-paramsFor_catMultipleFiles:=data/file1 data/singleLineUnix data/singleLineWindows 
-# note: automatted test with console input redirects from a file; true console input must be tested manually.
-paramsFor_catNoParameters:= < data/singleLineUnix
-paramsFor_catDashParameter:= - < data/singleLineUnix
-paramsFor_catNonExistingFile:=data/nonExistingFile 
-paramsFor_catDirectory:=data
-paramsFor_catEmptyFile:=data/empty
-
 .PHONY: test_cat 
 test_cat: $(CAT_TESTCASES) catReadProtected
 
-.PHONY: $(CAT_TESTCASES)
-$(CAT_TESTCASES): cat%: $(CLASSFILES)
-	$(call performTestcaseForCat, $(paramsFor_$@), expectedOutputOf_$@, actualOutputOf_$@)
+.PHONY: catOneFileWithSingleLine
+catOneFileWithSingleLine: params:=data/file1
+
+.PHONY: catAnotherSingleFileWithSingleLine
+catAnotherSingleFileWithSingleLine: params:=data/file2
+
+.PHONY: catSingleLineWithUnixEnding
+catSingleLineWithUnixEnding: params:=data/singleLineUnix
+
+.PHONY: catSingleLineWithWindowsEnding
+catSingleLineWithWindowsEnding: params:=data/singleLineWindows
+
+.PHONY: catSingleLineWithMacEnding
+catSingleLineWithMacEnding: params:=data/singleLineMac
+
+.PHONY: catSingleLineWithoutEnding
+catSingleLineWithoutEnding: params:=data/singleLineNoEnd
+
+.PHONY: catMultipleFiles
+catMultipleFiles: params:=data/file1 data/singleLineUnix data/singleLineWindows
+
+# note: automatted test with console input redirects from a file; true console input must be tested manually.
+
+.PHONY: catNoParameters
+catNoParameters: params:= < data/singleLineUnix
+
+.PHONY: catDashParameter
+catDashParameter: params:= - < data/singleLineUnix
+
+.PHONY: catNonExistingFile
+catNonExistingFile: params:=data/nonExistingFile
+
+.PHONY: catDirectory
+catDirectory: params:=data
+
+.PHONY: catEmptyFile
+catEmptyFile: params:=data/empty
 
 .PHONY: catReadProtected
 catReadProtected: params:=data/readProtected
@@ -39,6 +59,8 @@ catReadProtected: $(CLASSFILES)
 	$(call performTestcaseForCat, $(params), expectedOutputOf_$@, actualOutputOf_$@)
 	chmod a+r $(params)
 
+$(CAT_TESTCASES): cat%: $(CLASSFILES)
+	$(call performTestcaseForCat, $(params), expectedOutputOf_$@, actualOutputOf_$@)
 
 RUNCAT:=$(RUN.class) $(PACKAGE)Cat
 
