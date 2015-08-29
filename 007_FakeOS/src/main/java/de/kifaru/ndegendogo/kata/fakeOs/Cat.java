@@ -27,14 +27,14 @@ public class Cat {
     }
 
     private static boolean printFile(final String name) throws IOException {
-        if (isFromConsole(name)) {
+        if (isFromStdIn(name)) {
             return copyStream(System.in, System.out);
         } else {
             return copyFile(name, System.out);
         }
     }
 
-    private static boolean isFromConsole(final String name) {
+    private static boolean isFromStdIn(final String name) {
         return "-".equals(name);
     }
 
