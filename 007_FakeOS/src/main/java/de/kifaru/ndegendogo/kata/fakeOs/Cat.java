@@ -28,11 +28,9 @@ public class Cat {
 
     private static boolean printFile(final String name) throws IOException {
         if (isFromConsole(name)) {
-            final boolean result = copyStream(System.in, System.out);
-            return result;
+            return copyStream(System.in, System.out);
         } else {
-            final boolean result = copyFile(name, System.out);
-            return result;
+            return copyFile(name, System.out);
         }
     }
 
@@ -44,8 +42,7 @@ public class Cat {
         try (FileInputStream input = new FileInputStream(filename);
             BufferedInputStream bufferedIn = new BufferedInputStream(input); 
         ) {
-            final boolean result = copyStream(bufferedIn, to);
-            return result;
+            return copyStream(bufferedIn, to);
         } catch (FileNotFoundException e) {
             return false;
         }
