@@ -13,10 +13,12 @@ public class Cat {
         boolean result = true;
         final String[] filenames = getFilenames(args);
         for (final String name:filenames) {
-            result = printFile(name);
-            if (!result) {
-                System.exit(1);
+            if (!printFile(name)) {
+                result = false;
             }
+        }
+        if (!result) {
+            System.exit(1);
         }
     }
 
