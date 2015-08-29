@@ -10,6 +10,7 @@ CAT_TESTCASES:=catOneFileWithSingleLine \
                  catEmptyFile \
                  catNonExistingFile \
                  catDirectory \
+                 catNonexistingExisting \
 
 .PHONY: test_cat 
 test_cat: $(CAT_TESTCASES) catReadProtected
@@ -27,6 +28,7 @@ catDashParameter: params:= - < data/singleLineUnix
 catEmptyFile: params:=data/empty
 catNonExistingFile: params:=data/nonExistingFile
 catDirectory: params:=data
+catNonexistingExisting: params:=data/nonExistingFile data/file2
 
 .PHONY: catReadProtected
 catReadProtected: params:=data/readProtected
@@ -34,11 +36,6 @@ catReadProtected: $(CLASSFILES)
 	chmod a-r $(params)
 	$(call performTestcaseForCat, $(params), expectedOutputOf_$@, actualOutputOf_$@)
 	chmod a+r $(params)
-
-.PHONY: catNonexistingExisting
-catNonexistingExisting: params:=data/nonExistingFile data/file2
-catNonexistingExisting: $(CLASSFILES)
-	$(call performTestcaseForCat, $(params), expectedOutputOf_$@, actualOutputOf_$@)
 
 .PHONY: $(CAT_TESTCASES)
 $(CAT_TESTCASES): cat%: $(CLASSFILES)
