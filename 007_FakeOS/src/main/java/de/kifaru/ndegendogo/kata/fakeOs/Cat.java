@@ -10,9 +10,10 @@ import java.io.OutputStream;
 public class Cat {
 
     public static void main(final String... args) throws FileNotFoundException, IOException {
+        boolean result = true;
         final String[] filenames = getFilenames(args);
         for (final String name:filenames) {
-            final boolean result = printFile(name);
+            result = printFile(name);
             if (!result) {
                 System.exit(1);
             }
