@@ -45,10 +45,10 @@ public class Cat {
             BufferedInputStream bufferedIn = new BufferedInputStream(input); 
         ) {
             copyStream(bufferedIn, to);
+            return true;
         } catch (FileNotFoundException e) {
             return false;
         }
-        return true;
     }
 
     static void copyStream(final InputStream from, final OutputStream to) throws IOException {
