@@ -52,7 +52,7 @@ performTestcaseForCat= \
     expectedStatus=$$?; \
     $(RUNCAT)$(1) > $(3); \
     actualStatus=$$?; \
-    test $$expectedStatus = $$actualStatus && (test ! $$expectedStatus || diff $(2) $(3) > /dev/null)
+    test $$expectedStatus = $$actualStatus && (diff $(2) $(3) > /dev/null)
 
 .PHONY: cleanTempOutputFiles
 cleanTempOutputFiles:
