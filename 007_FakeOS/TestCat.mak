@@ -11,6 +11,7 @@ CAT_TESTCASES:=catOneFileWithSingleLine \
                  catNonExistingFile \
                  catDirectory \
                  catNonexistingExisting \
+                 catExistingNonexistingExisting \
 
 .PHONY: test_cat 
 test_cat: $(CAT_TESTCASES) catReadProtected
@@ -29,6 +30,7 @@ catEmptyFile: params:=data/empty
 catNonExistingFile: params:=data/nonExistingFile
 catDirectory: params:=data
 catNonexistingExisting: params:=data/nonExistingFile data/file2
+catExistingNonexistingExisting: params:=data/file1 data/nonExistingFile data/file2
 
 .PHONY: catReadProtected
 catReadProtected: params:=data/readProtected
