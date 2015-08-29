@@ -28,8 +28,8 @@ public class Cat {
 
     private static boolean printFile(final String name) throws IOException {
         if (isFromConsole(name)) {
-            copyStream(System.in, System.out);
-            return true;
+            final boolean result = copyStream(System.in, System.out);
+            return result;
         } else {
             final boolean result = copyFile(name, System.out);
             return result;
@@ -44,19 +44,20 @@ public class Cat {
         try (FileInputStream input = new FileInputStream(filename);
             BufferedInputStream bufferedIn = new BufferedInputStream(input); 
         ) {
-            copyStream(bufferedIn, to);
-            return true;
+            final boolean result = copyStream(bufferedIn, to);
+            return result;
         } catch (FileNotFoundException e) {
             return false;
         }
     }
 
-    static void copyStream(final InputStream from, final OutputStream to) throws IOException {
+    static boolean copyStream(final InputStream from, final OutputStream to) throws IOException {
         int nextByte;
         while((nextByte = from.read()) != -1) {
             to.write(nextByte);
         }
         to.flush();
+        return true;
     }
 
 }
