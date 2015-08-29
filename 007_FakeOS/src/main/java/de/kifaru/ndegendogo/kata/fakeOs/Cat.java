@@ -12,7 +12,7 @@ public class Cat {
     public static void main(final String... args) throws FileNotFoundException, IOException {
         final String[] filenames = getFilenames(args);
         for (final String name:filenames) {
-            printFile(name);
+            final boolean result = printFile(name);
         }
     }
 
@@ -20,11 +20,13 @@ public class Cat {
         return (args.length == 0) ? new String[] {"-"} : args;
     }
 
-    private static void printFile(final String name) throws IOException {
+    private static boolean printFile(final String name) throws IOException {
         if (isFromConsole(name)) {
             copyStream(System.in, System.out);
+            return true;
         } else {
             final boolean result = copyFile(name, System.out);
+            return result;
         }
     }
 
