@@ -44,7 +44,7 @@ public class TestCat {
     public void testCopyStream() throws IOException {
         final ByteArrayInputStream input = new ByteArrayInputStream(expectedContent.getBytes());
         final ByteArrayOutputStream output = new ByteArrayOutputStream();
-        Cat.copyStream(input, output);
+        assertTrue(Cat.copyStream(input, output));
         assertEquals(expectedContent, output.toString());
     }
 }
