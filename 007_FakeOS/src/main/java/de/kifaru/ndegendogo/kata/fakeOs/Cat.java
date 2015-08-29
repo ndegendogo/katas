@@ -27,11 +27,7 @@ public class Cat {
     }
 
     private static boolean printFile(final String name) throws IOException {
-        if (isFromStdIn(name)) {
-            return copyStream(System.in, System.out);
-        } else {
-            return copyFile(name, System.out);
-        }
+        return isFromStdIn(name) ? copyStream(System.in, System.out) : copyFile(name, System.out);
     }
 
     private static boolean isFromStdIn(final String name) {
