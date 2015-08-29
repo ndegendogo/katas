@@ -13,6 +13,9 @@ public class Cat {
         final String[] filenames = getFilenames(args);
         for (final String name:filenames) {
             final boolean result = printFile(name);
+            if (!result) {
+                System.exit(1);
+            }
         }
     }
 
@@ -40,7 +43,7 @@ public class Cat {
         ) {
             copyStream(bufferedIn, to);
         } catch (FileNotFoundException e) {
-            System.exit(1);
+            return false;
         }
         return true;
     }
