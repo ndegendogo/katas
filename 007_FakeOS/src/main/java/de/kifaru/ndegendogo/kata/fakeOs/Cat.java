@@ -24,7 +24,7 @@ public class Cat {
         if (isFromConsole(name)) {
             copyStream(System.in, System.out);
         } else {
-            copyFile(name, System.out);
+            final boolean result = copyFile(name, System.out);
         }
     }
 
@@ -32,7 +32,7 @@ public class Cat {
         return "-".equals(name);
     }
 
-    static void copyFile(final String filename, final OutputStream to) throws IOException {
+    static boolean copyFile(final String filename, final OutputStream to) throws IOException {
         try (FileInputStream input = new FileInputStream(filename);
             BufferedInputStream bufferedIn = new BufferedInputStream(input); 
         ) {
@@ -40,6 +40,7 @@ public class Cat {
         } catch (FileNotFoundException e) {
             System.exit(1);
         }
+        return true;
     }
 
     static void copyStream(final InputStream from, final OutputStream to) throws IOException {
