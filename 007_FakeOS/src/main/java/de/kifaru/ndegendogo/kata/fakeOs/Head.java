@@ -12,9 +12,13 @@ public class Head {
     public static void main(final String... args) throws IOException {
         final InputStream in = System.in;
         final PrintStream out = System.out;
-        InputStreamReader reader = new InputStreamReader(in);
-        BufferedReader buffered = new BufferedReader(reader);
-        String line = buffered.readLine();
+        printLines(in, out);
+    }
+
+    private static void printLines(final InputStream in, final PrintStream out) throws IOException {
+        final InputStreamReader reader = new InputStreamReader(in);
+        final BufferedReader buffered = new BufferedReader(reader);
+        final String line = buffered.readLine();
         if (line != null) {
             out.println(line);
         }
