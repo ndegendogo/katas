@@ -1,10 +1,12 @@
 HEAD_TESTCASES:= \
     head0linesFrom0files \
+    head1linesFrom0files \
 
 .PHONY: test_head
 test_head: $(HEAD_TESTCASES)
 
 head0linesFrom0files: params:= < data/empty
+head1linesFrom0files: params:= < data/1line.txt
 
 .PHONY: $(HEAD_TESTCASES)
 $(HEAD_TESTCASES): head%: $(CLASSFILES)
