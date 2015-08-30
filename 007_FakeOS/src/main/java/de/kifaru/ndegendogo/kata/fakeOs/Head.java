@@ -10,13 +10,9 @@ public class Head {
     public static void main(final String... args) throws IOException {
         InputStreamReader reader = new InputStreamReader(System.in);
         BufferedReader buffered = new BufferedReader(reader);
-        try {
-            String line = buffered.readLine();
-            if (line != null) {
-                System.out.println(line);
-            }
-        } catch (IOException exception) {
-            
+        String line = buffered.readLine();
+        if (line != null) {
+            System.out.println(line);
         }
     }
 
