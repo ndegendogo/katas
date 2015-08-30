@@ -1,11 +1,14 @@
-HEAD_TESTCASES:=
+HEAD_TESTCASES:= \
+    head0linesFrom0files \
 
 .PHONY: test_head
 test_head: $(HEAD_TESTCASES)
 
+head0linesFrom0files: params:= < data/empty
+
 .PHONY: $(HEAD_TESTCASES)
 $(HEAD_TESTCASES): head%: $(CLASSFILES)
-	$(call perfrmTestcaseForHead, $(params), expectedOutputOf_$@, actualOutputOf_$@)
+	$(call performTestcaseForHead, $(params), expectedOutputOf_$@, actualOutputOf_$@)
 
 RUNHEAD:=$(RUN.class) $(PACKAGE)Head
 
