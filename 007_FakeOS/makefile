@@ -34,7 +34,7 @@ build_all: $(ALL_CLASSFILES)
 build: $(CLASSFILES)
 
 .PHONY: test
-test: test_echo test_cat 
+test: test_echo test_cat test_head
 
 .PHONY: unittest
 unittest: build_all
@@ -52,6 +52,7 @@ cleanTempOutputFiles:
 # blackbox tests for FakeOS
 include TestEcho.mak
 include TestCat.mak
+include TestHead.mak
 
 $(CLASSPATH)%.class: $(SOURCEPATH)%.java | $(CLASSPATH)
 	javac $(JAVACFLAGS) $<
