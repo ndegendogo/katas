@@ -34,7 +34,7 @@ build_all: $(ALL_CLASSFILES)
 build: $(CLASSFILES)
 
 .PHONY: test
-test: test_echo test_cat
+test: test_echo test_cat 
 
 .PHONY: unittest
 unittest: build_all
@@ -43,6 +43,11 @@ unittest: build_all
 .PHONY: clean
 clean: cleanTempOutputFiles
 	$(RM) -r $(CLASSPATH)
+
+.PHONY: cleanTempOutputFiles
+cleanTempOutputFiles:
+	$(RM) expectedOutputOf_*
+	$(RM) actualOutputOf_*
 
 # blackbox tests for FakeOS
 include TestEcho.mak

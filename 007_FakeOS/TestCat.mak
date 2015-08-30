@@ -53,8 +53,3 @@ performTestcaseForCat= \
     actualStatus=$$?; \
     test $$expectedStatus = $$actualStatus && (diff $(2) $(3) > /dev/null)
 
-.PHONY: cleanTempOutputFiles
-cleanTempOutputFiles:
-	$(RM) expectedOutputOf_*
-	$(RM) actualOutputOf_*
-
