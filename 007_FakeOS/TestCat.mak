@@ -40,16 +40,14 @@ catReadProtected: $(CLASSFILES)
 	chmod a+r $(params)
 
 .PHONY: $(CAT_TESTCASES)
+# verify exit status and output of the fakeOs Cat program, use the original shell command as reference.
 $(CAT_TESTCASES): cat%: $(CLASSFILES)
-	$(call performTestcaseForCat, $(params), expectedOutputOf_$@, actualOutputOf_$@)
+	cat $(params) > expectedOutputOf_$@; \
+	expectedStatus=$$?; \
+	$(RUNCAT) $(params) > actualOutputOf_$@; \
+	actualStatus=$$?; \
+	test $$expectedStatus = $$actualStatus && (diff expectedOutputOf_$@ actualOutputOf_$@ > /dev/null)
 
 RUNCAT:=$(RUN.class) $(PACKAGE)Cat
 
-# verify exit status and output of the fakeOs Cat program, use the original shell command as reference.
-performTestcaseForCat= \
-    cat$(1) > $(2); \
-    expectedStatus=$$?; \
-    $(RUNCAT)$(1) > $(3); \
-    actualStatus=$$?; \
-    test $$expectedStatus = $$actualStatus && (diff $(2) $(3) > /dev/null)
 
