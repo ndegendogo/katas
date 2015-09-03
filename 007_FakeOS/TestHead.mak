@@ -11,11 +11,13 @@ head1linesFrom0files: params:= < data/1line.txt
 .PHONY: $(HEAD_TESTCASES)
 # verify exit status and output of the fakeOs Head program, use the original shell command as reference.
 $(HEAD_TESTCASES): head%: $(CLASSFILES)
-	head $(params) > expectedOutputOf_$@; \
+	$(cmd) $(params) > expectedOutputOf_$@; \
 	expectedStatus=$$?; \
-	$(RUNHEAD) $(params) > actualOutputOf_$@; \
+	$(RUNCMD) $(params) > actualOutputOf_$@; \
 	actualStatus=$$?; \
 	test $$expectedStatus = $$actualStatus && (diff expectedOutputOf_$@ actualOutputOf_$@ > /dev/null)
 
 RUNHEAD:=$(RUN.class) $(PACKAGE)Head
 
+head%: cmd:=head
+head%: RUNCMD:=$(RUNHEAD)
