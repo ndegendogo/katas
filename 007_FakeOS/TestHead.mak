@@ -16,9 +16,9 @@ head1linesFrom0files: params:= < data/1line.txt
 .PHONY: $(HEAD_TESTCASES)
 # verify exit status and output of the fakeOs Head program, use the original shell command as reference.
 $(HEAD_TESTCASES): head%: $(CLASSFILES)
-	$(performTestcase)
+	$(performBlackboxTest)
 
-performTestcase=\
+performBlackboxTest=\
 	$(cmd) $(params) > expectedOutputOf_$@; \
 	expectedStatus=$$?; \
 	$(RUNCMD) $(params) > actualOutputOf_$@; \
