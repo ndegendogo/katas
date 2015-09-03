@@ -42,7 +42,7 @@ clean: cleanTempOutputFiles
 	$(RM) -r $(CLASSPATH)
 
 # blackbox tests for FakeOS
-include Test.mak
+include BlackboxTests.mak
 
 $(CLASSPATH)%.class: $(SOURCEPATH)%.java | $(CLASSPATH)
 	javac $(JAVACFLAGS) $<
