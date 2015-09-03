@@ -36,7 +36,11 @@ catExistingNonexistingExisting: params:=data/file1 data/nonExistingFile data/fil
 catReadProtected: params:=data/readProtected
 catReadProtected: $(CLASSFILES) 
 	chmod a-r $(params)
-	$(call performTestcaseForCat, $(params), expectedOutputOf_$@, actualOutputOf_$@)
+	cat $(params) > expectedOutputOf_$@; \
+	expectedStatus=$$?; \
+	$(RUNCAT) $(params) > actualOutputOf_$@; \
+	actualStatus=$$?; \
+	test $$expectedStatus = $$actualStatus && (diff expectedOutputOf_$@ actualOutputOf_$@ > /dev/null)
 	chmod a+r $(params)
 
 .PHONY: $(CAT_TESTCASES)
