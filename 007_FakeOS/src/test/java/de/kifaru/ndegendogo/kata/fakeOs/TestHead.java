@@ -19,7 +19,8 @@ public class TestHead {
     @Parameters(name = "{0}")
     public static Iterable<Object[]>data() {
         return Arrays.asList(new Object[][] {
-            {"noLines", "", ""}
+                {"noLines", "", ""},
+                {"oneLine", "1 line" + System.lineSeparator(), "1 line" + System.lineSeparator()},
         });
     }
     
