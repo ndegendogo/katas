@@ -10,6 +10,7 @@ import java.lang.System;
 public class Head {
 
     public static void main(final String... args) throws IOException {
+        System.out.println("Hello world!");
         final InputStream in = System.in;
         final PrintStream out = System.out;
         printLines(in, out);
