@@ -15,7 +15,7 @@ public class Head {
         printLines(in, out);
     }
 
-    private static void printLines(final InputStream in, final PrintStream out) throws IOException {
+    static void printLines(final InputStream in, final PrintStream out) throws IOException {
         final InputStreamReader reader = new InputStreamReader(in);
         final BufferedReader buffered = new BufferedReader(reader);
         final String line = buffered.readLine();
