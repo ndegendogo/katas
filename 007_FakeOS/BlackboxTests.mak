@@ -10,4 +10,11 @@ cleanTempOutputFiles:
 	$(RM) expectedOutputOf_*
 	$(RM) actualOutputOf_*
 
+performBlackboxTest=\
+	$(cmd) $(params) > expectedOutputOf_$@; \
+	expectedStatus=$$?; \
+	$(RUNCMD) $(params) > actualOutputOf_$@; \
+	actualStatus=$$?; \
+	test $$expectedStatus = $$actualStatus && (diff expectedOutputOf_$@ actualOutputOf_$@ > /dev/null)
+
 

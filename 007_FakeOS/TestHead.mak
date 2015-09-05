@@ -18,11 +18,4 @@ head1linesFrom0files: params:= < data/1line.txt
 $(HEAD_TESTCASES): head%: $(CLASSFILES)
 	$(performBlackboxTest)
 
-performBlackboxTest=\
-	$(cmd) $(params) > expectedOutputOf_$@; \
-	expectedStatus=$$?; \
-	$(RUNCMD) $(params) > actualOutputOf_$@; \
-	actualStatus=$$?; \
-	test $$expectedStatus = $$actualStatus && (diff expectedOutputOf_$@ actualOutputOf_$@ > /dev/null)
-
 
