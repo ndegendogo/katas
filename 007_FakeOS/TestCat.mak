@@ -36,6 +36,7 @@ catNonExistingFile: params:=data/nonExistingFile
 catDirectory: params:=data
 catNonexistingExisting: params:=data/nonExistingFile data/file2
 catExistingNonexistingExisting: params:=data/file1 data/nonExistingFile data/file2
+catReadProtected: params:=data/readProtected
 
 .PHONY: $(CAT_TESTCASES)
 # verify exit status and output of the fakeOs Cat program, use the original shell command as reference.
@@ -43,7 +44,6 @@ $(CAT_TESTCASES): cat%: $(CLASSFILES)
 	$(performBlackboxTest)
 
 .PHONY: catReadProtected
-catReadProtected: params:=data/readProtected
 catReadProtected: $(CLASSFILES) 
 	chmod a-r $(params)
 	$(performBlackboxTest)
