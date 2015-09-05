@@ -13,7 +13,6 @@ public class Head {
         final InputStream in = System.in;
         final PrintStream out = System.out;
         printLines(in, out);
-        System.exit(1);
     }
 
     private static void printLines(final InputStream in, final PrintStream out) throws IOException {

@@ -20,7 +20,6 @@ public class Cat {
         if (!result) {
             System.exit(1);
         }
-        System.exit(1);
     }
 
     private static String[] getFilenames(final String... args) {
