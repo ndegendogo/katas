@@ -3,7 +3,6 @@ package de.kifaru.ndegendogo.kata.fakeOs;
 public class Echo {
 
     public static void main(final String... args) {
-        System.out.println("Hello world!");
         System.out.println(joinStrings(args));
     }
 
