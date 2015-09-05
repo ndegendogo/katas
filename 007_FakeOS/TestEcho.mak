@@ -22,6 +22,6 @@ echoWithTrailingSpacesPreservesTheSpaces: params:='hello '
 echoWithEmptyArgumentPrintsNothing: params:=''
 
 .PHONY: $(ECHO_TESTCASES)
-$(ECHO_TESTCASES): echo%: $(CLASSFILES)
+$(ECHO_TESTCASES): echo%: $(CLASSFILES) | $(TEMPPATH)
 	$(performBlackboxTest)
 

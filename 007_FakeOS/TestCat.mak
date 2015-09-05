@@ -40,11 +40,11 @@ catReadProtected: params:=data/readProtected
 
 .PHONY: $(CAT_TESTCASES)
 # verify exit status and output of the fakeOs Cat program, use the original shell command as reference.
-$(CAT_TESTCASES): cat%: $(CLASSFILES)
+$(CAT_TESTCASES): cat%: $(CLASSFILES) | $(TEMPPATH)
 	$(performBlackboxTest)
 
 .PHONY: catReadProtected
-catReadProtected: $(CLASSFILES) 
+catReadProtected: $(CLASSFILES) | $(TEMPPATH)
 	chmod a-r $(params)
 	$(performBlackboxTest)
 	chmod a+r $(params)

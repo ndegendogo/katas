@@ -1,3 +1,5 @@
+TEMPPATH:=tmp/
+
 .PHONY: blackboxtest
 blackboxtest: test_echo test_cat test_head
 
@@ -7,14 +9,15 @@ include TestHead.mak
 
 .PHONY: cleanTempOutputFiles
 cleanTempOutputFiles:
-	$(RM) expectedOutputOf_*
-	$(RM) actualOutputOf_*
+	$(RM) -r $(TEMPPATH)
 
 performBlackboxTest=\
-	$(cmd) $(params) > expectedOutputOf_$@; \
+	$(cmd) $(params) > $(TEMPPATH)/expectedOutputOf_$@; \
 	expectedStatus=$$?; \
-	$(RUNCMD) $(params) > actualOutputOf_$@; \
+	$(RUNCMD) $(params) > $(TEMPPATH)/actualOutputOf_$@; \
 	actualStatus=$$?; \
-	test $$expectedStatus = $$actualStatus && (diff expectedOutputOf_$@ actualOutputOf_$@ > /dev/null)
+	test $$expectedStatus = $$actualStatus && (diff $(TEMPPATH)/expectedOutputOf_$@ $(TEMPPATH)/actualOutputOf_$@ > /dev/null)
 
+$(TEMPPATH):
+	mkdir $@
 
