@@ -46,11 +46,7 @@ $(CAT_TESTCASES): cat%: $(CLASSFILES)
 catReadProtected: params:=data/readProtected
 catReadProtected: $(CLASSFILES) 
 	chmod a-r $(params)
-	cat $(params) > expectedOutputOf_$@; \
-	expectedStatus=$$?; \
-	$(RUNCAT) $(params) > actualOutputOf_$@; \
-	actualStatus=$$?; \
-	test $$expectedStatus = $$actualStatus && (diff expectedOutputOf_$@ actualOutputOf_$@ > /dev/null)
+	$(performBlackboxTest)
 	chmod a+r $(params)
 
 
