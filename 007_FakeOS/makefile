@@ -25,7 +25,7 @@ UNITTEST_CLASSES:=$(foreach module,$(UNITTEST_MODULES),$(PACKAGE)$(module))
 
 
 .PHONY: all
-all: build_all test unittest
+all: build_all blackboxtest unittest
 
 .PHONY: build_all
 build_all: $(ALL_CLASSFILES)

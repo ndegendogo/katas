@@ -1,5 +1,5 @@
-.PHONY: test
-test: test_echo test_cat test_head
+.PHONY: blackboxtest
+blackboxtest: test_echo test_cat test_head
 
 include TestEcho.mak
 include TestCat.mak
