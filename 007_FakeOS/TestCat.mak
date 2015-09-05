@@ -16,6 +16,11 @@ CAT_TESTCASES:=catOneFileWithSingleLine \
 .PHONY: test_cat 
 test_cat: $(CAT_TESTCASES) catReadProtected
 
+RUNCAT:=$(RUN.class) $(PACKAGE)Cat
+
+cat%: cmd:=cat
+cat%: RUNCMD:=$(RUNCAT)
+
 catOneFileWithSingleLine: params:=data/file1
 catAnotherSingleFileWithSingleLine: params:=data/file2
 catSingleLineWithUnixEnding: params:=data/singleLineUnix
@@ -32,6 +37,11 @@ catDirectory: params:=data
 catNonexistingExisting: params:=data/nonExistingFile data/file2
 catExistingNonexistingExisting: params:=data/file1 data/nonExistingFile data/file2
 
+.PHONY: $(CAT_TESTCASES)
+# verify exit status and output of the fakeOs Cat program, use the original shell command as reference.
+$(CAT_TESTCASES): cat%: $(CLASSFILES)
+	$(performBlackboxTest)
+
 .PHONY: catReadProtected
 catReadProtected: params:=data/readProtected
 catReadProtected: $(CLASSFILES) 
@@ -42,16 +52,5 @@ catReadProtected: $(CLASSFILES)
 	actualStatus=$$?; \
 	test $$expectedStatus = $$actualStatus && (diff expectedOutputOf_$@ actualOutputOf_$@ > /dev/null)
 	chmod a+r $(params)
-
-.PHONY: $(CAT_TESTCASES)
-# verify exit status and output of the fakeOs Cat program, use the original shell command as reference.
-$(CAT_TESTCASES): cat%: $(CLASSFILES)
-	cat $(params) > expectedOutputOf_$@; \
-	expectedStatus=$$?; \
-	$(RUNCAT) $(params) > actualOutputOf_$@; \
-	actualStatus=$$?; \
-	test $$expectedStatus = $$actualStatus && (diff expectedOutputOf_$@ actualOutputOf_$@ > /dev/null)
-
-RUNCAT:=$(RUN.class) $(PACKAGE)Cat
 
 
