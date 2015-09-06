@@ -36,10 +36,10 @@ public class TestHead {
     
     @Test
     public void testPrintLines() throws IOException {
-        final ByteArrayInputStream input = new ByteArrayInputStream(inputString.getBytes());
-        final ByteArrayOutputStream output = new ByteArrayOutputStream();
-        final PrintStream out = new PrintStream(output);
-        Head.printLines(input, out);
-        assertEquals(expected, output.toString());
+        final ByteArrayInputStream inputStream = new ByteArrayInputStream(inputString.getBytes());
+        final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        final PrintStream out = new PrintStream(outputStream);
+        Head.printLines(inputStream, out);
+        assertEquals(expected, outputStream.toString());
     }
 }
