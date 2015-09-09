@@ -24,12 +24,4 @@ public class Head {
         }
     }
 
-    static void print2Lines(final InputStream in, final PrintStream out) throws IOException {
-        final InputStreamReader reader = new InputStreamReader(in);
-        final BufferedReader buffered = new BufferedReader(reader);
-        String line;
-        while((line = buffered.readLine()) != null) {
-            out.println(line);
-        }
-    }
 }
