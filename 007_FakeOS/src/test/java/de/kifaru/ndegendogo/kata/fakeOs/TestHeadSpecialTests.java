@@ -14,7 +14,7 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
 @RunWith(value = Parameterized.class)
-public class TestHeadSpecialTests {
+public class TestHeadSpecialTests extends BaseTestHead {
 
     @Parameters(name = "{0}")
     public static Iterable<Object[]>data() {
