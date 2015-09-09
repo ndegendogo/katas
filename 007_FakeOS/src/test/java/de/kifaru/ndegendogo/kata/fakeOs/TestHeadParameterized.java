@@ -65,10 +65,4 @@ public class TestHeadParameterized extends BaseTestHead {
         final String expectedOutput = concatenateLines(expectedLines);
         assertEquals(expectedOutput, outputStream.toString());
     }
-
-    protected ByteArrayInputStream createInputStream() {
-        final String input = concatenateLines(inputLines);
-        final ByteArrayInputStream inputStream = new ByteArrayInputStream(input.getBytes());
-        return inputStream;
-    }
 }

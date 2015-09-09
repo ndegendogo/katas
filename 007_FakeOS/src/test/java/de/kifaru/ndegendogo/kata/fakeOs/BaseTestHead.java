@@ -1,5 +1,7 @@
 package de.kifaru.ndegendogo.kata.fakeOs;
 
+import java.io.ByteArrayInputStream;
+
 public class BaseTestHead {
 
     protected final String testName;
@@ -19,6 +21,12 @@ public class BaseTestHead {
         }
         final String string = builder.toString();
         return string;
+    }
+
+    protected ByteArrayInputStream createInputStream() {
+        final String input = concatenateLines(inputLines);
+        final ByteArrayInputStream inputStream = new ByteArrayInputStream(input.getBytes());
+        return inputStream;
     }
 
 }
