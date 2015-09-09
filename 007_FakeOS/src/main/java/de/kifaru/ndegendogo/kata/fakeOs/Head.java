@@ -32,8 +32,7 @@ public class Head {
         String line;
         int lineCount = 0;
         while((line = buffered.readLine()) != null) {
-            lineCount ++;
-            if (lineCount <= MAX_NUMBER_OF_LINES) {
+            if (++lineCount <= MAX_NUMBER_OF_LINES) {
                 out.println(line);
             }
         }
