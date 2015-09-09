@@ -21,8 +21,11 @@ public class Head {
         final InputStreamReader reader = new InputStreamReader(in);
         final BufferedReader buffered = new BufferedReader(reader);
         String line;
+        int lineCount = 0;
         while((line = buffered.readLine()) != null) {
-            out.println(line);
+            if (++lineCount <= MAX_NUMBER_OF_LINES) {
+                out.println(line);
+            }
         }
     }
 
