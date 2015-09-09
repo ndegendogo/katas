@@ -55,13 +55,18 @@ public class TestHeadSpecialTests extends BaseTestHead {
 
     @Test
     public void testPrintLines() throws IOException {
-        final String input = concatenateLines(inputLines);
-        final ByteArrayInputStream inputStream = new ByteArrayInputStream(input.getBytes());
+        final ByteArrayInputStream inputStream = createInputStream();
         
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         final PrintStream out = new PrintStream(outputStream);
         Head.print11Lines(inputStream, out);
         final String expectedOutput = concatenateLines(expectedLines);
         assertEquals(expectedOutput, outputStream.toString());
+    }
+
+    protected ByteArrayInputStream createInputStream() {
+        final String input = concatenateLines(inputLines);
+        final ByteArrayInputStream inputStream = new ByteArrayInputStream(input.getBytes());
+        return inputStream;
     }
 }
