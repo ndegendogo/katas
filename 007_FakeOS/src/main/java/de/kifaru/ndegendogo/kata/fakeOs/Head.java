@@ -27,13 +27,9 @@ public class Head {
     static void print2Lines(final InputStream in, final PrintStream out) throws IOException {
         final InputStreamReader reader = new InputStreamReader(in);
         final BufferedReader buffered = new BufferedReader(reader);
-        do {
-            final String line = buffered.readLine();
-            if (line != null) {
-                out.println(line);
-            } else {
-                break;
-            }
-        } while (true);
+        String line;
+        while((line = buffered.readLine()) != null) {
+            out.println(line);
+        }
     }
 }
