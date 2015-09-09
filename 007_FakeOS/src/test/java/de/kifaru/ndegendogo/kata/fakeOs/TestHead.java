@@ -53,7 +53,7 @@ public class TestHead {
         final ByteArrayInputStream inputStream = new ByteArrayInputStream(inputString.getBytes());
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         final PrintStream out = new PrintStream(outputStream);
-        Head.printLines(inputStream, out);
+        Head.print2Lines(inputStream, out);
         final StringBuilder expectedBuilder = new StringBuilder();
         for (int i = 0; i < 2; i ++) {
             expectedBuilder.append("2 lines" + System.lineSeparator());
