@@ -19,28 +19,39 @@ public class TestHeadParameterized {
     @Parameters(name = "{0}")
     public static Iterable<Object[]>data() {
         return Arrays.asList(new Object[][] {
-                {"noLines", "", ""},
-                {"oneLine", "1 line" + System.lineSeparator(), "1 line" + System.lineSeparator()},
+                {"noLines", new String[]{}, new String[]{}},
+                {"oneLine", new String[]{"1 line"}, new String[]{"1 line"}},
         });
     }
     
     private final String testName;
-    private final String inputString;
-    private final String expected;
+    private final String[] inputLines;
+    private final String[] expectedLines;
     
-    public TestHeadParameterized(final String testName, final String inputString, final String expected) {
+    public TestHeadParameterized(final String testName, final String[] inputLines, final String[] expectedLines) {
         this.testName = testName;
-        this.inputString = inputString;
-        this.expected = expected;
+        this.inputLines = inputLines;
+        this.expectedLines = expectedLines;
     }
     
     @Test
     public void testPrintLines() throws IOException {
-        final ByteArrayInputStream inputStream = new ByteArrayInputStream(inputString.getBytes());
+        final String input = concatenateLines(inputLines);
+        final ByteArrayInputStream inputStream = new ByteArrayInputStream(input.getBytes());
+        
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         final PrintStream out = new PrintStream(outputStream);
         Head.printLines(inputStream, out);
-        assertEquals(expected, outputStream.toString());
+        final String expectedOutput = concatenateLines(expectedLines); 
+        assertEquals(expectedOutput, outputStream.toString());
     }
     
+    private String concatenateLines(final String[] lines) {
+        final StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < lines.length; i ++) {
+            builder.append(lines[i] + System.lineSeparator());
+        }
+        final String string = builder.toString();
+        return string;
+    }
 }
