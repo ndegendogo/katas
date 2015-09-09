@@ -73,7 +73,7 @@ public class TestHeadParameterized extends BaseTestHead {
         assertEquals(expectedOutput, outputStream.toString());
     }
     
-    private String concatenateLines(final String[] lines) {
+    protected String concatenateLines(final String[] lines) {
         final StringBuilder builder = new StringBuilder();
         for (int i = 0; i < lines.length; i ++) {
             builder.append(lines[i] + System.lineSeparator());
