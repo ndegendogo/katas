@@ -19,7 +19,7 @@ public class TestHeadSpecialTests {
     @Parameters(name = "{0}")
     public static Iterable<Object[]>data() {
         return Arrays.asList(new Object[][] {
-                {"elevenLines", 
+                {"moreLinesThanHeadOutputs", 
                     new String[]{
                         "line 1",
                         "line 2",
