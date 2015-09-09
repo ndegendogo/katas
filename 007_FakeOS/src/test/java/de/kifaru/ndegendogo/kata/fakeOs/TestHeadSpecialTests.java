@@ -27,13 +27,13 @@ public class TestHeadSpecialTests {
         assertEquals(expectedOutput, outputStream.toString());
     }
 
-    private String buildStringFromLines(final String[] inputLines) {
-        final StringBuilder inputBuilder = new StringBuilder();
+    private String buildStringFromLines(final String[] lines) {
+        final StringBuilder builder = new StringBuilder();
         for (int i = 0; i < 2; i ++) {
-            inputBuilder.append(inputLines[i] + System.lineSeparator());
+            builder.append(lines[i] + System.lineSeparator());
         }
-        final String input = inputBuilder.toString();
-        return input;
+        final String string = builder.toString();
+        return string;
     }
     
     
