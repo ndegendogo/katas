@@ -12,9 +12,11 @@ import org.junit.Test;
 public class TestHeadSpecialTests {
 
     
+    private final String[] inputLines = {"2 lines", "2 lines"};
+    private final String[] expectedLines = {"2 lines", "2 lines"};
+
     @Test
     public void testPrint2Lines() throws IOException {
-        final String[] inputLines = {"2 lines", "2 lines"};
         final String input = concatenateLines(inputLines);
         final ByteArrayInputStream inputStream = new ByteArrayInputStream(input.getBytes());
         
@@ -22,7 +24,6 @@ public class TestHeadSpecialTests {
         final PrintStream out = new PrintStream(outputStream);
         Head.print2Lines(inputStream, out);
         
-        final String[] expectedLines = {"2 lines", "2 lines"};
         final String expectedOutput = concatenateLines(expectedLines); 
         assertEquals(expectedOutput, outputStream.toString());
     }
