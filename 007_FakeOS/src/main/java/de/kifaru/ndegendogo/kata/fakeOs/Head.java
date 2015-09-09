@@ -18,8 +18,8 @@ public class Head {
     static void printLines(final InputStream in, final PrintStream out) throws IOException {
         final InputStreamReader reader = new InputStreamReader(in);
         final BufferedReader buffered = new BufferedReader(reader);
-        final String line = buffered.readLine();
-        if (line != null) {
+        String line;
+        while((line = buffered.readLine()) != null) {
             out.println(line);
         }
     }
