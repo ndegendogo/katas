@@ -15,11 +15,7 @@ public class TestHeadSpecialTests {
     @Test
     public void testPrint2Lines() throws IOException {
         final String[] inputLines = {"2 lines", "2 lines"};
-        final StringBuilder inputBuilder = new StringBuilder();
-        for (int i = 0; i < 2; i ++) {
-            inputBuilder.append(inputLines[i] + System.lineSeparator());
-        }
-        final String input = inputBuilder.toString();
+        final String input = buildStringFromLines(inputLines);
         final ByteArrayInputStream inputStream = new ByteArrayInputStream(input.getBytes());
         
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -27,11 +23,18 @@ public class TestHeadSpecialTests {
         Head.print2Lines(inputStream, out);
         
         final String[] expectedLines = {"2 lines", "2 lines"};
-        final StringBuilder expectedBuilder = new StringBuilder();
-        for (int i = 0; i < 2; i ++) {
-            expectedBuilder.append(expectedLines[i] + System.lineSeparator());
-        }
-        final String expectedOutput = expectedBuilder.toString(); 
+        final String expectedOutput = buildStringFromLines(expectedLines); 
         assertEquals(expectedOutput, outputStream.toString());
     }
+
+    private String buildStringFromLines(final String[] inputLines) {
+        final StringBuilder inputBuilder = new StringBuilder();
+        for (int i = 0; i < 2; i ++) {
+            inputBuilder.append(inputLines[i] + System.lineSeparator());
+        }
+        final String input = inputBuilder.toString();
+        return input;
+    }
+    
+    
 }
