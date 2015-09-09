@@ -11,22 +11,27 @@ import org.junit.Test;
 
 public class TestHeadSpecialTests {
 
+    
     @Test
     public void testPrint2Lines() throws IOException {
+        final String[] inputLines = {"2 lines", "2 lines"};
         final StringBuilder inputBuilder = new StringBuilder();
         for (int i = 0; i < 2; i ++) {
-            inputBuilder.append("2 lines" + System.lineSeparator());
+            inputBuilder.append(inputLines[i] + System.lineSeparator());
         }
-        final String inputString = inputBuilder.toString();
-        final ByteArrayInputStream inputStream = new ByteArrayInputStream(inputString.getBytes());
+        final String input = inputBuilder.toString();
+        final ByteArrayInputStream inputStream = new ByteArrayInputStream(input.getBytes());
+        
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         final PrintStream out = new PrintStream(outputStream);
         Head.print2Lines(inputStream, out);
+        
+        final String[] expectedLines = {"2 lines", "2 lines"};
         final StringBuilder expectedBuilder = new StringBuilder();
         for (int i = 0; i < 2; i ++) {
-            expectedBuilder.append("2 lines" + System.lineSeparator());
+            expectedBuilder.append(expectedLines[i] + System.lineSeparator());
         }
-        final String expected = expectedBuilder.toString(); 
-        assertEquals(expected, outputStream.toString());
+        final String expectedOutput = expectedBuilder.toString(); 
+        assertEquals(expectedOutput, outputStream.toString());
     }
 }
