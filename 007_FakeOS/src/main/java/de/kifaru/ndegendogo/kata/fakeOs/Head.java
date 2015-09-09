@@ -9,6 +9,8 @@ import java.lang.System;
 
 public class Head {
 
+    private static final int MAX_NUMBER_OF_LINES = 10;
+
     public static void main(final String... args) throws IOException {
         final InputStream in = System.in;
         final PrintStream out = System.out;
@@ -31,7 +33,7 @@ public class Head {
         int lineCount = 0;
         while((line = buffered.readLine()) != null) {
             lineCount ++;
-            if (lineCount <= 10) {
+            if (lineCount <= MAX_NUMBER_OF_LINES) {
                 out.println(line);
             }
         }
