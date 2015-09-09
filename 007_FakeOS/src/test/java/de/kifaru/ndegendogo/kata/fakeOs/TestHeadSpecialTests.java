@@ -40,7 +40,7 @@ public class TestHeadSpecialTests {
         
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         final PrintStream out = new PrintStream(outputStream);
-        Head.print2Lines(inputStream, out);
+        Head.printLines(inputStream, out);
         
         final String expectedOutput = concatenateLines(expectedLines); 
         assertEquals(expectedOutput, outputStream.toString());
