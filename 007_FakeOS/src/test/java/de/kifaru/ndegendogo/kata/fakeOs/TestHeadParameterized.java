@@ -22,6 +22,32 @@ public class TestHeadParameterized {
                 {"noLines", new String[]{}, new String[]{}},
                 {"oneLine", new String[]{"1 line"}, new String[]{"1 line"}},
                 {"twoLines", new String[]{"2 lines", "2 lines"}, new String[]{"2 lines", "2 lines"}},
+                {"tenLines", 
+                    new String[]{
+                        "line 1",
+                        "line 2",
+                        "line 3",
+                        "line 4",
+                        "line 5",
+                        "line 6",
+                        "line 7",
+                        "line 8",
+                        "line 9",
+                        "line 10",
+                    }, 
+                    new String[]{
+                        "line 1",
+                        "line 2",
+                        "line 3",
+                        "line 4",
+                        "line 5",
+                        "line 6",
+                        "line 7",
+                        "line 8",
+                        "line 9",
+                        "line 10",
+                    }
+                },
         });
     }
     
