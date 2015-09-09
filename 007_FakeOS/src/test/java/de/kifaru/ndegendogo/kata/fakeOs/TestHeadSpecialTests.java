@@ -66,7 +66,7 @@ public class TestHeadSpecialTests {
         
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         final PrintStream out = new PrintStream(outputStream);
-        Head.printLines(inputStream, out);
+        Head.print11Lines(inputStream, out);
         final String expectedOutput = concatenateLines(expectedLines);
         assertEquals(expectedOutput, outputStream.toString());
     }
