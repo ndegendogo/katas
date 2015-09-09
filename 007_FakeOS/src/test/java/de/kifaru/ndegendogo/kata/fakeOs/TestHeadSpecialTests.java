@@ -19,7 +19,6 @@ public class TestHeadSpecialTests {
     @Parameters(name = "{0}")
     public static Iterable<Object[]>data() {
         return Arrays.asList(new Object[][] {
-                {"twoLines", new String[]{"2 lines", "2 lines"}, new String[]{"2 lines", "2 lines"}},
         });
     }
     

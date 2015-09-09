@@ -21,6 +21,7 @@ public class TestHeadParameterized {
         return Arrays.asList(new Object[][] {
                 {"noLines", new String[]{}, new String[]{}},
                 {"oneLine", new String[]{"1 line"}, new String[]{"1 line"}},
+                {"twoLines", new String[]{"2 lines", "2 lines"}, new String[]{"2 lines", "2 lines"}},
         });
     }
     
