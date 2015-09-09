@@ -19,14 +19,12 @@ public class BaseTestHead {
         for (int i = 0; i < lines.length; i ++) {
             builder.append(lines[i] + System.lineSeparator());
         }
-        final String string = builder.toString();
-        return string;
+        return builder.toString();
     }
 
     protected ByteArrayInputStream createInputStream() {
         final String input = concatenateLines(inputLines);
-        final ByteArrayInputStream inputStream = new ByteArrayInputStream(input.getBytes());
-        return inputStream;
+        return new ByteArrayInputStream(input.getBytes());
     }
 
 }
