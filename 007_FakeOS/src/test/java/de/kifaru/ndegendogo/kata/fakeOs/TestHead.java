@@ -42,4 +42,23 @@ public class TestHead {
         Head.printLines(inputStream, out);
         assertEquals(expected, outputStream.toString());
     }
+    
+    @Test
+    public void testPrint2Lines() throws IOException {
+        final StringBuilder inputBuilder = new StringBuilder();
+        for (int i = 0; i < 2; i ++) {
+            inputBuilder.append("2 lines" + System.lineSeparator());
+        }
+        final String inputString = inputBuilder.toString();
+        final ByteArrayInputStream inputStream = new ByteArrayInputStream(inputString.getBytes());
+        final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        final PrintStream out = new PrintStream(outputStream);
+        Head.printLines(inputStream, out);
+        final StringBuilder expectedBuilder = new StringBuilder();
+        for (int i = 0; i < 2; i ++) {
+            expectedBuilder.append("2 lines" + System.lineSeparator());
+        }
+        final String expected = expectedBuilder.toString(); 
+        assertEquals(expected, outputStream.toString());
+    }
 }
