@@ -99,6 +99,11 @@ public class TestHeadParameterized {
         assertEquals(expectedOutput, outputStream.toString());
     }
 
+    protected ByteArrayInputStream createInputStream() {
+        final String input = concatenateLines(inputLines);
+        return new ByteArrayInputStream(input.getBytes());
+    }
+
     protected String concatenateLines(final String[] lines) {
         final StringBuilder builder = new StringBuilder();
         for (int i = 0; i < lines.length; i ++) {
@@ -107,8 +112,4 @@ public class TestHeadParameterized {
         return builder.toString();
     }
 
-    protected ByteArrayInputStream createInputStream() {
-        final String input = concatenateLines(inputLines);
-        return new ByteArrayInputStream(input.getBytes());
-    }
 }
