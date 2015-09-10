@@ -25,9 +25,7 @@ public class Head {
     }
 
     static Stream<String> readLines(final InputStream in) {
-        final InputStreamReader reader = new InputStreamReader(in);
-        final BufferedReader buffered = new BufferedReader(reader);
-        return buffered.lines();
+        return new BufferedReader(new InputStreamReader(in)).lines();
     }
 
 }
