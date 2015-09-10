@@ -21,7 +21,7 @@ public class Head {
     static void printFile(final InputStream in, final PrintStream out) throws IOException {
         final Stream<String> lines = readLines(in);
         final Stream<String> limitedLines = limitLines(lines);
-        limitedLines.forEachOrdered(line -> out.println(line));
+        printLines(limitedLines, out);
     }
 
     static Stream<String> readLines(final InputStream in) {
@@ -31,6 +31,10 @@ public class Head {
     static Stream<String> limitLines(final Stream<String> lines) {
         final Stream<String> limitedLines = lines.limit(MAX_NUMBER_OF_LINES);
         return limitedLines;
+    }
+
+    static void printLines(final Stream<String> limitedLines, final PrintStream out) {
+        limitedLines.forEachOrdered(line -> out.println(line));
     }
 
 }
