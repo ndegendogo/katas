@@ -83,12 +83,12 @@ public class TestHeadParameterized extends BaseTestHead {
     }
     
     @Test
-    public void testPrintLines() throws IOException {
+    public void testPrintHeadOfFile() throws IOException {
         final ByteArrayInputStream inputStream = createInputStream();
         
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         final PrintStream out = new PrintStream(outputStream);
-        Head.printFile(inputStream, out);
+        Head.printHeadOfFile(inputStream, out);
         final String expectedOutput = concatenateLines(expectedLines);
         assertEquals(expectedOutput, outputStream.toString());
     }
