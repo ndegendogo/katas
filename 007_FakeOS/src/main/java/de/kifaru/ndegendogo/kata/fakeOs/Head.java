@@ -30,8 +30,8 @@ public class Head {
         return lines.limit(MAX_NUMBER_OF_LINES);
     }
 
-    static void printLines(final Stream<String> limitedLines, final PrintStream out) {
-        limitedLines.forEachOrdered(line -> out.println(line));
+    static void printLines(final Stream<String> lines, final PrintStream out) {
+        lines.forEachOrdered(line -> out.println(line));
     }
 
 }
