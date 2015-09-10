@@ -21,14 +21,12 @@ public class Head {
     static void printLines(final InputStream in, final PrintStream out) throws IOException {
         final InputStreamReader reader = new InputStreamReader(in);
         final BufferedReader buffered = new BufferedReader(reader);
-        final Stream<String> lines = buffered.lines();
+        final Stream<String> lines = buffered.lines()
+                .limit(MAX_NUMBER_OF_LINES);
         Object[] array = lines.toArray();
 
-        int lineCount = 0;
         for (Object line : array) {
-            if (++lineCount <= MAX_NUMBER_OF_LINES) {
-                out.println(line);
-            }
+            out.println(line);
         }
     }
 
