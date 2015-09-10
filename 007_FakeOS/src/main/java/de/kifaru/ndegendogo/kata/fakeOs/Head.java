@@ -15,10 +15,10 @@ public class Head {
     public static void main(final String... args) throws IOException {
         final InputStream in = System.in;
         final PrintStream out = System.out;
-        printLines(in, out);
+        printFile(in, out);
     }
 
-    static void printLines(final InputStream in, final PrintStream out) throws IOException {
+    static void printFile(final InputStream in, final PrintStream out) throws IOException {
         final Stream<String> lines = readLines(in);
         final Stream<String> limitedLines = limitLines(lines);
         limitedLines.forEachOrdered(line -> out.println(line));
