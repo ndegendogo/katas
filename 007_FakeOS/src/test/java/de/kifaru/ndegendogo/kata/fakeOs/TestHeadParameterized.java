@@ -77,9 +77,15 @@ public class TestHeadParameterized extends BaseTestHead {
                 },
         });
     }
+
+    protected final String testName;
+    protected final String[] inputLines;
+    protected final String[] expectedLines;
     
     public TestHeadParameterized(final String testName, final String[] inputLines, final String[] expectedLines) {
-        super(testName, inputLines, expectedLines);
+        this.testName = testName;
+        this.inputLines = inputLines;
+        this.expectedLines = expectedLines;
     }
     
     @Test
@@ -91,5 +97,18 @@ public class TestHeadParameterized extends BaseTestHead {
         Head.printHeadOfFile(inputStream, out);
         final String expectedOutput = concatenateLines(expectedLines);
         assertEquals(expectedOutput, outputStream.toString());
+    }
+
+    protected String concatenateLines(final String[] lines) {
+        final StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < lines.length; i ++) {
+            builder.append(lines[i] + System.lineSeparator());
+        }
+        return builder.toString();
+    }
+
+    protected ByteArrayInputStream createInputStream() {
+        final String input = concatenateLines(inputLines);
+        return new ByteArrayInputStream(input.getBytes());
     }
 }
