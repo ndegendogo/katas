@@ -13,9 +13,7 @@ public class Head {
     private static final int MAX_NUMBER_OF_LINES = 10;
 
     public static void main(final String... args) throws IOException {
-        final InputStream in = System.in;
-        final PrintStream out = System.out;
-        printHeadOfFile(in, out);
+        printHeadOfFile(System.in, System.out);
     }
 
     static void printHeadOfFile(final InputStream in, final PrintStream out) throws IOException {
@@ -29,8 +27,7 @@ public class Head {
     }
 
     static Stream<String> limitLines(final Stream<String> lines) {
-        final Stream<String> limitedLines = lines.limit(MAX_NUMBER_OF_LINES);
-        return limitedLines;
+        return lines.limit(MAX_NUMBER_OF_LINES);
     }
 
     static void printLines(final Stream<String> limitedLines, final PrintStream out) {
