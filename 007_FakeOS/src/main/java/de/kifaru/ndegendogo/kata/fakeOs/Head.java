@@ -1,6 +1,7 @@
 package de.kifaru.ndegendogo.kata.fakeOs;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -13,7 +14,15 @@ public class Head {
     private static final int MAX_NUMBER_OF_LINES = 10;
 
     public static void main(final String... args) throws IOException {
-        printHeadOfFile(System.in, System.out);
+        if (args.length == 0) {
+            printHeadOfFile(System.in, System.out);
+        } else {
+            String filename = args[0];
+            try (FileInputStream file = new FileInputStream(filename);
+                    ) {
+                printHeadOfFile(file, System.out);
+            }
+        }
     }
 
     static void printHeadOfFile(final InputStream in, final PrintStream out) throws IOException {
