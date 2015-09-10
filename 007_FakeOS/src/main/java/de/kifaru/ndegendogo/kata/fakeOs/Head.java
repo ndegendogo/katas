@@ -23,11 +23,7 @@ public class Head {
         final BufferedReader buffered = new BufferedReader(reader);
         final Stream<String> lines = buffered.lines()
                 .limit(MAX_NUMBER_OF_LINES);
-        Object[] array = lines.toArray();
-
-        for (Object line : array) {
-            out.println(line);
-        }
+        lines.forEachOrdered(line -> out.println(line));
     }
 
 }
