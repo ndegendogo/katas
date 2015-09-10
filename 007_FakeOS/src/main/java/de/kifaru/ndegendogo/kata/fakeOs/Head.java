@@ -20,12 +20,17 @@ public class Head {
 
     static void printLines(final InputStream in, final PrintStream out) throws IOException {
         final Stream<String> lines = readLines(in);
-        final Stream<String> limitedLines = lines.limit(MAX_NUMBER_OF_LINES);
+        final Stream<String> limitedLines = limitLines(lines);
         limitedLines.forEachOrdered(line -> out.println(line));
     }
 
     static Stream<String> readLines(final InputStream in) {
         return new BufferedReader(new InputStreamReader(in)).lines();
+    }
+
+    static Stream<String> limitLines(final Stream<String> lines) {
+        final Stream<String> limitedLines = lines.limit(MAX_NUMBER_OF_LINES);
+        return limitedLines;
     }
 
 }
