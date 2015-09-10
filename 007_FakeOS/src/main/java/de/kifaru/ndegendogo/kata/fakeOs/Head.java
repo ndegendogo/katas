@@ -21,9 +21,9 @@ public class Head {
     static void printLines(final InputStream in, final PrintStream out) throws IOException {
         final InputStreamReader reader = new InputStreamReader(in);
         final BufferedReader buffered = new BufferedReader(reader);
-        final Stream<String> lines = buffered.lines()
-                .limit(MAX_NUMBER_OF_LINES);
-        lines.forEachOrdered(line -> out.println(line));
+        final Stream<String> lines = buffered.lines();
+        final Stream<String> limitedLines = lines.limit(MAX_NUMBER_OF_LINES);
+        limitedLines.forEachOrdered(line -> out.println(line));
     }
 
 }
