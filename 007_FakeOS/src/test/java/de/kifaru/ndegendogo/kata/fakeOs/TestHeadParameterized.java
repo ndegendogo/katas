@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.io.StringReader;
 import java.util.Arrays;
+import java.util.stream.Stream;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -92,11 +93,12 @@ public class TestHeadParameterized {
     @Test
     public void testPrintLeadingLines() throws IOException {
         final BufferedReader bufferedReader = createBufferedStringReader();
+        final Stream<String> lines = Arrays.stream(inputLines);
         
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         final PrintStream out = new PrintStream(outputStream);
 
-        Head.printLeadingLines(bufferedReader, out);
+        Head.printLeadingLines(lines, out);
         final String expectedOutput = concatenateLines(expectedLines);
         assertEquals(expectedOutput, outputStream.toString());
     }
