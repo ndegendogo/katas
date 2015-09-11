@@ -1,7 +1,6 @@
 package de.kifaru.ndegendogo.kata.fakeOs;
 
 import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -30,13 +29,15 @@ public class Head {
     }
 
     static void printHeadOfFile(final InputStream in, final PrintStream out) throws IOException {
-        final Stream<String> lines = readLines(in);
+        final InputStreamReader inputStreamReader = new InputStreamReader(in);
+        final BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+        final Stream<String> lines = readLines(bufferedReader);
         final Stream<String> limitedLines = limitLines(lines);
         printLines(limitedLines, out);
     }
 
-    static Stream<String> readLines(final InputStream in) {
-        return new BufferedReader(new InputStreamReader(in)).lines();
+    static Stream<String> readLines(final BufferedReader bufferedReader) {
+        return bufferedReader.lines();
     }
 
     static Stream<String> limitLines(final Stream<String> lines) {
