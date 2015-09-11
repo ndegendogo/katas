@@ -109,7 +109,12 @@ public class TestHeadParameterized {
     }
 
     private String concatenateLines(final String[] lines) {
-        return String.join(System.lineSeparator(), lines) + System.lineSeparator();
+        final StringBuilder builder = new StringBuilder();
+        for (final String string : lines) {
+            builder.append(string);
+            builder.append(System.lineSeparator());
+        }
+        return builder.toString();
     }
 
 }
