@@ -80,9 +80,9 @@ public class TestHeadParameterized {
         });
     }
 
-    protected final String testName;
-    protected final String[] inputLines;
-    protected final String[] expectedLines;
+    private final String testName;
+    private final String[] inputLines;
+    private final String[] expectedLines;
     
     public TestHeadParameterized(final String testName, final String[] inputLines, final String[] expectedLines) {
         this.testName = testName;
@@ -92,23 +92,25 @@ public class TestHeadParameterized {
     
     @Test
     public void testPrintHeadOfFile() throws IOException {
-        final ByteArrayInputStream inputStream = createInputStream();
-        final InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-        final BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+        final BufferedReader bufferedReader = createBufferedReader();
         
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         final PrintStream out = new PrintStream(outputStream);
+
         Head.printHeadOfFile(bufferedReader, out);
         final String expectedOutput = concatenateLines(expectedLines);
         assertEquals(expectedOutput, outputStream.toString());
     }
 
-    protected ByteArrayInputStream createInputStream() {
-        final String input = concatenateLines(inputLines);
-        return new ByteArrayInputStream(input.getBytes());
+    private BufferedReader createBufferedReader() {
+        final String inputString = concatenateLines(inputLines);
+        final ByteArrayInputStream inputStream = new ByteArrayInputStream(inputString.getBytes());
+        final InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+        final BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+        return bufferedReader;
     }
 
-    protected String concatenateLines(final String[] lines) {
+    private String concatenateLines(final String[] lines) {
         final StringBuilder builder = new StringBuilder();
         for (int i = 0; i < lines.length; i ++) {
             builder.append(lines[i] + System.lineSeparator());
