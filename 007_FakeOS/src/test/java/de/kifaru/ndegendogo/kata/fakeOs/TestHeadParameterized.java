@@ -2,9 +2,11 @@ package de.kifaru.ndegendogo.kata.fakeOs;
 
 import static org.junit.Assert.*;
 
+import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.util.Arrays;
 
@@ -91,10 +93,12 @@ public class TestHeadParameterized {
     @Test
     public void testPrintHeadOfFile() throws IOException {
         final ByteArrayInputStream inputStream = createInputStream();
+        final InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+        final BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
         
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         final PrintStream out = new PrintStream(outputStream);
-        Head.printHeadOfFile(inputStream, out);
+        Head.printHeadOfFile(bufferedReader, out);
         final String expectedOutput = concatenateLines(expectedLines);
         assertEquals(expectedOutput, outputStream.toString());
     }

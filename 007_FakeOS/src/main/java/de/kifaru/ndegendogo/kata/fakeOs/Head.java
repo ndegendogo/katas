@@ -3,7 +3,6 @@ package de.kifaru.ndegendogo.kata.fakeOs;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.lang.System;
@@ -15,7 +14,9 @@ public class Head {
 
     public static void main(final String... args) throws IOException {
         if (args.length == 0) {
-            printHeadOfFile(System.in, System.out);
+            final InputStreamReader inputStreamReader = new InputStreamReader(System.in);
+            final BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            printHeadOfFile(bufferedReader, System.out);
         } else {
             String filename = args[0];
             try (final FileReader fileReader = new FileReader(filename);
@@ -28,9 +29,7 @@ public class Head {
         }
     }
 
-    static void printHeadOfFile(final InputStream in, final PrintStream out) throws IOException {
-        final InputStreamReader inputStreamReader = new InputStreamReader(in);
-        final BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+    static void printHeadOfFile(final BufferedReader bufferedReader, final PrintStream out) throws IOException {
         final Stream<String> lines = readLines(bufferedReader);
         final Stream<String> limitedLines = limitLines(lines);
         printLines(limitedLines, out);
