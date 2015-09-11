@@ -1,6 +1,7 @@
 package de.kifaru.ndegendogo.kata.fakeOs;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -15,16 +16,24 @@ public class Head {
     public static void main(final String... args) throws IOException {
         final PrintStream out = System.out;
         if (args.length == 0) {
-            final InputStreamReader inputStreamReader = new InputStreamReader(System.in);
-            final BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-            printLeadingLines(bufferedReader, out);
+            printLeadingLinesFromInput(out);
         } else {
-            String filename = args[0];
-            try (final FileReader fileReader = new FileReader(filename);
-                 final BufferedReader bufferedReader = new BufferedReader(fileReader);
-            ) {
-                printLeadingLines(bufferedReader, out);
-            }
+            printLeadingLinesFromFile(args[0], out);
+        }
+    }
+
+    static void printLeadingLinesFromInput(final PrintStream out) throws IOException {
+        final InputStreamReader inputStreamReader = new InputStreamReader(System.in);
+        final BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+        printLeadingLines(bufferedReader, out);
+    }
+
+    static void printLeadingLinesFromFile(final String filename, final PrintStream out) throws IOException,
+            FileNotFoundException {
+        try (final FileReader fileReader = new FileReader(filename);
+             final BufferedReader bufferedReader = new BufferedReader(fileReader);
+        ) {
+            printLeadingLines(bufferedReader, out);
         }
     }
 
