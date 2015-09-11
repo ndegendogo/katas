@@ -18,9 +18,13 @@ public class Head {
             printHeadOfFile(System.in, System.out);
         } else {
             String filename = args[0];
-            try (FileInputStream file = new FileInputStream(filename);
-                    ) {
-                printHeadOfFile(file, System.out);
+            try (final FileInputStream file = new FileInputStream(filename);
+                 final InputStreamReader inputStreamReader = new InputStreamReader(file);
+                 final BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            ) {
+                final Stream<String> lines = bufferedReader.lines();
+                final Stream<String> limitedLines = limitLines(lines);
+                printLines(limitedLines, System.out);
             }
         }
     }
