@@ -23,29 +23,36 @@ public class Head {
     }
 
     static void printLeadingLinesFromInput(final PrintStream out) throws IOException {
-        final InputStreamReader inputStreamReader = new InputStreamReader(System.in);
-        final BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-        final Stream<String> lines = readLines(bufferedReader);
+        final Stream<String> lines = readLines();
         printLeadingLines(lines, out);
     }
 
     static void printLeadingLinesFromFile(final String filename, final PrintStream out) throws IOException,
             FileNotFoundException {
-        try (final FileReader fileReader = new FileReader(filename);
-             final BufferedReader bufferedReader = new BufferedReader(fileReader);
-             final Stream<String> lines = readLines(bufferedReader);
-        ) {
+        try (final Stream<String> lines = readLines(filename)) {
             printLeadingLines(lines, out);
         }
+    }
+
+    static Stream<String> readLines() {
+        final InputStreamReader inputStreamReader = new InputStreamReader(System.in);
+        final BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+        return readLines(bufferedReader);
+    }
+
+    static Stream<String> readLines(final String filename) throws FileNotFoundException {
+        final FileReader fileReader = new FileReader(filename);
+        final BufferedReader bufferedReader = new BufferedReader(fileReader);
+        return readLines(bufferedReader);
+    }
+    
+    static Stream<String> readLines(final BufferedReader bufferedReader) {
+        return bufferedReader.lines();
     }
 
     static void printLeadingLines(final Stream<String> lines, final PrintStream out) throws IOException {
         final Stream<String> limitedLines = limitLines(lines);
         printLines(limitedLines, out);
-    }
-
-    static Stream<String> readLines(final BufferedReader bufferedReader) {
-        return bufferedReader.lines();
     }
 
     static Stream<String> limitLines(final Stream<String> lines) {
