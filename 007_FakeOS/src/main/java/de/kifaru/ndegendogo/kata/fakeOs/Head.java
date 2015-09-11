@@ -29,7 +29,11 @@ public class Head {
 
     static void printLeadingLinesFromFile(final String filename, final PrintStream out) throws IOException,
             FileNotFoundException {
-        try (final Stream<String> lines = readLines(filename)) {
+        try (
+            final FileReader fileReader = new FileReader(filename);
+            final BufferedReader bufferedReader = new BufferedReader(fileReader);
+            final Stream<String> lines = bufferedReader.lines();
+        ) {
             printLeadingLines(lines, out);
         }
     }
@@ -37,16 +41,6 @@ public class Head {
     static Stream<String> readLines() {
         final InputStreamReader inputStreamReader = new InputStreamReader(System.in);
         final BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-        return readLines(bufferedReader);
-    }
-
-    static Stream<String> readLines(final String filename) throws FileNotFoundException {
-        final FileReader fileReader = new FileReader(filename);
-        final BufferedReader bufferedReader = new BufferedReader(fileReader);
-        return readLines(bufferedReader);
-    }
-    
-    static Stream<String> readLines(final BufferedReader bufferedReader) {
         return bufferedReader.lines();
     }
 
