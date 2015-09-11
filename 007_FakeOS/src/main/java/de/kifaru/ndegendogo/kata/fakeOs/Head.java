@@ -16,7 +16,7 @@ public class Head {
         if (args.length == 0) {
             final InputStreamReader inputStreamReader = new InputStreamReader(System.in);
             final BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-            printHeadOfFile(bufferedReader, System.out);
+            printLeadingLines(bufferedReader, System.out);
         } else {
             String filename = args[0];
             try (final FileReader fileReader = new FileReader(filename);
@@ -29,7 +29,7 @@ public class Head {
         }
     }
 
-    static void printHeadOfFile(final BufferedReader bufferedReader, final PrintStream out) throws IOException {
+    static void printLeadingLines(final BufferedReader bufferedReader, final PrintStream out) throws IOException {
         final Stream<String> lines = readLines(bufferedReader);
         final Stream<String> limitedLines = limitLines(lines);
         printLines(limitedLines, out);
