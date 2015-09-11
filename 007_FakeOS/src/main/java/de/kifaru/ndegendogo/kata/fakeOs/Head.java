@@ -2,6 +2,7 @@ package de.kifaru.ndegendogo.kata.fakeOs;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -18,9 +19,8 @@ public class Head {
             printHeadOfFile(System.in, System.out);
         } else {
             String filename = args[0];
-            try (final FileInputStream file = new FileInputStream(filename);
-                 final InputStreamReader inputStreamReader = new InputStreamReader(file);
-                 final BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            try (final FileReader fileReader = new FileReader(filename);
+                 final BufferedReader bufferedReader = new BufferedReader(fileReader);
             ) {
                 final Stream<String> lines = bufferedReader.lines();
                 final Stream<String> limitedLines = limitLines(lines);
