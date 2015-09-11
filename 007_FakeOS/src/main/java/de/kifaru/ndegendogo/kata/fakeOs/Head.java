@@ -13,18 +13,17 @@ public class Head {
     private static final int MAX_NUMBER_OF_LINES = 10;
 
     public static void main(final String... args) throws IOException {
+        final PrintStream out = System.out;
         if (args.length == 0) {
             final InputStreamReader inputStreamReader = new InputStreamReader(System.in);
             final BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-            printLeadingLines(bufferedReader, System.out);
+            printLeadingLines(bufferedReader, out);
         } else {
             String filename = args[0];
             try (final FileReader fileReader = new FileReader(filename);
                  final BufferedReader bufferedReader = new BufferedReader(fileReader);
             ) {
-                final Stream<String> lines = bufferedReader.lines();
-                final Stream<String> limitedLines = limitLines(lines);
-                printLines(limitedLines, System.out);
+                printLeadingLines(bufferedReader, out);
             }
         }
     }
