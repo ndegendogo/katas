@@ -33,8 +33,8 @@ public class Head {
             FileNotFoundException {
         try (final FileReader fileReader = new FileReader(filename);
              final BufferedReader bufferedReader = new BufferedReader(fileReader);
+             final Stream<String> lines = readLines(bufferedReader);
         ) {
-            final Stream<String> lines = readLines(bufferedReader);
             printLeadingLines(lines, out);
         }
     }
