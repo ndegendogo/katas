@@ -3,11 +3,10 @@ package de.kifaru.ndegendogo.kata.fakeOs;
 import static org.junit.Assert.*;
 
 import java.io.BufferedReader;
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.PrintStream;
+import java.io.StringReader;
 import java.util.Arrays;
 
 import org.junit.Test;
@@ -104,10 +103,7 @@ public class TestHeadParameterized {
 
     private BufferedReader createBufferedReader() {
         final String inputString = concatenateLines(inputLines);
-        final ByteArrayInputStream inputStream = new ByteArrayInputStream(inputString.getBytes());
-        final InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-        final BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-        return bufferedReader;
+        return new BufferedReader(new StringReader(inputString));
     }
 
     private String concatenateLines(final String[] lines) {
