@@ -17,8 +17,16 @@ public class Head {
         final PrintStream out = System.out;
         if (args.length == 0) {
             printLeadingLinesFromInput(out);
-        } else {
+        } else if (args.length == 1){
             printLeadingLinesFromFile(args[0], out);
+        } else if (args.length == 2) {
+            String filename = args[0];
+            out.println("==> " + filename + " <==");
+            printLeadingLinesFromFile(filename, out);
+            out.println();
+            filename = args[1];
+            out.println("==> " + filename + " <==");
+            printLeadingLinesFromFile(filename, out);
         }
     }
 
