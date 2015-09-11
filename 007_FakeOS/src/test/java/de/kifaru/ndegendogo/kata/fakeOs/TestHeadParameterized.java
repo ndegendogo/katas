@@ -2,11 +2,9 @@ package de.kifaru.ndegendogo.kata.fakeOs;
 
 import static org.junit.Assert.*;
 
-import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
-import java.io.StringReader;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
@@ -92,7 +90,6 @@ public class TestHeadParameterized {
     
     @Test
     public void testPrintLeadingLines() throws IOException {
-        final BufferedReader bufferedReader = createBufferedStringReader();
         final Stream<String> lines = Arrays.stream(inputLines);
         
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -101,11 +98,6 @@ public class TestHeadParameterized {
         Head.printLeadingLines(lines, out);
         final String expectedOutput = concatenateLines(expectedLines);
         assertEquals(expectedOutput, outputStream.toString());
-    }
-
-    private BufferedReader createBufferedStringReader() {
-        final String inputString = concatenateLines(inputLines);
-        return new BufferedReader(new StringReader(inputString));
     }
 
     private String concatenateLines(final String[] lines) {
