@@ -91,7 +91,7 @@ public class TestHeadParameterized {
     
     @Test
     public void testPrintLeadingLines() throws IOException {
-        final BufferedReader bufferedReader = createBufferedReader();
+        final BufferedReader bufferedReader = createBufferedStringReader();
         
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         final PrintStream out = new PrintStream(outputStream);
@@ -101,7 +101,7 @@ public class TestHeadParameterized {
         assertEquals(expectedOutput, outputStream.toString());
     }
 
-    private BufferedReader createBufferedReader() {
+    private BufferedReader createBufferedStringReader() {
         final String inputString = concatenateLines(inputLines);
         return new BufferedReader(new StringReader(inputString));
     }
