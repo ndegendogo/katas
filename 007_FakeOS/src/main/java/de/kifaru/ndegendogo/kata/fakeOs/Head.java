@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.lang.System;
+import java.util.List;
 import java.util.stream.Stream;
 
 public class Head {
@@ -24,13 +25,17 @@ public class Head {
                 if (args.length > 1) {
                     out.println(headline);
                 }
+                Object[] arrayOfLines;
                 try (
                     final FileReader fileReader = new FileReader(filename);
                     final BufferedReader bufferedReader = new BufferedReader(fileReader);
                 ) {
                     final Stream<String> lines = bufferedReader.lines();
                     final Stream<String> limitedLines = limitLines(lines);
-                    limitedLines.forEachOrdered(line -> out.println(line));
+                    arrayOfLines = limitedLines.toArray();
+                }
+                for (Object line: arrayOfLines) {
+                    out.println(line);
                 }
                 if (++i < args.length) {
                     out.println();
