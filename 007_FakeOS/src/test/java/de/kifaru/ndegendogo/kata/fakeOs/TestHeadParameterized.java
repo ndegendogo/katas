@@ -92,15 +92,13 @@ public class TestHeadParameterized {
     
     @Test
     public void testPrintLeadingLines() throws IOException {
-        final Stream<String> lines = Arrays.stream(inputLines);
-
         final StringReader stringReader = new StringReader(concatenateLines(inputLines));
         final BufferedReader bufferedReader = new BufferedReader(stringReader);
         
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         final PrintStream out = new PrintStream(outputStream);
 
-        Head.printLeadingLines(bufferedReader, lines, out);
+        Head.printLeadingLines(bufferedReader, null, out);
         final String expectedOutput = concatenateLines(expectedLines);
         assertEquals(expectedOutput, outputStream.toString());
     }

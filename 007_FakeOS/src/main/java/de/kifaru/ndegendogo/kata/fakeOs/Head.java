@@ -36,8 +36,7 @@ public class Head {
         final InputStreamReader inputStreamReader = new InputStreamReader(System.in);
         final BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
-        final Stream<String> lines = bufferedReader.lines();
-        printLeadingLines(bufferedReader, lines, out);
+        printLeadingLines(bufferedReader, null, out);
     }
 
     private static void printLeadingLinesFromFile(final String filename, final PrintStream out) throws IOException,
@@ -46,12 +45,12 @@ public class Head {
             final FileReader fileReader = new FileReader(filename);
             final BufferedReader bufferedReader = new BufferedReader(fileReader);
         ) {
-            final Stream<String> lines = bufferedReader.lines();
-            printLeadingLines(bufferedReader, lines, out);
+            printLeadingLines(bufferedReader, null, out);
         }
     }
 
-    static void printLeadingLines(final BufferedReader buffered, final Stream<String> lines, final PrintStream out) throws IOException {
+    static void printLeadingLines(final BufferedReader bufferedReader, final Stream<String> dummy, final PrintStream out) throws IOException {
+        final Stream<String> lines = bufferedReader.lines();
         final Stream<String> limitedLines = limitLines(lines);
         printLines(limitedLines, out);
     }
