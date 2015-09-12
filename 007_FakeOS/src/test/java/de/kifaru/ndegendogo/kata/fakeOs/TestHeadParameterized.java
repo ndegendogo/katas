@@ -100,7 +100,7 @@ public class TestHeadParameterized {
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         final PrintStream out = new PrintStream(outputStream);
 
-        Head.printLeadingLines(null, lines, out);
+        Head.printLeadingLines(bufferedReader, lines, out);
         final String expectedOutput = concatenateLines(expectedLines);
         assertEquals(expectedOutput, outputStream.toString());
     }
