@@ -17,15 +17,15 @@ public class Head {
         final PrintStream out = System.out;
         if (args.length == 0) {
             printLeadingLinesFromInput(out);
-        } else if (args.length == 1){
-            printLeadingLinesFromFile(args[0], out);
         } else {
             int i = 0;
-            for (String filename: args) {
-                i ++;
-                out.println("==> " + filename + " <==");
+            for (final String filename: args) {
+                final String headline = "==> " + filename + " <==";
+                if (args.length > 1) {
+                    out.println(headline);
+                }
                 printLeadingLinesFromFile(filename, out);
-                if (i < args.length) {
+                if (++i < args.length) {
                     out.println();
                 }
             }
