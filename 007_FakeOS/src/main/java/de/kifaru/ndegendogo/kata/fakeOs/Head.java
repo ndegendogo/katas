@@ -24,7 +24,14 @@ public class Head {
                 if (args.length > 1) {
                     out.println(headline);
                 }
-                printLeadingLinesFromFile(filename, out);
+                try (
+                    final FileReader fileReader = new FileReader(filename);
+                    final BufferedReader bufferedReader = new BufferedReader(fileReader);
+                ) {
+                    final Stream<String> lines = bufferedReader.lines();
+                    final Stream<String> limitedLines = limitLines(lines);
+                    limitedLines.forEachOrdered(line -> out.println(line));
+                }
                 if (++i < args.length) {
                     out.println();
                 }
@@ -37,16 +44,6 @@ public class Head {
         final BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
         printLeadingLines(bufferedReader, out);
-    }
-
-    private static void printLeadingLinesFromFile(final String filename, final PrintStream out) throws IOException,
-            FileNotFoundException {
-        try (
-            final FileReader fileReader = new FileReader(filename);
-            final BufferedReader bufferedReader = new BufferedReader(fileReader);
-        ) {
-            printLeadingLines(bufferedReader, out);
-        }
     }
 
     static void printLeadingLines(final BufferedReader bufferedReader, final PrintStream out) throws IOException {
