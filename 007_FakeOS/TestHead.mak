@@ -7,6 +7,7 @@ HEAD_TESTCASES:= \
     headFrom2files \
     headFrom2Emptyfiles \
     headFromVeryLargeInput \
+    headFrom3files \
 
 .PHONY: test_head
 test_head: $(HEAD_TESTCASES)
@@ -23,6 +24,7 @@ head11linesFrom0files: params:= < data/11lines.txt
 head8linesFrom1file: params:= data/8lines.txt
 headFrom2files: params:= data/1line.txt data/8lines.txt
 headFrom2Emptyfiles: params:= data/empty data/empty 
+headFrom3files: params:= data/8lines.txt data/11lines.txt data/1line.txt
  
 .PHONY: $(HEAD_TESTCASES)
 # verify exit status and output of the fakeOs Head program, use the original shell command as reference.
