@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.lang.System;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -21,16 +22,17 @@ public class Head {
         if (args.length == 0) {
             printLeadingLinesFromInput(out);
         } else {
+            final List<String> lines = Arrays.asList(args);
             final List<String> stringsToPrint = new ArrayList<String>();
             int i = 0;
-            for (final String filename: args) {
+            for (final String filename: lines) {
                 final String headline = "==> " + filename + " <==";
-                if (args.length > 1) {
+                if (lines.size() > 1) {
                     stringsToPrint.add(headline);
                 }
                 final List<String> listOfLines = readLeadingLinesFromFile(filename);
                 stringsToPrint.addAll(listOfLines);
-                if (++i < args.length) {
+                if (++i < lines.size()) {
                     stringsToPrint.add("");
                 }
             }
