@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.lang.System;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Head {
@@ -25,22 +26,25 @@ public class Head {
                 if (args.length > 1) {
                     out.println(headline);
                 }
-                Object[] arrayOfLines;
-                try (
-                    final FileReader fileReader = new FileReader(filename);
-                    final BufferedReader bufferedReader = new BufferedReader(fileReader);
-                ) {
-                    final Stream<String> lines = bufferedReader.lines();
-                    final Stream<String> limitedLines = limitLines(lines);
-                    arrayOfLines = limitedLines.toArray();
-                }
-                for (Object line: arrayOfLines) {
+                final List<String> listOfLines = readLeadingLinesFromFile(filename);
+                for (String line: listOfLines) {
                     out.println(line);
                 }
                 if (++i < args.length) {
                     out.println();
                 }
             }
+        }
+    }
+
+    static List<String> readLeadingLinesFromFile(final String filename) throws IOException, FileNotFoundException {
+        try (
+            final FileReader fileReader = new FileReader(filename);
+            final BufferedReader bufferedReader = new BufferedReader(fileReader);
+        ) {
+            final Stream<String> lines = bufferedReader.lines();
+            final Stream<String> limitedLines = limitLines(lines);
+            return limitedLines.collect(Collectors.toList());
         }
     }
 
