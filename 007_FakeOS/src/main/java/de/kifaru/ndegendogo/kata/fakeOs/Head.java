@@ -19,14 +19,16 @@ public class Head {
             printLeadingLinesFromInput(out);
         } else if (args.length == 1){
             printLeadingLinesFromFile(args[0], out);
-        } else if (args.length == 2) {
-            String filename = args[0];
-            out.println("==> " + filename + " <==");
-            printLeadingLinesFromFile(filename, out);
-            out.println();
-            filename = args[1];
-            out.println("==> " + filename + " <==");
-            printLeadingLinesFromFile(filename, out);
+        } else {
+            int i = 0;
+            for (String filename: args) {
+                i ++;
+                out.println("==> " + filename + " <==");
+                printLeadingLinesFromFile(filename, out);
+                if (i < args.length) {
+                    out.println();
+                }
+            }
         }
     }
 
