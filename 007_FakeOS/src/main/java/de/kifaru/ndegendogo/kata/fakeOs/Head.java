@@ -26,14 +26,12 @@ public class Head {
             for (final String filename: args) {
                 final String headline = "==> " + filename + " <==";
                 if (args.length > 1) {
-                    out.println(headline);
+                    stringsToPrint.add(headline);
                 }
                 final List<String> listOfLines = readLeadingLinesFromFile(filename);
-                for (String line: listOfLines) {
-                    out.println(line);
-                }
+                stringsToPrint.addAll(listOfLines);
                 if (++i < args.length) {
-                    out.println();
+                    stringsToPrint.add("");
                 }
             }
             for (String string: stringsToPrint) {
