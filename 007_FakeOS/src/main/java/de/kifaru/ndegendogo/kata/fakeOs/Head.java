@@ -32,12 +32,12 @@ public class Head {
         }
     }
 
-    static void printLeadingLinesFromInput(final PrintStream out) throws IOException {
+    private static void printLeadingLinesFromInput(final PrintStream out) throws IOException {
         final Stream<String> lines = readLines();
         printLeadingLines(lines, out);
     }
 
-    static void printLeadingLinesFromFile(final String filename, final PrintStream out) throws IOException,
+    private static void printLeadingLinesFromFile(final String filename, final PrintStream out) throws IOException,
             FileNotFoundException {
         try (
             final FileReader fileReader = new FileReader(filename);
@@ -48,7 +48,7 @@ public class Head {
         }
     }
 
-    static Stream<String> readLines() {
+    private static Stream<String> readLines() {
         final InputStreamReader inputStreamReader = new InputStreamReader(System.in);
         final BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
         return bufferedReader.lines();
@@ -59,11 +59,11 @@ public class Head {
         printLines(limitedLines, out);
     }
 
-    static Stream<String> limitLines(final Stream<String> lines) {
+    private static Stream<String> limitLines(final Stream<String> lines) {
         return lines.limit(MAX_NUMBER_OF_LINES);
     }
 
-    static void printLines(final Stream<String> lines, final PrintStream out) {
+    private static void printLines(final Stream<String> lines, final PrintStream out) {
         lines.forEachOrdered(line -> out.println(line));
     }
 
