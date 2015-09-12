@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.lang.System;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -20,6 +21,7 @@ public class Head {
         if (args.length == 0) {
             printLeadingLinesFromInput(out);
         } else {
+            final List<String> stringsToPrint = new ArrayList<String>();
             int i = 0;
             for (final String filename: args) {
                 final String headline = "==> " + filename + " <==";
@@ -33,6 +35,9 @@ public class Head {
                 if (++i < args.length) {
                     out.println();
                 }
+            }
+            for (String string: stringsToPrint) {
+                out.println(string);
             }
         }
     }
