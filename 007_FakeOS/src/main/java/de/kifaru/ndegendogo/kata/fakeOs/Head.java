@@ -44,8 +44,7 @@ public class Head {
         ) {
             final Stream<String> header = withHeadline ? buildHeadline(filename) : Stream.empty();
             final Stream<String> leadingLines = readLeadingLines(bufferedReader);
-            final Stream<String> allLines = Stream.concat(header, leadingLines);
-            return allLines.collect(Collectors.joining(System.lineSeparator()));
+            return Stream.concat(header, leadingLines).collect(Collectors.joining(System.lineSeparator()));
         }
     }
 
@@ -54,10 +53,7 @@ public class Head {
     }
 
     private static void printLeadingLinesFromInput(final PrintStream out) throws IOException {
-        final InputStreamReader inputStreamReader = new InputStreamReader(System.in);
-        final BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-
-        printLeadingLines(bufferedReader, out);
+        printLeadingLines(new BufferedReader(new InputStreamReader(System.in)), out);
     }
 
     static void printLeadingLines(final BufferedReader bufferedReader, final PrintStream out) throws IOException {
