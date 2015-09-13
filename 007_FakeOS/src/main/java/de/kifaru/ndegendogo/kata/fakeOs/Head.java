@@ -17,13 +17,13 @@ public class Head {
     public static void main(final String... args) throws IOException {
         final PrintStream out = System.out;
         if (args.length == 0) {
-            printLeadingLines(new BufferedReader(new InputStreamReader(System.in)), out);
+            printLeadingLines(out, new BufferedReader(new InputStreamReader(System.in)));
         } else {
             printLeadingLinesFromFiles(out, args);
         }
     }
 
-    static void printLeadingLines(final BufferedReader bufferedReader, final PrintStream out) throws IOException {
+    static void printLeadingLines(final PrintStream out, final BufferedReader bufferedReader) throws IOException {
         out.print(readLeadingLines(bufferedReader, false, null));
     }
 
