@@ -19,12 +19,20 @@ public class Head {
         if (args.length == 0) {
             printLeadingLines(new BufferedReader(new InputStreamReader(System.in)), out);
         } else {
-            final boolean withHeadline = args.length > 1;
-            final String result = Arrays.asList(args).stream()
-                    .map(filename -> readLeadingLinesFromFile(filename, withHeadline))
-                    .collect(Collectors.joining(System.lineSeparator()));
-            out.print(result);
+            printLeadingLinesFromFiles(out, args);
         }
+    }
+
+    static void printLeadingLines(final BufferedReader bufferedReader, final PrintStream out) throws IOException {
+        out.print(readLeadingLines(bufferedReader, false, null));
+    }
+
+    static void printLeadingLinesFromFiles(final PrintStream out, final String... args) {
+        final boolean withHeadline = args.length > 1;
+        final String result = Arrays.asList(args).stream()
+                .map(filename -> readLeadingLinesFromFile(filename, withHeadline))
+                .collect(Collectors.joining(System.lineSeparator()));
+        out.print(result);
     }
 
     static String readLeadingLinesFromFile(final String filename, final boolean withHeadline) {
@@ -36,10 +44,6 @@ public class Head {
         } catch (IOException e) {
             return null;
         }
-    }
-
-    static void printLeadingLines(final BufferedReader bufferedReader, final PrintStream out) throws IOException {
-        out.print(readLeadingLines(bufferedReader, false, null));
     }
 
     static String readLeadingLines(final BufferedReader bufferedReader, final boolean withHeadline,
