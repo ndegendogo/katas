@@ -21,12 +21,12 @@ public class Head {
         if (args.length == 0) {
             printLeadingLinesFromInput(out);
         } else {
-            final boolean withHeadlines = args.length > 1;
+            final boolean withHeadline = args.length > 1;
             final List<String> stringsToPrint = new ArrayList<String>();
             int i = 0;
             for (final String filename: args) {
-                final String listOfLines = readLeadingLinesFromFile(filename, withHeadlines);
-                stringsToPrint.add(listOfLines);
+                final String leadingLines = readLeadingLinesFromFile(filename, withHeadline);
+                stringsToPrint.add(leadingLines);
                 if (++i < args.length) {
                     stringsToPrint.add("");
                 }
@@ -42,17 +42,15 @@ public class Head {
             final FileReader fileReader = new FileReader(filename);
             final BufferedReader bufferedReader = new BufferedReader(fileReader);
         ) {
-            final Stream<String> header = withHeadline ? Stream.of(buildHeadline(filename)) : Stream.empty();
-            final Stream<String> lines = bufferedReader.lines();
-            final Stream<String> limitedLines = limitLines(lines);
-            final Stream<String> allLines = Stream.concat(header, limitedLines);
-            final String result = allLines.collect(Collectors.joining(System.lineSeparator()));
-            return result;
+            final Stream<String> header = withHeadline ? buildHeadline(filename) : Stream.empty();
+            final Stream<String> leadingLines = limitLines(bufferedReader.lines());
+            final Stream<String> allLines = Stream.concat(header, leadingLines);
+            return allLines.collect(Collectors.joining(System.lineSeparator()));
         }
     }
 
-    static String buildHeadline(final String filename) {
-        return "==> " + filename + " <==";
+    static Stream<String> buildHeadline(final String filename) {
+        return Stream.of("==> " + filename + " <==");
     }
 
     private static void printLeadingLinesFromInput(final PrintStream out) throws IOException {
