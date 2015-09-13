@@ -24,10 +24,11 @@ public class Head {
         } else {
             final List<String> lines = Arrays.asList(args);
             final List<String> stringsToPrint = new ArrayList<String>();
+            final boolean withHeadlines = lines.size() > 1;
             int i = 0;
             for (final String filename: lines) {
                 final String headline = "==> " + filename + " <==";
-                if (lines.size() > 1) {
+                if (withHeadlines) {
                     stringsToPrint.add(headline);
                 }
                 final List<String> listOfLines = readLeadingLinesFromFile(filename);
