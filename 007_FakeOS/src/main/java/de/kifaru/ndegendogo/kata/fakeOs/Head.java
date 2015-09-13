@@ -61,20 +61,11 @@ public class Head {
     }
 
     static void printLeadingLines(final BufferedReader bufferedReader, final PrintStream out) throws IOException {
-        final Stream<String> limitedLines = readLeadingLines(bufferedReader);
-        printLines(limitedLines, out);
+        readLeadingLines(bufferedReader).forEachOrdered(line -> out.println(line));
     }
 
     static Stream<String> readLeadingLines(final BufferedReader bufferedReader) {
-        return limitLines(bufferedReader.lines());
-    }
-
-    private static Stream<String> limitLines(final Stream<String> lines) {
-        return lines.limit(MAX_NUMBER_OF_LINES);
-    }
-
-    private static void printLines(final Stream<String> lines, final PrintStream out) {
-        lines.forEachOrdered(line -> out.println(line));
+        return bufferedReader.lines().limit(MAX_NUMBER_OF_LINES);
     }
 
 }
