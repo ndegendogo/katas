@@ -39,10 +39,7 @@ public class Head {
     }
 
     static void printLeadingLines(final BufferedReader bufferedReader, final PrintStream out) throws IOException {
-        bufferedReader.lines()
-                .limit(MAX_NUMBER_OF_LINES)
-                .map(s -> s + System.lineSeparator())
-                .forEachOrdered(line -> out.print(line));
+        out.print(readLeadingLines(bufferedReader, null, false));
     }
 
     static String readLeadingLines(final BufferedReader bufferedReader, final String filename,
