@@ -23,14 +23,12 @@ public class Head {
             printLeadingLinesFromInput(out);
         } else {
             final boolean withHeadlines = args.length > 1;
-            final List<String> lines = Arrays.stream(args)
-                    .collect(Collectors.toList());
             final List<String> stringsToPrint = new ArrayList<String>();
             int i = 0;
-            for (final String filename: lines) {
+            for (final String filename: args) {
                 final List<String> listOfLines = readLeadingLinesFromFile(filename, withHeadlines);
                 stringsToPrint.addAll(listOfLines);
-                if (++i < lines.size()) {
+                if (++i < args.length) {
                     stringsToPrint.add("");
                 }
             }
