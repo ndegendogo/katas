@@ -61,7 +61,7 @@ public class Head {
     }
 
     static void printLeadingLines(final BufferedReader bufferedReader, final PrintStream out) throws IOException {
-        final Stream<String> limitedLines = limitLines(bufferedReader.lines());
+        final Stream<String> limitedLines = readLeadingLines(bufferedReader);
         printLines(limitedLines, out);
     }
 
