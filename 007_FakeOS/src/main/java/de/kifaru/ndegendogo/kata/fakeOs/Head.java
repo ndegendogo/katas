@@ -22,11 +22,8 @@ public class Head {
             final boolean withHeadline = args.length > 1;
             final String result = Arrays.asList(args).stream()
                     .map(filename -> readLeadingLinesFromFile(filename, withHeadline))
-                    .collect(Collectors.joining(System.lineSeparator() + System.lineSeparator()));
+                    .collect(Collectors.joining(System.lineSeparator()));
             out.print(result);
-            if (!result.isEmpty()) {
-                out.println();
-            }
         }
     }
 
@@ -35,20 +32,22 @@ public class Head {
             final FileReader fileReader = new FileReader(filename);
             final BufferedReader bufferedReader = new BufferedReader(fileReader);
         ) {
-            final Stream<String> headline = withHeadline ? Stream.of("==> " + filename + " <==") : Stream.empty();
+            final Stream<String> headline = withHeadline ? Stream.of("==> " + filename + " <==" + System.lineSeparator()) : Stream.empty();
             final Stream<String> leadingLines = readLeadingLines(bufferedReader);
-            return Stream.concat(headline, leadingLines).collect(Collectors.joining(System.lineSeparator()));
+            return Stream.concat(headline, leadingLines).collect(Collectors.joining());
         } catch (IOException e) {
             return null;
         }
     }
 
     static void printLeadingLines(final BufferedReader bufferedReader, final PrintStream out) throws IOException {
-        readLeadingLines(bufferedReader).forEachOrdered(line -> out.println(line));
+        readLeadingLines(bufferedReader).forEachOrdered(line -> out.print(line));
     }
 
     static Stream<String> readLeadingLines(final BufferedReader bufferedReader) {
-        return bufferedReader.lines().limit(MAX_NUMBER_OF_LINES);
+        return bufferedReader.lines()
+                .limit(MAX_NUMBER_OF_LINES)
+                .map(s -> s + System.lineSeparator());
     }
 
 }
