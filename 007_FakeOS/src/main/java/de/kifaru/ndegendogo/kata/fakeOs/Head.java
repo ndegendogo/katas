@@ -32,11 +32,7 @@ public class Head {
             final FileReader fileReader = new FileReader(filename);
             final BufferedReader bufferedReader = new BufferedReader(fileReader);
         ) {
-            final Stream<String> headline = withHeadline ? Stream.of("==> " + filename + " <==" + System.lineSeparator()) : Stream.empty();
-            final Stream<String> leadingLines = bufferedReader.lines()
-                    .limit(MAX_NUMBER_OF_LINES)
-                    .map(s -> s + System.lineSeparator());
-            return Stream.concat(headline, leadingLines).collect(Collectors.joining());
+            return readLeadingLines(bufferedReader, filename, withHeadline);
         } catch (IOException e) {
             return null;
         }
@@ -49,4 +45,12 @@ public class Head {
                 .forEachOrdered(line -> out.print(line));
     }
 
+    static String readLeadingLines(final BufferedReader bufferedReader, final String filename,
+            final boolean withHeadline) {
+        final Stream<String> headline = withHeadline ? Stream.of("==> " + filename + " <==" + System.lineSeparator()) : Stream.empty();
+        final Stream<String> leadingLines = bufferedReader.lines()
+                .limit(MAX_NUMBER_OF_LINES)
+                .map(s -> s + System.lineSeparator());
+        return Stream.concat(headline, leadingLines).collect(Collectors.joining());
+    }
 }
