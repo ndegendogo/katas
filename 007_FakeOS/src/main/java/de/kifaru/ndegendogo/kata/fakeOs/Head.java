@@ -22,9 +22,10 @@ public class Head {
         if (args.length == 0) {
             printLeadingLinesFromInput(out);
         } else {
-            final List<String> lines = Arrays.asList(args);
+            final boolean withHeadlines = args.length > 1;
+            final List<String> lines = Arrays.stream(args)
+                    .collect(Collectors.toList());
             final List<String> stringsToPrint = new ArrayList<String>();
-            final boolean withHeadlines = lines.size() > 1;
             int i = 0;
             for (final String filename: lines) {
                 final List<String> listOfLines = readLeadingLinesFromFile(filename, withHeadlines);
