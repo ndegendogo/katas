@@ -19,7 +19,7 @@ public class Head {
     public static void main(final String... args) throws IOException {
         final PrintStream out = System.out;
         if (args.length == 0) {
-            printLeadingLinesFromInput(out);
+            printLeadingLines(new BufferedReader(new InputStreamReader(System.in)), out);
         } else {
             final boolean withHeadline = args.length > 1;
             final List<String> stringsToPrint = new ArrayList<String>();
@@ -42,18 +42,10 @@ public class Head {
             final FileReader fileReader = new FileReader(filename);
             final BufferedReader bufferedReader = new BufferedReader(fileReader);
         ) {
-            final Stream<String> header = withHeadline ? buildHeadline(filename) : Stream.empty();
+            final Stream<String> headline = withHeadline ? Stream.of("==> " + filename + " <==") : Stream.empty();
             final Stream<String> leadingLines = readLeadingLines(bufferedReader);
-            return Stream.concat(header, leadingLines).collect(Collectors.joining(System.lineSeparator()));
+            return Stream.concat(headline, leadingLines).collect(Collectors.joining(System.lineSeparator()));
         }
-    }
-
-    static Stream<String> buildHeadline(final String filename) {
-        return Stream.of("==> " + filename + " <==");
-    }
-
-    private static void printLeadingLinesFromInput(final PrintStream out) throws IOException {
-        printLeadingLines(new BufferedReader(new InputStreamReader(System.in)), out);
     }
 
     static void printLeadingLines(final BufferedReader bufferedReader, final PrintStream out) throws IOException {
