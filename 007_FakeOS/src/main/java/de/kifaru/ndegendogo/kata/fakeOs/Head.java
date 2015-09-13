@@ -1,7 +1,6 @@
 package de.kifaru.ndegendogo.kata.fakeOs;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -37,7 +36,7 @@ public class Head {
         }
     }
 
-    static String readLeadingLinesFromFile(final String filename, final boolean withHeadline) throws IOException, FileNotFoundException {
+    static String readLeadingLinesFromFile(final String filename, final boolean withHeadline) {
         try (
             final FileReader fileReader = new FileReader(filename);
             final BufferedReader bufferedReader = new BufferedReader(fileReader);
@@ -45,6 +44,8 @@ public class Head {
             final Stream<String> headline = withHeadline ? Stream.of("==> " + filename + " <==") : Stream.empty();
             final Stream<String> leadingLines = readLeadingLines(bufferedReader);
             return Stream.concat(headline, leadingLines).collect(Collectors.joining(System.lineSeparator()));
+        } catch (IOException e) {
+            return null;
         }
     }
 
