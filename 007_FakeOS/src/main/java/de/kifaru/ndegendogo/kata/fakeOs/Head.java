@@ -27,7 +27,7 @@ public class Head {
         out.print(readLeadingLines(bufferedReader, false, null));
     }
 
-    static void printLeadingLinesFromFiles(final PrintStream out, final String... filenames) {
+    private static void printLeadingLinesFromFiles(final PrintStream out, final String... filenames) {
         final boolean withHeadline = filenames.length > 1;
         final String result = Arrays.asList(filenames).stream()
                 .map(filename -> readLeadingLinesFromFile(filename, withHeadline))
@@ -35,7 +35,7 @@ public class Head {
         out.print(result);
     }
 
-    static String readLeadingLinesFromFile(final String filename, final boolean withHeadline) {
+    private static String readLeadingLinesFromFile(final String filename, final boolean withHeadline) {
         try (
             final FileReader fileReader = new FileReader(filename);
             final BufferedReader bufferedReader = new BufferedReader(fileReader);
@@ -46,7 +46,7 @@ public class Head {
         }
     }
 
-    static String readLeadingLines(final BufferedReader bufferedReader, final boolean withHeadline,
+    private static String readLeadingLines(final BufferedReader bufferedReader, final boolean withHeadline,
             final String filename) {
         final Stream<String> headline = withHeadline ? Stream.of("==> " + filename + " <==") : Stream.empty();
         final Stream<String> leadingLines = bufferedReader.lines().limit(MAX_NUMBER_OF_LINES);
