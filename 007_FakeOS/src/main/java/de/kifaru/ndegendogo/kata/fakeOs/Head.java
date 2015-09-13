@@ -32,18 +32,18 @@ public class Head {
             final FileReader fileReader = new FileReader(filename);
             final BufferedReader bufferedReader = new BufferedReader(fileReader);
         ) {
-            return readLeadingLines(bufferedReader, filename, withHeadline);
+            return readLeadingLines(bufferedReader, withHeadline, filename);
         } catch (IOException e) {
             return null;
         }
     }
 
     static void printLeadingLines(final BufferedReader bufferedReader, final PrintStream out) throws IOException {
-        out.print(readLeadingLines(bufferedReader, null, false));
+        out.print(readLeadingLines(bufferedReader, false, null));
     }
 
-    static String readLeadingLines(final BufferedReader bufferedReader, final String filename,
-            final boolean withHeadline) {
+    static String readLeadingLines(final BufferedReader bufferedReader, final boolean withHeadline,
+            final String filename) {
         final Stream<String> headline = withHeadline ? Stream.of("==> " + filename + " <==" + System.lineSeparator()) : Stream.empty();
         final Stream<String> leadingLines = bufferedReader.lines()
                 .limit(MAX_NUMBER_OF_LINES)
