@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.lang.System;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -23,6 +24,10 @@ public class Head {
             final boolean withHeadline = args.length > 1;
             final List<String> stringsToPrint = new ArrayList<String>();
             int i = 0;
+            final String result = Arrays.asList(args).stream()
+                    .map(filename -> readLeadingLinesFromFile(filename, withHeadline))
+                    .collect(Collectors.joining(System.lineSeparator() + System.lineSeparator()));
+            out.println(result);
             for (final String filename: args) {
                 final String leadingLines = readLeadingLinesFromFile(filename, withHeadline);
                 stringsToPrint.add(leadingLines);
@@ -31,7 +36,7 @@ public class Head {
                 }
             }
             for (String string: stringsToPrint) {
-                out.println(string);
+                //out.println(string);
             }
         }
     }
