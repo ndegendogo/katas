@@ -27,11 +27,7 @@ public class Head {
             final boolean withHeadlines = lines.size() > 1;
             int i = 0;
             for (final String filename: lines) {
-                final String headline = buildHeadline(filename);
-                if (withHeadlines) {
-                    stringsToPrint.add(headline);
-                }
-                final List<String> listOfLines = readLeadingLinesFromFile(filename);
+                final List<String> listOfLines = readLeadingLinesFromFile(filename, withHeadlines);
                 stringsToPrint.addAll(listOfLines);
                 if (++i < lines.size()) {
                     stringsToPrint.add("");
@@ -43,14 +39,18 @@ public class Head {
         }
     }
 
-    static List<String> readLeadingLinesFromFile(final String filename) throws IOException, FileNotFoundException {
+    static List<String> readLeadingLinesFromFile(final String filename, final boolean withHeadline) throws IOException, FileNotFoundException {
         try (
             final FileReader fileReader = new FileReader(filename);
             final BufferedReader bufferedReader = new BufferedReader(fileReader);
         ) {
             final Stream<String> lines = bufferedReader.lines();
             final Stream<String> limitedLines = limitLines(lines);
-            return limitedLines.collect(Collectors.toList());
+            final List<String> result = limitedLines.collect(Collectors.toList());
+            if (withHeadline) {
+                result.add(0, buildHeadline(filename));
+            }
+            return result;
         }
     }
 
