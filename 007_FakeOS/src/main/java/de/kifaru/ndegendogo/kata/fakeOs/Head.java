@@ -8,7 +8,6 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.lang.System;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -26,8 +25,8 @@ public class Head {
             final List<String> stringsToPrint = new ArrayList<String>();
             int i = 0;
             for (final String filename: args) {
-                final List<String> listOfLines = readLeadingLinesFromFile(filename, withHeadlines);
-                stringsToPrint.addAll(listOfLines);
+                final String listOfLines = readLeadingLinesFromFile(filename, withHeadlines);
+                stringsToPrint.add(listOfLines);
                 if (++i < args.length) {
                     stringsToPrint.add("");
                 }
@@ -38,17 +37,16 @@ public class Head {
         }
     }
 
-    static List<String> readLeadingLinesFromFile(final String filename, final boolean withHeadline) throws IOException, FileNotFoundException {
+    static String readLeadingLinesFromFile(final String filename, final boolean withHeadline) throws IOException, FileNotFoundException {
         try (
             final FileReader fileReader = new FileReader(filename);
             final BufferedReader bufferedReader = new BufferedReader(fileReader);
         ) {
+            final Stream<String> header = withHeadline ? Stream.of(buildHeadline(filename)) : Stream.empty();
             final Stream<String> lines = bufferedReader.lines();
             final Stream<String> limitedLines = limitLines(lines);
-            final List<String> result = limitedLines.collect(Collectors.toList());
-            if (withHeadline) {
-                result.add(0, buildHeadline(filename));
-            }
+            final Stream<String> allLines = Stream.concat(header, limitedLines);
+            final String result = allLines.collect(Collectors.joining(System.lineSeparator()));
             return result;
         }
     }
