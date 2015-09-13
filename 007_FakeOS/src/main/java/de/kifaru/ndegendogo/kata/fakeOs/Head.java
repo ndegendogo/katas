@@ -27,7 +27,7 @@ public class Head {
             final boolean withHeadlines = lines.size() > 1;
             int i = 0;
             for (final String filename: lines) {
-                final String headline = "==> " + filename + " <==";
+                final String headline = buildHeadline(filename);
                 if (withHeadlines) {
                     stringsToPrint.add(headline);
                 }
@@ -52,6 +52,10 @@ public class Head {
             final Stream<String> limitedLines = limitLines(lines);
             return limitedLines.collect(Collectors.toList());
         }
+    }
+
+    static String buildHeadline(final String filename) {
+        return "==> " + filename + " <==";
     }
 
     private static void printLeadingLinesFromInput(final PrintStream out) throws IOException {
