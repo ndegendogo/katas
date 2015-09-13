@@ -44,10 +44,10 @@ public class Head {
 
     static String readLeadingLines(final BufferedReader bufferedReader, final boolean withHeadline,
             final String filename) {
-        final Stream<String> headline = withHeadline ? Stream.of("==> " + filename + " <==" + System.lineSeparator()) : Stream.empty();
-        final Stream<String> leadingLines = bufferedReader.lines()
-                .limit(MAX_NUMBER_OF_LINES)
-                .map(s -> s + System.lineSeparator());
-        return Stream.concat(headline, leadingLines).collect(Collectors.joining());
+        final Stream<String> headline = withHeadline ? Stream.of("==> " + filename + " <==") : Stream.empty();
+        final Stream<String> leadingLines = bufferedReader.lines().limit(MAX_NUMBER_OF_LINES);
+        return Stream.concat(headline, leadingLines)
+                .map(s -> s + System.lineSeparator())
+                .collect(Collectors.joining());
     }
 }
