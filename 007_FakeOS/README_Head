@@ -1,0 +1,18 @@
+NAME
+     Head is a Java program which reads files and writes their first lines to the standard output.
+     You need a Java 8 runtime environment installed.
+
+SYNOPSIS
+
+     java -cp bin/ de.kifaru.ndegendogo.kata.fakeOs.Head [file ...]
+
+DESCRIPTION
+     The Head program reads files and writes the first 10 lines of their content to the standard output.
+     The files are processed in command-line order.
+     If Head is called without parameters, it reads from the standard input.
+
+EXIT STATUS
+     The Head program exits 0 on success, and >0 if an error occurs. 
+
+KNOWN LIMITATIONS
+     The Head program was not tested in bad-case scenarios (file not found), and might then behave unexpected.
