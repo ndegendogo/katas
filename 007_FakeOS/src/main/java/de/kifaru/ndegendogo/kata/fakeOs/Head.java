@@ -27,7 +27,10 @@ public class Head {
             final String result = Arrays.asList(args).stream()
                     .map(filename -> readLeadingLinesFromFile(filename, withHeadline))
                     .collect(Collectors.joining(System.lineSeparator() + System.lineSeparator()));
-            out.println(result);
+            out.print(result);
+            if (!result.isEmpty()) {
+                out.println();
+            }
             for (final String filename: args) {
                 final String leadingLines = readLeadingLinesFromFile(filename, withHeadline);
                 stringsToPrint.add(leadingLines);
