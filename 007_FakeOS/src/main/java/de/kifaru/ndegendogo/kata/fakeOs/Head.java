@@ -7,6 +7,8 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.lang.System;
 import java.util.Arrays;
+import java.util.StringJoiner;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -49,8 +51,12 @@ public class Head {
             final String filename) {
         final Stream<String> headline = withHeadline ? Stream.of("==> " + filename + " <==") : Stream.empty();
         final Stream<String> leadingLines = bufferedReader.lines().limit(MAX_NUMBER_OF_LINES);
-        return Stream.concat(headline, leadingLines)
-                .map(s -> s + System.lineSeparator())
-                .collect(Collectors.joining());
+        final Collector<String, StringJoiner, String> joining = Collector.of(
+                () -> new StringJoiner(System.lineSeparator(), "", System.lineSeparator()).setEmptyValue(""),
+                (j, s) -> j.add(s),
+                (j1, j2) -> j1.merge(j2),
+                StringJoiner::toString
+        );
+        return Stream.concat(headline, leadingLines).collect(joining);
     }
 }
