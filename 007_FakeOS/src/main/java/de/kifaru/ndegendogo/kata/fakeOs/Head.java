@@ -26,7 +26,7 @@ public class Head {
     }
 
     static void printLeadingLines(final PrintStream out, final BufferedReader bufferedReader) throws IOException {
-        out.print(readLeadingLines(bufferedReader, false, null));
+        out.print(readLeadingLines(bufferedReader, Stream.empty()));
     }
 
     private static void printLeadingLinesFromFiles(final PrintStream out, final String... filenames) {
@@ -41,15 +41,14 @@ public class Head {
             final FileReader fileReader = new FileReader(filename);
             final BufferedReader bufferedReader = new BufferedReader(fileReader);
         ) {
-            return readLeadingLines(bufferedReader, withHeadline, filename);
+            final Stream<String> headline = withHeadline ? Stream.of("==> " + filename + " <==") : Stream.empty();
+            return readLeadingLines(bufferedReader, headline);
         } catch (IOException e) {
             return null;
         }
     }
 
-    private static String readLeadingLines(final BufferedReader bufferedReader, final boolean withHeadline,
-            final String filename) {
-        final Stream<String> headline = withHeadline ? Stream.of("==> " + filename + " <==") : Stream.empty();
+    private static String readLeadingLines(final BufferedReader bufferedReader, final Stream<String> headline) {
         final Stream<String> leadingLines = bufferedReader.lines().limit(MAX_NUMBER_OF_LINES);
         final Collector<String, StringJoiner, String> joining = Collector.of(
                 () -> new StringJoiner(System.lineSeparator(), "", System.lineSeparator()).setEmptyValue(""),
