@@ -14,18 +14,16 @@ import java.util.stream.Stream;
 public class Head {
 
     private static final int MAX_NUMBER_OF_LINES = 10;
-    private static boolean result = true;
     
     public static void main(final String... args) throws IOException {
         final PrintStream out = System.out;
+        final ErrorStatus error = new ErrorStatus();
         if (args.length == 0) {
             printLeadingLines(out, new BufferedReader(new InputStreamReader(System.in)));
         } else {
-            if (!printLeadingLinesFromFiles(out, args)) {
-                result = false;   
-            }
+            printLeadingLinesFromFiles(out, error, args);
         }
-        if (!result) {
+        if (error.hasError()) {
             System.exit(1);
         }
     }
@@ -34,18 +32,18 @@ public class Head {
         out.print(readLeadingLines(bufferedReader, Stream.empty()));
     }
 
-    private static boolean printLeadingLinesFromFiles(final PrintStream out, final String... filenames) {
+    private static boolean printLeadingLinesFromFiles(final PrintStream out, final ErrorStatus error, final String... filenames) {
         try(final OutputJoiner outputJoiner = new OutputJoiner(out)) {
             final boolean withHeadline = filenames.length > 1;
             Arrays.asList(filenames)
                   .stream()
-                  .map(filename -> readLeadingLinesFromFile(filename, withHeadline))
+                  .map(filename -> readLeadingLinesFromFile(filename, withHeadline, error))
                   .forEach(s -> {if (s != null) outputJoiner.print(s); });
             return true;
         }
     }
 
-    private static String readLeadingLinesFromFile(final String filename, final boolean withHeadline) {
+    private static String readLeadingLinesFromFile(final String filename, final boolean withHeadline, final ErrorStatus error) {
         try (
             final FileReader fileReader = new FileReader(filename);
             final BufferedReader bufferedReader = new BufferedReader(fileReader);
@@ -53,7 +51,7 @@ public class Head {
             final Stream<String> headline = withHeadline ? Stream.of("==> " + filename + " <==") : Stream.empty();
             return readLeadingLines(bufferedReader, headline);
         } catch (IOException e) {
-            result = false;
+            error.setError();
             return null;
         }
     }
