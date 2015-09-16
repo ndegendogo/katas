@@ -38,7 +38,8 @@ public class Head {
             Arrays.asList(filenames)
                   .stream()
                   .map(filename -> readLeadingLinesFromFile(filename, withHeadline, error))
-                  .forEach(s -> {if (s != null) outputJoiner.print(s); });
+                  .filter(s -> s != null)
+                  .forEach(s -> outputJoiner.print(s));
             return true;
         }
     }
