@@ -44,7 +44,7 @@ public class Head {
                   .filter(s -> s != null)
                   .forEach(s -> outputJoiner.print(s));
         }
-        return !error.hasError();
+        return error.isOk();
 
     }
 

@@ -5,4 +5,5 @@ public class ErrorStatus {
     
     public void setError() {hasError = true;}
     public boolean hasError() {return hasError;}
+    public boolean isOk() {return !hasError;}
 }
