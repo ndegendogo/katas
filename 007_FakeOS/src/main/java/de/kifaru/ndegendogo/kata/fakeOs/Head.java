@@ -17,10 +17,16 @@ public class Head {
 
     public static void main(final String... args) throws IOException {
         final PrintStream out = System.out;
+        boolean result = true;
         if (args.length == 0) {
             printLeadingLines(out, new BufferedReader(new InputStreamReader(System.in)));
         } else {
-            printLeadingLinesFromFiles(out, args);
+            if (!printLeadingLinesFromFiles(out, args)) {
+                result = false;   
+            }
+        }
+        if (!result) {
+            System.exit(1);
         }
     }
 
@@ -28,13 +34,18 @@ public class Head {
         out.print(readLeadingLines(bufferedReader, Stream.empty()));
     }
 
-    private static void printLeadingLinesFromFiles(final PrintStream out, final String... filenames) {
+    private static boolean printLeadingLinesFromFiles(final PrintStream out, final String... filenames) {
         try(final OutputJoiner outputJoiner = new OutputJoiner(out)) {
-            final boolean withHeadline = filenames.length > 1;
-            Arrays.asList(filenames)
-                  .stream()
-                  .map(filename -> readLeadingLinesFromFile(filename, withHeadline))
-                  .forEach(s -> outputJoiner.print(s));
+            try {
+                final boolean withHeadline = filenames.length > 1;
+                Arrays.asList(filenames)
+                      .stream()
+                      .map(filename -> readLeadingLinesFromFile(filename, withHeadline))
+                      .forEach(s -> outputJoiner.print(s));
+                return true;
+            } catch (RuntimeException e) {
+                return false;
+            }
         }
     }
 
@@ -46,7 +57,7 @@ public class Head {
             final Stream<String> headline = withHeadline ? Stream.of("==> " + filename + " <==") : Stream.empty();
             return readLeadingLines(bufferedReader, headline);
         } catch (IOException e) {
-            return null;
+            throw new RuntimeException(e);
         }
     }
 
