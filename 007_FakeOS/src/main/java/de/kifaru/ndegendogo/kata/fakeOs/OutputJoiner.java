@@ -4,17 +4,19 @@ import java.io.PrintStream;
 
 public class OutputJoiner extends PrintStream {
 
-    private boolean notFirst = false;
+    private static final String DELIMITER = System.lineSeparator();
+
+    private boolean following = false;
     
     public OutputJoiner(PrintStream out) {
         super(out);
     }
 
     public void print(String s) {
-        if (notFirst) {
-            super.print(System.lineSeparator());
+        if (following) {
+            super.print(DELIMITER);
         }
         super.print(s);
-        notFirst = true;
+        following = true;
     }
 }
