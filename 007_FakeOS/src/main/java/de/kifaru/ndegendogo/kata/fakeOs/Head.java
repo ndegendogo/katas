@@ -32,9 +32,10 @@ public class Head {
     private static void printLeadingLinesFromFiles(final PrintStream out, final String... filenames) {
         try(final OutputJoiner outputJoiner = new OutputJoiner(out)) {
             final boolean withHeadline = filenames.length > 1;
-            outputJoiner.print(Arrays.asList(filenames).stream()
+            final String allLeadingLines = Arrays.asList(filenames).stream()
                     .map(filename -> readLeadingLinesFromFile(filename, withHeadline))
-                    .collect(Collectors.joining(System.lineSeparator())));
+                    .collect(Collectors.joining(System.lineSeparator()));
+            outputJoiner.print(allLeadingLines);
         }
     }
 
