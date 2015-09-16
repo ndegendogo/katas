@@ -9,7 +9,6 @@ import java.lang.System;
 import java.util.Arrays;
 import java.util.StringJoiner;
 import java.util.stream.Collector;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Head {
@@ -32,10 +31,10 @@ public class Head {
     private static void printLeadingLinesFromFiles(final PrintStream out, final String... filenames) {
         try(final OutputJoiner outputJoiner = new OutputJoiner(out)) {
             final boolean withHeadline = filenames.length > 1;
-            final String allLeadingLines = Arrays.asList(filenames).stream()
-                    .map(filename -> readLeadingLinesFromFile(filename, withHeadline))
-                    .collect(Collectors.joining(System.lineSeparator()));
-            outputJoiner.print(allLeadingLines);
+            Arrays.asList(filenames)
+                  .stream()
+                  .map(filename -> readLeadingLinesFromFile(filename, withHeadline))
+                  .forEach(s -> outputJoiner.print(s));
         }
     }
 
