@@ -17,13 +17,15 @@ public class Head {
     
     public static void main(final String... args) throws IOException {
         final PrintStream out = System.out;
-        final ErrorStatus error = new ErrorStatus();
+        boolean result = true;
         if (args.length == 0) {
             printLeadingLines(out, new BufferedReader(new InputStreamReader(System.in)));
         } else {
-            printLeadingLinesFromFiles(out, error, args);
+            if (!printLeadingLinesFromFiles(out, args)) {
+                result = false;   
+            }
         }
-        if (error.hasError()) {
+        if (!result) {
             System.exit(1);
         }
     }
@@ -32,7 +34,8 @@ public class Head {
         out.print(readLeadingLines(bufferedReader, Stream.empty()));
     }
 
-    private static boolean printLeadingLinesFromFiles(final PrintStream out, final ErrorStatus error, final String... filenames) {
+    private static boolean printLeadingLinesFromFiles(final PrintStream out, final String... filenames) {
+        final ErrorStatus error = new ErrorStatus();
         try(final OutputJoiner outputJoiner = new OutputJoiner(out)) {
             final boolean withHeadline = filenames.length > 1;
             Arrays.asList(filenames)
@@ -40,8 +43,9 @@ public class Head {
                   .map(filename -> readLeadingLinesFromFile(filename, withHeadline, error))
                   .filter(s -> s != null)
                   .forEach(s -> outputJoiner.print(s));
-            return true;
         }
+        return !error.hasError();
+
     }
 
     private static String readLeadingLinesFromFile(final String filename, final boolean withHeadline, final ErrorStatus error) {
