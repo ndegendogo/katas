@@ -6,17 +6,17 @@ public class OutputJoiner extends PrintStream {
 
     private static final String DELIMITER = System.lineSeparator();
 
-    private boolean following = false;
+    private boolean isFollowing = false;
     
     public OutputJoiner(PrintStream out) {
         super(out);
     }
 
     public void print(String s) {
-        if (following) {
+        if (isFollowing) {
             super.print(DELIMITER);
         }
         super.print(s);
-        following = true;
+        isFollowing = true;
     }
 }
