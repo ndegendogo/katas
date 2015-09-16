@@ -80,6 +80,7 @@ public class TestHeadParameterized {
         });
     }
 
+    @SuppressWarnings("unused")
     private final String testName;
     private final String[] inputLines;
     private final String[] expectedLines;
