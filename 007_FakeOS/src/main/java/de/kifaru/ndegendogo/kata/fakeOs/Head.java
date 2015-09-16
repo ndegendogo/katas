@@ -14,10 +14,10 @@ import java.util.stream.Stream;
 public class Head {
 
     private static final int MAX_NUMBER_OF_LINES = 10;
-
+    private static boolean result = true;
+    
     public static void main(final String... args) throws IOException {
         final PrintStream out = System.out;
-        boolean result = true;
         if (args.length == 0) {
             printLeadingLines(out, new BufferedReader(new InputStreamReader(System.in)));
         } else {
@@ -36,16 +36,12 @@ public class Head {
 
     private static boolean printLeadingLinesFromFiles(final PrintStream out, final String... filenames) {
         try(final OutputJoiner outputJoiner = new OutputJoiner(out)) {
-            try {
-                final boolean withHeadline = filenames.length > 1;
-                Arrays.asList(filenames)
-                      .stream()
-                      .map(filename -> readLeadingLinesFromFile(filename, withHeadline))
-                      .forEach(s -> outputJoiner.print(s));
-                return true;
-            } catch (RuntimeException e) {
-                return false;
-            }
+            final boolean withHeadline = filenames.length > 1;
+            Arrays.asList(filenames)
+                  .stream()
+                  .map(filename -> {try { return readLeadingLinesFromFile(filename, withHeadline); } catch (RuntimeException e) {result = false; return null;}})
+                  .forEach(s -> {if (s != null) outputJoiner.print(s); });
+            return true;
         }
     }
 
