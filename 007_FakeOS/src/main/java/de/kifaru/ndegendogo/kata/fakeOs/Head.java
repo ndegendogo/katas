@@ -39,7 +39,7 @@ public class Head {
             final boolean withHeadline = filenames.length > 1;
             Arrays.asList(filenames)
                   .stream()
-                  .map(filename -> {try { return readLeadingLinesFromFile(filename, withHeadline); } catch (RuntimeException e) {result = false; return null;}})
+                  .map(filename -> readLeadingLinesFromFile(filename, withHeadline))
                   .forEach(s -> {if (s != null) outputJoiner.print(s); });
             return true;
         }
@@ -53,7 +53,8 @@ public class Head {
             final Stream<String> headline = withHeadline ? Stream.of("==> " + filename + " <==") : Stream.empty();
             return readLeadingLines(bufferedReader, headline);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            result = false;
+            return null;
         }
     }
 
