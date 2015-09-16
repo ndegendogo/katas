@@ -30,10 +30,12 @@ public class Head {
     }
 
     private static void printLeadingLinesFromFiles(final PrintStream out, final String... filenames) {
-        final boolean withHeadline = filenames.length > 1;
-        out.print(Arrays.asList(filenames).stream()
-                .map(filename -> readLeadingLinesFromFile(filename, withHeadline))
-                .collect(Collectors.joining(System.lineSeparator())));
+        try(final OutputJoiner outputJoiner = new OutputJoiner(out)) {
+            final boolean withHeadline = filenames.length > 1;
+            outputJoiner.print(Arrays.asList(filenames).stream()
+                    .map(filename -> readLeadingLinesFromFile(filename, withHeadline))
+                    .collect(Collectors.joining(System.lineSeparator())));
+        }
     }
 
     private static String readLeadingLinesFromFile(final String filename, final boolean withHeadline) {
