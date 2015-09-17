@@ -11,8 +11,6 @@ import java.util.StringJoiner;
 import java.util.stream.Collector;
 import java.util.stream.Stream;
 
-import de.kifaru.ndegendogo.kata.fakeOs.ErrorStatus.ErrorCode;
-
 public class Head {
 
     private static final int MAX_NUMBER_OF_LINES = 10;
@@ -45,9 +43,6 @@ public class Head {
                   .forEach(s -> outputJoiner.print(s));
         }
         error.checkError();
-        if (error.hasError()) {
-            throw new IOException();
-        }
     }
 
     private static String readLeadingLinesFromFile(final String filename, final boolean withHeadline, final ErrorStatus error) {

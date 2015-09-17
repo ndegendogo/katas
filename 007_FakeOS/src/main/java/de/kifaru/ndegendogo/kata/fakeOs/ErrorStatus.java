@@ -3,7 +3,7 @@ package de.kifaru.ndegendogo.kata.fakeOs;
 import java.io.IOException;
 
 public class ErrorStatus {
-    public enum ErrorCode {
+    private enum ErrorCode {
         NO_ERROR,
         IO_EXCEPTION,
         OTHER_ERROR,
@@ -31,7 +31,4 @@ public class ErrorStatus {
                 throw new RuntimeException();
         }
     }
-    
-    public boolean hasError() {return !isOk();}
-    public boolean isOk() {return error == ErrorCode.NO_ERROR;}
 }
