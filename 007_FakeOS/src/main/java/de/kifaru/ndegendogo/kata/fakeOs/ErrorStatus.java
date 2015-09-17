@@ -20,6 +20,18 @@ public class ErrorStatus {
             setError(ErrorCode.OTHER_ERROR);
         }
     }
+    
+    public void checkError() throws IOException {
+        switch (error) {
+            case NO_ERROR: 
+                return;
+            case IO_EXCEPTION: 
+                throw new IOException();
+            case OTHER_ERROR: 
+                throw new RuntimeException();
+        }
+    }
+    
     public boolean hasError() {return !isOk();}
     public boolean isOk() {return error == ErrorCode.NO_ERROR;}
 }
