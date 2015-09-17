@@ -57,7 +57,7 @@ public class Head {
             final Stream<String> headline = withHeadline ? Stream.of("==> " + filename + " <==") : Stream.empty();
             return readLeadingLines(bufferedReader, headline);
         } catch (IOException e) {
-            error.setError(ErrorCode.IO_EXCEPTION);
+            error.mapException(e);
             return null;
         }
     }
