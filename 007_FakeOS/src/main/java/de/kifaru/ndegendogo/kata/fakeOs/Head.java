@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.lang.System;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.StringJoiner;
 import java.util.stream.Collector;
 import java.util.stream.Stream;
@@ -40,18 +41,18 @@ public class Head {
                   .stream()
                   .map(filename -> readLeadingLinesFromFile(filename, withHeadline, error))
                   .filter(s -> s != null)
-                  .forEach(s -> outputJoiner.print(s));
+                  .forEach(s -> outputJoiner.print(s.get()));
         }
         error.checkError();
     }
 
-    private static String readLeadingLinesFromFile(final String filename, final boolean withHeadline, final ErrorStatus error) {
+    private static Optional<String> readLeadingLinesFromFile(final String filename, final boolean withHeadline, final ErrorStatus error) {
         try (
             final FileReader fileReader = new FileReader(filename);
             final BufferedReader bufferedReader = new BufferedReader(fileReader);
         ) {
             final Stream<String> headline = withHeadline ? Stream.of("==> " + filename + " <==") : Stream.empty();
-            return readLeadingLines(bufferedReader, headline);
+            return Optional.of(readLeadingLines(bufferedReader, headline));
         } catch (IOException e) {
             error.mapException(e);
             return null;
