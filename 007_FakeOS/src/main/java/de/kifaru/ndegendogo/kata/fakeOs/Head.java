@@ -40,7 +40,7 @@ public class Head {
             Arrays.asList(filenames)
                   .stream()
                   .map(filename -> readLeadingLinesFromFile(filename, withHeadline, error))
-                  .filter(s -> s != null)
+                  .filter(s -> s.isPresent())
                   .forEach(s -> outputJoiner.print(s.get()));
         }
         error.checkError();
@@ -55,7 +55,7 @@ public class Head {
             return Optional.of(readLeadingLines(bufferedReader, headline));
         } catch (IOException e) {
             error.mapException(e);
-            return null;
+            return Optional.empty();
         }
     }
 
