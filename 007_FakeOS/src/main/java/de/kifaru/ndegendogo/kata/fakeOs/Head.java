@@ -11,7 +11,7 @@ import java.util.StringJoiner;
 import java.util.stream.Collector;
 import java.util.stream.Stream;
 
-import de.kifaru.ndegendogo.kata.fakeOs.ErrorStatus.ErrorValue;
+import de.kifaru.ndegendogo.kata.fakeOs.ErrorStatus.ErrorCode;
 
 public class Head {
 
@@ -57,7 +57,7 @@ public class Head {
             final Stream<String> headline = withHeadline ? Stream.of("==> " + filename + " <==") : Stream.empty();
             return readLeadingLines(bufferedReader, headline);
         } catch (IOException e) {
-            error.setError(ErrorValue.IO_EXCEPTION);
+            error.setError(ErrorCode.IO_EXCEPTION);
             return null;
         }
     }
