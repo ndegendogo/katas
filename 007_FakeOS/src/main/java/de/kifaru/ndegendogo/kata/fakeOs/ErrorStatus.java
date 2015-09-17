@@ -1,9 +1,15 @@
 package de.kifaru.ndegendogo.kata.fakeOs;
 
 public class ErrorStatus {
-    private boolean hasError = false;
+    public enum ErrorValue {
+        NO_ERROR,
+        IO_EXCEPTION,
+        OTHER_ERROR,
+    };
     
-    public void setError() {hasError = true;}
-    public boolean hasError() {return hasError;}
-    public boolean isOk() {return !hasError;}
+    private ErrorValue error = ErrorValue.NO_ERROR;
+    
+    public void setError(ErrorValue error) {this.error = error;}
+    public boolean hasError() {return !isOk();}
+    public boolean isOk() {return error == ErrorValue.NO_ERROR;}
 }

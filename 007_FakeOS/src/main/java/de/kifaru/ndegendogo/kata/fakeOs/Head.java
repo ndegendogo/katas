@@ -11,6 +11,8 @@ import java.util.StringJoiner;
 import java.util.stream.Collector;
 import java.util.stream.Stream;
 
+import de.kifaru.ndegendogo.kata.fakeOs.ErrorStatus.ErrorValue;
+
 public class Head {
 
     private static final int MAX_NUMBER_OF_LINES = 10;
@@ -55,7 +57,7 @@ public class Head {
             final Stream<String> headline = withHeadline ? Stream.of("==> " + filename + " <==") : Stream.empty();
             return readLeadingLines(bufferedReader, headline);
         } catch (IOException e) {
-            error.setError();
+            error.setError(ErrorValue.IO_EXCEPTION);
             return null;
         }
     }
