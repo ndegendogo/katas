@@ -46,7 +46,7 @@ public class Head {
                 final Iterator<String> headlineIterator = headlines.iterator();
                 final Stream<Optional<String>> fileContents = Arrays.asList(filenames)
                         .stream()
-                        .map(filename -> readLeadingLinesFromFile(filename, false, error));
+                        .map(filename -> readLeadingLinesFromFile(filename, error));
                 final Iterator<Optional<String>> filecontentsIterator = fileContents.iterator();
                 while(headlineIterator.hasNext() && filecontentsIterator.hasNext()) {
                     final String nextHeadline = headlineIterator.next();
@@ -59,7 +59,7 @@ public class Head {
             } else {
                 final Stream<Optional<String>> fileContents = Arrays.asList(filenames)
                         .stream()
-                        .map(filename -> readLeadingLinesFromFile(filename, withHeadline, error));
+                        .map(filename -> readLeadingLinesFromFile(filename, error));
                 fileContents
                         .filter(s -> s.isPresent())
                         .forEach(s -> outputJoiner.print(s.get()));
@@ -68,16 +68,12 @@ public class Head {
         error.checkError();
     }
 
-    private static Optional<String> readLeadingLinesFromFile(final String filename, final boolean withHeadline, final ErrorStatus error) {
+    private static Optional<String> readLeadingLinesFromFile(final String filename, final ErrorStatus error) {
         try (
             final FileReader fileReader = new FileReader(filename);
             final BufferedReader bufferedReader = new BufferedReader(fileReader);
         ) {
-            final String fileContents = readLeadingLines(bufferedReader);
-            final String result = withHeadline 
-                    ? String.join(System.lineSeparator(), buildHeadline(filename), fileContents)
-                    : fileContents;
-            return Optional.of(result);
+            return Optional.of(readLeadingLines(bufferedReader));
         } catch (IOException e) {
             error.mapException(e);
             return Optional.empty();
