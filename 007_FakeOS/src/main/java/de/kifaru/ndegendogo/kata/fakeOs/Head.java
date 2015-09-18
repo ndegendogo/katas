@@ -7,7 +7,6 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.lang.System;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.Optional;
 import java.util.StringJoiner;
 import java.util.stream.Collector;
@@ -36,53 +35,35 @@ public class Head {
 
     private static void printLeadingLinesFromFiles(final PrintStream out, final String... filenames) throws IOException {
         final ErrorStatus error = new ErrorStatus();
-        if (filenames.length > 1) {
-            printLeadingLinesFromFilesWithHeadlines(out, error, filenames);
-        } else {
-            printLeadingLinesFromSingleFile(out, filenames[0], error);
+        try(final OutputJoiner outputJoiner = new OutputJoiner(out)) {
+            final boolean withHeadline = filenames.length > 1;
+            Arrays.asList(filenames)
+                  .stream()
+                  .map(filename -> readLeadingLinesFromFile(filename, withHeadline, error))
+                  .filter(s -> s.isPresent())
+                  .forEach(s -> outputJoiner.print(s.get()));
         }
         error.checkError();
     }
 
-    private static void printLeadingLinesFromFilesWithHeadlines(final PrintStream out, final ErrorStatus error, final String... filenames) {
-        try(final OutputJoiner outputJoiner = new OutputJoiner(out)) {
-            final Iterator<String> headlines = Arrays.asList(filenames)
-                    .stream()
-                    .map(filename -> buildHeadline(filename))
-                    .iterator();
-            final Iterator<Optional<String>> fileContents = Arrays.asList(filenames)
-                    .stream()
-                    .map(filename -> readLeadingLinesFromFile(filename, error))
-                    .iterator();
-            while(headlines.hasNext() && fileContents.hasNext()) {
-                final String nextHeadline = headlines.next();
-                fileContents.next().ifPresent(s -> {
-                        outputJoiner.print(nextHeadline);
-                        outputJoiner.print(s);
-                });
-            }
+    private static Optional<String> readLeadingLinesFromFile(final String filename, final boolean withHeadline, final ErrorStatus error) {
+        try (
+            final FileReader fileReader = new FileReader(filename);
+            final BufferedReader bufferedReader = new BufferedReader(fileReader);
+        ) {
+            final String fileContents = readLeadingLines(bufferedReader);
+            final String result = withHeadline 
+                    ? String.join(System.lineSeparator(), buildHeadline(filename), fileContents)
+                    : fileContents;
+            return Optional.of(result);
+        } catch (IOException e) {
+            error.mapException(e);
+            return Optional.empty();
         }
     }
 
     private static String buildHeadline(final String filename) {
         return "==> " + filename + " <==";
-    }
-
-    private static void printLeadingLinesFromSingleFile(final PrintStream out, final String filename,
-            final ErrorStatus error) {
-        readLeadingLinesFromFile(filename, error).ifPresent(out::print);
-    }
-
-    private static Optional<String> readLeadingLinesFromFile(final String filename, final ErrorStatus error) {
-        try (
-            final FileReader fileReader = new FileReader(filename);
-            final BufferedReader bufferedReader = new BufferedReader(fileReader);
-        ) {
-            return Optional.of(readLeadingLines(bufferedReader));
-        } catch (IOException e) {
-            error.mapException(e);
-            return Optional.empty();
-        }
     }
 
     private static String readLeadingLines(final BufferedReader bufferedReader) {
