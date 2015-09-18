@@ -52,12 +52,9 @@ public class Head {
             final BufferedReader bufferedReader = new BufferedReader(fileReader);
         ) {
             final String fileContents = readLeadingLines(bufferedReader);
-            String result;
-            if (withHeadline) {
-                result = String.join(System.lineSeparator(), buildHeadline(filename), fileContents);
-            } else {
-                result = fileContents;
-            }
+            final String result = withHeadline 
+                    ? String.join(System.lineSeparator(), buildHeadline(filename), fileContents)
+                    : fileContents;
             return Optional.of(result);
         } catch (IOException e) {
             error.mapException(e);
