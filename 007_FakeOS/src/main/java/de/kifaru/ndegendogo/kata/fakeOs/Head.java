@@ -50,18 +50,16 @@ public class Head {
                     .stream()
                     .map(filename -> buildHeadline(filename))
                     .iterator();
-            final Stream<Optional<String>> fileContents = Arrays.asList(filenames)
+            final Iterator<Optional<String>> fileContents = Arrays.asList(filenames)
                     .stream()
-                    .map(filename -> readLeadingLinesFromFile(filename, error));
-            final Iterator<Optional<String>> contentsIterator = fileContents
+                    .map(filename -> readLeadingLinesFromFile(filename, error))
                     .iterator();
-            while(headlines.hasNext() && contentsIterator.hasNext()) {
+            while(headlines.hasNext() && fileContents.hasNext()) {
                 final String nextHeadline = headlines.next();
-                final Optional<String> nextFileContent = contentsIterator.next();
-                if(nextFileContent.isPresent()) {
-                    outputJoiner.print(nextHeadline);
-                    outputJoiner.print(nextFileContent.get());
-                }
+                fileContents.next().ifPresent(s -> {
+                        outputJoiner.print(nextHeadline);
+                        outputJoiner.print(s);
+                });
             }
         }
     }
