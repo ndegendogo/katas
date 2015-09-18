@@ -39,18 +39,17 @@ public class Head {
         try(final OutputJoiner outputJoiner = new OutputJoiner(out)) {
             final boolean withHeadline = filenames.length > 1;
             if (withHeadline) {
-                final Stream<String> headlines 
-                    = Arrays.asList(filenames)
-                    .stream()
-                    .map(filename -> buildHeadline(filename));
-                final Iterator<String> headlineIterator = headlines.iterator();
-                final Stream<Optional<String>> fileContents = Arrays.asList(filenames)
+                final Iterator<String> headlines = Arrays.asList(filenames)
                         .stream()
-                        .map(filename -> readLeadingLinesFromFile(filename, error));
-                final Iterator<Optional<String>> filecontentsIterator = fileContents.iterator();
-                while(headlineIterator.hasNext() && filecontentsIterator.hasNext()) {
-                    final String nextHeadline = headlineIterator.next();
-                    final Optional<String> nextFileContent = filecontentsIterator.next();
+                        .map(filename -> buildHeadline(filename))
+                        .iterator();
+                final Iterator<Optional<String>> fileContents = Arrays.asList(filenames)
+                        .stream()
+                        .map(filename -> readLeadingLinesFromFile(filename, error))
+                        .iterator();
+                while(headlines.hasNext() && fileContents.hasNext()) {
+                    final String nextHeadline = headlines.next();
+                    final Optional<String> nextFileContent = fileContents.next();
                     if(nextFileContent.isPresent()) {
                         outputJoiner.print(nextHeadline);
                         outputJoiner.print(nextFileContent.get());
@@ -68,6 +67,10 @@ public class Head {
         error.checkError();
     }
 
+    private static String buildHeadline(final String filename) {
+        return "==> " + filename + " <==";
+    }
+
     private static Optional<String> readLeadingLinesFromFile(final String filename, final ErrorStatus error) {
         try (
             final FileReader fileReader = new FileReader(filename);
@@ -78,10 +81,6 @@ public class Head {
             error.mapException(e);
             return Optional.empty();
         }
-    }
-
-    private static String buildHeadline(final String filename) {
-        return "==> " + filename + " <==";
     }
 
     private static String readLeadingLines(final BufferedReader bufferedReader) {
