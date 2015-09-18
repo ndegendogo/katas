@@ -36,30 +36,34 @@ public class Head {
 
     private static void printLeadingLinesFromFiles(final PrintStream out, final String... filenames) throws IOException {
         final ErrorStatus error = new ErrorStatus();
-        try(final OutputJoiner outputJoiner = new OutputJoiner(out)) {
-            if (filenames.length > 1) {
-                final Iterator<String> headlines = Arrays.asList(filenames)
-                        .stream()
-                        .map(filename -> buildHeadline(filename))
-                        .iterator();
-                final Stream<Optional<String>> fileContents = Arrays.asList(filenames)
-                        .stream()
-                        .map(filename -> readLeadingLinesFromFile(filename, error));
-                final Iterator<Optional<String>> contentsIterator = fileContents
-                        .iterator();
-                while(headlines.hasNext() && contentsIterator.hasNext()) {
-                    final String nextHeadline = headlines.next();
-                    final Optional<String> nextFileContent = contentsIterator.next();
-                    if(nextFileContent.isPresent()) {
-                        outputJoiner.print(nextHeadline);
-                        outputJoiner.print(nextFileContent.get());
-                    }
-                }
-            } else {
-                printLeadingLinesFromSingleFile(out, filenames[0], error);
-            }
+        if (filenames.length > 1) {
+            printLeadingLinesFromFilesWithHeadlines(out, error, filenames);
+        } else {
+            printLeadingLinesFromSingleFile(out, filenames[0], error);
         }
         error.checkError();
+    }
+
+    private static void printLeadingLinesFromFilesWithHeadlines(final PrintStream out, final ErrorStatus error, final String... filenames) {
+        try(final OutputJoiner outputJoiner = new OutputJoiner(out)) {
+            final Iterator<String> headlines = Arrays.asList(filenames)
+                    .stream()
+                    .map(filename -> buildHeadline(filename))
+                    .iterator();
+            final Stream<Optional<String>> fileContents = Arrays.asList(filenames)
+                    .stream()
+                    .map(filename -> readLeadingLinesFromFile(filename, error));
+            final Iterator<Optional<String>> contentsIterator = fileContents
+                    .iterator();
+            while(headlines.hasNext() && contentsIterator.hasNext()) {
+                final String nextHeadline = headlines.next();
+                final Optional<String> nextFileContent = contentsIterator.next();
+                if(nextFileContent.isPresent()) {
+                    outputJoiner.print(nextHeadline);
+                    outputJoiner.print(nextFileContent.get());
+                }
+            }
+        }
     }
 
     private static String buildHeadline(final String filename) {
