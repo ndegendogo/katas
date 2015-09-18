@@ -30,7 +30,7 @@ public class Head {
     }
 
     static void printLeadingLines(final PrintStream out, final BufferedReader bufferedReader) throws IOException {
-        out.print(readLeadingLinesWithHeadline(bufferedReader, Stream.empty()));
+        out.print(readLeadingLinesWithHeadline(bufferedReader));
     }
 
     private static void printLeadingLinesFromFiles(final PrintStream out, final String... filenames) throws IOException {
@@ -51,15 +51,21 @@ public class Head {
             final FileReader fileReader = new FileReader(filename);
             final BufferedReader bufferedReader = new BufferedReader(fileReader);
         ) {
-            final Stream<String> headline = withHeadline ? Stream.of("==> " + filename + " <==") : Stream.empty();
-            return Optional.of(readLeadingLinesWithHeadline(bufferedReader, headline));
+            final String headline = withHeadline ? "==> " + filename + " <==" : "";
+            final String fileContents = readLeadingLinesWithHeadline(bufferedReader);
+            if (withHeadline) {
+                final String fileContentsWithHeadline = String.join(System.lineSeparator(), headline, fileContents);
+                return Optional.of(fileContentsWithHeadline);
+            } else {
+                return Optional.of(fileContents);
+            }
         } catch (IOException e) {
             error.mapException(e);
             return Optional.empty();
         }
     }
 
-    private static String readLeadingLinesWithHeadline(final BufferedReader bufferedReader, final Stream<String> headline) {
+    private static String readLeadingLinesWithHeadline(final BufferedReader bufferedReader) {
         final Stream<String> leadingLines = bufferedReader.lines().limit(MAX_NUMBER_OF_LINES);
         final Collector<String, StringJoiner, String> joining = Collector.of(
                 () -> new StringJoiner(System.lineSeparator(), "", System.lineSeparator()).setEmptyValue(""),
@@ -67,6 +73,6 @@ public class Head {
                 (j1, j2) -> j1.merge(j2),
                 StringJoiner::toString
         );
-        return Stream.concat(headline, leadingLines).collect(joining);
+        return leadingLines.collect(joining);
     }
 }
