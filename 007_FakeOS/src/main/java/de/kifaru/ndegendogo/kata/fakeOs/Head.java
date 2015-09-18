@@ -54,7 +54,7 @@ public class Head {
             final String fileContentsWithoutHeadline = readLeadingLines(bufferedReader);
             String fileContents;
             if (withHeadline) {
-                final String headline = "==> " + filename + " <==";
+                final String headline = buildHeadline(filename);
                 fileContents = String.join(System.lineSeparator(), headline, fileContentsWithoutHeadline);
             } else {
                 fileContents = fileContentsWithoutHeadline;
@@ -64,6 +64,10 @@ public class Head {
             error.mapException(e);
             return Optional.empty();
         }
+    }
+
+    private static String buildHeadline(final String filename) {
+        return "==> " + filename + " <==";
     }
 
     private static String readLeadingLines(final BufferedReader bufferedReader) {
