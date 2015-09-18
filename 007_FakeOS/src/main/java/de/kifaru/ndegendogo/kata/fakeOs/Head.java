@@ -68,10 +68,7 @@ public class Head {
 
     private static void printLeadingLinesFromSingleFile(final PrintStream out, final String filename,
             final ErrorStatus error) {
-        Optional<String> fileContents = readLeadingLinesFromFile(filename, error);
-        if (fileContents.isPresent()) {
-            out.print(fileContents.get());
-        }
+        readLeadingLinesFromFile(filename, error).ifPresent(out::print);
     }
 
     private static Optional<String> readLeadingLinesFromFile(final String filename, final ErrorStatus error) {
