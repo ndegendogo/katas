@@ -51,14 +51,15 @@ public class Head {
             final FileReader fileReader = new FileReader(filename);
             final BufferedReader bufferedReader = new BufferedReader(fileReader);
         ) {
-            final String headline = withHeadline ? "==> " + filename + " <==" : "";
-            final String fileContents = readLeadingLines(bufferedReader);
+            final String fileContentsWithoutHeadline = readLeadingLines(bufferedReader);
+            String fileContents;
             if (withHeadline) {
-                final String fileContentsWithHeadline = String.join(System.lineSeparator(), headline, fileContents);
-                return Optional.of(fileContentsWithHeadline);
+                final String headline = "==> " + filename + " <==";
+                fileContents = String.join(System.lineSeparator(), headline, fileContentsWithoutHeadline);
             } else {
-                return Optional.of(fileContents);
+                fileContents = fileContentsWithoutHeadline;
             }
+            return Optional.of(fileContents);
         } catch (IOException e) {
             error.mapException(e);
             return Optional.empty();
