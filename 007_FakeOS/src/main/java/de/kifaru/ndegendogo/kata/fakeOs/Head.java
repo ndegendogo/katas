@@ -54,8 +54,7 @@ public class Head {
             final String fileContentsWithoutHeadline = readLeadingLines(bufferedReader);
             String fileContents;
             if (withHeadline) {
-                final String headline = buildHeadline(filename);
-                fileContents = String.join(System.lineSeparator(), headline, fileContentsWithoutHeadline);
+                fileContents = String.join(System.lineSeparator(), buildHeadline(filename), fileContentsWithoutHeadline);
             } else {
                 fileContents = fileContentsWithoutHeadline;
             }
