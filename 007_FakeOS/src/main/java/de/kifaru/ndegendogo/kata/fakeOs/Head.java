@@ -66,13 +66,14 @@ public class Head {
     }
 
     private static String readLeadingLines(final BufferedReader bufferedReader) {
-        final Stream<String> leadingLines = bufferedReader.lines().limit(MAX_NUMBER_OF_LINES);
         final Collector<String, StringJoiner, String> joining = Collector.of(
                 () -> new StringJoiner(System.lineSeparator(), "", System.lineSeparator()).setEmptyValue(""),
                 (j, s) -> j.add(s),
                 (j1, j2) -> j1.merge(j2),
                 StringJoiner::toString
         );
-        return leadingLines.collect(joining);
+        return bufferedReader.lines()
+                .limit(MAX_NUMBER_OF_LINES)
+                .collect(joining);
     }
 }
