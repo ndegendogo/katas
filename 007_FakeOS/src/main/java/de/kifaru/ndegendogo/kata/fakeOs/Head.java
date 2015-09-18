@@ -37,31 +37,30 @@ public class Head {
     private static void printLeadingLinesFromFiles(final PrintStream out, final String... filenames) throws IOException {
         final ErrorStatus error = new ErrorStatus();
         try(final OutputJoiner outputJoiner = new OutputJoiner(out)) {
-            final boolean withHeadline = filenames.length > 1;
-            if (withHeadline) {
+            if (filenames.length > 1) {
                 final Iterator<String> headlines = Arrays.asList(filenames)
                         .stream()
                         .map(filename -> buildHeadline(filename))
                         .iterator();
-                final Iterator<Optional<String>> fileContents = Arrays.asList(filenames)
+                final Stream<Optional<String>> fileContents = Arrays.asList(filenames)
                         .stream()
-                        .map(filename -> readLeadingLinesFromFile(filename, error))
+                        .map(filename -> readLeadingLinesFromFile(filename, error));
+                final Iterator<Optional<String>> contentsIterator = fileContents
                         .iterator();
-                while(headlines.hasNext() && fileContents.hasNext()) {
+                while(headlines.hasNext() && contentsIterator.hasNext()) {
                     final String nextHeadline = headlines.next();
-                    final Optional<String> nextFileContent = fileContents.next();
+                    final Optional<String> nextFileContent = contentsIterator.next();
                     if(nextFileContent.isPresent()) {
                         outputJoiner.print(nextHeadline);
                         outputJoiner.print(nextFileContent.get());
                     }
                 }
             } else {
-                final Stream<Optional<String>> fileContents = Arrays.asList(filenames)
-                        .stream()
-                        .map(filename -> readLeadingLinesFromFile(filename, error));
-                fileContents
-                        .filter(s -> s.isPresent())
-                        .forEach(s -> outputJoiner.print(s.get()));
+                final String filename = filenames[0];
+                Optional<String> fileContents = readLeadingLinesFromFile(filename, error);
+                if (fileContents.isPresent()) {
+                    out.print(fileContents.get());
+                }
             }
         }
         error.checkError();
