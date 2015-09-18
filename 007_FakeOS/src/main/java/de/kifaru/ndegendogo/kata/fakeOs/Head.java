@@ -56,11 +56,7 @@ public class Head {
                     }
                 }
             } else {
-                final String filename = filenames[0];
-                Optional<String> fileContents = readLeadingLinesFromFile(filename, error);
-                if (fileContents.isPresent()) {
-                    out.print(fileContents.get());
-                }
+                printLeadingLinesFromSingleFile(out, filenames[0], error);
             }
         }
         error.checkError();
@@ -68,6 +64,14 @@ public class Head {
 
     private static String buildHeadline(final String filename) {
         return "==> " + filename + " <==";
+    }
+
+    private static void printLeadingLinesFromSingleFile(final PrintStream out, final String filename,
+            final ErrorStatus error) {
+        Optional<String> fileContents = readLeadingLinesFromFile(filename, error);
+        if (fileContents.isPresent()) {
+            out.print(fileContents.get());
+        }
     }
 
     private static Optional<String> readLeadingLinesFromFile(final String filename, final ErrorStatus error) {
