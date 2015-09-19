@@ -11,6 +11,7 @@ HEAD_TESTCASES:= \
     headFrom1Emptyfile \
     headNonExistingFile \
     headExistingNonexistingExistingFile \
+    headReadProtected \
 
 .PHONY: test_head
 test_head: $(HEAD_TESTCASES)
@@ -31,11 +32,18 @@ headFrom3files: params:= data/8lines.txt data/11lines.txt data/1line.txt
 headFrom1Emptyfile: params:= data/empty
 headNonExistingFile: params:=data/nonExistingFile
 headExistingNonexistingExistingFile: params:=data/file1 data/nonExistingFile data/file2
+headReadProtected: params:=data/readProtected
  
 .PHONY: $(HEAD_TESTCASES)
 # verify exit status and output of the fakeOs Head program, use the original shell command as reference.
 $(HEAD_TESTCASES): head%: $(CLASSFILES) | $(TEMPPATH)
 	$(performBlackboxTest)
+
+.PHONY: headReadProtected
+headReadProtected: $(CLASSFILES) | $(TEMPPATH)
+	chmod a-r $(params)
+	$(performBlackboxTest)
+	chmod a+r $(params)
 
 # increase the loop limit from 100 to any number you like - only you have to wait then for a while ...
 VERY_LARGE_INPUT:=for ((i=0;i<100;i++)) do cat data/8lines.txt; done
