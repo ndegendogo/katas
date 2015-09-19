@@ -15,7 +15,7 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
 @RunWith(value = Parameterized.class)
-public class TestHeadParameterized {
+public class TestHeadGoodcase {
 
     @Parameters(name = "{0}")
     public static Iterable<Object[]>data() {
@@ -84,7 +84,7 @@ public class TestHeadParameterized {
     private final String[] inputLines;
     private final String[] expectedLines;
     
-    public TestHeadParameterized(final String testName, final String[] inputLines, final String[] expectedLines) {
+    public TestHeadGoodcase(final String testName, final String[] inputLines, final String[] expectedLines) {
         this.testName = testName;
         this.inputLines = inputLines;
         this.expectedLines = expectedLines;
