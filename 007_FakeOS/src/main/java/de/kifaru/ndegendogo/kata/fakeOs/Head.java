@@ -10,7 +10,6 @@ import java.util.Arrays;
 import java.util.Optional;
 import java.util.StringJoiner;
 import java.util.stream.Collector;
-import java.util.stream.Stream;
 
 public class Head {
 
