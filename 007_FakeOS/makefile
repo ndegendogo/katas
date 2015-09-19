@@ -18,6 +18,8 @@ MODULES:=$(basename $(notdir $(shell find $(SOURCEPATH)$(PACKAGEPATH) -name "*.j
 UNITTEST_MODULES:=$(basename $(notdir $(shell find $(TESTPATH)$(PACKAGEPATH) -name "*.java")))
 TESTCASE_MODULES:=$(basename $(notdir $(shell find $(TESTPATH)$(PACKAGEPATH) -name "Test*.java")))
 
+SOURCEFILES:=$(foreach module,$(MODULES),$(SOURCEPATH)$(PACKAGEPATH)$(module).java)
+UNITTEST_SOURCEFILES:=$(foreach module,$(UNITTEST_MODULES),$(TESTPATH)$(PACKAGEPATH)$(module).java)
 CLASSFILES:=$(foreach module,$(MODULES),$(CLASSPATH)$(PACKAGEPATH)$(module).class)
 UNITTEST_CLASSFILES:=$(foreach module,$(UNITTEST_MODULES),$(CLASSPATH)$(PACKAGEPATH)$(module).class)
 TESTCASE_CLASSFILES:=$(foreach module,$(TESTCASE_MODULES),$(CLASSPATH)$(PACKAGEPATH)$(module).class)
@@ -47,10 +49,10 @@ clean: cleanTempOutputFiles
 include BlackboxTests.mak
 
 $(CLASSPATH)%.class: $(SOURCEPATH)%.java | $(CLASSPATH)
-	javac $(JAVACFLAGS) $<
+	javac $(JAVACFLAGS) $(SOURCEFILES)
 
 $(CLASSPATH)%.class: $(TESTPATH)%.java | $(CLASSPATH)
-	javac $(JAVACFLAGS_TEST) $<
+	javac $(JAVACFLAGS_TEST) $(UNITTEST_SOURCEFILES)
 
 $(CLASSPATH):
 	mkdir $@
