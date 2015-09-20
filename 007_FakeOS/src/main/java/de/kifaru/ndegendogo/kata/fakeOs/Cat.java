@@ -10,10 +10,11 @@ import java.io.OutputStream;
 public class Cat {
 
     public static void main(final String... args) throws FileNotFoundException, IOException {
+        Cat cat = new Cat();
         boolean result = true;
-        final String[] filenames = getFilenames(args);
+        final String[] filenames = cat.getFilenames(args);
         for (final String name:filenames) {
-            if (!printFile(name)) {
+            if (!cat.printFile(name)) {
                 result = false;
             }
         }
@@ -22,19 +23,19 @@ public class Cat {
         }
     }
 
-    private static String[] getFilenames(final String... args) {
+    private String[] getFilenames(final String... args) {
         return (args.length == 0) ? new String[] {"-"} : args;
     }
 
-    private static boolean printFile(final String name) throws IOException {
+    private boolean printFile(final String name) throws IOException {
         return isFromStdIn(name) ? copyStream(System.in, System.out) : copyFile(name, System.out);
     }
 
-    private static boolean isFromStdIn(final String name) {
+    private boolean isFromStdIn(final String name) {
         return "-".equals(name);
     }
 
-    static boolean copyFile(final String filename, final OutputStream to) throws IOException {
+    boolean copyFile(final String filename, final OutputStream to) throws IOException {
         try (FileInputStream input = new FileInputStream(filename);
             BufferedInputStream bufferedIn = new BufferedInputStream(input); 
         ) {
@@ -44,7 +45,7 @@ public class Cat {
         }
     }
 
-    static boolean copyStream(final InputStream from, final OutputStream to) throws IOException {
+    boolean copyStream(final InputStream from, final OutputStream to) throws IOException {
         int nextByte;
         while((nextByte = from.read()) != -1) {
             to.write(nextByte);
