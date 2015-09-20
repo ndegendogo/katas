@@ -23,6 +23,7 @@ public class TestCat {
         });
     }
     
+    @SuppressWarnings("unused")
     private final String testName;
     private final String expectedContent;
     private final String filename;
