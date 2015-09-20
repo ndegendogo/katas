@@ -14,16 +14,18 @@ import java.util.stream.Collector;
 public class Head {
 
     private static final int MAX_NUMBER_OF_LINES = 10;
+    final PrintStream out;
     private final ErrorStatus error;
 
-    Head() {
+    Head(final PrintStream out) {
+        this.out = out;
         error = new ErrorStatus();
     }
     
     public static void main(final String... args) throws IOException {
-        final Head head = new Head();
+        final PrintStream out = System.out;
+        final Head head = new Head(out);
         try {
-            final PrintStream out = System.out;
             if (args.length == 0) {
                 head.printLeadingLines(out, new BufferedReader(new InputStreamReader(System.in)));
             } else {

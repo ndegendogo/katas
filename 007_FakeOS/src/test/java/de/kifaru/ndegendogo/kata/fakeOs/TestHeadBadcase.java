@@ -21,7 +21,7 @@ public class TestHeadBadcase {
         final MockOutputStream outputStream = new MockOutputStream();
         final PrintStream out = new PrintStream(outputStream);
 
-        final Head head = new Head();
+        final Head head = new Head(out);
         try {
             head.printLeadingLines(out, bufferedReader);
             fail();
