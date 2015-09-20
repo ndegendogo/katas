@@ -36,15 +36,11 @@ public class Cat {
 
     private void printAllFiles(final String... filenames) throws IOException {
         for (final String name:filenames) {
-            printFile(name);
-        }
-    }
-
-    private void printFile(final String name) throws IOException {
-        if(isFromStdIn(name)) {
-            copyStream(defaultInput);
-        } else {
-            copyFile(name);
+            if(isFromStdIn(name)) {
+                copyStream(defaultInput);
+            } else {
+                copyFile(name);
+            }
         }
     }
 
