@@ -15,11 +15,10 @@ public class Head {
 
     private static final int MAX_NUMBER_OF_LINES = 10;
     final PrintStream out;
-    private final ErrorStatus error;
+    private boolean error = false;
 
     Head(final PrintStream out) {
         this.out = out;
-        error = new ErrorStatus();
     }
     
     public static void main(final String... args) {
@@ -60,7 +59,7 @@ public class Head {
                     : fileContents;
             return Optional.of(result);
         } catch (IOException e) {
-            error.mapException(e);
+            error = true;
             return Optional.empty();
         }
     }
@@ -82,14 +81,12 @@ public class Head {
     }
     
     boolean hasError() {
+        if (error) {
+            return true;
+        }
         if (out.checkError()) {
             return true;
         }
-        try {
-            error.checkError();
-            return false;
-        } catch (Exception e) {
-            return true;
-        }
+        return false;
     }
 }
