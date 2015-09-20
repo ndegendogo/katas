@@ -35,21 +35,21 @@ public class TestCat {
     }
     
     @Test
-    public void testCopyFile() throws IOException {
+    public void testProcessSingleFile() throws IOException {
         final ByteArrayInputStream dummy = null;
         final ByteArrayOutputStream output = new ByteArrayOutputStream();
         Cat cat = new Cat(dummy, output);
-        cat.copyFile(filename);
+        cat.processSingleFile(filename);
         assertFalse(cat.hasError());
         assertEquals(expectedContent, output.toString());
     }
 
     @Test
-    public void testCopyStream() throws IOException {
+    public void testProcessDefault() throws IOException {
         final ByteArrayInputStream input = new ByteArrayInputStream(expectedContent.getBytes());
         final ByteArrayOutputStream output = new ByteArrayOutputStream();
         Cat cat = new Cat(input, output);
-        cat.copyFromDefault();
+        cat.processDefault();
         assertFalse(cat.hasError());
         assertEquals(expectedContent, output.toString());
     }

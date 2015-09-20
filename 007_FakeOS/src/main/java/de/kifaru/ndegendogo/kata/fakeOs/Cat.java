@@ -21,34 +21,34 @@ public class Cat {
     public static void main(final String... args) throws FileNotFoundException, IOException {
         final Cat cat = new Cat(System.in, System.out);
         if (args.length == 0) {
-            cat.copyFromDefault();
+            cat.processDefault();
         } else {
-            cat.printAllFiles(args);
+            cat.processAllFiles(args);
         }
         if (cat.hasError()) {
             System.exit(1);
         }
     }
 
-    void copyFromDefault() throws IOException {
+    void processDefault() throws IOException {
         copyStream(defaultInput);
     }
 
-    private void printAllFiles(final String... filenames) throws IOException {
+    private void processAllFiles(final String... filenames) throws IOException {
         for (final String name:filenames) {
-            if(isFromStdIn(name)) {
-                copyStream(defaultInput);
+            if(isDefault(name)) {
+                processDefault();
             } else {
-                copyFile(name);
+                processSingleFile(name);
             }
         }
     }
 
-    private boolean isFromStdIn(final String name) {
+    private boolean isDefault(final String name) {
         return "-".equals(name);
     }
 
-    void copyFile(final String filename) throws IOException {
+    void processSingleFile(final String filename) throws IOException {
         try (FileInputStream input = new FileInputStream(filename);
             BufferedInputStream bufferedIn = new BufferedInputStream(input); 
         ) {
