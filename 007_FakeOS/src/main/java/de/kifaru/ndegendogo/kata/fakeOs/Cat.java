@@ -9,15 +9,17 @@ import java.io.OutputStream;
 
 public class Cat {
 
+    private final InputStream defaultInput;
     private final OutputStream output;
     private boolean hasError = false;
 
-    public Cat(OutputStream output) {
+    public Cat(InputStream defaultInput, OutputStream output) {
+        this.defaultInput = defaultInput;
         this.output = output;
     }
 
     public static void main(final String... args) throws FileNotFoundException, IOException {
-        final Cat cat = new Cat(System.out);
+        final Cat cat = new Cat(System.in, System.out);
         if (args.length == 0) {
             cat.copyStream(System.in);
         } else {
