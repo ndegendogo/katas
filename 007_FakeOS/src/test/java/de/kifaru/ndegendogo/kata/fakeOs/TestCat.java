@@ -37,7 +37,7 @@ public class TestCat {
     @Test
     public void testCopyFile() throws IOException {
         final ByteArrayOutputStream output = new ByteArrayOutputStream();
-        Cat cat = new Cat();
+        Cat cat = new Cat(output);
         assertTrue(cat.copyFile(filename, output));
         assertEquals(expectedContent, output.toString());
     }
@@ -46,7 +46,7 @@ public class TestCat {
     public void testCopyStream() throws IOException {
         final ByteArrayInputStream input = new ByteArrayInputStream(expectedContent.getBytes());
         final ByteArrayOutputStream output = new ByteArrayOutputStream();
-        Cat cat = new Cat();
+        Cat cat = new Cat(output);
         assertTrue(cat.copyStream(input, output));
         assertEquals(expectedContent, output.toString());
     }

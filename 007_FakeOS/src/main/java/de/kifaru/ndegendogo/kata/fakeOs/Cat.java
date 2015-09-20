@@ -8,9 +8,16 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 public class Cat {
+    
+
+    private final OutputStream out;
+
+    public Cat(OutputStream out) {
+        this.out = out;
+    }
 
     public static void main(final String... args) throws FileNotFoundException, IOException {
-        Cat cat = new Cat();
+        Cat cat = new Cat(System.out);
         boolean result = true;
         final String[] filenames = cat.getFilenames(args);
         for (final String name:filenames) {
@@ -28,29 +35,29 @@ public class Cat {
     }
 
     private boolean printFile(final String name) throws IOException {
-        return isFromStdIn(name) ? copyStream(System.in, System.out) : copyFile(name, System.out);
+        return isFromStdIn(name) ? copyStream(System.in, out) : copyFile(name, out);
     }
 
     private boolean isFromStdIn(final String name) {
         return "-".equals(name);
     }
 
-    boolean copyFile(final String filename, final OutputStream to) throws IOException {
+    boolean copyFile(final String filename, final OutputStream out) throws IOException {
         try (FileInputStream input = new FileInputStream(filename);
             BufferedInputStream bufferedIn = new BufferedInputStream(input); 
         ) {
-            return copyStream(bufferedIn, to);
+            return copyStream(bufferedIn, out);
         } catch (FileNotFoundException e) {
             return false;
         }
     }
 
-    boolean copyStream(final InputStream from, final OutputStream to) throws IOException {
+    boolean copyStream(final InputStream from, final OutputStream out) throws IOException {
         int nextByte;
         while((nextByte = from.read()) != -1) {
-            to.write(nextByte);
+            out.write(nextByte);
         }
-        to.flush();
+        out.flush();
         return true;
     }
 
