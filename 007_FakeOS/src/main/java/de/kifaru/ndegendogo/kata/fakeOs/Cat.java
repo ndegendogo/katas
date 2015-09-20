@@ -35,24 +35,24 @@ public class Cat {
     }
 
     private boolean printFile(final String name) throws IOException {
-        return isFromStdIn(name) ? copyStream(System.in, out) : copyFile(name, out);
+        return isFromStdIn(name) ? copyStream(System.in) : copyFile(name);
     }
 
     private boolean isFromStdIn(final String name) {
         return "-".equals(name);
     }
 
-    boolean copyFile(final String filename, final OutputStream out) throws IOException {
+    boolean copyFile(final String filename) throws IOException {
         try (FileInputStream input = new FileInputStream(filename);
             BufferedInputStream bufferedIn = new BufferedInputStream(input); 
         ) {
-            return copyStream(bufferedIn, out);
+            return copyStream(bufferedIn);
         } catch (FileNotFoundException e) {
             return false;
         }
     }
 
-    boolean copyStream(final InputStream from, final OutputStream out) throws IOException {
+    boolean copyStream(final InputStream from) throws IOException {
         int nextByte;
         while((nextByte = from.read()) != -1) {
             out.write(nextByte);
