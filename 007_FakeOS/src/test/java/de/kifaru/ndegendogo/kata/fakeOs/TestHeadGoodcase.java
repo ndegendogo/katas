@@ -102,6 +102,7 @@ public class TestHeadGoodcase {
         head.printLeadingLines(bufferedReader);
         final String expectedOutput = concatenateLines(expectedLines);
         assertEquals(expectedOutput, outputStream.toString());
+        assertFalse(head.hasError());
     }
 
     private String concatenateLines(final String[] lines) {

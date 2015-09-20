@@ -24,9 +24,9 @@ public class TestHeadBadcase {
         final Head head = new Head(out);
         try {
             head.printLeadingLines(bufferedReader);
-            fail();
+            assertTrue(head.hasError());
         } catch (Exception e) {
-            // this is expected
+            fail();
         }
     }
     

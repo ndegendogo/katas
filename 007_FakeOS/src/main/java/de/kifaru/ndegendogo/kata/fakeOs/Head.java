@@ -22,27 +22,23 @@ public class Head {
         error = new ErrorStatus();
     }
     
-    public static void main(final String... args) throws IOException {
+    public static void main(final String... args) {
         final Head head = new Head(System.out);
-        try {
-            if (args.length == 0) {
-                head.printLeadingLines(new BufferedReader(new InputStreamReader(System.in)));
-            } else {
-                head.printLeadingLinesFromFiles(args);
-            }
-        } catch (Exception e) {
+        if (args.length == 0) {
+            head.printLeadingLines(new BufferedReader(new InputStreamReader(System.in)));
+        } else {
+            head.printLeadingLinesFromFiles(args);
+        }
+        if (head.hasError()) {
             System.exit(1);
         }
     }
 
-    void printLeadingLines(final BufferedReader bufferedReader) throws IOException {
+    void printLeadingLines(final BufferedReader bufferedReader) {
         out.print(readLeadingLines(bufferedReader));
-        if (out.checkError()) {
-            throw new IOException();
-        }
     }
 
-    private void printLeadingLinesFromFiles(final String... filenames) throws IOException {
+    private void printLeadingLinesFromFiles(final String... filenames) {
         try(final OutputJoiner outputJoiner = new OutputJoiner(out)) {
             final boolean withHeadline = filenames.length > 1;
             Arrays.asList(filenames)
@@ -50,10 +46,6 @@ public class Head {
                   .map(filename -> readLeadingLinesFromFile(filename, withHeadline))
                   .filter(s -> s.isPresent())
                   .forEach(s -> outputJoiner.print(s.get()));
-        }
-        error.checkError();
-        if (out.checkError()) {
-            throw new IOException();
         }
     }
 
@@ -87,5 +79,17 @@ public class Head {
         return bufferedReader.lines()
                 .limit(MAX_NUMBER_OF_LINES)
                 .collect(joining);
+    }
+    
+    boolean hasError() {
+        if (out.checkError()) {
+            return true;
+        }
+        try {
+            error.checkError();
+            return false;
+        } catch (Exception e) {
+            return true;
+        }
     }
 }
