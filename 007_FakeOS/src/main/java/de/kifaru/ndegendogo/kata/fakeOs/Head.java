@@ -14,6 +14,11 @@ import java.util.stream.Collector;
 public class Head {
 
     private static final int MAX_NUMBER_OF_LINES = 10;
+    private final ErrorStatus error;
+
+    Head() {
+        error = new ErrorStatus();
+    }
     
     public static void main(final String... args) throws IOException {
         final Head head = new Head();
@@ -37,7 +42,6 @@ public class Head {
     }
 
     private void printLeadingLinesFromFiles(final PrintStream out, final String... filenames) throws IOException {
-        final ErrorStatus error = new ErrorStatus();
         try(final OutputJoiner outputJoiner = new OutputJoiner(out)) {
             final boolean withHeadline = filenames.length > 1;
             Arrays.asList(filenames)
