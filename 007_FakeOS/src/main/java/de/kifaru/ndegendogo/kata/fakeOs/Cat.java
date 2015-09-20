@@ -23,12 +23,16 @@ public class Cat {
         if (args.length == 0) {
             cat.copyStream(cat.defaultInput);
         } else {
-            for (final String name:args) {
-                cat.printFile(name);
-            }
+            cat.printAllFiles(args);
         }
         if (cat.hasError()) {
             System.exit(1);
+        }
+    }
+
+    private void printAllFiles(final String... filenames) throws IOException {
+        for (final String name:filenames) {
+            printFile(name);
         }
     }
 
