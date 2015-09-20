@@ -20,9 +20,7 @@ public class Cat {
         Cat cat = new Cat(System.out);
         final String[] filenames = cat.getFilenames(args);
         for (final String name:filenames) {
-            if (!cat.printFile(name)) {
-                cat.hasError = true;
-            }
+            cat.printFile(name);
         }
         if (cat.hasError()) {
             System.exit(1);
@@ -33,31 +31,34 @@ public class Cat {
         return (args.length == 0) ? new String[] {"-"} : args;
     }
 
-    private boolean printFile(final String name) throws IOException {
-        return isFromStdIn(name) ? copyStream(System.in) : copyFile(name);
+    private void printFile(final String name) throws IOException {
+        if(isFromStdIn(name)) {
+            copyStream(System.in);
+        } else {
+            copyFile(name);
+        }
     }
 
     private boolean isFromStdIn(final String name) {
         return "-".equals(name);
     }
 
-    boolean copyFile(final String filename) throws IOException {
+    void copyFile(final String filename) throws IOException {
         try (FileInputStream input = new FileInputStream(filename);
             BufferedInputStream bufferedIn = new BufferedInputStream(input); 
         ) {
-            return copyStream(bufferedIn);
+            copyStream(bufferedIn);
         } catch (FileNotFoundException e) {
-            return false;
+            hasError = true;
         }
     }
 
-    boolean copyStream(final InputStream from) throws IOException {
+    void copyStream(final InputStream from) throws IOException {
         int nextByte;
         while((nextByte = from.read()) != -1) {
             out.write(nextByte);
         }
         out.flush();
-        return true;
     }
 
     boolean hasError() {

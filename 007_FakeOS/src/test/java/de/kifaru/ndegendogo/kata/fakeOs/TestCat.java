@@ -38,7 +38,8 @@ public class TestCat {
     public void testCopyFile() throws IOException {
         final ByteArrayOutputStream output = new ByteArrayOutputStream();
         Cat cat = new Cat(output);
-        assertTrue(cat.copyFile(filename));
+        cat.copyFile(filename);
+        assertFalse(cat.hasError());
         assertEquals(expectedContent, output.toString());
     }
 
@@ -47,7 +48,8 @@ public class TestCat {
         final ByteArrayInputStream input = new ByteArrayInputStream(expectedContent.getBytes());
         final ByteArrayOutputStream output = new ByteArrayOutputStream();
         Cat cat = new Cat(output);
-        assertTrue(cat.copyStream(input));
+        cat.copyStream(input);
+        assertFalse(cat.hasError());
         assertEquals(expectedContent, output.toString());
     }
 }
