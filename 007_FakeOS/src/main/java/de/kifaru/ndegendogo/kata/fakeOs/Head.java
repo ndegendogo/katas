@@ -46,7 +46,7 @@ public class Head {
             final boolean withHeadline = filenames.length > 1;
             Arrays.asList(filenames)
                   .stream()
-                  .map(filename -> readLeadingLinesFromFile(filename, withHeadline, error))
+                  .map(filename -> readLeadingLinesFromFile(filename, withHeadline))
                   .filter(s -> s.isPresent())
                   .forEach(s -> outputJoiner.print(s.get()));
         }
@@ -56,7 +56,7 @@ public class Head {
         }
     }
 
-    private Optional<String> readLeadingLinesFromFile(final String filename, final boolean withHeadline, final ErrorStatus error) {
+    private Optional<String> readLeadingLinesFromFile(final String filename, final boolean withHeadline) {
         try (
             final FileReader fileReader = new FileReader(filename);
             final BufferedReader bufferedReader = new BufferedReader(fileReader);
