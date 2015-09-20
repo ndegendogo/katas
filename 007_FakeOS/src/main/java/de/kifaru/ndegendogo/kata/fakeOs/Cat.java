@@ -18,14 +18,13 @@ public class Cat {
 
     public static void main(final String... args) throws FileNotFoundException, IOException {
         Cat cat = new Cat(System.out);
-        boolean result = false;
         final String[] filenames = cat.getFilenames(args);
         for (final String name:filenames) {
             if (!cat.printFile(name)) {
-                result = true;
+                cat.hasError = true;
             }
         }
-        if (result) {
+        if (cat.hasError()) {
             System.exit(1);
         }
     }
