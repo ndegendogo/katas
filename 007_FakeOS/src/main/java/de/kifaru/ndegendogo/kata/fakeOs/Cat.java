@@ -8,9 +8,9 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 public class Cat {
-    
 
     private final OutputStream out;
+    private boolean hasError = false;
 
     public Cat(OutputStream out) {
         this.out = out;
@@ -61,4 +61,7 @@ public class Cat {
         return true;
     }
 
+    boolean hasError() {
+        return (hasError);
+    }
 }
