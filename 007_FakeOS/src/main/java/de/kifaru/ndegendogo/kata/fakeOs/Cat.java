@@ -9,11 +9,11 @@ import java.io.OutputStream;
 
 public class Cat {
 
-    private final OutputStream out;
+    private final OutputStream output;
     private boolean hasError = false;
 
-    public Cat(OutputStream out) {
-        this.out = out;
+    public Cat(OutputStream output) {
+        this.output = output;
     }
 
     public static void main(final String... args) throws FileNotFoundException, IOException {
@@ -55,9 +55,9 @@ public class Cat {
     void copyStream(final InputStream from) throws IOException {
         int nextByte;
         while((nextByte = from.read()) != -1) {
-            out.write(nextByte);
+            output.write(nextByte);
         }
-        out.flush();
+        output.flush();
     }
 
     boolean hasError() {

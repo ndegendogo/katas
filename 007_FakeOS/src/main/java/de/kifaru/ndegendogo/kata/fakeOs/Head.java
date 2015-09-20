@@ -14,11 +14,11 @@ import java.util.stream.Collector;
 public class Head {
 
     private static final int MAX_NUMBER_OF_LINES = 10;
-    final PrintStream out;
+    final PrintStream output;
     private boolean hasError = false;
 
-    Head(final PrintStream out) {
-        this.out = out;
+    Head(final PrintStream output) {
+        this.output = output;
     }
     
     public static void main(final String... args) {
@@ -34,11 +34,11 @@ public class Head {
     }
 
     void printLeadingLines(final BufferedReader bufferedReader) {
-        out.print(readLeadingLines(bufferedReader));
+        output.print(readLeadingLines(bufferedReader));
     }
 
     private void printLeadingLinesFromFiles(final String... filenames) {
-        try(final OutputJoiner outputJoiner = new OutputJoiner(out)) {
+        try(final OutputJoiner outputJoiner = new OutputJoiner(output)) {
             final boolean withHeadline = filenames.length > 1;
             Arrays.asList(filenames)
                   .stream()
@@ -81,6 +81,6 @@ public class Head {
     }
     
     boolean hasError() {
-        return (hasError || out.checkError());
+        return (hasError || output.checkError());
     }
 }
