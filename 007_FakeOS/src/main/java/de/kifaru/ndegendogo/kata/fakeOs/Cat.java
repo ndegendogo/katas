@@ -21,7 +21,7 @@ public class Cat {
     public static void main(final String... args) throws FileNotFoundException, IOException {
         final Cat cat = new Cat(System.in, System.out);
         if (args.length == 0) {
-            cat.copyStream(System.in);
+            cat.copyStream(cat.defaultInput);
         } else {
             for (final String name:args) {
                 cat.printFile(name);
@@ -34,7 +34,7 @@ public class Cat {
 
     private void printFile(final String name) throws IOException {
         if(isFromStdIn(name)) {
-            copyStream(System.in);
+            copyStream(defaultInput);
         } else {
             copyFile(name);
         }
