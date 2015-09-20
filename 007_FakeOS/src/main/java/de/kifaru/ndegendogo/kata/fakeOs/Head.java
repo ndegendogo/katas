@@ -81,12 +81,6 @@ public class Head {
     }
     
     boolean hasError() {
-        if (error) {
-            return true;
-        }
-        if (out.checkError()) {
-            return true;
-        }
-        return false;
+        return (error || out.checkError());
     }
 }
