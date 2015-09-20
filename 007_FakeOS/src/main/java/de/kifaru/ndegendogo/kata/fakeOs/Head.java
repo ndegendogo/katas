@@ -46,6 +46,9 @@ public class Head {
                   .forEach(s -> outputJoiner.print(s.get()));
         }
         error.checkError();
+        if (out.checkError()) {
+            throw new IOException();
+        }
     }
 
     private static Optional<String> readLeadingLinesFromFile(final String filename, final boolean withHeadline, final ErrorStatus error) {
