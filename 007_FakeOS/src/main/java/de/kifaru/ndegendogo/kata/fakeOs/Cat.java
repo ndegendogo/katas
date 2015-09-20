@@ -17,18 +17,17 @@ public class Cat {
     }
 
     public static void main(final String... args) throws FileNotFoundException, IOException {
-        Cat cat = new Cat(System.out);
-        final String[] filenames = cat.getFilenames(args);
-        for (final String name:filenames) {
-            cat.printFile(name);
+        final Cat cat = new Cat(System.out);
+        if (args.length == 0) {
+            cat.copyStream(System.in);
+        } else {
+            for (final String name:args) {
+                cat.printFile(name);
+            }
         }
         if (cat.hasError()) {
             System.exit(1);
         }
-    }
-
-    private String[] getFilenames(final String... args) {
-        return (args.length == 0) ? new String[] {"-"} : args;
     }
 
     private void printFile(final String name) throws IOException {
