@@ -49,7 +49,7 @@ public class TestCat {
         final ByteArrayInputStream input = new ByteArrayInputStream(expectedContent.getBytes());
         final ByteArrayOutputStream output = new ByteArrayOutputStream();
         Cat cat = new Cat(input, output);
-        cat.copyStream(input);
+        cat.copyFromDefault();
         assertFalse(cat.hasError());
         assertEquals(expectedContent, output.toString());
     }

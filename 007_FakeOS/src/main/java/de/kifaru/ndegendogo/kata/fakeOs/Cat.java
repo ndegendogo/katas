@@ -21,13 +21,17 @@ public class Cat {
     public static void main(final String... args) throws FileNotFoundException, IOException {
         final Cat cat = new Cat(System.in, System.out);
         if (args.length == 0) {
-            cat.copyStream(cat.defaultInput);
+            cat.copyFromDefault();
         } else {
             cat.printAllFiles(args);
         }
         if (cat.hasError()) {
             System.exit(1);
         }
+    }
+
+    void copyFromDefault() throws IOException {
+        copyStream(defaultInput);
     }
 
     private void printAllFiles(final String... filenames) throws IOException {
