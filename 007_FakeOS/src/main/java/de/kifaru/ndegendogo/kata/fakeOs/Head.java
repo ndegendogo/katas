@@ -15,7 +15,7 @@ public class Head {
 
     private static final int MAX_NUMBER_OF_LINES = 10;
     final PrintStream out;
-    private boolean error = false;
+    private boolean hasError = false;
 
     Head(final PrintStream out) {
         this.out = out;
@@ -59,7 +59,7 @@ public class Head {
                     : fileContents;
             return Optional.of(result);
         } catch (IOException e) {
-            error = true;
+            hasError = true;
             return Optional.empty();
         }
     }
@@ -81,6 +81,6 @@ public class Head {
     }
     
     boolean hasError() {
-        return (error || out.checkError());
+        return (hasError || out.checkError());
     }
 }
