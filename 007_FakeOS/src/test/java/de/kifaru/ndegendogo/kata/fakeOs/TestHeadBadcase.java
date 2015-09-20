@@ -23,7 +23,7 @@ public class TestHeadBadcase {
 
         final Head head = new Head(out);
         try {
-            head.printLeadingLines(out, bufferedReader);
+            head.printLeadingLines(bufferedReader);
             fail();
         } catch (Exception e) {
             // this is expected

@@ -23,27 +23,26 @@ public class Head {
     }
     
     public static void main(final String... args) throws IOException {
-        final PrintStream out = System.out;
-        final Head head = new Head(out);
+        final Head head = new Head(System.out);
         try {
             if (args.length == 0) {
-                head.printLeadingLines(out, new BufferedReader(new InputStreamReader(System.in)));
+                head.printLeadingLines(new BufferedReader(new InputStreamReader(System.in)));
             } else {
-                head.printLeadingLinesFromFiles(out, args);
+                head.printLeadingLinesFromFiles(args);
             }
         } catch (Exception e) {
             System.exit(1);
         }
     }
 
-    void printLeadingLines(final PrintStream out, final BufferedReader bufferedReader) throws IOException {
+    void printLeadingLines(final BufferedReader bufferedReader) throws IOException {
         out.print(readLeadingLines(bufferedReader));
         if (out.checkError()) {
             throw new IOException();
         }
     }
 
-    private void printLeadingLinesFromFiles(final PrintStream out, final String... filenames) throws IOException {
+    private void printLeadingLinesFromFiles(final String... filenames) throws IOException {
         try(final OutputJoiner outputJoiner = new OutputJoiner(out)) {
             final boolean withHeadline = filenames.length > 1;
             Arrays.asList(filenames)
