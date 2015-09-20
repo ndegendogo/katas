@@ -30,6 +30,9 @@ public class Head {
 
     static void printLeadingLines(final PrintStream out, final BufferedReader bufferedReader) throws IOException {
         out.print(readLeadingLines(bufferedReader));
+        if (out.checkError()) {
+            throw new IOException();
+        }
     }
 
     private static void printLeadingLinesFromFiles(final PrintStream out, final String... filenames) throws IOException {
