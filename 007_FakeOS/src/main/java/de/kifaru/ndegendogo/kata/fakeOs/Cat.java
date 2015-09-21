@@ -25,18 +25,14 @@ public class Cat {
         if (args.length == 0) {
             cat.processDefault();
         } else {
-            cat.processAllFiles(args);
+            cat.processAll(args);
         }
         if (cat.hasError()) {
             System.exit(1);
         }
     }
 
-    void processDefault() throws IOException {
-        writeStreamToOutput(defaultInput);
-    }
-
-    private void processAllFiles(final String... filenames) throws IOException {
+    private void processAll(final String... filenames) throws IOException {
         for (final String name:filenames) {
             if(DEFAULT_INPUT.equals(name)) {
                 processDefault();
@@ -44,6 +40,10 @@ public class Cat {
                 processSingleFile(name);
             }
         }
+    }
+
+    void processDefault() throws IOException {
+        writeStreamToOutput(defaultInput);
     }
 
     void processSingleFile(final String filename) throws IOException {
