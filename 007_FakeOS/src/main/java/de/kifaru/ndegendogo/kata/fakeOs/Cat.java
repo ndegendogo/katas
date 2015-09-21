@@ -34,11 +34,15 @@ public class Cat {
 
     private void processAll(final String... filenames) throws IOException {
         for (final String name:filenames) {
-            if(DEFAULT_INPUT.equals(name)) {
-                processDefault();
-            } else {
-                processSingleFile(name);
-            }
+            processSingle(name);
+        }
+    }
+
+    private void processSingle(final String name) throws IOException {
+        if(DEFAULT_INPUT.equals(name)) {
+            processDefault();
+        } else {
+            processSingleFile(name);
         }
     }
 
