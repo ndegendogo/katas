@@ -44,6 +44,10 @@ public class TestHeadBadcase {
         final Head head = new Head(out);
         try {
             head.printLeadingLines(bufferedReader);
+            fail();
+        } catch (UncheckedIOException e) {
+            // This exception is expected.
+            // The current implementation of Head does not catch any unchecked exceptions.
         } catch (Exception e) {
             fail();
         }
