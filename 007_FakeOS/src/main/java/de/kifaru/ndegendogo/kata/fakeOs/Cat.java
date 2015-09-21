@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Arrays;
 
 public class Cat {
 
@@ -33,9 +34,8 @@ public class Cat {
     }
 
     private void processAll(final String... filenames) {
-        for (final String name:filenames) {
-            processSingle(name);
-        }
+        Arrays.asList(filenames).stream()
+            .forEach(name -> processSingle(name));
     }
 
     private void processSingle(final String name) {
