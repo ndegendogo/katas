@@ -13,7 +13,7 @@ import org.junit.Test;
 public class TestHeadBadcase {
 
     @Test
-    public void test() {
+    public void testBlockedOutput() {
         final String inputLines = "Line1" + System.lineSeparator() + "Line2" + System.lineSeparator();
         final StringReader stringReader = new StringReader(inputLines);
         final BufferedReader bufferedReader = new BufferedReader(stringReader);
@@ -29,7 +29,7 @@ public class TestHeadBadcase {
             fail();
         }
     }
-    
+        
     private class MockOutputStream extends OutputStream {
         final StringBuilder sink = new StringBuilder();        
         private int count = 0;
