@@ -56,9 +56,9 @@ public class Cat {
         }
     }
 
-    private void writeStreamToOutput(final InputStream from) throws IOException {
+    private void writeStreamToOutput(final InputStream source) throws IOException {
         int nextByte;
-        while((nextByte = from.read()) != -1) {
+        while((nextByte = source.read()) != -1) {
             output.write(nextByte);
         }
         output.flush();
