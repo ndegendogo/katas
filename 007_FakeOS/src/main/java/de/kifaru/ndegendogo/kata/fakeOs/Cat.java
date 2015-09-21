@@ -33,7 +33,7 @@ public class Cat {
     }
 
     void processDefault() throws IOException {
-        copyStream(defaultInput);
+        writeStreamToOutput(defaultInput);
     }
 
     private void processAllFiles(final String... filenames) throws IOException {
@@ -50,13 +50,13 @@ public class Cat {
         try (FileInputStream input = new FileInputStream(filename);
             BufferedInputStream bufferedIn = new BufferedInputStream(input); 
         ) {
-            copyStream(bufferedIn);
+            writeStreamToOutput(bufferedIn);
         } catch (FileNotFoundException e) {
             hasError = true;
         }
     }
 
-    void copyStream(final InputStream from) throws IOException {
+    private void writeStreamToOutput(final InputStream from) throws IOException {
         int nextByte;
         while((nextByte = from.read()) != -1) {
             output.write(nextByte);
