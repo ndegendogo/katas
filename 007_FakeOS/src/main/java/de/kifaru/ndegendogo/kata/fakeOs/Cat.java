@@ -32,17 +32,21 @@ public class Cat {
         }
     }
 
-    private void processAll(final String... filenames) throws IOException {
+    private void processAll(final String... filenames) {
         for (final String name:filenames) {
             processSingle(name);
         }
     }
 
-    private void processSingle(final String name) throws IOException {
-        if(DEFAULT_INPUT.equals(name)) {
-            processDefault();
-        } else {
-            processSingleFile(name);
+    private void processSingle(final String name) {
+        try {
+            if(DEFAULT_INPUT.equals(name)) {
+                processDefault();
+            } else {
+                processSingleFile(name);
+            }
+        } catch (IOException e) {
+            hasError = true;
         }
     }
 
@@ -55,8 +59,6 @@ public class Cat {
             BufferedInputStream bufferedIn = new BufferedInputStream(input); 
         ) {
             writeStreamToOutput(bufferedIn);
-        } catch (FileNotFoundException e) {
-            hasError = true;
         }
     }
 
