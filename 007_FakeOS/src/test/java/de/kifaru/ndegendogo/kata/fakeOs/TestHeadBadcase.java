@@ -3,10 +3,12 @@ package de.kifaru.ndegendogo.kata.fakeOs;
 import static org.junit.Assert.*;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.io.StringReader;
+import java.io.UncheckedIOException;
 
 import org.junit.Test;
 
@@ -30,6 +32,47 @@ public class TestHeadBadcase {
         }
     }
         
+    @Test
+    public void testBlockedInput() {
+        final String inputLines = "Line1" + System.lineSeparator() + "Line2" + System.lineSeparator();
+        final MockInputStream stringReader = new MockInputStream(inputLines);
+        final BufferedReader bufferedReader = new BufferedReader(stringReader);
+        
+        final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        final PrintStream out = new PrintStream(outputStream);
+        
+        final Head head = new Head(out);
+        try {
+            head.printLeadingLines(bufferedReader);
+        } catch (Exception e) {
+            fail();
+        }
+    }
+    
+    private class MockInputStream extends StringReader {
+        MockInputStream(final String input) {
+            super(input);
+        }
+        
+        public int read() throws IOException {
+            int result = super.read();
+            if (result == '\n') {
+                throw new IOException();
+            }
+            return result;
+        }
+        
+        public int read(char[] cbuf, int off, int len) throws IOException {
+            int result = super.read(cbuf, off, len);
+            if (result >= 0) {
+                if (new String(cbuf, off, result).indexOf('\n') >= 0) {
+                    throw new IOException();
+                }
+            }
+            return result;
+        }
+    }
+    
     private class MockOutputStream extends OutputStream {
         final StringBuilder sink = new StringBuilder();        
         private int count = 0;
