@@ -9,6 +9,8 @@ import java.io.OutputStream;
 
 public class Cat {
 
+    private static final String DEFAULT_INPUT= "-";
+
     private final InputStream defaultInput;
     private final OutputStream output;
     private boolean hasError = false;
@@ -45,7 +47,7 @@ public class Cat {
     }
 
     private boolean isDefault(final String name) {
-        return "-".equals(name);
+        return DEFAULT_INPUT.equals(name);
     }
 
     void processSingleFile(final String filename) throws IOException {
