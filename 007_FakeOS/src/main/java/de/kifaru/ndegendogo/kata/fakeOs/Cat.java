@@ -38,16 +38,12 @@ public class Cat {
 
     private void processAllFiles(final String... filenames) throws IOException {
         for (final String name:filenames) {
-            if(isDefault(name)) {
+            if(DEFAULT_INPUT.equals(name)) {
                 processDefault();
             } else {
                 processSingleFile(name);
             }
         }
-    }
-
-    private boolean isDefault(final String name) {
-        return DEFAULT_INPUT.equals(name);
     }
 
     void processSingleFile(final String filename) throws IOException {
