@@ -15,7 +15,7 @@ public class Head {
 
     protected static final int MAX_NUMBER_OF_LINES = 10;
     final protected PrintStream output;
-    protected boolean hasError = false;
+    private boolean hasError = false;
 
     Head(final PrintStream output) {
         this.output = output;

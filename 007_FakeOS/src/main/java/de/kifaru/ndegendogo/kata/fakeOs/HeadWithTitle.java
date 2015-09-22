@@ -21,7 +21,7 @@ public class HeadWithTitle extends Head {
             final String result = String.join(System.lineSeparator(), buildHeadline(filename), fileContents);
             return Optional.of(result);
         } catch (IOException e) {
-            hasError = true;
+            setError();
             return Optional.empty();
         }
     }
