@@ -8,8 +8,8 @@ import java.util.Optional;
 
 public class HeadWithTitle extends Head {
 
-    HeadWithTitle(final PrintStream output) {
-        super(new OutputJoiner(output));
+    HeadWithTitle(final BufferedReader defaultInput, final PrintStream output) {
+        super(defaultInput, new OutputJoiner(output));
     }
 
     protected Optional<String> readLeadingLinesFromFile(final String filename) {

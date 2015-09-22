@@ -14,18 +14,20 @@ import java.util.stream.Collector;
 public class Head {
 
     protected static final int MAX_NUMBER_OF_LINES = 10;
+    private BufferedReader defaultInput;
     final protected PrintStream output;
     private boolean hasError = false;
 
-    Head(final PrintStream output) {
+    Head(BufferedReader defaultInput, final PrintStream output) {
+        this.defaultInput = defaultInput;
         this.output = output;
     }
     
     public static void main(final String... args) {
         final BufferedReader defaultInput = new BufferedReader(new InputStreamReader(System.in));
-        final Head head = (args.length >= 2) ? new HeadWithTitle(System.out) : new Head(System.out);
+        final Head head = (args.length >= 2) ? new HeadWithTitle(defaultInput, System.out) : new Head(defaultInput, System.out);
         if (args.length == 0) {
-            head.printLeadingLines(defaultInput);
+            head.printLeadingLines(head.defaultInput);
         } else {
             head.printLeadingLinesFromFiles(args);
         }

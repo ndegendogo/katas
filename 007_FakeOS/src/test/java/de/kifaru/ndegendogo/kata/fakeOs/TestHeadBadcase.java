@@ -23,7 +23,7 @@ public class TestHeadBadcase {
         final MockOutputStream outputStream = new MockOutputStream();
         final PrintStream out = new PrintStream(outputStream);
 
-        final Head head = new Head(out);
+        final Head head = new Head(bufferedReader, out);
         try {
             head.printLeadingLines(bufferedReader);
             assertTrue(head.hasError());
@@ -41,7 +41,7 @@ public class TestHeadBadcase {
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         final PrintStream out = new PrintStream(outputStream);
         
-        final Head head = new Head(out);
+        final Head head = new Head(bufferedReader, out);
         try {
             head.printLeadingLines(bufferedReader);
             fail();
