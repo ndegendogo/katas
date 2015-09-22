@@ -93,13 +93,13 @@ public class TestHeadGoodcase {
     @Test
     public void testPrintLeadingLines() throws IOException {
         final StringReader stringReader = new StringReader(concatenateLines(inputLines));
-        final BufferedReader bufferedReader = new BufferedReader(stringReader);
+        final BufferedReader input = new BufferedReader(stringReader);
         
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        final PrintStream out = new PrintStream(outputStream);
+        final PrintStream output = new PrintStream(outputStream);
 
-        final Head head = new Head(bufferedReader, out);
-        head.printLeadingLines(bufferedReader);
+        final Head head = new Head(input, output);
+        head.printLeadingLines(input);
         final String expectedOutput = concatenateLines(expectedLines);
         assertEquals(expectedOutput, outputStream.toString());
         assertFalse(head.hasError());

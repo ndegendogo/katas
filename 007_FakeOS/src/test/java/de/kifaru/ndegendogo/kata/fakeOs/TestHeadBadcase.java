@@ -18,14 +18,14 @@ public class TestHeadBadcase {
     public void testBlockedOutput() {
         final String inputLines = "Line1" + System.lineSeparator() + "Line2" + System.lineSeparator();
         final StringReader stringReader = new StringReader(inputLines);
-        final BufferedReader bufferedReader = new BufferedReader(stringReader);
+        final BufferedReader input = new BufferedReader(stringReader);
         
-        final MockOutputStream outputStream = new MockOutputStream();
-        final PrintStream out = new PrintStream(outputStream);
+        final MockBlockedOutputStream blockedOutputStream = new MockBlockedOutputStream();
+        final PrintStream blockedOutput = new PrintStream(blockedOutputStream);
 
-        final Head head = new Head(bufferedReader, out);
+        final Head head = new Head(input, blockedOutput);
         try {
-            head.printLeadingLines(bufferedReader);
+            head.printLeadingLines(input);
             assertTrue(head.hasError());
         } catch (Exception e) {
             fail();
@@ -35,15 +35,15 @@ public class TestHeadBadcase {
     @Test
     public void testBlockedInput() {
         final String inputLines = "Line1" + System.lineSeparator() + "Line2" + System.lineSeparator();
-        final MockInputStream stringReader = new MockInputStream(inputLines);
-        final BufferedReader bufferedReader = new BufferedReader(stringReader);
+        final MockBlockedInputStream blockedReader = new MockBlockedInputStream(inputLines);
+        final BufferedReader blockedInput = new BufferedReader(blockedReader);
         
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        final PrintStream out = new PrintStream(outputStream);
+        final PrintStream output = new PrintStream(outputStream);
         
-        final Head head = new Head(bufferedReader, out);
+        final Head head = new Head(blockedInput, output);
         try {
-            head.printLeadingLines(bufferedReader);
+            head.printLeadingLines(blockedInput);
             fail();
         } catch (UncheckedIOException e) {
             // This exception is expected.
@@ -53,8 +53,8 @@ public class TestHeadBadcase {
         }
     }
     
-    private class MockInputStream extends StringReader {
-        MockInputStream(final String input) {
+    private class MockBlockedInputStream extends StringReader {
+        MockBlockedInputStream(final String input) {
             super(input);
         }
         
@@ -77,7 +77,7 @@ public class TestHeadBadcase {
         }
     }
     
-    private class MockOutputStream extends OutputStream {
+    private class MockBlockedOutputStream extends OutputStream {
         final StringBuilder sink = new StringBuilder();        
         private int count = 0;
         
