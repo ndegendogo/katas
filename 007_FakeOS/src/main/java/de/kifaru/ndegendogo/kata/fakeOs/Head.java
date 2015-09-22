@@ -38,7 +38,6 @@ public class Head {
     }
 
     private void printLeadingLinesFromFiles(final String... filenames) {
-        final boolean withHeadline = filenames.length > 1;
         Arrays.asList(filenames)
               .stream()
               .map(filename -> readLeadingLinesFromFile(filename))
