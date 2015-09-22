@@ -53,9 +53,7 @@ public class Head {
         ) {
             withHeadline = false;
             final String fileContents = readLeadingLines(bufferedReader);
-            final String result = withHeadline 
-                    ? String.join(System.lineSeparator(), buildHeadline(filename), fileContents)
-                    : fileContents;
+            final String result = fileContents;
             return Optional.of(result);
         } catch (IOException e) {
             hasError = true;

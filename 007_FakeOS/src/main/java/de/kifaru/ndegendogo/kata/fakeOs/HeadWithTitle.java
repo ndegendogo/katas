@@ -19,9 +19,7 @@ public class HeadWithTitle extends Head {
         ) {
             withHeadline = true;
             final String fileContents = readLeadingLines(bufferedReader);
-            final String result = withHeadline 
-                    ? String.join(System.lineSeparator(), buildHeadline(filename), fileContents)
-                    : fileContents;
+            final String result = String.join(System.lineSeparator(), buildHeadline(filename), fileContents);
             return Optional.of(result);
         } catch (IOException e) {
             hasError = true;
