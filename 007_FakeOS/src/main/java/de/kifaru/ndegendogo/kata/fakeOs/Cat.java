@@ -27,9 +27,7 @@ public class Cat {
         } else {
             cat.processAll(args);
         }
-        if (cat.hasError()) {
-            System.exit(1);
-        }
+        cat.handleError();
     }
 
     private void processAll(final String... filenames) {
@@ -73,5 +71,11 @@ public class Cat {
 
     boolean hasError() {
         return (hasError);
+    }
+
+    private void handleError() {
+        if (hasError()) {
+            System.exit(1);
+        }
     }
 }
