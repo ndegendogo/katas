@@ -53,7 +53,7 @@ public class Cat {
         ) {
             writeStreamToOutput(bufferedIn);
         } catch (IOException e) {
-            hasError = true;
+            setError();
         }
     }
 
@@ -65,8 +65,12 @@ public class Cat {
             }
             output.flush();
         } catch (IOException e) {
-            hasError = true;
+            setError();
         }
+    }
+
+    private boolean setError() {
+        return hasError = true;
     }
 
     boolean hasError() {
