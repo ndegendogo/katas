@@ -17,6 +17,7 @@ public class HeadWithTitle extends Head {
             final FileReader fileReader = new FileReader(filename);
             final BufferedReader bufferedReader = new BufferedReader(fileReader);
         ) {
+            withHeadline = true;
             final String fileContents = readLeadingLines(bufferedReader);
             final String result = withHeadline 
                     ? String.join(System.lineSeparator(), buildHeadline(filename), fileContents)
