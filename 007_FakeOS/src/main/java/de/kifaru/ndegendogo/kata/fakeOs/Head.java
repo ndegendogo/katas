@@ -13,16 +13,16 @@ import java.util.stream.Collector;
 
 public class Head {
 
-    private static final int MAX_NUMBER_OF_LINES = 10;
-    final PrintStream output;
-    private boolean hasError = false;
+    protected static final int MAX_NUMBER_OF_LINES = 10;
+    final protected PrintStream output;
+    protected boolean hasError = false;
 
     Head(final PrintStream output) {
         this.output = output;
     }
     
     public static void main(final String... args) {
-        final Head head = new Head(System.out);
+        final Head head = (args.length >= 2) ? new HeadWithTitle(System.out) : new Head(System.out);
         if (args.length == 0) {
             head.printLeadingLines(new BufferedReader(new InputStreamReader(System.in)));
         } else {
