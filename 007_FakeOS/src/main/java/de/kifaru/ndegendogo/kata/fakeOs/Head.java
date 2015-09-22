@@ -52,7 +52,7 @@ public class Head {
             final String result = fileContents;
             return Optional.of(result);
         } catch (IOException e) {
-            hasError = true;
+            setError();
             return Optional.empty();
         }
     }
@@ -73,6 +73,10 @@ public class Head {
                 .collect(joining);
     }
     
+    protected boolean setError() {
+        return hasError = true;
+    }
+
     boolean hasError() {
         return (hasError || output.checkError());
     }
