@@ -12,12 +12,11 @@ public class HeadWithTitle extends Head {
         super(new OutputJoiner(output));
     }
 
-    protected Optional<String> readLeadingLinesFromFile(final String filename, boolean withHeadline) {
+    protected Optional<String> readLeadingLinesFromFile(final String filename) {
         try (
             final FileReader fileReader = new FileReader(filename);
             final BufferedReader bufferedReader = new BufferedReader(fileReader);
         ) {
-            withHeadline = true;
             final String fileContents = readLeadingLines(bufferedReader);
             final String result = String.join(System.lineSeparator(), buildHeadline(filename), fileContents);
             return Optional.of(result);

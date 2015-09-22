@@ -41,17 +41,16 @@ public class Head {
         final boolean withHeadline = filenames.length > 1;
         Arrays.asList(filenames)
               .stream()
-              .map(filename -> readLeadingLinesFromFile(filename, withHeadline))
+              .map(filename -> readLeadingLinesFromFile(filename))
               .filter(s -> s.isPresent())
               .forEach(s -> output.print(s.get()));
     }
 
-    protected Optional<String> readLeadingLinesFromFile(final String filename, boolean withHeadline) {
+    protected Optional<String> readLeadingLinesFromFile(final String filename) {
         try (
             final FileReader fileReader = new FileReader(filename);
             final BufferedReader bufferedReader = new BufferedReader(fileReader);
         ) {
-            withHeadline = false;
             final String fileContents = readLeadingLines(bufferedReader);
             final String result = fileContents;
             return Optional.of(result);
