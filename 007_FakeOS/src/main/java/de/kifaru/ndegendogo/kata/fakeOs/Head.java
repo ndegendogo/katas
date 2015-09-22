@@ -28,9 +28,7 @@ public class Head {
         } else {
             head.printLeadingLinesFromFiles(args);
         }
-        if (head.hasError()) {
-            System.exit(1);
-        }
+        head.handleError();
     }
 
     void printLeadingLines(final BufferedReader bufferedReader) {
@@ -77,5 +75,11 @@ public class Head {
     
     boolean hasError() {
         return (hasError || output.checkError());
+    }
+
+    private void handleError() {
+        if (hasError()) {
+            System.exit(1);
+        }
     }
 }
