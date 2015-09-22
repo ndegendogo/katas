@@ -5,6 +5,6 @@ import java.io.PrintStream;
 public class HeadWithTitle extends Head {
 
     HeadWithTitle(final PrintStream output) {
-        super(output);
+        super(new OutputJoiner(output));
     }
 }

@@ -38,14 +38,12 @@ public class Head {
     }
 
     private void printLeadingLinesFromFiles(final String... filenames) {
-        try(final OutputJoiner outputJoiner = new OutputJoiner(output)) {
-            final boolean withHeadline = filenames.length > 1;
-            Arrays.asList(filenames)
-                  .stream()
-                  .map(filename -> readLeadingLinesFromFile(filename, withHeadline))
-                  .filter(s -> s.isPresent())
-                  .forEach(s -> outputJoiner.print(s.get()));
-        }
+        final boolean withHeadline = filenames.length > 1;
+        Arrays.asList(filenames)
+              .stream()
+              .map(filename -> readLeadingLinesFromFile(filename, withHeadline))
+              .filter(s -> s.isPresent())
+              .forEach(s -> output.print(s.get()));
     }
 
     private Optional<String> readLeadingLinesFromFile(final String filename, final boolean withHeadline) {
