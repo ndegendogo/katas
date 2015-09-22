@@ -22,9 +22,10 @@ public class Head {
     }
     
     public static void main(final String... args) {
+        final BufferedReader defaultInput = new BufferedReader(new InputStreamReader(System.in));
         final Head head = (args.length >= 2) ? new HeadWithTitle(System.out) : new Head(System.out);
         if (args.length == 0) {
-            head.printLeadingLines(new BufferedReader(new InputStreamReader(System.in)));
+            head.printLeadingLines(defaultInput);
         } else {
             head.printLeadingLinesFromFiles(args);
         }
