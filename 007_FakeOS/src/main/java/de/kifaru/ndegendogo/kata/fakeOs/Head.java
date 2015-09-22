@@ -46,7 +46,7 @@ public class Head {
               .forEach(s -> output.print(s.get()));
     }
 
-    private Optional<String> readLeadingLinesFromFile(final String filename, final boolean withHeadline) {
+    protected Optional<String> readLeadingLinesFromFile(final String filename, boolean withHeadline) {
         try (
             final FileReader fileReader = new FileReader(filename);
             final BufferedReader bufferedReader = new BufferedReader(fileReader);
@@ -62,11 +62,11 @@ public class Head {
         }
     }
 
-    private String buildHeadline(final String filename) {
+    protected String buildHeadline(final String filename) {
         return "==> " + filename + " <==";
     }
 
-    private String readLeadingLines(final BufferedReader bufferedReader) {
+    protected String readLeadingLines(final BufferedReader bufferedReader) {
         final Collector<String, StringJoiner, String> joining = Collector.of(
                 () -> new StringJoiner(System.lineSeparator(), "", System.lineSeparator()).setEmptyValue(""),
                 (j, s) -> j.add(s),
