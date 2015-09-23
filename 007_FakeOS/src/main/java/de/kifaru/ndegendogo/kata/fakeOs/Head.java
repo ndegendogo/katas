@@ -51,16 +51,11 @@ public class Head {
             final FileReader fileReader = new FileReader(filename);
             final BufferedReader bufferedReader = new BufferedReader(fileReader);
         ) {
-            final String fileContents = readLeadingLines(bufferedReader);
-            return Optional.of(fileContents);
+            return Optional.of(readLeadingLines(bufferedReader));
         } catch (IOException e) {
             setError();
             return Optional.empty();
         }
-    }
-
-    protected String buildHeadline(final String filename) {
-        return "==> " + filename + " <==";
     }
 
     protected String readLeadingLines(final BufferedReader bufferedReader) {
