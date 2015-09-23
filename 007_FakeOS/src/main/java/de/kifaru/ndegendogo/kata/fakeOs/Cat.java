@@ -25,7 +25,7 @@ public class Cat {
         cat.process(args);
     }
 
-    protected void process(final String... filenames) {
+    private void process(final String... filenames) {
         if (filenames.length == 0) {
             processDefault();
         } else {

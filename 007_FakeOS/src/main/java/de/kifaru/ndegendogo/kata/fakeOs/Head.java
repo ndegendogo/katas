@@ -13,9 +13,9 @@ import java.util.stream.Collector;
 
 public class Head {
 
-    protected static final int MAX_NUMBER_OF_LINES = 10;
+    private static final int MAX_NUMBER_OF_LINES = 10;
     private BufferedReader defaultInput;
-    final protected PrintStream output;
+    final private PrintStream output;
     private boolean hasError = false;
 
     Head(BufferedReader defaultInput, final PrintStream output) {
@@ -70,7 +70,7 @@ public class Head {
         }
     }
 
-    protected String readLeadingLines(final BufferedReader bufferedReader) {
+    private String readLeadingLines(final BufferedReader bufferedReader) {
         final Collector<String, StringJoiner, String> joining = Collector.of(
                 () -> new StringJoiner(System.lineSeparator(), "", System.lineSeparator()).setEmptyValue(""),
                 (j, s) -> j.add(s),
@@ -82,7 +82,7 @@ public class Head {
                 .collect(joining);
     }
     
-    protected boolean setError() {
+    private boolean setError() {
         return hasError = true;
     }
 
