@@ -22,12 +22,20 @@ public class Cat {
 
     public static void main(final String... args) {
         final Cat cat = new Cat(System.in, System.out);
-        if (args.length == 0) {
-            cat.processDefault();
+        cat.process(args);
+    }
+
+    protected void process(final String... filenames) {
+        if (filenames.length == 0) {
+            processDefault();
         } else {
-            cat.processAll(args);
+            processAll(filenames);
         }
-        cat.handleError();
+        handleError();
+    }
+
+    void processDefault() {
+        writeStreamToOutput(defaultInput);
     }
 
     private void processAll(final String... filenames) {
@@ -41,10 +49,6 @@ public class Cat {
         } else {
             processSingleFile(name);
         }
-    }
-
-    void processDefault() {
-        writeStreamToOutput(defaultInput);
     }
 
     void processSingleFile(final String filename)  {
