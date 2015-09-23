@@ -26,12 +26,16 @@ public class Head {
     public static void main(final String... args) {
         final BufferedReader defaultInput = new BufferedReader(new InputStreamReader(System.in));
         final Head head = (args.length >= 2) ? new HeadWithTitle(defaultInput, System.out) : new Head(defaultInput, System.out);
+        head.process(args);
+    }
+
+    private void process(final String... args) {
         if (args.length == 0) {
-            head.printLeadingLines(head.defaultInput);
+            printLeadingLines(defaultInput);
         } else {
-            head.printLeadingLinesFromFiles(args);
+            printLeadingLinesFromFiles(args);
         }
-        head.handleError();
+        handleError();
     }
 
     void printLeadingLines(final BufferedReader bufferedReader) {
