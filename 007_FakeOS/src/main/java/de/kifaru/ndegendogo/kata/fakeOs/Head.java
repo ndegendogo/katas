@@ -29,13 +29,21 @@ public class Head {
         head.process(args);
     }
 
-    private void process(final String... args) {
-        if (args.length == 0) {
-            printLeadingLines(defaultInput);
+    private void process(final String... filenames) {
+        if (filenames.length == 0) {
+            processDefault();
         } else {
-            printLeadingLinesFromFiles(args);
+            processAll(filenames);
         }
         handleError();
+    }
+
+    private void processDefault() {
+        printLeadingLines(defaultInput);
+    }
+
+    private void processAll(final String... filenames) {
+        printLeadingLinesFromFiles(filenames);
     }
 
     void printLeadingLines(final BufferedReader bufferedReader) {
