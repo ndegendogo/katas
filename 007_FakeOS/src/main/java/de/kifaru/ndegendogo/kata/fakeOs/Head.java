@@ -52,8 +52,7 @@ public class Head {
             final BufferedReader bufferedReader = new BufferedReader(fileReader);
         ) {
             final String fileContents = readLeadingLines(bufferedReader);
-            final String result = fileContents;
-            return Optional.of(result);
+            return Optional.of(fileContents);
         } catch (IOException e) {
             setError();
             return Optional.empty();
