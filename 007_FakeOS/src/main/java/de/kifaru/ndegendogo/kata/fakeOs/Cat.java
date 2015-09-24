@@ -24,7 +24,7 @@ public class Cat extends FileCommand {
         cat.process(args);
     }
 
-    private void process(final String... filenames) {
+    protected void process(final String... filenames) {
         if (filenames.length == 0) {
             processDefault();
         } else {
@@ -37,12 +37,12 @@ public class Cat extends FileCommand {
         writeStreamToOutput(defaultInput);
     }
 
-    private void processAll(final String... filenames) {
+    protected void processAll(final String... filenames) {
         Arrays.asList(filenames).stream()
             .forEach(name -> processSingle(name));
     }
 
-    private void processSingle(final String name) {
+    protected void processSingle(final String name) {
         if(DEFAULT_INPUT.equals(name)) {
             processDefault();
         } else {

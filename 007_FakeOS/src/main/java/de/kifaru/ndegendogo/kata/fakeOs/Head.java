@@ -28,7 +28,7 @@ public class Head extends FileCommand {
         head.process(args);
     }
 
-    private void process(final String... filenames) {
+    protected void process(final String... filenames) {
         if (filenames.length == 0) {
             processDefault();
         } else {
@@ -37,11 +37,11 @@ public class Head extends FileCommand {
         handleError();
     }
 
-    private void processDefault() {
+    protected void processDefault() {
         printLeadingLines(defaultInput);
     }
 
-    private void processAll(final String... filenames) {
+    protected void processAll(final String... filenames) {
         printLeadingLinesFromFiles(filenames);
     }
 
