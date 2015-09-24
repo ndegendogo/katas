@@ -1,5 +1,7 @@
 package de.kifaru.ndegendogo.kata.fakeOs;
 
+import java.io.InputStream;
+
 public class FileCommand {
 
     protected boolean hasError = false;
@@ -19,6 +21,15 @@ public class FileCommand {
     protected void processAll(final String... filenames) {
     }
 
+    protected void processSingle(final String name) {
+    }
+    
+    void processSingleFile(final String filename)  {
+    }
+    
+    void doIt(final InputStream source) {
+    }
+    
     protected boolean setError() {
         return hasError = true;
     }
