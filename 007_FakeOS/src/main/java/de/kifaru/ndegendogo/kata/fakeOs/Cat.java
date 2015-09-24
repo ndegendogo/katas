@@ -20,17 +20,8 @@ public class Cat extends FileCommand {
     }
 
     public static void main(final String... args) {
-        final Cat cat = new Cat(System.in, System.out);
+        final FileCommand cat = new Cat(System.in, System.out);
         cat.process(args);
-    }
-
-    protected void process(final String... filenames) {
-        if (filenames.length == 0) {
-            processDefault();
-        } else {
-            processAll(filenames);
-        }
-        handleError();
     }
 
     void processDefault() {

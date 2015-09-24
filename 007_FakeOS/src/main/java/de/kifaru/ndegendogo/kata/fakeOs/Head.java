@@ -24,17 +24,8 @@ public class Head extends FileCommand {
     
     public static void main(final String... args) {
         final BufferedReader defaultInput = new BufferedReader(new InputStreamReader(System.in));
-        final Head head = (args.length >= 2) ? new HeadWithTitle(defaultInput, System.out) : new Head(defaultInput, System.out);
+        final FileCommand head = (args.length >= 2) ? new HeadWithTitle(defaultInput, System.out) : new Head(defaultInput, System.out);
         head.process(args);
-    }
-
-    protected void process(final String... filenames) {
-        if (filenames.length == 0) {
-            processDefault();
-        } else {
-            processAll(filenames);
-        }
-        handleError();
     }
 
     protected void processDefault() {
