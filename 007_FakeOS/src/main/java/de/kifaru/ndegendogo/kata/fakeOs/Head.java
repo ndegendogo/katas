@@ -25,14 +25,14 @@ public class Head extends FileCommand {
     public static void main(final String... args) {
         final BufferedReader defaultInput = new BufferedReader(new InputStreamReader(System.in));
         final FileCommand head = (args.length >= 2) ? new HeadWithTitle(defaultInput, System.out) : new Head(defaultInput, System.out);
-        head.process(args);
+        head.processAll(args);
     }
 
     protected void processDefault() {
         printLeadingLines(defaultInput);
     }
 
-    protected void processAll(final String... filenames) {
+    protected void processMulti(final String... filenames) {
         printLeadingLinesFromFiles(filenames);
     }
 

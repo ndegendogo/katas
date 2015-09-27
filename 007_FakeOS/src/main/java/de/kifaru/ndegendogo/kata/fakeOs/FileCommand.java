@@ -6,11 +6,11 @@ public class FileCommand {
 
     protected boolean hasError = false;
 
-    protected void process(final String... filenames) {
+    protected void processAll(final String... filenames) {
         if (filenames.length == 0) {
             processDefault();
         } else {
-            processAll(filenames);
+            processMulti(filenames);
         }
         handleError();
     }
@@ -18,7 +18,7 @@ public class FileCommand {
     void processDefault() {
     }
 
-    protected void processAll(final String... filenames) {
+    protected void processMulti(final String... filenames) {
     }
 
     protected void processSingle(final String name) {
@@ -27,7 +27,7 @@ public class FileCommand {
     void processSingleFile(final String filename)  {
     }
     
-    void doIt(final InputStream source) {
+    void process(final InputStream source) {
     }
     
     protected boolean setError() {

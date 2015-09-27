@@ -21,14 +21,14 @@ public class Cat extends FileCommand {
 
     public static void main(final String... args) {
         final FileCommand cat = new Cat(System.in, System.out);
-        cat.process(args);
+        cat.processAll(args);
     }
 
     void processDefault() {
         writeStreamToOutput(defaultInput);
     }
 
-    protected void processAll(final String... filenames) {
+    protected void processMulti(final String... filenames) {
         Arrays.asList(filenames).stream()
             .forEach(name -> processSingle(name));
     }
