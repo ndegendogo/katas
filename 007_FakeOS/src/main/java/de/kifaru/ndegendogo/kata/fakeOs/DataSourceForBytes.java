@@ -9,7 +9,7 @@ public class DataSourceForBytes extends DataSource {
         this.input = input;
     }
     
-    InputStream getInput() {
+    InputStream getInputStream() {
         return input;
     }
 }

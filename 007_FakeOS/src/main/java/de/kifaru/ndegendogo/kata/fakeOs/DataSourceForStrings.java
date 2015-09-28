@@ -9,7 +9,7 @@ public class DataSourceForStrings extends DataSource {
         this.input = input;
     }
 
-    BufferedReader getInput() {
+    BufferedReader getBufferedReader() {
         return input;
     }
 }
