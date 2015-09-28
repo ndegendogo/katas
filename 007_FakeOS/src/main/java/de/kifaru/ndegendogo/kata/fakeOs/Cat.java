@@ -15,6 +15,7 @@ public class Cat extends FileCommand {
     private final OutputStream output;
     
     public Cat(InputStream defaultInput, OutputStream output) {
+        super(new DataSourceForBytes(defaultInput));
         this.defaultInput = defaultInput;
         this.output = output;
     }

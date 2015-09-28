@@ -18,6 +18,7 @@ public class Head extends FileCommand {
     final private PrintStream output;
     
     Head(BufferedReader defaultInput, final PrintStream output) {
+        super(new DataSourceForStrings(defaultInput));
         this.defaultInput = defaultInput;
         this.output = output;
     }

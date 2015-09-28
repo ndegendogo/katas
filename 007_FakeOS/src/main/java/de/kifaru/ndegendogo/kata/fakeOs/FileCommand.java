@@ -5,7 +5,12 @@ import java.io.InputStream;
 public class FileCommand {
 
     protected boolean hasError = false;
-
+    private final DataSource defaultInput;
+    
+    FileCommand(DataSource defaultInput) {
+        this.defaultInput = defaultInput;
+    }
+    
     protected void processAll(final String... filenames) {
         if (filenames.length == 0) {
             processDefault();
