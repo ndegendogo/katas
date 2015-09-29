@@ -27,8 +27,8 @@ public class Head extends FileCommand {
         head.processAll(args);
     }
 
-    protected void processDefault() {
-        final BufferedReader input = defaultInput.getBufferedReader();
+    void process(final DataSource source) {
+        final BufferedReader input = source.getBufferedReader();
         printLeadingLines(input);
     }
 
