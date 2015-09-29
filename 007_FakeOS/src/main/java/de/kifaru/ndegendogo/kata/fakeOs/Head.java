@@ -14,12 +14,10 @@ import java.util.stream.Collector;
 public class Head extends FileCommand {
 
     private static final int MAX_NUMBER_OF_LINES = 10;
-    private BufferedReader defaultInput;
     final private PrintStream output;
     
     Head(BufferedReader defaultInput, final PrintStream output) {
         super(new DataSourceForStrings(defaultInput));
-        this.defaultInput = defaultInput;
         this.output = output;
     }
     
@@ -30,7 +28,8 @@ public class Head extends FileCommand {
     }
 
     protected void processDefault() {
-        printLeadingLines(defaultInput);
+        final BufferedReader input = defaultInput.getBufferedReader();
+        printLeadingLines(input);
     }
 
     protected void processMulti(final String... filenames) {
