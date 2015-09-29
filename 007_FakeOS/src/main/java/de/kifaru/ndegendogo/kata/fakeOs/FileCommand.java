@@ -1,5 +1,7 @@
 package de.kifaru.ndegendogo.kata.fakeOs;
 
+import java.util.Arrays;
+
 public class FileCommand {
 
     protected boolean hasError = false;
@@ -18,20 +20,22 @@ public class FileCommand {
         handleError();
     }
 
-    void processDefault() {
+    protected void processDefault() {
         process(defaultInput);
     }
 
+    protected void process(final DataSource source) {
+    }
+    
     protected void processMulti(final String... filenames) {
+        Arrays.asList(filenames).stream()
+            .forEach(name -> processSingle(name));
     }
 
     protected void processSingle(final String name) {
     }
     
-    void processSingleFile(final String filename)  {
-    }
-    
-    void process(final DataSource source) {
+    protected void processSingleFile(final String filename)  {
     }
     
     protected boolean setError() {

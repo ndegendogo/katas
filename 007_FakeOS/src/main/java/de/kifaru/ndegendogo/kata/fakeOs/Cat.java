@@ -5,7 +5,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.Arrays;
 
 public class Cat extends FileCommand {
 
@@ -22,13 +21,8 @@ public class Cat extends FileCommand {
         cat.processAll(args);
     }
 
-    void process(final DataSource source) {
+    protected void process(final DataSource source) {
         writeStreamToOutput(source.getInputStream());
-    }
-
-    protected void processMulti(final String... filenames) {
-        Arrays.asList(filenames).stream()
-            .forEach(name -> processSingle(name));
     }
 
     protected void processSingle(final String name) {
@@ -39,7 +33,7 @@ public class Cat extends FileCommand {
         }
     }
 
-    void processSingleFile(final String filename)  {
+    protected void processSingleFile(final String filename)  {
         try (FileInputStream input = new FileInputStream(filename);
             BufferedInputStream bufferedIn = new BufferedInputStream(input); 
         ) {
