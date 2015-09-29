@@ -3,7 +3,7 @@ package de.kifaru.ndegendogo.kata.fakeOs;
 public class FileCommand {
 
     protected boolean hasError = false;
-    private final DataSource defaultInput;
+    protected final DataSource defaultInput;
     
     FileCommand(DataSource defaultInput) {
         this.defaultInput = defaultInput;
