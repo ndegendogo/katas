@@ -5,27 +5,45 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Arrays;
 
-public class Cat extends FileCommand {
+public class Cat {
 
     private static final String DEFAULT_INPUT= "-";
+    
+    private final InputStream defaultInput;
     private final OutputStream output;
+    private boolean hasError = false;
     
     public Cat(InputStream defaultInput, OutputStream output) {
-        super(new DataSourceForBytes(defaultInput));
+        this.defaultInput = defaultInput;
         this.output = output;
     }
 
     public static void main(final String... args) {
-        final FileCommand cat = new Cat(System.in, System.out);
-        cat.processAll(args);
+        final Cat cat = new Cat(System.in, System.out);
+        cat.process(args);
     }
 
-    protected void process(final DataSource source) {
-        writeStreamToOutput(source.getInputStream());
+    private void process(final String... filenames) {
+        if (filenames.length == 0) {
+            processDefault();
+        } else {
+            processAll(filenames);
+        }
+        handleError();
     }
 
-    protected void processSingle(final String name) {
+    void processDefault() {
+        writeStreamToOutput(defaultInput);
+    }
+
+    private void processAll(final String... filenames) {
+        Arrays.asList(filenames).stream()
+            .forEach(name -> processSingle(name));
+    }
+
+    private void processSingle(final String name) {
         if(DEFAULT_INPUT.equals(name)) {
             processDefault();
         } else {
@@ -33,7 +51,7 @@ public class Cat extends FileCommand {
         }
     }
 
-    protected void processSingleFile(final String filename)  {
+    void processSingleFile(final String filename)  {
         try (FileInputStream input = new FileInputStream(filename);
             BufferedInputStream bufferedIn = new BufferedInputStream(input); 
         ) {
@@ -43,15 +61,29 @@ public class Cat extends FileCommand {
         }
     }
 
-    private void writeStreamToOutput(final InputStream input) {
+    private void writeStreamToOutput(final InputStream source) {
         try {
             int nextByte;
-            while((nextByte = input.read()) != -1) {
+            while((nextByte = source.read()) != -1) {
                 output.write(nextByte);
             }
             output.flush();
         } catch (IOException e) {
             setError();
+        }
+    }
+
+    private boolean setError() {
+        return hasError = true;
+    }
+
+    boolean hasError() {
+        return (hasError);
+    }
+
+    private void handleError() {
+        if (hasError()) {
+            System.exit(1);
         }
     }
 }

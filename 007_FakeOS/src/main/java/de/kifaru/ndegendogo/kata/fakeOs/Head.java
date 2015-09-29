@@ -11,27 +11,38 @@ import java.util.Optional;
 import java.util.StringJoiner;
 import java.util.stream.Collector;
 
-public class Head extends FileCommand {
+public class Head {
 
     private static final int MAX_NUMBER_OF_LINES = 10;
+    private BufferedReader defaultInput;
     final private PrintStream output;
+    private boolean hasError = false;
     
     Head(BufferedReader defaultInput, final PrintStream output) {
-        super(new DataSourceForStrings(defaultInput));
+        this.defaultInput = defaultInput;
         this.output = output;
     }
     
     public static void main(final String... args) {
         final BufferedReader defaultInput = new BufferedReader(new InputStreamReader(System.in));
-        final FileCommand head = (args.length >= 2) ? new HeadWithTitle(defaultInput, System.out) : new Head(defaultInput, System.out);
-        head.processAll(args);
+        final Head head = (args.length >= 2) ? new HeadWithTitle(defaultInput, System.out) : new Head(defaultInput, System.out);
+        head.process(args);
     }
 
-    protected void process(final DataSource source) {
-        printLeadingLines(source.getBufferedReader());
+    private void process(final String... filenames) {
+        if (filenames.length == 0) {
+            processDefault();
+        } else {
+            processAll(filenames);
+        }
+        handleError();
     }
 
-    protected void processMulti(final String... filenames) {
+    private void processDefault() {
+        printLeadingLines(defaultInput);
+    }
+
+    private void processAll(final String... filenames) {
         printLeadingLinesFromFiles(filenames);
     }
 
@@ -71,7 +82,17 @@ public class Head extends FileCommand {
                 .collect(joining);
     }
     
+    private boolean setError() {
+        return hasError = true;
+    }
+
     boolean hasError() {
-        return (super.hasError() || output.checkError());
+        return (hasError || output.checkError());
+    }
+
+    private void handleError() {
+        if (hasError()) {
+            System.exit(1);
+        }
     }
 }
