@@ -22,10 +22,6 @@ public class Cat extends FileCommand {
         cat.processAll(args);
     }
 
-    void processDefault() {
-        process(defaultInput);
-    }
-
     void process(final DataSource source) {
         writeStreamToOutput(source.getInputStream());
     }
