@@ -22,23 +22,27 @@ public class Cat {
 
     public static void main(final String... args) {
         final Cat cat = new Cat(System.in, System.out);
-        cat.process(args);
+        cat.processAll(args);
     }
 
-    private void process(final String... filenames) {
+    private void processAll(final String... filenames) {
         if (filenames.length == 0) {
             processDefault();
         } else {
-            processAll(filenames);
+            processMulti(filenames);
         }
         handleError();
     }
 
     void processDefault() {
-        writeStreamToOutput(defaultInput);
+        process(defaultInput);
     }
 
-    private void processAll(final String... filenames) {
+    private void process(final InputStream input) {
+        writeStreamToOutput(input);
+    }
+
+    private void processMulti(final String... filenames) {
         Arrays.asList(filenames).stream()
             .forEach(name -> processSingle(name));
     }
@@ -55,7 +59,7 @@ public class Cat {
         try (FileInputStream input = new FileInputStream(filename);
             BufferedInputStream bufferedIn = new BufferedInputStream(input); 
         ) {
-            writeStreamToOutput(bufferedIn);
+            process(bufferedIn);
         } catch (IOException e) {
             setError();
         }

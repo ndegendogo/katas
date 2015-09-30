@@ -26,23 +26,27 @@ public class Head {
     public static void main(final String... args) {
         final BufferedReader defaultInput = new BufferedReader(new InputStreamReader(System.in));
         final Head head = (args.length >= 2) ? new HeadWithTitle(defaultInput, System.out) : new Head(defaultInput, System.out);
-        head.process(args);
+        head.processAll(args);
     }
 
-    private void process(final String... filenames) {
+    private void processAll(final String... filenames) {
         if (filenames.length == 0) {
             processDefault();
         } else {
-            processAll(filenames);
+            processMulti(filenames);
         }
         handleError();
     }
 
     private void processDefault() {
-        printLeadingLines(defaultInput);
+        process(defaultInput);
     }
 
-    private void processAll(final String... filenames) {
+    private void process(final BufferedReader input) {
+        printLeadingLines(input);
+    }
+
+    private void processMulti(final String... filenames) {
         printLeadingLinesFromFiles(filenames);
     }
 
