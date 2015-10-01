@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.lang.System;
-import java.util.Arrays;
 import java.util.Optional;
 import java.util.StringJoiner;
 import java.util.stream.Collector;
@@ -47,18 +46,14 @@ public class Head {
     }
 
     private void processMulti(final String... filenames) {
-        printLeadingLinesFromFiles(filenames);
-    }
-
-    void printLeadingLines(final BufferedReader bufferedReader) {
-        output.print(readLeadingLines(bufferedReader));
-    }
-
-    private void printLeadingLinesFromFiles(final String... filenames) {
         for(String filename:filenames) {
             final Optional<String> leadingLines = readLeadingLinesFromFile(filename);
             leadingLines.ifPresent(output::print);
         }
+    }
+
+    void printLeadingLines(final BufferedReader bufferedReader) {
+        output.print(readLeadingLines(bufferedReader));
     }
 
     protected Optional<String> readLeadingLinesFromFile(final String filename) {
