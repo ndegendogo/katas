@@ -55,11 +55,10 @@ public class Head {
     }
 
     private void printLeadingLinesFromFiles(final String... filenames) {
-        Arrays.asList(filenames)
-              .stream()
-              .map(filename -> readLeadingLinesFromFile(filename))
-              .filter(s -> s.isPresent())
-              .forEach(s -> output.print(s.get()));
+        for(String filename:filenames) {
+            final Optional<String> leadingLines = readLeadingLinesFromFile(filename);
+            leadingLines.ifPresent(output::print);
+        }
     }
 
     protected Optional<String> readLeadingLinesFromFile(final String filename) {
