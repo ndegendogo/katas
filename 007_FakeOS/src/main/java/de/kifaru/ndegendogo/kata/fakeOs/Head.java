@@ -47,9 +47,13 @@ public class Head {
 
     private void processMulti(final String... filenames) {
         for(String filename:filenames) {
-            final Optional<String> leadingLines = readLeadingLinesFromFile(filename);
-            leadingLines.ifPresent(output::print);
+            processSingle(filename);
         }
+    }
+
+    private void processSingle(String filename) {
+        final Optional<String> leadingLines = readLeadingLinesFromFile(filename);
+        leadingLines.ifPresent(output::print);
     }
 
     void printLeadingLines(final BufferedReader bufferedReader) {
