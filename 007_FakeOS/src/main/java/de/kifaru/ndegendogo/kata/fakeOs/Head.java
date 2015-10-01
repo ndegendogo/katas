@@ -46,18 +46,29 @@ public class Head {
         printLeadingLines(input);
     }
 
-    private void processMulti(final String... filenames) {
-        Arrays.asList(filenames).stream()
-        .forEach(name -> processSingle(name));
-    }
-
-    private void processSingle(String filename) {
-        final Optional<String> leadingLines = readLeadingLinesFromFile(filename);
-        leadingLines.ifPresent(output::print);
-    }
-
     void printLeadingLines(final BufferedReader bufferedReader) {
         output.print(readLeadingLines(bufferedReader));
+    }
+
+    private void processMulti(final String... filenames) {
+        Arrays.asList(filenames).stream()
+            .forEach(name -> processSingle(name));
+    }
+
+    private void processSingle(String name) {
+        if(isDefaultInput(name)) {
+            processDefault();
+        } else {
+            processSingleFile(name);
+        }
+    }
+
+    private boolean isDefaultInput(final String name) {
+        return false;
+    }
+
+    private void processSingleFile(String filename) {
+        readLeadingLinesFromFile(filename).ifPresent(output::print);
     }
 
     protected Optional<String> readLeadingLinesFromFile(final String filename) {
