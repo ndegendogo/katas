@@ -48,11 +48,15 @@ public class Cat {
     }
 
     private void processSingle(final String name) {
-        if(DEFAULT_INPUT.equals(name)) {
+        if(isDefaultInput(name)) {
             processDefault();
         } else {
             processSingleFile(name);
         }
+    }
+
+    private boolean isDefaultInput(final String name) {
+        return DEFAULT_INPUT.equals(name);
     }
 
     void processSingleFile(final String filename)  {
