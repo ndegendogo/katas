@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.lang.System;
+import java.util.Arrays;
 import java.util.Optional;
 import java.util.StringJoiner;
 import java.util.stream.Collector;
@@ -46,9 +47,8 @@ public class Head {
     }
 
     private void processMulti(final String... filenames) {
-        for(String filename:filenames) {
-            processSingle(filename);
-        }
+        Arrays.asList(filenames).stream()
+        .forEach(name -> processSingle(name));
     }
 
     private void processSingle(String filename) {
