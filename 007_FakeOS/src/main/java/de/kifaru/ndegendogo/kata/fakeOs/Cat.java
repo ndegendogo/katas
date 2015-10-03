@@ -7,7 +7,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Arrays;
 
-public class Cat {
+public class Cat extends FileCommand {
 
     private static final String DEFAULT_INPUT= "-";
     

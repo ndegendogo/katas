@@ -12,7 +12,7 @@ import java.util.Optional;
 import java.util.StringJoiner;
 import java.util.stream.Collector;
 
-public class Head {
+public class Head extends FileCommand {
 
     private static final int MAX_NUMBER_OF_LINES = 10;
     private final BufferedReader defaultInput;
