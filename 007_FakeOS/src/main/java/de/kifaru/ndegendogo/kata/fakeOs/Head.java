@@ -3,6 +3,7 @@ package de.kifaru.ndegendogo.kata.fakeOs;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.lang.System;
@@ -14,18 +15,22 @@ import java.util.stream.Collector;
 public class Head {
 
     private static final int MAX_NUMBER_OF_LINES = 10;
-    private BufferedReader defaultInput;
-    final private PrintStream output;
+    private final BufferedReader defaultInput;
+    private final PrintStream output;
     private boolean hasError = false;
     
-    Head(BufferedReader defaultInput, final PrintStream output) {
+    Head(final BufferedReader defaultInput, final PrintStream output) {
         this.defaultInput = defaultInput;
         this.output = output;
     }
-    
+
+    Head (final InputStream in, final PrintStream out) {
+        this.defaultInput = new BufferedReader(new InputStreamReader(in));
+        this.output = out;
+    }
+
     public static void main(final String... args) {
-        final BufferedReader defaultInput = new BufferedReader(new InputStreamReader(System.in));
-        final Head head = (args.length >= 2) ? new HeadWithTitle(defaultInput, System.out) : new Head(defaultInput, System.out);
+        final Head head = (args.length >= 2) ? new HeadWithTitle(System.in, System.out) : new Head(System.in, System.out);
         head.processAll(args);
     }
 

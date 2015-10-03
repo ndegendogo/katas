@@ -1,13 +1,13 @@
 package de.kifaru.ndegendogo.kata.fakeOs;
 
-import java.io.BufferedReader;
+import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Optional;
 
 public class HeadWithTitle extends Head {
 
-    HeadWithTitle(final BufferedReader defaultInput, final PrintStream output) {
-        super(defaultInput, new OutputJoiner(output));
+    HeadWithTitle (final InputStream in, final PrintStream out) {
+        super(in, new OutputJoiner(out));
     }
 
     protected Optional<String> readLeadingLinesFromFile(final String filename) {
