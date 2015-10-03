@@ -2,6 +2,8 @@ package de.kifaru.ndegendogo.kata.fakeOs;
 
 public abstract class FileCommand {
 
+    private boolean hasError = false;
+
     abstract protected void processAll(final String... filenames);
 
     abstract protected void processDefault();
@@ -14,4 +16,17 @@ public abstract class FileCommand {
     
     abstract protected void processSingleFile(final String filename);
 
+    protected boolean setError() {
+        return hasError = true;
+    }
+
+    protected boolean hasError() {
+        return (hasError);
+    }
+
+    protected void handleError() {
+        if (hasError()) {
+            System.exit(1);
+        }
+    }
 }

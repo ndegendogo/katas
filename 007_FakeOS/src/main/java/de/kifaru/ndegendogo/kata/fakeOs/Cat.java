@@ -13,7 +13,6 @@ public class Cat extends FileCommand {
     
     private final InputStream defaultInput;
     private final OutputStream output;
-    private boolean hasError = false;
     
     public Cat(InputStream defaultInput, OutputStream output) {
         this.defaultInput = defaultInput;
@@ -81,17 +80,4 @@ public class Cat extends FileCommand {
         }
     }
 
-    protected boolean setError() {
-        return hasError = true;
-    }
-
-    protected boolean hasError() {
-        return (hasError);
-    }
-
-    protected void handleError() {
-        if (hasError()) {
-            System.exit(1);
-        }
-    }
 }

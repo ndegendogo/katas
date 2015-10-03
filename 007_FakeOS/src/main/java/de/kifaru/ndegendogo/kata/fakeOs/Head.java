@@ -17,7 +17,6 @@ public class Head extends FileCommand {
     private static final int MAX_NUMBER_OF_LINES = 10;
     private final BufferedReader defaultInput;
     protected final PrintStream output;
-    private boolean hasError = false;
     
     Head(final BufferedReader defaultInput, final PrintStream output) {
         this.defaultInput = defaultInput;
@@ -101,17 +100,7 @@ public class Head extends FileCommand {
                 .collect(joining);
     }
     
-    protected boolean setError() {
-        return hasError = true;
-    }
-
     protected boolean hasError() {
-        return (hasError || output.checkError());
-    }
-
-    protected void handleError() {
-        if (hasError()) {
-            System.exit(1);
-        }
+        return (super.hasError() || output.checkError());
     }
 }
