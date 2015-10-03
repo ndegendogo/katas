@@ -11,17 +11,12 @@ public class HeadWithTitle extends Head {
     }
 
     protected void processSingleFile(final String filename) {
-        final Optional<String> fileContents = super.readLeadingLinesFromFile(filename);
-        Optional<String> result;
-        if (fileContents.isPresent()) {
-            final String fileContentsWithTitle = String.join(System.lineSeparator(), buildTitle(filename), fileContents.get());
-            result = Optional.of(fileContentsWithTitle);
-        } else {
-            result = Optional.empty();
+        final Optional<String> leadingLines = readLeadingLinesFromFile(filename);
+        if (leadingLines.isPresent()) {
+            final String fileContentsWithTitle = String.join(System.lineSeparator(), buildTitle(filename), leadingLines.get());
+            output.print(fileContentsWithTitle);
         }
 
-        final Optional<String> leadingLines = result;
-        leadingLines.ifPresent(output::print);
     }
 
     private String buildTitle(final String filename) {

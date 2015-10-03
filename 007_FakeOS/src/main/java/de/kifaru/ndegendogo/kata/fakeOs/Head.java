@@ -73,7 +73,8 @@ public class Head {
     }
 
     protected void processSingleFile(final String filename) {
-        readLeadingLinesFromFile(filename).ifPresent(output::print);
+        final Optional<String> leadingLines = readLeadingLinesFromFile(filename);
+        leadingLines.ifPresent(output::print);
     }
 
     protected Optional<String> readLeadingLinesFromFile(final String filename) {
