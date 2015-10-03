@@ -12,10 +12,7 @@ public class HeadWithTitle extends Head {
 
     protected void processSingleFile(final String filename) {
         final Optional<String> leadingLines = readLeadingLinesFromFile(filename);
-        if (leadingLines.isPresent()) {
-            output.print(String.join(System.lineSeparator(), buildTitle(filename), leadingLines.get()));
-        }
-
+        leadingLines.ifPresent(s -> output.print(String.join(System.lineSeparator(), buildTitle(filename), s)));
     }
 
     private String buildTitle(final String filename) {
