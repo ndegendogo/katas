@@ -68,7 +68,7 @@ public class Head extends FileCommand {
         }
     }
 
-    private boolean isDefaultInput(final String name) {
+    protected boolean isDefaultInput(final String name) {
         return false;
     }
 
