@@ -13,8 +13,7 @@ public class HeadWithTitle extends Head {
     protected void processSingleFile(final String filename) {
         final Optional<String> leadingLines = readLeadingLinesFromFile(filename);
         if (leadingLines.isPresent()) {
-            final String fileContentsWithTitle = String.join(System.lineSeparator(), buildTitle(filename), leadingLines.get());
-            output.print(fileContentsWithTitle);
+            output.print(String.join(System.lineSeparator(), buildTitle(filename), leadingLines.get()));
         }
 
     }
