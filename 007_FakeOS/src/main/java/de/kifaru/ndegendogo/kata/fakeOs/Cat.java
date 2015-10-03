@@ -25,7 +25,7 @@ public class Cat {
         cat.processAll(args);
     }
 
-    private void processAll(final String... filenames) {
+    protected void processAll(final String... filenames) {
         if (filenames.length == 0) {
             processDefault();
         } else {
@@ -34,7 +34,7 @@ public class Cat {
         handleError();
     }
 
-    void processDefault() {
+    protected void processDefault() {
         process(defaultInput);
     }
 
@@ -42,12 +42,12 @@ public class Cat {
         writeStreamToOutput(input);
     }
 
-    private void processMulti(final String... filenames) {
+    protected void processMulti(final String... filenames) {
         Arrays.asList(filenames).stream()
             .forEach(name -> processSingle(name));
     }
 
-    private void processSingle(final String name) {
+    protected void processSingle(final String name) {
         if(isDefaultInput(name)) {
             processDefault();
         } else {
@@ -59,7 +59,7 @@ public class Cat {
         return DEFAULT_INPUT.equals(name);
     }
 
-    void processSingleFile(final String filename)  {
+    protected void processSingleFile(final String filename)  {
         try (FileInputStream input = new FileInputStream(filename);
             BufferedInputStream bufferedIn = new BufferedInputStream(input); 
         ) {
@@ -81,15 +81,15 @@ public class Cat {
         }
     }
 
-    private boolean setError() {
+    protected boolean setError() {
         return hasError = true;
     }
 
-    boolean hasError() {
+    protected boolean hasError() {
         return (hasError);
     }
 
-    private void handleError() {
+    protected void handleError() {
         if (hasError()) {
             System.exit(1);
         }

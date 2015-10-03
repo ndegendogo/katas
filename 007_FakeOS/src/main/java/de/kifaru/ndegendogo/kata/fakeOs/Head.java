@@ -34,7 +34,7 @@ public class Head {
         head.processAll(args);
     }
 
-    private void processAll(final String... filenames) {
+    protected void processAll(final String... filenames) {
         if (filenames.length == 0) {
             processDefault();
         } else {
@@ -43,7 +43,7 @@ public class Head {
         handleError();
     }
 
-    private void processDefault() {
+    protected void processDefault() {
         process(defaultInput);
     }
 
@@ -55,12 +55,12 @@ public class Head {
         output.print(readLeadingLines(bufferedReader));
     }
 
-    private void processMulti(final String... filenames) {
+    protected void processMulti(final String... filenames) {
         Arrays.asList(filenames).stream()
             .forEach(name -> processSingle(name));
     }
 
-    private void processSingle(String name) {
+    protected void processSingle(String name) {
         if(isDefaultInput(name)) {
             processDefault();
         } else {
@@ -101,15 +101,15 @@ public class Head {
                 .collect(joining);
     }
     
-    private boolean setError() {
+    protected boolean setError() {
         return hasError = true;
     }
 
-    boolean hasError() {
+    protected boolean hasError() {
         return (hasError || output.checkError());
     }
 
-    private void handleError() {
+    protected void handleError() {
         if (hasError()) {
             System.exit(1);
         }
