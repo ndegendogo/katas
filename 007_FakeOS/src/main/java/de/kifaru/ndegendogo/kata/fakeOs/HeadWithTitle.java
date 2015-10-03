@@ -10,14 +10,18 @@ public class HeadWithTitle extends Head {
         super(in, new OutputJoiner(out));
     }
 
-    protected Optional<String> readLeadingLinesFromFile(final String filename) {
-        Optional<String> fileContents = super.readLeadingLinesFromFile(filename);
+    protected void processSingleFile(final String filename) {
+        final Optional<String> fileContents = super.readLeadingLinesFromFile(filename);
+        Optional<String> result;
         if (fileContents.isPresent()) {
             final String fileContentsWithTitle = String.join(System.lineSeparator(), buildTitle(filename), fileContents.get());
-            return Optional.of(fileContentsWithTitle);
+            result = Optional.of(fileContentsWithTitle);
         } else {
-            return Optional.empty();
+            result = Optional.empty();
         }
+
+        final Optional<String> leadingLines = result;
+        leadingLines.ifPresent(output::print);
     }
 
     private String buildTitle(final String filename) {

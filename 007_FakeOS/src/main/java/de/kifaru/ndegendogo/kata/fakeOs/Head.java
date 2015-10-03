@@ -16,7 +16,7 @@ public class Head {
 
     private static final int MAX_NUMBER_OF_LINES = 10;
     private final BufferedReader defaultInput;
-    private final PrintStream output;
+    protected final PrintStream output;
     private boolean hasError = false;
     
     Head(final BufferedReader defaultInput, final PrintStream output) {
@@ -72,7 +72,7 @@ public class Head {
         return false;
     }
 
-    private void processSingleFile(String filename) {
+    protected void processSingleFile(final String filename) {
         readLeadingLinesFromFile(filename).ifPresent(output::print);
     }
 
