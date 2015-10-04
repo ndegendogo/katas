@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Arrays;
 
 public class Cat extends FileCommand {
 
@@ -23,6 +24,32 @@ public class Cat extends FileCommand {
         cat.processAll(args);
     }
 
+    protected void processAll(final String... filenames) {
+        if (filenames.length > 0) {
+            processMulti(filenames);
+        } else {
+            processDefault();
+        }
+        handleError();
+    }
+
+    protected void processMulti(final String... filenames) {
+        Arrays.asList(filenames).stream()
+            .forEach(name -> processSingle(name));
+    }
+
+    protected void processSingle(final String name) {
+        if(isDefaultInput(name)) {
+            processDefault();
+        } else {
+            processSingleFile(name);
+        }
+    }
+
+    protected boolean isDefaultInput(final String name) {
+        return DEFAULT_INPUT.equals(name);
+    }
+
     protected void processDefault() {
         process(getDefaultInput());
     }
@@ -33,10 +60,6 @@ public class Cat extends FileCommand {
 
     private void process(final InputStream input) {
         writeStreamToOutput(input);
-    }
-
-    protected boolean isDefaultInput(final String name) {
-        return DEFAULT_INPUT.equals(name);
     }
 
     protected void processSingleFile(final String filename)  {

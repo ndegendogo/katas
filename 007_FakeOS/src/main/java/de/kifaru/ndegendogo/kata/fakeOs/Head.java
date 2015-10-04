@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.lang.System;
+import java.util.Arrays;
 import java.util.Optional;
 import java.util.StringJoiner;
 import java.util.stream.Collector;
@@ -32,6 +33,32 @@ public class Head extends FileCommand {
         head.processAll(args);
     }
 
+    protected void processAll(final String... filenames) {
+        if (filenames.length > 0) {
+            processMulti(filenames);
+        } else {
+            processDefault();
+        }
+        handleError();
+    }
+
+    protected void processMulti(final String... filenames) {
+        Arrays.asList(filenames).stream()
+            .forEach(name -> processSingle(name));
+    }
+
+    protected void processSingle(final String name) {
+        if(isDefaultInput(name)) {
+            processDefault();
+        } else {
+            processSingleFile(name);
+        }
+    }
+
+    protected boolean isDefaultInput(final String name) {
+        return false;
+    }
+
     protected void processDefault() {
         process(getDefaultInput());
     }
@@ -46,10 +73,6 @@ public class Head extends FileCommand {
 
     void printLeadingLines(final BufferedReader bufferedReader) {
         output.print(readLeadingLines(bufferedReader));
-    }
-
-    protected boolean isDefaultInput(final String name) {
-        return false;
     }
 
     protected void processSingleFile(final String filename) {
