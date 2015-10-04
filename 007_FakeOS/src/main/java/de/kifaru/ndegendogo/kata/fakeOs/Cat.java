@@ -24,7 +24,11 @@ public class Cat extends FileCommand {
     }
 
     protected void processDefault() {
-        process(defaultInput);
+        process(getDefaultInput());
+    }
+
+    protected InputStream getDefaultInput() {
+        return defaultInput;
     }
 
     private void process(final InputStream input) {

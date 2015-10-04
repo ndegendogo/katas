@@ -33,7 +33,11 @@ public class Head extends FileCommand {
     }
 
     protected void processDefault() {
-        process(defaultInput);
+        process(getDefaultInput());
+    }
+
+    protected BufferedReader getDefaultInput() {
+        return defaultInput;
     }
 
     private void process(final BufferedReader input) {
