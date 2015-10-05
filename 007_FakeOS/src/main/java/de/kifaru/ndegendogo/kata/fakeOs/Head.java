@@ -76,23 +76,35 @@ public class Head extends FileCommand {
     }
 
     protected void processSingleFile(final String filename) {
-        final Optional<String> leadingLines = readLeadingLinesFromFile(filename);
-        leadingLines.ifPresent(output::print);
-    }
-
-    protected Optional<String> readLeadingLinesFromFile(final String filename) {
+        Optional<String> result;
         try (
             final FileReader fileReader = new FileReader(filename);
             final BufferedReader bufferedReader = new BufferedReader(fileReader);
         ) {
-            return Optional.of(readLeadingLines(bufferedReader));
+            result = Optional.of(readLeadingLines(bufferedReader));
         } catch (IOException e) {
             setError();
-            return Optional.empty();
+            result = Optional.empty();
         }
+        final Optional<String> leadingLines = result;
+        leadingLines.ifPresent(output::print);
     }
 
-    private String readLeadingLines(final BufferedReader bufferedReader) {
+    protected Optional<String> readLeadingLinesFromFile(final String filename) {
+        Optional<String> result;
+        try (
+            final FileReader fileReader = new FileReader(filename);
+            final BufferedReader bufferedReader = new BufferedReader(fileReader);
+        ) {
+            result = Optional.of(readLeadingLines(bufferedReader));
+        } catch (IOException e) {
+            setError();
+            result = Optional.empty();
+        }
+        return result;
+    }
+
+    protected String readLeadingLines(final BufferedReader bufferedReader) {
         final Collector<String, StringJoiner, String> joining = Collector.of(
                 () -> new StringJoiner(System.lineSeparator(), "", System.lineSeparator()).setEmptyValue(""),
                 (j, s) -> j.add(s),
