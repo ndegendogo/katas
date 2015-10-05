@@ -18,7 +18,8 @@ public class HeadWithTitle extends Head {
             final BufferedReader bufferedReader = new BufferedReader(fileReader);
         ) {
             final String leadingLines = readLeadingLines(bufferedReader);
-            output.print(String.join(System.lineSeparator(), buildTitle(filename), leadingLines));
+            output.print(buildTitle(filename));
+            output.print(leadingLines);
         } catch (IOException e) {
             setError();
         }
