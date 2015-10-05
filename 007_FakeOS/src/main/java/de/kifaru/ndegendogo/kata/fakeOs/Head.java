@@ -8,7 +8,6 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.lang.System;
 import java.util.Arrays;
-import java.util.Optional;
 import java.util.StringJoiner;
 import java.util.stream.Collector;
 
@@ -85,20 +84,6 @@ public class Head extends FileCommand {
         } catch (IOException e) {
             setError();
         }
-    }
-
-    protected Optional<String> readLeadingLinesFromFile(final String filename) {
-        Optional<String> result;
-        try (
-            final FileReader fileReader = new FileReader(filename);
-            final BufferedReader bufferedReader = new BufferedReader(fileReader);
-        ) {
-            result = Optional.of(readLeadingLines(bufferedReader));
-        } catch (IOException e) {
-            setError();
-            result = Optional.empty();
-        }
-        return result;
     }
 
     protected String readLeadingLines(final BufferedReader bufferedReader) {
