@@ -5,7 +5,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
-import java.util.Optional;
 
 public class HeadWithTitle extends Head {
 
@@ -14,18 +13,15 @@ public class HeadWithTitle extends Head {
     }
 
     protected void processSingleFile(final String filename) {
-        Optional<String> result;
         try (
             final FileReader fileReader = new FileReader(filename);
             final BufferedReader bufferedReader = new BufferedReader(fileReader);
         ) {
-            result = Optional.of(readLeadingLines(bufferedReader));
+            final String leadingLines = readLeadingLines(bufferedReader);
+            output.print(String.join(System.lineSeparator(), buildTitle(filename), leadingLines));
         } catch (IOException e) {
             setError();
-            result = Optional.empty();
         }
-        final Optional<String> leadingLines = result;
-        leadingLines.ifPresent(s -> output.print(String.join(System.lineSeparator(), buildTitle(filename), s)));
     }
 
     private String buildTitle(final String filename) {

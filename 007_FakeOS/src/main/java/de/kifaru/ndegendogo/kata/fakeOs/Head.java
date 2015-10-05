@@ -76,18 +76,15 @@ public class Head extends FileCommand {
     }
 
     protected void processSingleFile(final String filename) {
-        Optional<String> result;
         try (
             final FileReader fileReader = new FileReader(filename);
             final BufferedReader bufferedReader = new BufferedReader(fileReader);
         ) {
-            result = Optional.of(readLeadingLines(bufferedReader));
+            final String leadingLines = readLeadingLines(bufferedReader);
+            output.print(leadingLines);
         } catch (IOException e) {
             setError();
-            result = Optional.empty();
         }
-        final Optional<String> leadingLines = result;
-        leadingLines.ifPresent(output::print);
     }
 
     protected Optional<String> readLeadingLinesFromFile(final String filename) {
