@@ -79,8 +79,7 @@ public class Head extends FileCommand {
             final FileReader fileReader = new FileReader(filename);
             final BufferedReader bufferedReader = new BufferedReader(fileReader);
         ) {
-            final String leadingLines = readLeadingLines(bufferedReader);
-            output.print(leadingLines);
+            process(bufferedReader);
         } catch (IOException e) {
             setError();
         }
