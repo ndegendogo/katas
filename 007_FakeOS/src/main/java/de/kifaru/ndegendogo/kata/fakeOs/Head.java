@@ -66,7 +66,7 @@ public class Head extends FileCommand {
         return defaultInput;
     }
 
-    private void process(final BufferedReader input) {
+    protected void process(final BufferedReader input) {
         printLeadingLines(input);
     }
 

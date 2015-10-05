@@ -17,12 +17,16 @@ public class HeadWithTitle extends Head {
             final FileReader fileReader = new FileReader(filename);
             final BufferedReader bufferedReader = new BufferedReader(fileReader);
         ) {
-            final String leadingLines = readLeadingLines(bufferedReader);
-            output.print(buildTitle(filename));
-            output.print(leadingLines);
+            process(bufferedReader, filename);
         } catch (IOException e) {
             setError();
         }
+    }
+
+    private void process(final BufferedReader bufferedReader, final String filename) {
+        final String leadingLines = readLeadingLines(bufferedReader);
+        output.print(buildTitle(filename));
+        output.print(leadingLines);
     }
 
     private String buildTitle(final String filename) {
