@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.util.function.Consumer;
 
 public class HeadWithTitle extends Head {
     
@@ -20,7 +21,8 @@ public class HeadWithTitle extends Head {
             final FileReader fileReader = new FileReader(filename);
             final BufferedReader bufferedReader = new BufferedReader(fileReader);
         ) {
-            printLeadingLines(bufferedReader);
+            Consumer<BufferedReader> process = this::printLeadingLines;
+            process.accept(bufferedReader);
         } catch (IOException e) {
             setError();
         }

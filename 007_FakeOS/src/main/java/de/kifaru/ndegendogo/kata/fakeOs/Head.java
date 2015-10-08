@@ -9,6 +9,7 @@ import java.io.PrintStream;
 import java.lang.System;
 import java.util.Arrays;
 import java.util.StringJoiner;
+import java.util.function.Consumer;
 import java.util.stream.Collector;
 
 public class Head extends FileCommand {
@@ -79,7 +80,8 @@ public class Head extends FileCommand {
             final FileReader fileReader = new FileReader(filename);
             final BufferedReader bufferedReader = new BufferedReader(fileReader);
         ) {
-            process(bufferedReader);
+            Consumer<BufferedReader> process = this::printLeadingLines;
+            process.accept(bufferedReader);
         } catch (IOException e) {
             setError();
         }

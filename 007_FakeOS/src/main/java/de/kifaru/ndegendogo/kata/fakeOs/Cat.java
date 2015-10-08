@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Arrays;
+import java.util.function.Consumer;
 
 public class Cat extends FileCommand {
 
@@ -66,7 +67,8 @@ public class Cat extends FileCommand {
         try (FileInputStream input = new FileInputStream(filename);
             BufferedInputStream bufferedIn = new BufferedInputStream(input); 
         ) {
-            process(bufferedIn);
+            Consumer<InputStream> process = this::writeStreamToOutput;
+            process.accept(bufferedIn);
         } catch (IOException e) {
             setError();
         }
