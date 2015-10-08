@@ -20,13 +20,13 @@ public class HeadWithTitle extends Head {
             final FileReader fileReader = new FileReader(filename);
             final BufferedReader bufferedReader = new BufferedReader(fileReader);
         ) {
-            process(bufferedReader);
+            printLeadingLines(bufferedReader);
         } catch (IOException e) {
             setError();
         }
     }
 
-    protected void process(final BufferedReader bufferedReader) {
+    protected void printLeadingLines(final BufferedReader bufferedReader) {
         final String leadingLines = readLeadingLines(bufferedReader);
         output.print(buildTitle(currentFilename));
         output.print(leadingLines);
