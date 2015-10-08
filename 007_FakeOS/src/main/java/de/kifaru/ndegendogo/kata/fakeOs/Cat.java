@@ -64,10 +64,10 @@ public class Cat extends FileCommand {
     }
 
     protected void processSingleFile(final String filename)  {
+        Consumer<InputStream> process = this::writeStreamToOutput;
         try (FileInputStream input = new FileInputStream(filename);
             BufferedInputStream bufferedIn = new BufferedInputStream(input); 
         ) {
-            Consumer<InputStream> process = this::writeStreamToOutput;
             process.accept(bufferedIn);
         } catch (IOException e) {
             setError();

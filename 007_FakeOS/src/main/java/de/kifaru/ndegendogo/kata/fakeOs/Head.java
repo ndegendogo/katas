@@ -76,11 +76,11 @@ public class Head extends FileCommand {
     }
 
     protected void processSingleFile(final String filename) {
+        Consumer<BufferedReader> process = this::printLeadingLines;
         try (
             final FileReader fileReader = new FileReader(filename);
             final BufferedReader bufferedReader = new BufferedReader(fileReader);
         ) {
-            Consumer<BufferedReader> process = this::printLeadingLines;
             process.accept(bufferedReader);
         } catch (IOException e) {
             setError();
