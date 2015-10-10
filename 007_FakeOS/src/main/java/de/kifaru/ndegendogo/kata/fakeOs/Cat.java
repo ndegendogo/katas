@@ -63,17 +63,6 @@ public class Cat extends FileCommand {
         writeStreamToOutput(input);
     }
 
-    protected void processSingleFile(final String filename)  {
-        Consumer<InputStream> process = this::writeStreamToOutput;
-        try (FileInputStream input = new FileInputStream(filename);
-            BufferedInputStream bufferedIn = new BufferedInputStream(input); 
-        ) {
-            process.accept(bufferedIn);
-        } catch (IOException e) {
-            setError();
-        }
-    }
-
     private void writeStreamToOutput(final InputStream source) {
         try {
             int nextByte;
@@ -85,5 +74,23 @@ public class Cat extends FileCommand {
             setError();
         }
     }
+
+    protected void processSingleFile(final String filename) {
+        try {
+            Consumer<InputStream> process = this::writeStreamToOutput;
+            FileOperation(filename, process);
+        } catch (IOException e) {
+            setError();
+        }
+    }
+
+    static void FileOperation(final String filename, final Consumer<InputStream> process) throws IOException {
+        try (FileInputStream input = new FileInputStream(filename);
+                BufferedInputStream bufferedIn = new BufferedInputStream(input);
+        ) {
+            process.accept(bufferedIn);
+        }
+    }
+
 
 }
