@@ -67,7 +67,7 @@ public class Head extends FileCommand {
     }
 
     protected void processDefault() {
-        process(getDefaultInput());
+        fileOperation.processFromDefault();
     }
 
     protected BufferedReader getDefaultInput() {
