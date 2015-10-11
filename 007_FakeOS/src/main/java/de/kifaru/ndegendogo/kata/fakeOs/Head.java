@@ -48,10 +48,14 @@ public class Head extends FileCommand {
     }
 
     protected void processSingle(final String name) {
-        if(isDefaultInput(name)) {
-            processDefault();
-        } else {
-            processSingleFile(name);
+        try {
+            if(isDefaultInput(name)) {
+                processDefault();
+            } else {
+                processSingleFile(name);
+            }
+        } catch (IOException e) {
+            setError();
         }
     }
 
@@ -75,15 +79,13 @@ public class Head extends FileCommand {
         output.print(readLeadingLines(bufferedReader));
     }
 
-    protected void processSingleFile(final String filename) {
+    protected void processSingleFile(final String filename) throws IOException {
         Consumer<BufferedReader> process = this::printLeadingLines;
         try (
             final FileReader fileReader = new FileReader(filename);
             final BufferedReader bufferedReader = new BufferedReader(fileReader);
         ) {
             process.accept(bufferedReader);
-        } catch (IOException e) {
-            setError();
         }
     }
 
