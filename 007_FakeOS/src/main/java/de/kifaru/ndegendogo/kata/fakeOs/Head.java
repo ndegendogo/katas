@@ -1,14 +1,12 @@
 package de.kifaru.ndegendogo.kata.fakeOs;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.lang.System;
 import java.util.Arrays;
 import java.util.StringJoiner;
-import java.util.function.Consumer;
 import java.util.stream.Collector;
 
 public class Head extends FileCommand {
@@ -75,13 +73,7 @@ public class Head extends FileCommand {
     }
 
     protected void processSingleFile(final String filename) throws IOException {
-        Consumer<BufferedReader> process = this::printLeadingLines;
-        try (
-            final FileReader fileReader = new FileReader(filename);
-            final BufferedReader bufferedReader = new BufferedReader(fileReader);
-        ) {
-            process.accept(bufferedReader);
-        }
+        fileOperation.processFromFile(filename);
     }
 
     protected String readLeadingLines(final BufferedReader bufferedReader) {
