@@ -19,12 +19,7 @@ public class HeadWithTitle extends Head {
     protected void processSingleFile(final String filename) throws IOException {
         currentFilename = filename;
         Consumer<BufferedReader> process = this::printLeadingLines;
-        try (
-            final FileReader fileReader = new FileReader(filename);
-            final BufferedReader bufferedReader = new BufferedReader(fileReader);
-        ) {
-            process.accept(bufferedReader);
-        }
+        fileOperation.processFromFile(filename);
     }
 
     protected void printLeadingLines(final BufferedReader bufferedReader) {
