@@ -54,11 +54,7 @@ public class Cat extends FileCommand {
     }
 
     protected void processDefault() {
-        process(getDefaultInput());
-    }
-
-    protected InputStream getDefaultInput() {
-        return defaultInput;
+        fileOperation.processFromDefault(this::writeStreamToOutput);
     }
 
     private void process(final InputStream input) {
