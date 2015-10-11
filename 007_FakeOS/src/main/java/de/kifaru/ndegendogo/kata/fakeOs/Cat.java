@@ -13,7 +13,7 @@ public class Cat extends FileCommand {
     private final OutputStream output;
     
     public Cat(InputStream defaultInput, OutputStream output) {
-        this.fileOperation = new BinaryFileOperation(defaultInput);
+        this.fileOperation = new BinaryFileOperation(defaultInput, this::writeStreamToOutput);
         this.output = output;
     }
 

@@ -9,9 +9,11 @@ import java.util.function.Consumer;
 public class BinaryFileOperation implements FileOperation<InputStream> {
 
     private final InputStream defaultInput;
+    private final  Consumer<InputStream> process;
 
-    public BinaryFileOperation(InputStream defaultInput) {
+    public BinaryFileOperation(InputStream defaultInput, Consumer<InputStream> process) {
         this.defaultInput = defaultInput;
+        this.process = process;
     }
 
     @Override
