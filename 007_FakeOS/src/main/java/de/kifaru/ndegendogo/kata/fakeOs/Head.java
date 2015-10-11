@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.lang.System;
 import java.util.Arrays;
@@ -16,18 +15,15 @@ public class Head extends FileCommand {
 
     private static final int MAX_NUMBER_OF_LINES = 10;
     protected FileOperation fileOperation;
-    protected final BufferedReader defaultInput;
     protected final PrintStream output;
     
     Head(final BufferedReader defaultInput, final PrintStream output) {
-        this.defaultInput = defaultInput;
         this.fileOperation = new TextFileOperation(defaultInput, this::printLeadingLines);
         this.output = output;
     }
 
     Head (final InputStream in, final PrintStream out) {
-        this.defaultInput = new BufferedReader(new InputStreamReader(in));
-        this.fileOperation = new TextFileOperation(defaultInput, this::printLeadingLines);
+        this.fileOperation = new TextFileOperation(in, this::printLeadingLines);
         this.output = out;
     }
 
@@ -68,10 +64,6 @@ public class Head extends FileCommand {
 
     protected void processDefault() {
         fileOperation.processFromDefault();
-    }
-
-    protected BufferedReader getDefaultInput() {
-        return defaultInput;
     }
 
     protected void process(final BufferedReader input) {

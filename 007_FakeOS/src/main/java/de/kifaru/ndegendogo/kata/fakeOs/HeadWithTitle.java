@@ -13,7 +13,7 @@ public class HeadWithTitle extends Head {
 
     HeadWithTitle (final InputStream in, final PrintStream out) {
         super(in, new OutputJoiner(out));
-        this.fileOperation = new TextFileOperation(defaultInput, this::printLeadingLines);
+        this.fileOperation = new TextFileOperation(in, this::printLeadingLines);
     }
 
     protected void processSingleFile(final String filename) throws IOException {
