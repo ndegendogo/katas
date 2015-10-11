@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.function.Consumer;
 
-public class BinaryFileOperation implements FileOperation<InputStream> {
+public class BinaryFileOperation implements FileOperation {
 
     private final InputStream defaultInput;
     private final  Consumer<InputStream> process;
