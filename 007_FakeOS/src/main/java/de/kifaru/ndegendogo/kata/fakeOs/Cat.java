@@ -79,20 +79,10 @@ public class Cat extends FileCommand {
 
     protected void processSingleFile(final String filename) {
         try {
-            Consumer<InputStream> process = this::writeStreamToOutput;
-            fileOperation.processFromFile(filename, process);
+            fileOperation.processFromFile(filename, this::writeStreamToOutput);
         } catch (IOException e) {
             setError();
         }
     }
-
-    static void FileOperation(final String filename, final Consumer<InputStream> process) throws IOException {
-        try (FileInputStream input = new FileInputStream(filename);
-                BufferedInputStream bufferedIn = new BufferedInputStream(input);
-        ) {
-            process.accept(bufferedIn);
-        }
-    }
-
 
 }
