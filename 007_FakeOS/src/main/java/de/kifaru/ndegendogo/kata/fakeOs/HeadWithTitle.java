@@ -1,11 +1,9 @@
 package de.kifaru.ndegendogo.kata.fakeOs;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
-import java.util.function.Consumer;
 
 public class HeadWithTitle extends Head {
     
@@ -18,7 +16,6 @@ public class HeadWithTitle extends Head {
 
     protected void processSingleFile(final String filename) throws IOException {
         currentFilename = filename;
-        Consumer<BufferedReader> process = this::printLeadingLines;
         fileOperation.processFromFile(filename);
     }
 
