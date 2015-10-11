@@ -15,16 +15,19 @@ import java.util.stream.Collector;
 public class Head extends FileCommand {
 
     private static final int MAX_NUMBER_OF_LINES = 10;
-    private final BufferedReader defaultInput;
+    protected FileOperation fileOperation;
+    protected final BufferedReader defaultInput;
     protected final PrintStream output;
     
     Head(final BufferedReader defaultInput, final PrintStream output) {
         this.defaultInput = defaultInput;
+        this.fileOperation = new TextFileOperation(defaultInput, this::printLeadingLines);
         this.output = output;
     }
 
     Head (final InputStream in, final PrintStream out) {
         this.defaultInput = new BufferedReader(new InputStreamReader(in));
+        this.fileOperation = new TextFileOperation(defaultInput, this::printLeadingLines);
         this.output = out;
     }
 

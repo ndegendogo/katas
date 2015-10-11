@@ -8,7 +8,7 @@ import java.util.function.Consumer;
 public class TextFileOperation implements FileOperation {
 
     private final BufferedReader defaultInput;
-    private final  Consumer<BufferedReader> process;
+    private final Consumer<BufferedReader> process;
 
     public TextFileOperation(BufferedReader defaultInput, Consumer<BufferedReader> process) {
         this.defaultInput = defaultInput;
