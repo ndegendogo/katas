@@ -9,7 +9,7 @@ public class Cat extends FileCommand {
 
     private static final String DEFAULT_INPUT= "-";
     
-    private final FileOperation fileOperation;
+    protected final FileOperation fileOperation;
     private final OutputStream output;
     
     public Cat(InputStream defaultInput, OutputStream output) {
