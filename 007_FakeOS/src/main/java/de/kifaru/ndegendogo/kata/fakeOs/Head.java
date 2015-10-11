@@ -45,14 +45,10 @@ public class Head extends FileCommand {
     }
 
     protected void processSingle(final String name) {
-        try {
-            if(isDefaultInput(name)) {
-                processDefault();
-            } else {
-                processSingleFile(name);
-            }
-        } catch (IOException e) {
-            setError();
+        if(isDefaultInput(name)) {
+            processDefault();
+        } else {
+            processSingleFile(name);
         }
     }
 
@@ -64,16 +60,16 @@ public class Head extends FileCommand {
         fileOperation.processFromDefault();
     }
 
-    protected void process(final BufferedReader input) {
-        printLeadingLines(input);
-    }
-
     void printLeadingLines(final BufferedReader bufferedReader) {
         output.print(readLeadingLines(bufferedReader));
     }
 
-    protected void processSingleFile(final String filename) throws IOException {
-        fileOperation.processFromFile(filename);
+    protected void processSingleFile(final String filename) {
+        try {
+            fileOperation.processFromFile(filename);
+        } catch (IOException e) {
+            setError();
+        }
     }
 
     protected String readLeadingLines(final BufferedReader bufferedReader) {
