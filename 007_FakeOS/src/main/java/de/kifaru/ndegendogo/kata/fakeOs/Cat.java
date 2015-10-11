@@ -12,10 +12,12 @@ public class Cat extends FileCommand {
 
     private static final String DEFAULT_INPUT= "-";
     
+    private final BinaryFileOperation fileOperation;
     private final InputStream defaultInput;
     private final OutputStream output;
     
     public Cat(InputStream defaultInput, OutputStream output) {
+        this.fileOperation = new BinaryFileOperation(defaultInput);
         this.defaultInput = defaultInput;
         this.output = output;
     }
@@ -78,7 +80,7 @@ public class Cat extends FileCommand {
     protected void processSingleFile(final String filename) {
         try {
             Consumer<InputStream> process = this::writeStreamToOutput;
-            FileOperation(filename, process);
+            fileOperation.processFromFile(filename, process);
         } catch (IOException e) {
             setError();
         }
