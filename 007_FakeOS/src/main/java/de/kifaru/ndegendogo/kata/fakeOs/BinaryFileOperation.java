@@ -17,12 +17,12 @@ public class BinaryFileOperation implements FileOperation<InputStream> {
     }
 
     @Override
-    public void processFromDefault(Consumer<InputStream> process) {
+    public void processFromDefault() {
         process.accept(defaultInput);
     }
 
     @Override
-    public void processFromFile(String filename, Consumer<InputStream> process) throws IOException {
+    public void processFromFile(String filename) throws IOException {
         try (FileInputStream input = new FileInputStream(filename);
                 BufferedInputStream bufferedIn = new BufferedInputStream(input);
         ) {

@@ -49,7 +49,7 @@ public class Cat extends FileCommand {
     }
 
     protected void processDefault() {
-        fileOperation.processFromDefault(this::writeStreamToOutput);
+        fileOperation.processFromDefault();
     }
 
     private void writeStreamToOutput(final InputStream source) {
@@ -66,7 +66,7 @@ public class Cat extends FileCommand {
 
     protected void processSingleFile(final String filename) {
         try {
-            fileOperation.processFromFile(filename, this::writeStreamToOutput);
+            fileOperation.processFromFile(filename);
         } catch (IOException e) {
             setError();
         }
