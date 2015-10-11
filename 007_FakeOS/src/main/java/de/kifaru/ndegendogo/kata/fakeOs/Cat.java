@@ -1,24 +1,19 @@
 package de.kifaru.ndegendogo.kata.fakeOs;
 
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Arrays;
-import java.util.function.Consumer;
 
 public class Cat extends FileCommand {
 
     private static final String DEFAULT_INPUT= "-";
     
     private final BinaryFileOperation fileOperation;
-    private final InputStream defaultInput;
     private final OutputStream output;
     
     public Cat(InputStream defaultInput, OutputStream output) {
         this.fileOperation = new BinaryFileOperation(defaultInput);
-        this.defaultInput = defaultInput;
         this.output = output;
     }
 
@@ -57,10 +52,6 @@ public class Cat extends FileCommand {
         fileOperation.processFromDefault(this::writeStreamToOutput);
     }
 
-    private void process(final InputStream input) {
-        writeStreamToOutput(input);
-    }
-
     private void writeStreamToOutput(final InputStream source) {
         try {
             int nextByte;
@@ -80,5 +71,4 @@ public class Cat extends FileCommand {
             setError();
         }
     }
-
 }
