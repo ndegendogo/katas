@@ -38,7 +38,7 @@ public class TestCat {
     public void testProcessSingleFile() throws IOException {
         final ByteArrayInputStream dummy = null;
         final ByteArrayOutputStream output = new ByteArrayOutputStream();
-        Cat cat = new Cat(dummy, output);
+        FileCommand cat = new Cat(dummy, output);
         cat.processSingleFile(filename);
         assertFalse(cat.hasError());
         assertEquals(expectedContent, output.toString());
@@ -48,7 +48,7 @@ public class TestCat {
     public void testProcessDefault() throws IOException {
         final ByteArrayInputStream input = new ByteArrayInputStream(expectedContent.getBytes());
         final ByteArrayOutputStream output = new ByteArrayOutputStream();
-        Cat cat = new Cat(input, output);
+        FileCommand cat = new Cat(input, output);
         cat.processDefault();
         assertFalse(cat.hasError());
         assertEquals(expectedContent, output.toString());

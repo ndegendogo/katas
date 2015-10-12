@@ -1,5 +1,7 @@
 package de.kifaru.ndegendogo.kata.fakeOs;
 
+import java.io.IOException;
+
 public class FileCommand {
 
     private boolean hasError = false;
@@ -7,6 +9,18 @@ public class FileCommand {
     
     protected void setFileOperation(final FileOperation fileOperation) {
         this.fileOperation = fileOperation;
+    }
+
+    protected void processDefault() {
+        fileOperation.processFromDefault();
+    }
+
+    protected void processSingleFile(final String filename) {
+        try {
+            fileOperation.processFromFile(filename);
+        } catch (IOException e) {
+            setError();
+        }
     }
 
     protected boolean setError() {
@@ -21,9 +35,5 @@ public class FileCommand {
         if (hasError()) {
             System.exit(1);
         }
-    }
-
-    protected void processDefault() {
-        fileOperation.processFromDefault();
     }
 }

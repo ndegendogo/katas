@@ -58,12 +58,4 @@ public class Cat extends FileCommand {
             setError();
         }
     }
-
-    protected void processSingleFile(final String filename) {
-        try {
-            fileOperation.processFromFile(filename);
-        } catch (IOException e) {
-            setError();
-        }
-    }
 }

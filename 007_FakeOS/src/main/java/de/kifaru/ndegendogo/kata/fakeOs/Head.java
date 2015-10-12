@@ -1,7 +1,6 @@
 package de.kifaru.ndegendogo.kata.fakeOs;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.lang.System;
@@ -57,14 +56,6 @@ public class Head extends FileCommand {
 
     void printLeadingLines(final BufferedReader bufferedReader) {
         output.print(readLeadingLines(bufferedReader));
-    }
-
-    protected void processSingleFile(final String filename) {
-        try {
-            fileOperation.processFromFile(filename);
-        } catch (IOException e) {
-            setError();
-        }
     }
 
     protected String readLeadingLines(final BufferedReader bufferedReader) {
