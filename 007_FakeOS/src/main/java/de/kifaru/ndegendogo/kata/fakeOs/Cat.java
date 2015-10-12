@@ -36,15 +36,11 @@ public class Cat extends FileCommand {
     }
 
     protected void processSingle(final String name) {
-        if(isDefaultInput(name)) {
+        if(DEFAULT_INPUT.equals(name)) {
             processDefault();
         } else {
-            processSingleFile(name);
+            super.processSingle(name);
         }
-    }
-
-    protected boolean isDefaultInput(final String name) {
-        return DEFAULT_INPUT.equals(name);
     }
 
     private void writeStreamToOutput(final InputStream source) {
