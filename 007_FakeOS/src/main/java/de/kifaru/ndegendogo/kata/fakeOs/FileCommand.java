@@ -1,6 +1,7 @@
 package de.kifaru.ndegendogo.kata.fakeOs;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 public class FileCommand {
 
@@ -13,6 +14,11 @@ public class FileCommand {
 
     protected void processDefault() {
         fileOperation.processFromDefault();
+    }
+
+    protected void processMulti(final String... filenames) {
+        Arrays.asList(filenames).stream()
+            .forEach(name -> processSingle(name));
     }
 
     protected void processSingle(final String name) {

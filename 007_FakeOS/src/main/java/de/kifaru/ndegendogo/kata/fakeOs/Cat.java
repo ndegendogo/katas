@@ -3,7 +3,6 @@ package de.kifaru.ndegendogo.kata.fakeOs;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.Arrays;
 
 public class Cat extends FileCommand {
 
@@ -28,11 +27,6 @@ public class Cat extends FileCommand {
             processDefault();
         }
         handleError();
-    }
-
-    protected void processMulti(final String... filenames) {
-        Arrays.asList(filenames).stream()
-            .forEach(name -> processSingle(name));
     }
 
     protected void processSingle(final String name) {

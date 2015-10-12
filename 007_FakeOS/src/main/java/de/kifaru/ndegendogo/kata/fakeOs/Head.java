@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.lang.System;
-import java.util.Arrays;
 import java.util.StringJoiner;
 import java.util.stream.Collector;
 
@@ -35,11 +34,6 @@ public class Head extends FileCommand {
             processDefault();
         }
         handleError();
-    }
-
-    protected void processMulti(final String... filenames) {
-        Arrays.asList(filenames).stream()
-            .forEach(name -> processSingle(name));
     }
 
     void printLeadingLines(final BufferedReader bufferedReader) {
