@@ -9,9 +9,9 @@ import java.util.function.Consumer;
 public class BinaryFileOperation implements FileOperation {
 
     private final InputStream defaultInput;
-    private final  Consumer<InputStream> operation;
+    private final Consumer<InputStream> operation;
 
-    public BinaryFileOperation(InputStream defaultInput, Consumer<InputStream> operation) {
+    public BinaryFileOperation(final InputStream defaultInput, final Consumer<InputStream> operation) {
         this.defaultInput = defaultInput;
         this.operation = operation;
     }
@@ -22,9 +22,10 @@ public class BinaryFileOperation implements FileOperation {
     }
 
     @Override
-    public void processFromFile(String filename) throws IOException {
-        try (FileInputStream input = new FileInputStream(filename);
-                BufferedInputStream bufferedIn = new BufferedInputStream(input);
+    public void processFromFile(final String filename) throws IOException {
+        try (
+            final FileInputStream input = new FileInputStream(filename);
+            final BufferedInputStream bufferedIn = new BufferedInputStream(input);
         ) {
             operation.accept(bufferedIn);
         }

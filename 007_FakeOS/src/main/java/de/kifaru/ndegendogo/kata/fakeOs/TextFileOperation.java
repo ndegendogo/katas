@@ -12,12 +12,12 @@ public class TextFileOperation implements FileOperation {
     private final BufferedReader defaultInput;
     private final Consumer<BufferedReader> operation;
 
-    public TextFileOperation(BufferedReader defaultInput, Consumer<BufferedReader> operation) {
+    public TextFileOperation(final BufferedReader defaultInput, final Consumer<BufferedReader> operation) {
         this.defaultInput = defaultInput;
         this.operation = operation;
     }
 
-    public TextFileOperation(final InputStream in, Consumer<BufferedReader> process) {
+    public TextFileOperation(final InputStream in, final Consumer<BufferedReader> process) {
         this.defaultInput = new BufferedReader(new InputStreamReader(in));
         this.operation = process;
     }
@@ -28,7 +28,7 @@ public class TextFileOperation implements FileOperation {
     }
 
     @Override
-    public void processFromFile(String filename) throws IOException {
+    public void processFromFile(final String filename) throws IOException {
         try (
             final FileReader fileReader = new FileReader(filename);
             final BufferedReader bufferedReader = new BufferedReader(fileReader);
