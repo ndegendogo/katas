@@ -10,7 +10,7 @@ public class HeadWithTitle extends Head {
 
     HeadWithTitle (final InputStream in, final PrintStream out) {
         super(in, new OutputJoiner(out));
-        this.fileOperation = new TextFileOperation(in, this::printLeadingLines);
+        setFileOperation(new TextFileOperation(in, this::printLeadingLines));
     }
 
     protected void processSingleFile(final String filename) {

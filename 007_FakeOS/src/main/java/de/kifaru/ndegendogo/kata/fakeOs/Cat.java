@@ -9,12 +9,11 @@ public class Cat extends FileCommand {
 
     private static final String DEFAULT_INPUT= "-";
     
-    protected final FileOperation fileOperation;
     private final OutputStream output;
     
     public Cat(InputStream defaultInput, OutputStream output) {
-        this.fileOperation = new BinaryFileOperation(defaultInput, this::writeStreamToOutput);
         this.output = output;
+        setFileOperation(new BinaryFileOperation(defaultInput, this::writeStreamToOutput));
     }
 
     public static void main(final String... args) {
