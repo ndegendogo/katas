@@ -42,10 +42,6 @@ public class Head extends FileCommand {
             .forEach(name -> processSingle(name));
     }
 
-    protected void processSingle(final String name) {
-        processSingleFile(name);
-    }
-
     void printLeadingLines(final BufferedReader bufferedReader) {
         output.print(readLeadingLines(bufferedReader));
     }

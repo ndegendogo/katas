@@ -15,6 +15,10 @@ public class FileCommand {
         fileOperation.processFromDefault();
     }
 
+    protected void processSingle(final String name) {
+        processSingleFile(name);
+    }
+
     protected void processSingleFile(final String filename) {
         try {
             fileOperation.processFromFile(filename);
