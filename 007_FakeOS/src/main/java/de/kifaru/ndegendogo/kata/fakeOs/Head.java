@@ -43,15 +43,7 @@ public class Head extends FileCommand {
     }
 
     protected void processSingle(final String name) {
-        if(isDefaultInput(name)) {
-            processDefault();
-        } else {
-            processSingleFile(name);
-        }
-    }
-
-    protected boolean isDefaultInput(final String name) {
-        return false;
+        processSingleFile(name);
     }
 
     void printLeadingLines(final BufferedReader bufferedReader) {
