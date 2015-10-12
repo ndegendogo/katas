@@ -47,10 +47,6 @@ public class Cat extends FileCommand {
         return DEFAULT_INPUT.equals(name);
     }
 
-    protected void processDefault() {
-        fileOperation.processFromDefault();
-    }
-
     private void writeStreamToOutput(final InputStream source) {
         try {
             int nextByte;
