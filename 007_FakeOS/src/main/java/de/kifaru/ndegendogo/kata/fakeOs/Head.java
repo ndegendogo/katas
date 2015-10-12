@@ -23,17 +23,8 @@ public class Head extends FileCommand {
     }
 
     public static void main(final String... args) {
-        final Head head = (args.length >= 2) ? new HeadWithTitle(System.in, System.out) : new Head(System.in, System.out);
+        final FileCommand head = (args.length >= 2) ? new HeadWithTitle(System.in, System.out) : new Head(System.in, System.out);
         head.processAll(args);
-    }
-
-    protected void processAll(final String... filenames) {
-        if (filenames.length > 0) {
-            processMulti(filenames);
-        } else {
-            processDefault();
-        }
-        handleError();
     }
 
     void printLeadingLines(final BufferedReader bufferedReader) {

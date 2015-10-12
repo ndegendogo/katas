@@ -12,6 +12,15 @@ public class FileCommand {
         this.fileOperation = fileOperation;
     }
 
+    protected void processAll(final String... filenames) {
+        if (filenames.length > 0) {
+            processMulti(filenames);
+        } else {
+            processDefault();
+        }
+        handleError();
+    }
+
     protected void processDefault() {
         fileOperation.processFromDefault();
     }
