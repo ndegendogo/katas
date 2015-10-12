@@ -6,7 +6,7 @@ import java.util.Arrays;
 public class FileCommand {
 
     private boolean hasError = false;
-    protected FileOperation fileOperation;
+    private FileOperation fileOperation;
     
     protected void setFileOperation(final FileOperation fileOperation) {
         this.fileOperation = fileOperation;

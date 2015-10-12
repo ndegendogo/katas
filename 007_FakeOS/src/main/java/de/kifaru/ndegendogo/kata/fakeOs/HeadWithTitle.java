@@ -6,7 +6,7 @@ import java.io.PrintStream;
 
 public class HeadWithTitle extends Head {
     
-    String currentFilename;
+    private String currentFilename;
 
     HeadWithTitle (final InputStream in, final PrintStream out) {
         super(in, new OutputJoiner(out));
