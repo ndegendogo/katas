@@ -55,10 +55,6 @@ public class Head extends FileCommand {
         return false;
     }
 
-    protected void processDefault() {
-        fileOperation.processFromDefault();
-    }
-
     void printLeadingLines(final BufferedReader bufferedReader) {
         output.print(readLeadingLines(bufferedReader));
     }

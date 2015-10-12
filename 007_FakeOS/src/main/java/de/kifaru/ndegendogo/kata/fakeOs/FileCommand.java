@@ -22,4 +22,8 @@ public class FileCommand {
             System.exit(1);
         }
     }
+
+    protected void processDefault() {
+        fileOperation.processFromDefault();
+    }
 }
