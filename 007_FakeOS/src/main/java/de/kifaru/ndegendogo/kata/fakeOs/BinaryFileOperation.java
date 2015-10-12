@@ -9,16 +9,16 @@ import java.util.function.Consumer;
 public class BinaryFileOperation implements FileOperation {
 
     private final InputStream defaultInput;
-    private final  Consumer<InputStream> process;
+    private final  Consumer<InputStream> operation;
 
-    public BinaryFileOperation(InputStream defaultInput, Consumer<InputStream> process) {
+    public BinaryFileOperation(InputStream defaultInput, Consumer<InputStream> operation) {
         this.defaultInput = defaultInput;
-        this.process = process;
+        this.operation = operation;
     }
 
     @Override
     public void processFromDefault() {
-        process.accept(defaultInput);
+        operation.accept(defaultInput);
     }
 
     @Override
@@ -26,7 +26,7 @@ public class BinaryFileOperation implements FileOperation {
         try (FileInputStream input = new FileInputStream(filename);
                 BufferedInputStream bufferedIn = new BufferedInputStream(input);
         ) {
-            process.accept(bufferedIn);
+            operation.accept(bufferedIn);
         }
     }
 }

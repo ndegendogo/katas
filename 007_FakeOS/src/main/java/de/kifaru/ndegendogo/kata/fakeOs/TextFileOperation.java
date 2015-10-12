@@ -10,21 +10,21 @@ import java.util.function.Consumer;
 public class TextFileOperation implements FileOperation {
 
     private final BufferedReader defaultInput;
-    private final Consumer<BufferedReader> process;
+    private final Consumer<BufferedReader> operation;
 
-    public TextFileOperation(BufferedReader defaultInput, Consumer<BufferedReader> process) {
+    public TextFileOperation(BufferedReader defaultInput, Consumer<BufferedReader> operation) {
         this.defaultInput = defaultInput;
-        this.process = process;
+        this.operation = operation;
     }
 
     public TextFileOperation(final InputStream in, Consumer<BufferedReader> process) {
         this.defaultInput = new BufferedReader(new InputStreamReader(in));
-        this.process = process;
+        this.operation = process;
     }
 
     @Override
     public void processFromDefault() {
-        process.accept(defaultInput);
+        operation.accept(defaultInput);
     }
 
     @Override
@@ -33,7 +33,7 @@ public class TextFileOperation implements FileOperation {
             final FileReader fileReader = new FileReader(filename);
             final BufferedReader bufferedReader = new BufferedReader(fileReader);
         ) {
-            process.accept(bufferedReader);
+            operation.accept(bufferedReader);
         }
     }
 }
