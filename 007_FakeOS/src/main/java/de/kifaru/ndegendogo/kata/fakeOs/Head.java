@@ -43,6 +43,7 @@ public class Head extends FileCommand {
                 .collect(joining);
     }
     
+    @Override
     protected boolean hasError() {
         return (super.hasError() || output.checkError());
     }

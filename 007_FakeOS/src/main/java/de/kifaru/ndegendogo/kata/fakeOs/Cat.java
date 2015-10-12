@@ -20,6 +20,7 @@ public class Cat extends FileCommand {
         cat.processAll(args);
     }
 
+    @Override
     protected void processSingle(final String name) {
         if(DEFAULT_INPUT.equals(name)) {
             processDefault();

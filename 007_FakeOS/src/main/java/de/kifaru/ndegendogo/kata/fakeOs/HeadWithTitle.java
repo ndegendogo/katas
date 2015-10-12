@@ -13,11 +13,13 @@ public class HeadWithTitle extends Head {
         setFileOperation(new TextFileOperation(in, this::printLeadingLines));
     }
 
+    @Override
     protected void processSingleFile(final String filename) {
         currentFilename = filename;
         super.processSingleFile(filename);
     }
 
+    @Override
     protected void printLeadingLines(final BufferedReader bufferedReader) {
         final String leadingLines = readLeadingLines(bufferedReader);
         output.print(buildTitle(currentFilename));
