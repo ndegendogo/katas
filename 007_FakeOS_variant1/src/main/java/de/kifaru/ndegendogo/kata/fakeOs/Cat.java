@@ -47,6 +47,7 @@ public class Cat extends FileCommand {
         }
     }
 
+    @Override
     protected boolean isDefaultInput(final String name) {
         return DEFAULT_INPUT.equals(name);
     }

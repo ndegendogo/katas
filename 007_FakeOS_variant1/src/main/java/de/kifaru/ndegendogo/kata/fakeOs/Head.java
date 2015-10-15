@@ -55,10 +55,6 @@ public class Head extends FileCommand {
         }
     }
 
-    protected boolean isDefaultInput(final String name) {
-        return false;
-    }
-
     @Override
     protected void processDefault() {
         process(defaultInput);

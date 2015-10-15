@@ -20,4 +20,7 @@ public abstract class FileCommand {
             System.exit(1);
         }
     }
+    protected boolean isDefaultInput(final String name) {
+        return false;
+    }
 }
