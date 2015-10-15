@@ -1,6 +1,9 @@
 package de.kifaru.ndegendogo.kata.fakeOs;
 
-public class FileCommand {
+public abstract class FileCommand {
+
+    abstract protected void processDefault();
+    abstract protected void processSingleFile(final String filename);
 
     private boolean hasError = false;
 

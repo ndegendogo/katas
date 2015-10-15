@@ -59,6 +59,7 @@ public class Head extends FileCommand {
         return false;
     }
 
+    @Override
     protected void processDefault() {
         process(defaultInput);
     }
@@ -71,6 +72,7 @@ public class Head extends FileCommand {
         output.print(readLeadingLines(bufferedReader));
     }
 
+    @Override
     protected void processSingleFile(final String filename) {
         Consumer<BufferedReader> process = this::printLeadingLines;
         try (

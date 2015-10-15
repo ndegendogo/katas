@@ -51,6 +51,7 @@ public class Cat extends FileCommand {
         return DEFAULT_INPUT.equals(name);
     }
 
+    @Override
     protected void processDefault() {
         process(defaultInput);
     }
@@ -71,6 +72,7 @@ public class Cat extends FileCommand {
         }
     }
 
+    @Override
     protected void processSingleFile(final String filename) {
         try {
             Consumer<InputStream> process = this::writeStreamToOutput;
