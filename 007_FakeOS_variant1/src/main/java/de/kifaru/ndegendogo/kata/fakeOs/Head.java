@@ -7,7 +7,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.lang.System;
-import java.util.Arrays;
 import java.util.StringJoiner;
 import java.util.function.Consumer;
 import java.util.stream.Collector;
@@ -29,30 +28,8 @@ public class Head extends FileCommand {
     }
 
     public static void main(final String... args) {
-        final Head head = (args.length >= 2) ? new HeadWithTitle(System.in, System.out) : new Head(System.in, System.out);
+        final FileCommand head = (args.length >= 2) ? new HeadWithTitle(System.in, System.out) : new Head(System.in, System.out);
         head.processAll(args);
-    }
-
-    protected void processAll(final String... filenames) {
-        if (filenames.length > 0) {
-            processMulti(filenames);
-        } else {
-            processDefault();
-        }
-        handleError();
-    }
-
-    protected void processMulti(final String... filenames) {
-        Arrays.asList(filenames).stream()
-            .forEach(name -> processSingle(name));
-    }
-
-    protected void processSingle(final String name) {
-        if(isDefaultInput(name)) {
-            processDefault();
-        } else {
-            processSingleFile(name);
-        }
     }
 
     @Override
