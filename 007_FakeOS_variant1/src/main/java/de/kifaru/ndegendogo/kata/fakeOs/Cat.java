@@ -52,11 +52,7 @@ public class Cat extends FileCommand {
     }
 
     protected void processDefault() {
-        process(getDefaultInput());
-    }
-
-    protected InputStream getDefaultInput() {
-        return defaultInput;
+        process(defaultInput);
     }
 
     private void process(final InputStream input) {

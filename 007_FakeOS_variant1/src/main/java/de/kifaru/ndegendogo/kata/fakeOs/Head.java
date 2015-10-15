@@ -60,11 +60,7 @@ public class Head extends FileCommand {
     }
 
     protected void processDefault() {
-        process(getDefaultInput());
-    }
-
-    protected BufferedReader getDefaultInput() {
-        return defaultInput;
+        process(defaultInput);
     }
 
     protected void process(final BufferedReader input) {
