@@ -10,7 +10,7 @@ public class FileCommandProcessor {
         this.command = command;
     }
 
-    protected void processMulti(final String... filenames) {
+    void processMulti(final String... filenames) {
         Arrays.asList(filenames).stream()
             .forEach(name -> processSingle(name));
     }
