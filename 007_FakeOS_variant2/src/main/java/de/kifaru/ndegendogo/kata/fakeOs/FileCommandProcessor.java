@@ -8,11 +8,11 @@ public class FileCommandProcessor {
         this.command = command;
     }
 
-    protected void processSingle(Cat cat, final String name) {
-        if(cat.isDefaultInput(name)) {
-            cat.processDefault();
+    void processSingle(Cat cat, final String name) {
+        if(command.isDefaultInput(name)) {
+            command.processDefault();
         } else {
-            cat.processSingleFile(name);
+            command.processSingleFile(name);
         }
     }
 }
