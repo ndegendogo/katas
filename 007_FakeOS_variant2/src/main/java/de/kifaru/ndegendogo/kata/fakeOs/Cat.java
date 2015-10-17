@@ -14,7 +14,7 @@ public class Cat implements FileCommand {
     private final InputStream defaultInput;
     private final OutputStream output;
     protected boolean hasError = false;
-    
+
     public Cat(final InputStream defaultInput, final OutputStream output) {
         this.defaultInput = defaultInput;
         this.output = output;
@@ -85,7 +85,7 @@ public class Cat implements FileCommand {
         return hasError = true;
     }
 
-    protected void handleError() {
+    public void handleError() {
         if (hasError()) {
             System.exit(1);
         }

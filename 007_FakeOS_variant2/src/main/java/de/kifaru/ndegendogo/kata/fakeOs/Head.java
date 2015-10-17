@@ -98,7 +98,7 @@ public class Head implements FileCommand {
         return hasError = true;
     }
 
-    protected void handleError() {
+    public void handleError() {
         if (hasError()) {
             System.exit(1);
         }
