@@ -8,7 +8,7 @@ import java.io.OutputStream;
 import java.util.Arrays;
 import java.util.function.Consumer;
 
-public class Cat {
+public class Cat implements FileCommand {
 
     private static final String DEFAULT_INPUT= "-";
     
@@ -52,7 +52,7 @@ public class Cat {
         return DEFAULT_INPUT.equals(name);
     }
 
-    protected void processDefault() {
+    public void processDefault() {
         process(getDefaultInput());
     }
 
@@ -76,7 +76,7 @@ public class Cat {
         }
     }
 
-    protected void processSingleFile(final String filename) {
+    public void processSingleFile(final String filename) {
         try {
             Consumer<InputStream> process = this::writeStreamToOutput;
             FileOperation(filename, process);
@@ -84,6 +84,7 @@ public class Cat {
             setError();
         }
     }
+
     static void FileOperation(final String filename, final Consumer<InputStream> process) throws IOException {
         try (FileInputStream input = new FileInputStream(filename);
                 BufferedInputStream bufferedIn = new BufferedInputStream(input);

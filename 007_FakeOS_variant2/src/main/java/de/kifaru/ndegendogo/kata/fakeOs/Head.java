@@ -12,7 +12,7 @@ import java.util.StringJoiner;
 import java.util.function.Consumer;
 import java.util.stream.Collector;
 
-public class Head {
+public class Head implements FileCommand {
 
     private static final int MAX_NUMBER_OF_LINES = 10;
     private final BufferedReader defaultInput;
@@ -60,7 +60,7 @@ public class Head {
         return false;
     }
 
-    protected void processDefault() {
+    public void processDefault() {
         process(getDefaultInput());
     }
 
@@ -76,7 +76,7 @@ public class Head {
         output.print(readLeadingLines(bufferedReader));
     }
 
-    protected void processSingleFile(final String filename) {
+    public void processSingleFile(final String filename) {
         Consumer<BufferedReader> process = this::printLeadingLines;
         try (
             final FileReader fileReader = new FileReader(filename);

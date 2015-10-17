@@ -15,7 +15,7 @@ public class HeadWithTitle extends Head {
         super(in, new OutputJoiner(out));
     }
 
-    protected void processSingleFile(final String filename) {
+    public void processSingleFile(final String filename) {
         currentFilename = filename;
         Consumer<BufferedReader> process = this::printLeadingLines;
         try (
