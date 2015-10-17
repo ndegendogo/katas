@@ -5,7 +5,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.function.Consumer;
 
 public class Cat extends FileCommand {
 
@@ -31,11 +30,7 @@ public class Cat extends FileCommand {
 
     @Override
     protected void processDefault() {
-        process(defaultInput);
-    }
-
-    private void process(final InputStream input) {
-        writeStreamToOutput(input);
+        writeStreamToOutput(defaultInput);
     }
 
     private void writeStreamToOutput(final InputStream source) {
@@ -52,21 +47,12 @@ public class Cat extends FileCommand {
 
     @Override
     protected void processSingleFile(final String filename) {
-        try {
-            Consumer<InputStream> process = this::writeStreamToOutput;
-            FileOperation(filename, process);
+        try (FileInputStream input = new FileInputStream(filename);
+                BufferedInputStream bufferedIn = new BufferedInputStream(input);
+        ) {
+            writeStreamToOutput(bufferedIn);
         } catch (IOException e) {
             setError();
         }
     }
-
-    static void FileOperation(final String filename, final Consumer<InputStream> process) throws IOException {
-        try (FileInputStream input = new FileInputStream(filename);
-                BufferedInputStream bufferedIn = new BufferedInputStream(input);
-        ) {
-            process.accept(bufferedIn);
-        }
-    }
-
-
 }
