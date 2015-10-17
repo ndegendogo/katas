@@ -8,7 +8,7 @@ public class FileCommandProcessor {
         this.command = command;
     }
 
-    void processSingle(Cat cat, final String name) {
+    void processSingle(final String name) {
         if(command.isDefaultInput(name)) {
             command.processDefault();
         } else {
