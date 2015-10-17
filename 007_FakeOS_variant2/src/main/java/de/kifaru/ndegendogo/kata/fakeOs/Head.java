@@ -9,7 +9,6 @@ import java.io.PrintStream;
 import java.lang.System;
 import java.util.Arrays;
 import java.util.StringJoiner;
-import java.util.function.Consumer;
 import java.util.stream.Collector;
 
 public class Head implements FileCommand {
@@ -61,15 +60,7 @@ public class Head implements FileCommand {
     }
 
     public void processDefault() {
-        process(getDefaultInput());
-    }
-
-    protected BufferedReader getDefaultInput() {
-        return defaultInput;
-    }
-
-    protected void process(final BufferedReader input) {
-        printLeadingLines(input);
+        printLeadingLines(defaultInput);
     }
 
     void printLeadingLines(final BufferedReader bufferedReader) {
@@ -77,12 +68,11 @@ public class Head implements FileCommand {
     }
 
     public void processSingleFile(final String filename) {
-        Consumer<BufferedReader> process = this::printLeadingLines;
         try (
             final FileReader fileReader = new FileReader(filename);
             final BufferedReader bufferedReader = new BufferedReader(fileReader);
         ) {
-            process.accept(bufferedReader);
+            printLeadingLines(bufferedReader);
         } catch (IOException e) {
             setError();
         }
