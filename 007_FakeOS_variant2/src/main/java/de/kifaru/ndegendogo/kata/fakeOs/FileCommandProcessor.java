@@ -7,4 +7,12 @@ public class FileCommandProcessor {
     FileCommandProcessor(FileCommand command) {
         this.command = command;
     }
+
+    protected void processSingle(Cat cat, final String name) {
+        if(cat.isDefaultInput(name)) {
+            cat.processDefault();
+        } else {
+            cat.processSingleFile(name);
+        }
+    }
 }

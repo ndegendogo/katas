@@ -38,15 +38,7 @@ public class Cat implements FileCommand {
 
     protected void processMulti(final String... filenames) {
         Arrays.asList(filenames).stream()
-            .forEach(name -> processSingle(name));
-    }
-
-    protected void processSingle(final String name) {
-        if(isDefaultInput(name)) {
-            processDefault();
-        } else {
-            processSingleFile(name);
-        }
+            .forEach(name -> commandProcessor.processSingle(this, name));
     }
 
     public boolean isDefaultInput(final String name) {
