@@ -55,7 +55,7 @@ public class Head implements FileCommand {
         }
     }
 
-    protected boolean isDefaultInput(final String name) {
+    public boolean isDefaultInput(final String name) {
         return false;
     }
 
