@@ -30,7 +30,8 @@ public class Head implements FileCommand {
 
     public static void main(final String... args) {
         final Head head = (args.length >= 2) ? new HeadWithTitle(System.in, System.out) : new Head(System.in, System.out);
-        head.processAll(args);
+        final FileCommandProcessor commandProcessor = new FileCommandProcessor(head);
+        commandProcessor.processAll(args);
     }
 
     protected void processAll(final String... filenames) {
