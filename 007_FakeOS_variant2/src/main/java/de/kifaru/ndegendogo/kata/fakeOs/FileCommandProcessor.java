@@ -10,13 +10,13 @@ public class FileCommandProcessor {
         this.command = command;
     }
 
-    void processAll(Cat cat, final String... filenames) {
+    void processAll(final String... filenames) {
         if (filenames.length > 0) {
             processMulti(filenames);
         } else {
-            cat.processDefault();
+            command.processDefault();
         }
-        cat.handleError();
+        command.handleError();
     }
 
     void processMulti(final String... filenames) {

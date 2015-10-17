@@ -22,7 +22,7 @@ public class Cat implements FileCommand {
     public static void main(final String... args) {
         final Cat cat = new Cat(System.in, System.out);
         final FileCommandProcessor commandProcessor = new FileCommandProcessor(cat);
-        commandProcessor.processAll(cat, args);
+        commandProcessor.processAll(args);
     }
 
     public boolean isDefaultInput(final String name) {
