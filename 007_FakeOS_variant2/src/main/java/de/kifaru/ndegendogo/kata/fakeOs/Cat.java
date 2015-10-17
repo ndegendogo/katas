@@ -14,6 +14,7 @@ public class Cat implements FileCommand {
     private final InputStream defaultInput;
     private final OutputStream output;
     protected boolean hasError = false;
+    FileCommandProcessor commandProcessor;
 
     public Cat(final InputStream defaultInput, final OutputStream output) {
         this.defaultInput = defaultInput;
@@ -22,6 +23,7 @@ public class Cat implements FileCommand {
 
     public static void main(final String... args) {
         final Cat cat = new Cat(System.in, System.out);
+        cat.commandProcessor = new FileCommandProcessor(cat);
         cat.processAll(args);
     }
 
