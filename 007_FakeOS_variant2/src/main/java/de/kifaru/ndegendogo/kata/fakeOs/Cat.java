@@ -5,7 +5,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.Arrays;
 
 public class Cat implements FileCommand {
 
@@ -29,16 +28,11 @@ public class Cat implements FileCommand {
 
     protected void processAll(final String... filenames) {
         if (filenames.length > 0) {
-            processMulti(filenames);
+            commandProcessor.processMulti(filenames);
         } else {
             processDefault();
         }
         handleError();
-    }
-
-    protected void processMulti(final String... filenames) {
-        Arrays.asList(filenames).stream()
-            .forEach(name -> commandProcessor.processSingle(name));
     }
 
     public boolean isDefaultInput(final String name) {
