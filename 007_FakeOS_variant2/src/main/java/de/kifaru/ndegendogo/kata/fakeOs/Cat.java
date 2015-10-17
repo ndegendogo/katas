@@ -8,12 +8,13 @@ import java.io.OutputStream;
 import java.util.Arrays;
 import java.util.function.Consumer;
 
-public class Cat extends FileCommand {
+public class Cat {
 
     private static final String DEFAULT_INPUT= "-";
     
     private final InputStream defaultInput;
     private final OutputStream output;
+    protected boolean hasError = false;
     
     public Cat(InputStream defaultInput, OutputStream output) {
         this.defaultInput = defaultInput;
@@ -83,7 +84,6 @@ public class Cat extends FileCommand {
             setError();
         }
     }
-
     static void FileOperation(final String filename, final Consumer<InputStream> process) throws IOException {
         try (FileInputStream input = new FileInputStream(filename);
                 BufferedInputStream bufferedIn = new BufferedInputStream(input);
@@ -92,5 +92,17 @@ public class Cat extends FileCommand {
         }
     }
 
+    protected boolean hasError() {
+        return (hasError);
+    }
 
+    protected boolean setError() {
+        return hasError = true;
+    }
+
+    protected void handleError() {
+        if (hasError()) {
+            System.exit(1);
+        }
+    }
 }

@@ -12,11 +12,12 @@ import java.util.StringJoiner;
 import java.util.function.Consumer;
 import java.util.stream.Collector;
 
-public class Head extends FileCommand {
+public class Head {
 
     private static final int MAX_NUMBER_OF_LINES = 10;
     private final BufferedReader defaultInput;
     protected final PrintStream output;
+    protected boolean hasError = false;
     
     Head(final BufferedReader defaultInput, final PrintStream output) {
         this.defaultInput = defaultInput;
@@ -100,6 +101,16 @@ public class Head extends FileCommand {
     }
     
     protected boolean hasError() {
-        return (super.hasError() || output.checkError());
+        return (hasError || output.checkError());
+    }
+
+    protected boolean setError() {
+        return hasError = true;
+    }
+
+    protected void handleError() {
+        if (hasError()) {
+            System.exit(1);
+        }
     }
 }
