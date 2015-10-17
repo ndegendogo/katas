@@ -13,7 +13,7 @@ public class Cat extends FileCommand {
     private final InputStream defaultInput;
     private final OutputStream output;
     
-    public Cat(InputStream defaultInput, OutputStream output) {
+    public Cat(final InputStream defaultInput, final OutputStream output) {
         this.defaultInput = defaultInput;
         this.output = output;
     }
@@ -47,8 +47,8 @@ public class Cat extends FileCommand {
 
     @Override
     protected void processSingleFile(final String filename) {
-        try (FileInputStream input = new FileInputStream(filename);
-                BufferedInputStream bufferedIn = new BufferedInputStream(input);
+        try (final FileInputStream input = new FileInputStream(filename);
+                final BufferedInputStream bufferedIn = new BufferedInputStream(input);
         ) {
             writeStreamToOutput(bufferedIn);
         } catch (IOException e) {
