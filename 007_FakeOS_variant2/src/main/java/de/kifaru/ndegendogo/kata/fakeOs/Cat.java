@@ -16,7 +16,7 @@ public class Cat implements FileCommand {
     private final OutputStream output;
     protected boolean hasError = false;
     
-    public Cat(InputStream defaultInput, OutputStream output) {
+    public Cat(final InputStream defaultInput, final OutputStream output) {
         this.defaultInput = defaultInput;
         this.output = output;
     }
@@ -53,15 +53,7 @@ public class Cat implements FileCommand {
     }
 
     public void processDefault() {
-        process(getDefaultInput());
-    }
-
-    protected InputStream getDefaultInput() {
-        return defaultInput;
-    }
-
-    private void process(final InputStream input) {
-        writeStreamToOutput(input);
+        writeStreamToOutput(defaultInput);
     }
 
     private void writeStreamToOutput(final InputStream source) {
@@ -77,19 +69,12 @@ public class Cat implements FileCommand {
     }
 
     public void processSingleFile(final String filename) {
-        try {
-            Consumer<InputStream> process = this::writeStreamToOutput;
-            FileOperation(filename, process);
+        try (final FileInputStream input = new FileInputStream(filename);
+             final BufferedInputStream bufferedIn = new BufferedInputStream(input);
+        ) {
+            writeStreamToOutput(bufferedIn);
         } catch (IOException e) {
             setError();
-        }
-    }
-
-    static void FileOperation(final String filename, final Consumer<InputStream> process) throws IOException {
-        try (FileInputStream input = new FileInputStream(filename);
-                BufferedInputStream bufferedIn = new BufferedInputStream(input);
-        ) {
-            process.accept(bufferedIn);
         }
     }
 
