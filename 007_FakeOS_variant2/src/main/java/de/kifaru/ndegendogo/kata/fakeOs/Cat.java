@@ -23,16 +23,7 @@ public class Cat implements FileCommand {
     public static void main(final String... args) {
         final Cat cat = new Cat(System.in, System.out);
         cat.commandProcessor = new FileCommandProcessor(cat);
-        cat.processAll(args);
-    }
-
-    protected void processAll(final String... filenames) {
-        if (filenames.length > 0) {
-            commandProcessor.processMulti(filenames);
-        } else {
-            processDefault();
-        }
-        handleError();
+        cat.commandProcessor.processAll(cat, args);
     }
 
     public boolean isDefaultInput(final String name) {
