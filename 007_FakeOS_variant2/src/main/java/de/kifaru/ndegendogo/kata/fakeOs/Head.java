@@ -34,28 +34,6 @@ public class Head implements FileCommand {
         commandProcessor.processAll(args);
     }
 
-    protected void processAll(final String... filenames) {
-        if (filenames.length > 0) {
-            processMulti(filenames);
-        } else {
-            processDefault();
-        }
-        handleError();
-    }
-
-    protected void processMulti(final String... filenames) {
-        Arrays.asList(filenames).stream()
-            .forEach(name -> processSingle(name));
-    }
-
-    protected void processSingle(final String name) {
-        if(isDefaultInput(name)) {
-            processDefault();
-        } else {
-            processSingleFile(name);
-        }
-    }
-
     public boolean isDefaultInput(final String name) {
         return false;
     }
