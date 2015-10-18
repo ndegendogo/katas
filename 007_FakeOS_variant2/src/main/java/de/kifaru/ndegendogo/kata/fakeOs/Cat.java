@@ -11,15 +11,15 @@ public class Cat implements FileCommand {
     public static class ErrorState {
         private boolean hasError = false;
 
-        boolean hasError() {
+        private boolean hasError() {
             return (hasError);
         }
 
-        void setError() {
+        private void setError() {
             hasError = true;
         }
 
-        void handleError() {
+        private void handleError() {
             if (hasError()) {
                 System.exit(1);
             }

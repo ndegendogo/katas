@@ -24,7 +24,7 @@ public class HeadWithTitle extends Head {
         ) {
             process.accept(bufferedReader);
         } catch (IOException e) {
-            errorState.setError();
+            setError();
         }
     }
 
@@ -33,7 +33,7 @@ public class HeadWithTitle extends Head {
         output.print(buildTitle(currentFilename));
         output.print(leadingLines);
         if (output.checkError()) {
-            errorState.setError();
+            setError();
         }
     }
 

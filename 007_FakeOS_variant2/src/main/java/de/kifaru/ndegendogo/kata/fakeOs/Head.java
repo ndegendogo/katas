@@ -15,17 +15,17 @@ public class Head implements FileCommand {
     static class ErrorState {
         private boolean hasError = false;
 
-        void setError() {
+        private void setError() {
             hasError = true;
         }
 
-        void handleError() {
+        private void handleError() {
             if (hasError()) {
                 System.exit(1);
             }
         }
 
-        boolean hasError() {
+        private boolean hasError() {
             return (hasError);
         }
     }
@@ -33,7 +33,7 @@ public class Head implements FileCommand {
     private static final int MAX_NUMBER_OF_LINES = 10;
     private final BufferedReader defaultInput;
     protected final PrintStream output;
-    ErrorState errorState = new ErrorState();
+    private ErrorState errorState = new ErrorState();
 
     Head(final BufferedReader defaultInput, final PrintStream output) {
         this.defaultInput = defaultInput;
@@ -63,7 +63,7 @@ public class Head implements FileCommand {
     void printLeadingLines(final BufferedReader bufferedReader) {
         output.print(readLeadingLines(bufferedReader));
         if (output.checkError()) {
-            errorState.setError();
+            setError();
         }
     }
 
@@ -74,7 +74,7 @@ public class Head implements FileCommand {
         ) {
             printLeadingLines(bufferedReader);
         } catch (IOException e) {
-            errorState.setError();
+            setError();
         }
     }
 
@@ -88,5 +88,13 @@ public class Head implements FileCommand {
         return bufferedReader.lines()
                 .limit(MAX_NUMBER_OF_LINES)
                 .collect(joining);
+    }
+
+    void setError() {
+        errorState.setError();
+    }
+
+    boolean hasError() {
+        return errorState.hasError();
     }
 }
