@@ -14,6 +14,10 @@ public class Cat implements FileCommand {
         public ErrorState(boolean hasError) {
             this.hasError = hasError;
         }
+
+        protected boolean hasError(Cat cat) {
+            return (hasError);
+        }
     }
 
     private static final String DEFAULT_INPUT= "-";
@@ -65,7 +69,7 @@ public class Cat implements FileCommand {
     }
 
     protected boolean hasError() {
-        return (errorState.hasError);
+        return errorState.hasError(this);
     }
 
     protected boolean setError() {
