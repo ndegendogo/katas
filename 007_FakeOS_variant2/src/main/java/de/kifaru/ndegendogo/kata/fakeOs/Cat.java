@@ -56,7 +56,7 @@ public class Cat implements FileCommand {
         }
     }
 
-    protected boolean hasError() {
+    boolean hasError() {
         return errorState.hasError();
     }
 }

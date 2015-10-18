@@ -18,12 +18,12 @@ public class FileCommandProcessor {
         }
     }
 
-    void processMulti(final String... filenames) {
+    private void processMulti(final String... filenames) {
         Arrays.asList(filenames).stream()
             .forEach(name -> processSingle(name));
     }
 
-    void processSingle(final String name) {
+    private void processSingle(final String name) {
         if(command.isDefaultInput(name)) {
             command.processDefault();
         } else {
