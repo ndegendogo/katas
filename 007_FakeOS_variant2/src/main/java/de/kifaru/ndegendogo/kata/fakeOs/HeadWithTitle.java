@@ -24,7 +24,7 @@ public class HeadWithTitle extends Head {
         ) {
             process.accept(bufferedReader);
         } catch (IOException e) {
-            setError();
+            errorState.setError();
         }
     }
 

@@ -12,11 +12,29 @@ import java.util.stream.Collector;
 
 public class Head implements FileCommand {
 
+    public static class ErrorState {
+        public boolean hasError;
+
+        public ErrorState(boolean hasError) {
+            this.hasError = hasError;
+        }
+
+        protected boolean setError() {
+            return hasError = true;
+        }
+
+        protected void handleError(Head head) {
+            if (head.hasError()) {
+                System.exit(1);
+            }
+        }
+    }
+
     private static final int MAX_NUMBER_OF_LINES = 10;
     private final BufferedReader defaultInput;
     protected final PrintStream output;
-    protected boolean hasError = false;
-    
+    protected ErrorState errorState = new ErrorState(false);
+
     Head(final BufferedReader defaultInput, final PrintStream output) {
         this.defaultInput = defaultInput;
         this.output = output;
@@ -31,7 +49,7 @@ public class Head implements FileCommand {
         final Head head = (args.length >= 2) ? new HeadWithTitle(System.in, System.out) : new Head(System.in, System.out);
         final FileCommandProcessor commandProcessor = new FileCommandProcessor(head);
         commandProcessor.processAll(args);
-        head.handleError();
+        head.errorState.handleError(head);
     }
 
     public boolean isDefaultInput(final String name) {
@@ -53,7 +71,7 @@ public class Head implements FileCommand {
         ) {
             printLeadingLines(bufferedReader);
         } catch (IOException e) {
-            setError();
+            errorState.setError();
         }
     }
 
@@ -70,16 +88,6 @@ public class Head implements FileCommand {
     }
     
     protected boolean hasError() {
-        return (hasError || output.checkError());
-    }
-
-    protected boolean setError() {
-        return hasError = true;
-    }
-
-    protected void handleError() {
-        if (hasError()) {
-            System.exit(1);
-        }
+        return (errorState.hasError || output.checkError());
     }
 }
