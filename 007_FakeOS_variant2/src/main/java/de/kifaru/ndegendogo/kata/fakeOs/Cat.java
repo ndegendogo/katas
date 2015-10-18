@@ -22,6 +22,12 @@ public class Cat implements FileCommand {
         protected boolean setError(Cat cat) {
             return hasError = true;
         }
+
+        protected void handleError(Cat cat) {
+            if (cat.hasError()) {
+                System.exit(1);
+            }
+        }
     }
 
     private static final String DEFAULT_INPUT= "-";
@@ -39,7 +45,7 @@ public class Cat implements FileCommand {
         final Cat cat = new Cat(System.in, System.out);
         final FileCommandProcessor commandProcessor = new FileCommandProcessor(cat);
         commandProcessor.processAll(args);
-        cat.handleError();
+        cat.errorState.handleError(cat);
     }
 
     public boolean isDefaultInput(final String name) {
@@ -74,11 +80,5 @@ public class Cat implements FileCommand {
 
     protected boolean hasError() {
         return errorState.hasError(this);
-    }
-
-    protected void handleError() {
-        if (hasError()) {
-            System.exit(1);
-        }
     }
 }
