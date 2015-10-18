@@ -9,11 +9,7 @@ import java.io.OutputStream;
 public class Cat implements FileCommand {
 
     public static class ErrorState {
-        private boolean hasError;
-
-        ErrorState(boolean hasError) {
-            this.hasError = hasError;
-        }
+        private boolean hasError = false;
 
         boolean hasError() {
             return (hasError);
@@ -34,7 +30,7 @@ public class Cat implements FileCommand {
     
     private final InputStream defaultInput;
     private final OutputStream output;
-    protected ErrorState errorState = new ErrorState(false);
+    protected ErrorState errorState = new ErrorState();
 
     public Cat(final InputStream defaultInput, final OutputStream output) {
         this.defaultInput = defaultInput;
