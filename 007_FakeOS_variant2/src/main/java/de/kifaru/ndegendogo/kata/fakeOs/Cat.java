@@ -8,24 +8,6 @@ import java.io.OutputStream;
 
 public class Cat implements FileCommand {
 
-    static class ErrorState {
-        private boolean hasError = false;
-
-        private boolean hasError() {
-            return (hasError);
-        }
-
-        private void setError() {
-            hasError = true;
-        }
-
-        private void handleError() {
-            if (hasError()) {
-                System.exit(1);
-            }
-        }
-    }
-
     private static final String DEFAULT_INPUT= "-";
     
     private final InputStream defaultInput;

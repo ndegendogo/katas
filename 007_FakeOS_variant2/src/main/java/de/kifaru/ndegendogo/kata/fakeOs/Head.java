@@ -12,24 +12,6 @@ import java.util.stream.Collector;
 
 public class Head implements FileCommand {
 
-    static class ErrorState {
-        private boolean hasError = false;
-
-        private void setError() {
-            hasError = true;
-        }
-
-        private void handleError() {
-            if (hasError()) {
-                System.exit(1);
-            }
-        }
-
-        private boolean hasError() {
-            return (hasError);
-        }
-    }
-
     private static final int MAX_NUMBER_OF_LINES = 10;
     private final BufferedReader defaultInput;
     protected final PrintStream output;
