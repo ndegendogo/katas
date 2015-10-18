@@ -32,6 +32,9 @@ public class HeadWithTitle extends Head {
         final String leadingLines = readLeadingLines(bufferedReader);
         output.print(buildTitle(currentFilename));
         output.print(leadingLines);
+        if (output.checkError()) {
+            errorState.setError();
+        }
     }
 
     private String buildTitle(final String filename) {

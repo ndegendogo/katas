@@ -26,7 +26,7 @@ public class TestHeadBadcase {
         final Head head = new Head(input, blockedOutput);
         try {
             head.printLeadingLines(input);
-            assertTrue(head.hasError());
+            assertTrue(head.errorState.hasError());
         } catch (Exception e) {
             fail();
         }

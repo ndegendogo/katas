@@ -12,28 +12,28 @@ import java.util.stream.Collector;
 
 public class Head implements FileCommand {
 
-    public static class ErrorState {
-        public boolean hasError;
+    static class ErrorState {
+        private boolean hasError = false;
 
-        public ErrorState(boolean hasError) {
-            this.hasError = hasError;
+        void setError() {
+            hasError = true;
         }
 
-        protected boolean setError() {
-            return hasError = true;
-        }
-
-        protected void handleError(Head head) {
-            if (head.hasError()) {
+        void handleError() {
+            if (hasError()) {
                 System.exit(1);
             }
+        }
+
+        boolean hasError() {
+            return (hasError);
         }
     }
 
     private static final int MAX_NUMBER_OF_LINES = 10;
     private final BufferedReader defaultInput;
     protected final PrintStream output;
-    protected ErrorState errorState = new ErrorState(false);
+    ErrorState errorState = new ErrorState();
 
     Head(final BufferedReader defaultInput, final PrintStream output) {
         this.defaultInput = defaultInput;
@@ -49,7 +49,7 @@ public class Head implements FileCommand {
         final Head head = (args.length >= 2) ? new HeadWithTitle(System.in, System.out) : new Head(System.in, System.out);
         final FileCommandProcessor commandProcessor = new FileCommandProcessor(head);
         commandProcessor.processAll(args);
-        head.errorState.handleError(head);
+        head.errorState.handleError();
     }
 
     public boolean isDefaultInput(final String name) {
@@ -62,6 +62,9 @@ public class Head implements FileCommand {
 
     void printLeadingLines(final BufferedReader bufferedReader) {
         output.print(readLeadingLines(bufferedReader));
+        if (output.checkError()) {
+            errorState.setError();
+        }
     }
 
     public void processSingleFile(final String filename) {
@@ -85,9 +88,5 @@ public class Head implements FileCommand {
         return bufferedReader.lines()
                 .limit(MAX_NUMBER_OF_LINES)
                 .collect(joining);
-    }
-    
-    protected boolean hasError() {
-        return (errorState.hasError || output.checkError());
     }
 }

@@ -15,8 +15,8 @@ public class Cat implements FileCommand {
             return (hasError);
         }
 
-        boolean setError() {
-            return hasError = true;
+        void setError() {
+            hasError = true;
         }
 
         void handleError() {
