@@ -62,9 +62,6 @@ public class Head implements FileCommand {
 
     void printLeadingLines(final BufferedReader bufferedReader) {
         output.print(readLeadingLines(bufferedReader));
-        if (output.checkError()) {
-            setError();
-        }
     }
 
     public void processSingleFile(final String filename) {
@@ -95,6 +92,6 @@ public class Head implements FileCommand {
     }
 
     boolean hasError() {
-        return errorState.hasError();
+        return errorState.hasError() || output.checkError();
     }
 }
