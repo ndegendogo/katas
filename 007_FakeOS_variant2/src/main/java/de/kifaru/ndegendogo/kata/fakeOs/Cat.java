@@ -9,22 +9,22 @@ import java.io.OutputStream;
 public class Cat implements FileCommand {
 
     public static class ErrorState {
-        public boolean hasError;
+        private boolean hasError;
 
-        public ErrorState(boolean hasError) {
+        ErrorState(boolean hasError) {
             this.hasError = hasError;
         }
 
-        protected boolean hasError(Cat cat) {
+        boolean hasError() {
             return (hasError);
         }
 
-        protected boolean setError(Cat cat) {
+        boolean setError() {
             return hasError = true;
         }
 
-        protected void handleError(Cat cat) {
-            if (cat.hasError()) {
+        void handleError() {
+            if (hasError()) {
                 System.exit(1);
             }
         }
@@ -45,7 +45,7 @@ public class Cat implements FileCommand {
         final Cat cat = new Cat(System.in, System.out);
         final FileCommandProcessor commandProcessor = new FileCommandProcessor(cat);
         commandProcessor.processAll(args);
-        cat.errorState.handleError(cat);
+        cat.errorState.handleError();
     }
 
     public boolean isDefaultInput(final String name) {
@@ -64,7 +64,7 @@ public class Cat implements FileCommand {
             }
             output.flush();
         } catch (IOException e) {
-            errorState.setError(this);
+            errorState.setError();
         }
     }
 
@@ -74,11 +74,11 @@ public class Cat implements FileCommand {
         ) {
             writeStreamToOutput(bufferedIn);
         } catch (IOException e) {
-            errorState.setError(this);
+            errorState.setError();
         }
     }
 
     protected boolean hasError() {
-        return errorState.hasError(this);
+        return errorState.hasError();
     }
 }
