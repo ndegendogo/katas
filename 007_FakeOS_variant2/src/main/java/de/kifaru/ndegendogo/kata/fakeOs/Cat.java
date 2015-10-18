@@ -18,6 +18,10 @@ public class Cat implements FileCommand {
         protected boolean hasError(Cat cat) {
             return (hasError);
         }
+
+        protected boolean setError(Cat cat) {
+            return hasError = true;
+        }
     }
 
     private static final String DEFAULT_INPUT= "-";
@@ -54,7 +58,7 @@ public class Cat implements FileCommand {
             }
             output.flush();
         } catch (IOException e) {
-            setError();
+            errorState.setError(this);
         }
     }
 
@@ -64,16 +68,12 @@ public class Cat implements FileCommand {
         ) {
             writeStreamToOutput(bufferedIn);
         } catch (IOException e) {
-            setError();
+            errorState.setError(this);
         }
     }
 
     protected boolean hasError() {
         return errorState.hasError(this);
-    }
-
-    protected boolean setError() {
-        return errorState.hasError = true;
     }
 
     protected void handleError() {
