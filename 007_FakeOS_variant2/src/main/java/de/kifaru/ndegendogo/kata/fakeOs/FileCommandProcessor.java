@@ -16,7 +16,6 @@ public class FileCommandProcessor {
         } else {
             command.processDefault();
         }
-        command.handleError();
     }
 
     void processMulti(final String... filenames) {

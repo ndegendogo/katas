@@ -23,6 +23,7 @@ public class Cat implements FileCommand {
         final Cat cat = new Cat(System.in, System.out);
         final FileCommandProcessor commandProcessor = new FileCommandProcessor(cat);
         commandProcessor.processAll(args);
+        cat.handleError();
     }
 
     public boolean isDefaultInput(final String name) {
@@ -63,7 +64,7 @@ public class Cat implements FileCommand {
         return hasError = true;
     }
 
-    public void handleError() {
+    protected void handleError() {
         if (hasError()) {
             System.exit(1);
         }

@@ -7,7 +7,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.lang.System;
-import java.util.Arrays;
 import java.util.StringJoiner;
 import java.util.stream.Collector;
 
@@ -32,6 +31,7 @@ public class Head implements FileCommand {
         final Head head = (args.length >= 2) ? new HeadWithTitle(System.in, System.out) : new Head(System.in, System.out);
         final FileCommandProcessor commandProcessor = new FileCommandProcessor(head);
         commandProcessor.processAll(args);
+        head.handleError();
     }
 
     public boolean isDefaultInput(final String name) {
@@ -77,7 +77,7 @@ public class Head implements FileCommand {
         return hasError = true;
     }
 
-    public void handleError() {
+    protected void handleError() {
         if (hasError()) {
             System.exit(1);
         }
