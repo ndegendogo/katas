@@ -13,7 +13,7 @@ public class Tail {
         final InputStream in = System.in;
         final PrintStream out = System.out;
         
-        new Tail().process(in, out);
+        new Head(in, out).processAll();
     }
 
     void process(final InputStream in, final PrintStream out) throws IOException {
