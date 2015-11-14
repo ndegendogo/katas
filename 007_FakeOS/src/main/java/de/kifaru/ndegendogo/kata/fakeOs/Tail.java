@@ -12,6 +12,11 @@ public class Tail {
     public static void main(String... args) throws IOException {
         InputStream in = System.in;
         PrintStream out = System.out;
+        
+        process(in, out);
+    }
+
+    static void process(InputStream in, PrintStream out) throws IOException {
         try(InputStreamReader reader = new InputStreamReader(in);
             BufferedReader buffered = new BufferedReader(reader);
         ) {
