@@ -11,13 +11,15 @@ public class Tail {
 
     public static void main(String... args) throws IOException {
         InputStream in = System.in;
-        InputStreamReader reader = new InputStreamReader(in);
-        BufferedReader buffered = new BufferedReader(reader);
-        String line = buffered.readLine();
-        if (line != null) {
-            PrintStream out = System.out;
-            out.println(line);
-            out.flush();
+        PrintStream out = System.out;
+        try(InputStreamReader reader = new InputStreamReader(in);
+            BufferedReader buffered = new BufferedReader(reader);
+        ) {
+            String line = buffered.readLine();
+            if (line != null) {
+                out.println(line);
+                out.flush();
+            }
         }
     }
 
