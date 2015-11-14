@@ -1,11 +1,12 @@
 TEMPPATH:=tmp/
 
 .PHONY: blackboxtest
-blackboxtest: test_echo test_cat test_head
+blackboxtest: test_echo test_cat test_head test_tail
 
 include TestEcho.mak
 include TestCat.mak
 include TestHead.mak
+include TestTail.mak
 
 .PHONY: cleanTempOutputFiles
 cleanTempOutputFiles:
