@@ -1,5 +1,6 @@
 TAIL_TESTCASES:= \
     tail0linesFrom0files \
+    tail1lineFrom0files \
 
 .PHONY: test_tail
 test_tail: $(TAIL_TESTCASES)
@@ -10,6 +11,7 @@ tail%: cmd:=tail
 tail%: RUNCMD:=$(RUNTAIL)
 
 tail0linesFrom0files: params:= < data/empty
+tail1lineFrom0files: params:= data/1line.txt
 
 .PHONY: $(TAIL_TESTCASES)
 # verify exit status and output of the fakeOs Tail program, use the original shell command as reference.
