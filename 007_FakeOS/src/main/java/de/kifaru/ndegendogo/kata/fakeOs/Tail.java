@@ -20,12 +20,11 @@ public class Tail {
         try(final InputStreamReader reader = new InputStreamReader(in);
             final BufferedReader buffered = new BufferedReader(reader);
         ) {
-            final String line = buffered.readLine();
-            if (line != null) {
+            String line;
+            while ((line = buffered.readLine()) != null) {
                 out.println(line);
-                out.flush();
             }
+            out.flush();
         }
     }
-
 }
