@@ -13,10 +13,10 @@ public class Tail {
         final InputStream in = System.in;
         final PrintStream out = System.out;
         
-        process(in, out);
+        new Tail().process(in, out);
     }
 
-    static void process(final InputStream in, final PrintStream out) throws IOException {
+    void process(final InputStream in, final PrintStream out) throws IOException {
         try(final InputStreamReader reader = new InputStreamReader(in);
             final BufferedReader buffered = new BufferedReader(reader);
         ) {
