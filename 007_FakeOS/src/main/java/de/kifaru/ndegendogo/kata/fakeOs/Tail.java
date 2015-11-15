@@ -12,7 +12,7 @@ public class Tail extends FileCommand {
     protected final PrintStream output;
 
     Tail(final InputStream in, final PrintStream output) {
-        this.output = output;
+        this.output = new OutputJoiner(output);
         setFileOperation(new TextFileOperation(in, this::printTrailingLines));
     }
     
@@ -22,11 +22,11 @@ public class Tail extends FileCommand {
     }
 
     void printTrailingLines(final BufferedReader buffered) {
-        final ArrayBlockingQueue<String> queue = readTrailingLines(buffered);
-        queue.forEach(output::println);
+        final String result = readTrailingLines(buffered);
+        output.print(result);
     }
 
-    ArrayBlockingQueue<String> readTrailingLines(final BufferedReader buffered) {
+    String readTrailingLines(final BufferedReader buffered) {
         final ArrayBlockingQueue<String> queue = new ArrayBlockingQueue<>(MAX_NUMBER_OF_LINES);
         String line;
         try {
@@ -39,7 +39,9 @@ public class Tail extends FileCommand {
         } catch (IOException e) {
             setError();
         }
-        return queue;
+        final String result = String.join(System.lineSeparator(), queue);
+        if (!result.isEmpty()) return result + System.lineSeparator();
+        else return result;
     }
 
     @Override
