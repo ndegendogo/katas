@@ -11,7 +11,6 @@ public class Tail extends FileCommand {
     private static final int MAX_NUMBER_OF_LINES = 10;
     protected final boolean withTitle;
     protected final PrintStream output;
-    protected String currentFilename;
 
     Tail(final boolean withTitle, final InputStream in, final PrintStream output) {
         this.withTitle = withTitle;
@@ -22,12 +21,6 @@ public class Tail extends FileCommand {
     public static void main(final String... args) throws IOException {
         final FileCommand tail = new Tail((args.length >= 2), System.in, System.out);
         tail.processAll(args);
-    }
-
-    @Override
-    protected void processSingleFile(final String filename) {
-        currentFilename = filename;
-        super.processSingleFile(filename);
     }
 
     protected void printTrailingLines(final BufferedReader bufferedReader) {

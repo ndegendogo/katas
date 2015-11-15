@@ -7,6 +7,7 @@ public class FileCommand {
 
     private boolean hasError = false;
     private FileOperation fileOperation;
+    protected String currentFilename;
     
     protected void setFileOperation(final FileOperation fileOperation) {
         this.fileOperation = fileOperation;
@@ -35,6 +36,7 @@ public class FileCommand {
     }
 
     protected void processSingleFile(final String filename) {
+        currentFilename = filename;
         try {
             fileOperation.processFromFile(filename);
         } catch (IOException e) {
