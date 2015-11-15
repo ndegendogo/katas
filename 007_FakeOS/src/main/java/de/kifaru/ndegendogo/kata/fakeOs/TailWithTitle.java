@@ -6,17 +6,10 @@ import java.io.PrintStream;
 
 public class TailWithTitle extends Tail {
 
-    private String currentFilename;
 
     TailWithTitle (final InputStream in, final PrintStream out) {
         super(in, out);
         setFileOperation(new TextFileOperation(in, this::printTrailingLines));
-    }
-
-    @Override
-    protected void processSingleFile(final String filename) {
-        currentFilename = filename;
-        super.processSingleFile(filename);
     }
 
     @Override
