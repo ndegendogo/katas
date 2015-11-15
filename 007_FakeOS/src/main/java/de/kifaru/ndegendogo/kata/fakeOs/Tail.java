@@ -24,7 +24,11 @@ public class Tail {
         ) {
             final ArrayBlockingQueue<String> queue = new ArrayBlockingQueue<>(MAX_NUMBER_OF_LINES);
             String line;
+            while ((queue.remainingCapacity() > 0) && ((line = buffered.readLine()) != null)) {
+                queue.add(new String(line));
+            }
             while ((line = buffered.readLine()) != null) {
+                queue.remove();
                 queue.add(new String(line));
             }
             queue.forEach(out::println);
