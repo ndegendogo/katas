@@ -8,14 +8,16 @@ public class TailWithTitle extends Tail {
 
 
     TailWithTitle (final InputStream in, final PrintStream out) {
-        super(in, out);
+        super(true, in, out);
         setFileOperation(new TextFileOperation(in, this::printTrailingLines));
     }
 
     @Override
     protected void printTrailingLines(final BufferedReader bufferedReader) {
         final String result = readTrailingLines(bufferedReader);
-        output.print(buildTitle(currentFilename));
+        if (withTitle) {
+            output.print(buildTitle(currentFilename));
+        }
         output.print(result);
     }
 

@@ -9,16 +9,18 @@ import java.util.concurrent.ArrayBlockingQueue;
 
 public class Tail extends FileCommand {
     private static final int MAX_NUMBER_OF_LINES = 10;
+    protected final boolean withTitle;
     protected final PrintStream output;
     protected String currentFilename;
 
-    Tail(final InputStream in, final PrintStream output) {
+    Tail(final boolean withTitle, final InputStream in, final PrintStream output) {
+        this.withTitle = withTitle;
         this.output = new OutputJoiner(output);
         setFileOperation(new TextFileOperation(in, this::printTrailingLines));
     }
     
     public static void main(final String... args) throws IOException {
-        final FileCommand tail = (args.length >= 2) ? new TailWithTitle(System.in, System.out) : new Tail(System.in, System.out);
+        final FileCommand tail = (args.length >= 2) ? new TailWithTitle(System.in, System.out) : new Tail(false, System.in, System.out);
         tail.processAll(args);
     }
 
