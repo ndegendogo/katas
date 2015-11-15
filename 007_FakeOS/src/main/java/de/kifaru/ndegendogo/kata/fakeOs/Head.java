@@ -27,7 +27,7 @@ public class Head extends FileCommand {
     }
 
     public static void main(final String... args) {
-        final FileCommand head = (args.length >= 2) ? new HeadWithTitle(System.in, System.out) : new Head(false, System.in, System.out);
+        final FileCommand head = (args.length >= 2) ? new Head(true, System.in, System.out) : new Head(false, System.in, System.out);
         head.processAll(args);
     }
 
