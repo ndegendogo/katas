@@ -6,17 +6,10 @@ import java.io.PrintStream;
 
 public class HeadWithTitle extends Head {
     
-    private String currentFilename;
 
     HeadWithTitle (final InputStream in, final PrintStream out) {
         super(in, new OutputJoiner(out));
         setFileOperation(new TextFileOperation(in, this::printLeadingLines));
-    }
-
-    @Override
-    protected void processSingleFile(final String filename) {
-        currentFilename = filename;
-        super.processSingleFile(filename);
     }
 
     @Override

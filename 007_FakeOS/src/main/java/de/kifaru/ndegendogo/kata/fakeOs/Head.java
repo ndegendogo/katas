@@ -11,6 +11,7 @@ public class Head extends FileCommand {
 
     private static final int MAX_NUMBER_OF_LINES = 10;
     protected final PrintStream output;
+    protected String currentFilename;
     
     Head(final BufferedReader defaultInput, final PrintStream output) {
         this.output = output;
@@ -25,6 +26,12 @@ public class Head extends FileCommand {
     public static void main(final String... args) {
         final FileCommand head = (args.length >= 2) ? new HeadWithTitle(System.in, System.out) : new Head(System.in, System.out);
         head.processAll(args);
+    }
+
+    @Override
+    protected void processSingleFile(final String filename) {
+        currentFilename = filename;
+        super.processSingleFile(filename);
     }
 
     void printLeadingLines(final BufferedReader bufferedReader) {
