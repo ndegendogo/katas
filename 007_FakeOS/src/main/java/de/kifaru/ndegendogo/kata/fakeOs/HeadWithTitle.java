@@ -1,6 +1,5 @@
 package de.kifaru.ndegendogo.kata.fakeOs;
 
-import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.PrintStream;
 
@@ -12,13 +11,5 @@ public class HeadWithTitle extends Head {
         setFileOperation(new TextFileOperation(in, this::printLeadingLines));
     }
 
-    @Override
-    protected void printLeadingLines(final BufferedReader bufferedReader) {
-        final String leadingLines = readLeadingLines(bufferedReader);
-        if (withTitle) {
-            output.print(buildTitle(currentFilename));
-        }
-        output.print(leadingLines);
-    }
 
 }

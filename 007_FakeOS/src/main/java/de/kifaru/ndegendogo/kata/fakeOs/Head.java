@@ -37,8 +37,12 @@ public class Head extends FileCommand {
         super.processSingleFile(filename);
     }
 
-    void printLeadingLines(final BufferedReader bufferedReader) {
-        output.print(readLeadingLines(bufferedReader));
+    protected void printLeadingLines(final BufferedReader bufferedReader) {
+        final String leadingLines = readLeadingLines(bufferedReader);
+        if (withTitle) {
+            output.print(buildTitle(currentFilename));
+        }
+        output.print(leadingLines);
     }
 
     protected String readLeadingLines(final BufferedReader bufferedReader) {
