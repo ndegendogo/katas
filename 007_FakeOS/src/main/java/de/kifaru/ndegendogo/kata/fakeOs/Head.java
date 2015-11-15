@@ -10,21 +10,24 @@ import java.util.stream.Collector;
 public class Head extends FileCommand {
 
     private static final int MAX_NUMBER_OF_LINES = 10;
+    protected final boolean withTitle;
     protected final PrintStream output;
     protected String currentFilename;
     
-    Head(final BufferedReader defaultInput, final PrintStream output) {
+    Head(final boolean withTitle, final BufferedReader defaultInput, final PrintStream output) {
+        this.withTitle = withTitle;
         this.output = output;
         setFileOperation(new TextFileOperation(defaultInput, this::printLeadingLines));
     }
 
-    Head (final InputStream in, final PrintStream out) {
+    Head (final boolean withTitle, final InputStream in, final PrintStream out) {
+        this.withTitle = withTitle;
         this.output = out;
         setFileOperation(new TextFileOperation(in, this::printLeadingLines));
     }
 
     public static void main(final String... args) {
-        final FileCommand head = (args.length >= 2) ? new HeadWithTitle(System.in, System.out) : new Head(System.in, System.out);
+        final FileCommand head = (args.length >= 2) ? new HeadWithTitle(System.in, System.out) : new Head(false, System.in, System.out);
         head.processAll(args);
     }
 

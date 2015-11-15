@@ -23,7 +23,7 @@ public class TestHeadBadcase {
         final MockBlockedOutputStream blockedOutputStream = new MockBlockedOutputStream();
         final PrintStream blockedOutput = new PrintStream(blockedOutputStream);
 
-        final Head head = new Head(input, blockedOutput);
+        final Head head = new Head(false, input, blockedOutput);
         try {
             head.printLeadingLines(input);
             assertTrue(head.hasError());
@@ -41,7 +41,7 @@ public class TestHeadBadcase {
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         final PrintStream output = new PrintStream(outputStream);
         
-        final Head head = new Head(blockedInput, output);
+        final Head head = new Head(false, blockedInput, output);
         try {
             head.printLeadingLines(blockedInput);
             fail();

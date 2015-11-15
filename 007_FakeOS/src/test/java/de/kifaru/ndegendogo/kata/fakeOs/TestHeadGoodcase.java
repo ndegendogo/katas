@@ -98,7 +98,7 @@ public class TestHeadGoodcase {
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         final PrintStream output = new PrintStream(outputStream);
 
-        final Head head = new Head(input, output);
+        final Head head = new Head(false, input, output);
         head.printLeadingLines(input);
         final String expectedOutput = concatenateLines(expectedLines);
         assertEquals(expectedOutput, outputStream.toString());
