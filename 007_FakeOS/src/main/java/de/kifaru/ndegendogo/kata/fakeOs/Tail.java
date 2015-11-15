@@ -9,7 +9,7 @@ import java.util.concurrent.ArrayBlockingQueue;
 
 public class Tail extends FileCommand {
     private static final int MAX_NUMBER_OF_LINES = 10;
-    private final PrintStream output;
+    protected final PrintStream output;
 
     Tail(final InputStream in, final PrintStream output) {
         this.output = output;
@@ -22,6 +22,11 @@ public class Tail extends FileCommand {
     }
 
     void printTrailingLines(final BufferedReader buffered) {
+        final ArrayBlockingQueue<String> queue = readTrailingLines(buffered);
+        queue.forEach(output::println);
+    }
+
+    ArrayBlockingQueue<String> readTrailingLines(final BufferedReader buffered) {
         final ArrayBlockingQueue<String> queue = new ArrayBlockingQueue<>(MAX_NUMBER_OF_LINES);
         String line;
         try {
@@ -34,7 +39,7 @@ public class Tail extends FileCommand {
         } catch (IOException e) {
             setError();
         }
-        queue.forEach(output::println);
+        return queue;
     }
 
     @Override
