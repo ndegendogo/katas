@@ -22,7 +22,7 @@ public class TailWithTitle extends Tail {
     @Override
     protected void printTrailingLines(final BufferedReader bufferedReader) {
         final String result = readTrailingLines(bufferedReader);
-        output.println(buildTitle(currentFilename));
+        output.print(buildTitle(currentFilename));
         output.print(result);
     }
 
