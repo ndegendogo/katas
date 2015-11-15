@@ -30,8 +30,11 @@ public class Tail extends FileCommand {
         super.processSingleFile(filename);
     }
 
-    void printTrailingLines(final BufferedReader buffered) {
-        final String result = readTrailingLines(buffered);
+    protected void printTrailingLines(final BufferedReader bufferedReader) {
+        final String result = readTrailingLines(bufferedReader);
+        if (withTitle) {
+            output.print(buildTitle(currentFilename));
+        }
         output.print(result);
     }
 
