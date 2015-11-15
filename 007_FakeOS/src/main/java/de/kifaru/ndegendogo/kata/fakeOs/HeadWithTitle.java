@@ -26,8 +26,4 @@ public class HeadWithTitle extends Head {
         output.print(leadingLines);
     }
 
-    private String buildTitle(final String filename) {
-        return "==> " + filename + " <==";
-    }
-
 }
