@@ -4,8 +4,8 @@ TAIL_TESTCASES:= \
     tail10linesFrom0files \
     tail11linesFrom0files \
     tail8linesFrom1file \
-    #tailFrom2files \
-    #tailFrom2Emptyfiles \
+    tailFrom2files \
+    tailFrom2Emptyfiles \
     tailFromVeryLargeInput \
     tailFrom3files \
     tailFrom1Emptyfile \
@@ -44,4 +44,34 @@ tailWriteProtectedOutput: params:=data/11lines.txt
 # verify exit status and output of the fakeOs Tail program, use the original shell command as reference.
 $(TAIL_TESTCASES): tail%: $(CLASSFILES) | $(TEMPPATH)
 	$(performBlackboxTest)
+
+.PHONY: tailReadProtected
+tailReadProtected: $(CLASSFILES) | $(TEMPPATH)
+	chmod a-r $(params)
+	$(performBlackboxTest)
+	chmod a+r $(params)
+
+.PHONY: tailReadProtectedThenNormalFile 
+tailReadProtectedThenNormalFile: $(CLASSFILES) | $(TEMPPATH)
+	chmod a-r data/readProtected
+	$(performBlackboxTest)
+	chmod a+r data/readProtected
+
+.PHONY: tailWriteProtectedOutput
+tailWriteProtectedOutput: $(CLASSFILES) | $(TEMPPATH)
+	touch $(TEMPPATH)expectedOutputOf_$@
+	chmod a-w $(TEMPPATH)expectedOutputOf_$@
+	touch $(TEMPPATH)actualOutputOf_$@
+	chmod a-w $(TEMPPATH)actualOutputOf_$@
+	$(performBlackboxTest)
+	chmod a+w $(TEMPPATH)expectedOutputOf_$@
+	chmod a+w $(TEMPPATH)actualOutputOf_$@
+
+.PHONY: tailFromVeryLargeInput 
+tailFromVeryLargeInput: $(CLASSFILES) | $(TEMPPATH)
+	$(VERY_LARGE_INPUT) | $(cmd) > $(TEMPPATH)expectedOutputOf_$@; \
+	expectedStatus=$$?; \
+	$(VERY_LARGE_INPUT) | $(RUNCMD) > $(TEMPPATH)actualOutputOf_$@; \
+	actualStatus=$$?; \
+	test $$expectedStatus = $$actualStatus && (diff $(TEMPPATH)expectedOutputOf_$@ $(TEMPPATH)actualOutputOf_$@ > /dev/null)
 

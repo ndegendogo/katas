@@ -65,9 +65,6 @@ headWriteProtectedOutput: $(CLASSFILES) | $(TEMPPATH)
 	chmod a+w $(TEMPPATH)expectedOutputOf_$@
 	chmod a+w $(TEMPPATH)actualOutputOf_$@
 
-# increase the loop limit from 100 to any number you like - only you have to wait then for a while ...
-VERY_LARGE_INPUT:=for ((i=0;i<100;i++)) do cat data/8lines.txt; done
-
 .PHONY: headFromVeryLargeInput 
 headFromVeryLargeInput: $(CLASSFILES) | $(TEMPPATH)
 	$(VERY_LARGE_INPUT) | $(cmd) > $(TEMPPATH)expectedOutputOf_$@; \
