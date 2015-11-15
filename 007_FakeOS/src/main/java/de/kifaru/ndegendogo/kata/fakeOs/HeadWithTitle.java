@@ -7,7 +7,7 @@ public class HeadWithTitle extends Head {
     
 
     HeadWithTitle (final InputStream in, final PrintStream out) {
-        super(true, in, new OutputJoiner(out));
+        super(true, in, out);
         setFileOperation(new TextFileOperation(in, this::printLeadingLines));
     }
 

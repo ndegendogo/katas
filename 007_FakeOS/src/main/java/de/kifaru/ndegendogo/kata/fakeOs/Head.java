@@ -16,13 +16,13 @@ public class Head extends FileCommand {
     
     Head(final boolean withTitle, final BufferedReader defaultInput, final PrintStream output) {
         this.withTitle = withTitle;
-        this.output = output;
+        this.output = new OutputJoiner(output);
         setFileOperation(new TextFileOperation(defaultInput, this::printLeadingLines));
     }
 
     Head (final boolean withTitle, final InputStream in, final PrintStream out) {
         this.withTitle = withTitle;
-        this.output = out;
+        this.output = new OutputJoiner(out);
         setFileOperation(new TextFileOperation(in, this::printLeadingLines));
     }
 
