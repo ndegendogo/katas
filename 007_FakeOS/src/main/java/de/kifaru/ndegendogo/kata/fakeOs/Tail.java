@@ -3,7 +3,6 @@ package de.kifaru.ndegendogo.kata.fakeOs;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.util.concurrent.ArrayBlockingQueue;
 
@@ -22,14 +21,6 @@ public class Tail extends FileCommand {
         tail.processAll(args);
     }
 
-    void process(final InputStream in) throws IOException {
-        try(final InputStreamReader reader = new InputStreamReader(in);
-            final BufferedReader buffered = new BufferedReader(reader);
-        ) {
-            printTrailingLines(buffered);
-        }
-    }
-
     void printTrailingLines(final BufferedReader buffered) {
         final ArrayBlockingQueue<String> queue = new ArrayBlockingQueue<>(MAX_NUMBER_OF_LINES);
         String line;
@@ -44,5 +35,10 @@ public class Tail extends FileCommand {
             setError();
         }
         queue.forEach(output::println);
+    }
+
+    @Override
+    protected boolean hasError() {
+        return (super.hasError() || output.checkError());
     }
 }
