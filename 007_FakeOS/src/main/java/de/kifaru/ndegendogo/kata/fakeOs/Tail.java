@@ -24,11 +24,11 @@ public class Tail extends FileCommand {
     }
 
     protected void printTrailingLines(final BufferedReader bufferedReader) {
-        final String result = readTrailingLines(bufferedReader);
+        final String trailingLines = readTrailingLines(bufferedReader);
         if (withTitle) {
             output.print(buildTitle(currentFilename));
         }
-        output.print(result);
+        output.print(trailingLines);
     }
 
     String readTrailingLines(final BufferedReader buffered) {
