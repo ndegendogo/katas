@@ -15,7 +15,9 @@ public class HeadWithTitle extends Head {
     @Override
     protected void printLeadingLines(final BufferedReader bufferedReader) {
         final String leadingLines = readLeadingLines(bufferedReader);
-        output.print(buildTitle(currentFilename));
+        if (withTitle) {
+            output.print(buildTitle(currentFilename));
+        }
         output.print(leadingLines);
     }
 
