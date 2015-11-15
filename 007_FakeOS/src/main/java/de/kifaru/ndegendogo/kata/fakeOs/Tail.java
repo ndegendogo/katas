@@ -10,12 +10,17 @@ import java.util.concurrent.ArrayBlockingQueue;
 
 public class Tail {
     private static final int MAX_NUMBER_OF_LINES = 10;
+    private final PrintStream output;
 
+    Tail(final PrintStream output) {
+        this.output = output;
+    }
+    
     public static void main(final String... args) throws IOException {
         final InputStream in = System.in;
         final PrintStream out = System.out;
         
-        new Tail().process(in, out);
+        new Tail(out).process(in, out);
     }
 
     void process(final InputStream in, final PrintStream out) throws IOException {
