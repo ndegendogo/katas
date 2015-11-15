@@ -27,15 +27,19 @@ public class Tail {
         try(final InputStreamReader reader = new InputStreamReader(in);
             final BufferedReader buffered = new BufferedReader(reader);
         ) {
-            final ArrayBlockingQueue<String> queue = new ArrayBlockingQueue<>(MAX_NUMBER_OF_LINES);
-            String line;
-            while ((line = buffered.readLine()) != null) {
-                if (queue.remainingCapacity() == 0) {
-                    queue.remove();
-                }
-                queue.add(new String(line));
-            }
-            queue.forEach(output::println);
+            printTrailingLines(buffered);
         }
+    }
+
+    void printTrailingLines(final BufferedReader buffered) throws IOException {
+        final ArrayBlockingQueue<String> queue = new ArrayBlockingQueue<>(MAX_NUMBER_OF_LINES);
+        String line;
+        while ((line = buffered.readLine()) != null) {
+            if (queue.remainingCapacity() == 0) {
+                queue.remove();
+            }
+            queue.add(new String(line));
+        }
+        queue.forEach(output::println);
     }
 }
