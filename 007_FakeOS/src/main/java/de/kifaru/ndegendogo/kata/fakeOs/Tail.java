@@ -17,7 +17,7 @@ public class Tail extends FileCommand {
     }
     
     public static void main(final String... args) throws IOException {
-        final FileCommand tail = new Tail(System.in, System.out);
+        final FileCommand tail = (args.length >= 2) ? new TailWithTitle(System.in, System.out) : new Tail(System.in, System.out);
         tail.processAll(args);
     }
 
