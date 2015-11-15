@@ -20,7 +20,7 @@ public class Tail extends FileCommand {
     }
     
     public static void main(final String... args) throws IOException {
-        final FileCommand tail = (args.length >= 2) ? new Tail(true, System.in, System.out) : new Tail(false, System.in, System.out);
+        final FileCommand tail = new Tail((args.length >= 2), System.in, System.out);
         tail.processAll(args);
     }
 
