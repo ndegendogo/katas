@@ -19,8 +19,4 @@ public class TailWithTitle extends Tail {
         output.print(result);
     }
 
-    private String buildTitle(final String filename) {
-        return "==> " + filename + " <==";
-    }
-
 }

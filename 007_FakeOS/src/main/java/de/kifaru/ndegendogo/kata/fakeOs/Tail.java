@@ -51,6 +51,10 @@ public class Tail extends FileCommand {
         else return result;
     }
 
+    protected String buildTitle(final String filename) {
+        return "==> " + filename + " <==";
+    }
+
     @Override
     protected boolean hasError() {
         return (super.hasError() || output.checkError());
