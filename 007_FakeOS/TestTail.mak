@@ -2,7 +2,7 @@ TAIL_TESTCASES:= \
     tail0linesFrom0files \
     tail1lineFrom0files \
     tail10linesFrom0files \
-    tail11linesFrom0files \
+    #tail11linesFrom0files \
 
 .PHONY: test_tail
 test_tail: $(TAIL_TESTCASES)
