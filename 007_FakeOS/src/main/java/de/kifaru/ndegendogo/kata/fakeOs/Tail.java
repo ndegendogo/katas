@@ -20,10 +20,10 @@ public class Tail {
         final InputStream in = System.in;
         final PrintStream out = System.out;
         
-        new Tail(out).process(in, out);
+        new Tail(out).process(in);
     }
 
-    void process(final InputStream in, final PrintStream out) throws IOException {
+    void process(final InputStream in) throws IOException {
         try(final InputStreamReader reader = new InputStreamReader(in);
             final BufferedReader buffered = new BufferedReader(reader);
         ) {
@@ -35,7 +35,7 @@ public class Tail {
                 }
                 queue.add(new String(line));
             }
-            queue.forEach(out::println);
+            queue.forEach(output::println);
         }
     }
 }
