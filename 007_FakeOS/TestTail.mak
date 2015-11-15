@@ -4,7 +4,7 @@ TAIL_TESTCASES:= \
     tail10linesFrom0files \
     tail11linesFrom0files \
     tail8linesFrom1file \
-    #tailFrom2files \
+    tailFrom2files \
     #tailFrom2Emptyfiles \
     tailFromVeryLargeInput \
     tailFrom3files \
