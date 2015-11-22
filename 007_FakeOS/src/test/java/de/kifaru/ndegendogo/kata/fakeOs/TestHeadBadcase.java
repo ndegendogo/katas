@@ -8,8 +8,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.io.StringReader;
-import java.io.UncheckedIOException;
-
 import org.junit.Test;
 
 public class TestHeadBadcase {
@@ -44,10 +42,7 @@ public class TestHeadBadcase {
         final Head head = new Head(false, blockedInput, output);
         try {
             head.printLeadingLines(blockedInput);
-            fail();
-        } catch (UncheckedIOException e) {
-            // This exception is expected.
-            // The current implementation of Head does not catch any unchecked exceptions.
+            assertTrue(head.hasError());
         } catch (Exception e) {
             fail();
         }

@@ -1,11 +1,12 @@
 package de.kifaru.ndegendogo.kata.fakeOs;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.lang.System;
-import java.util.StringJoiner;
-import java.util.stream.Collector;
+import java.util.Queue;
+import java.util.concurrent.ArrayBlockingQueue;
 
 public class Head extends FileCommand {
 
@@ -31,24 +32,29 @@ public class Head extends FileCommand {
     }
 
     protected void printLeadingLines(final BufferedReader bufferedReader) {
-        final String leadingLines = readLeadingLines(bufferedReader);
+        final Queue<String> leadingLines = readLeadingLines(bufferedReader);
         if (withTitle) {
             output.print(buildTitle(currentFilename));
         }
-        output.print(leadingLines);
+        for (String s: leadingLines) {
+            output.print(s);
+        }
+        output.print("");
     }
 
-    protected String readLeadingLines(final BufferedReader bufferedReader) {
-        final Collector<String, StringJoiner, String> joining = Collector.of(
-                () -> new StringJoiner(System.lineSeparator(), "", System.lineSeparator()).setEmptyValue(""),
-                (j, s) -> j.add(s),
-                (j1, j2) -> j1.merge(j2),
-                StringJoiner::toString
-        );
-        return bufferedReader.lines()
-                .limit(MAX_NUMBER_OF_LINES)
-                .collect(joining);
+    Queue<String> readLeadingLines(final BufferedReader buffered) {
+        final ArrayBlockingQueue<String> queue = new ArrayBlockingQueue<>(MAX_NUMBER_OF_LINES);
+        String line;
+        try {
+            while ((line = buffered.readLine()) != null && queue.remainingCapacity() > 0) {
+                queue.add(new String(line));
+            }
+        } catch (IOException e) {
+            setError();
+        }
+        return queue;
     }
+
     
     @Override
     protected boolean hasError() {

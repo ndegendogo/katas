@@ -29,7 +29,6 @@ public class Tail extends FileCommand {
         if (withTitle) {
             output.print(buildTitle(currentFilename));
         }
-        
         for (String s: trailingLines) {
             output.print(s);
         }
