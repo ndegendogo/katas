@@ -23,7 +23,7 @@ public class TestHeadBadcase {
 
         final Head head = new Head(false, input, blockedOutput);
         try {
-            head.printLeadingLines(input);
+            head.printLines(input);
             assertTrue(head.hasError());
         } catch (Exception e) {
             fail();
@@ -41,7 +41,7 @@ public class TestHeadBadcase {
         
         final Head head = new Head(false, blockedInput, output);
         try {
-            head.printLeadingLines(blockedInput);
+            head.printLines(blockedInput);
             assertTrue(head.hasError());
         } catch (Exception e) {
             fail();

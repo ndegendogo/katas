@@ -17,13 +17,13 @@ public class Head extends FileCommand {
     Head(final boolean withTitle, final BufferedReader defaultInput, final PrintStream output) {
         this.withTitle = withTitle;
         this.output = new OutputJoiner(output);
-        setFileOperation(new TextFileOperation(defaultInput, this::printLeadingLines));
+        setFileOperation(new TextFileOperation(defaultInput, this::printLines));
     }
 
     Head (final boolean withTitle, final InputStream in, final PrintStream out) {
         this.withTitle = withTitle;
         this.output = new OutputJoiner(out);
-        setFileOperation(new TextFileOperation(in, this::printLeadingLines));
+        setFileOperation(new TextFileOperation(in, this::printLines));
     }
 
     public static void main(final String... args) {
@@ -31,18 +31,18 @@ public class Head extends FileCommand {
         head.processAll(args);
     }
 
-    protected void printLeadingLines(final BufferedReader bufferedReader) {
-        final Queue<String> leadingLines = readLeadingLines(bufferedReader);
+    protected void printLines(final BufferedReader bufferedReader) {
+        final Queue<String> queue = readLines(bufferedReader);
         if (withTitle) {
             output.print(buildTitle(currentFilename));
         }
-        for (String s: leadingLines) {
+        for (String s: queue) {
             output.print(s);
         }
         output.print("");
     }
 
-    Queue<String> readLeadingLines(final BufferedReader buffered) {
+    Queue<String> readLines(final BufferedReader buffered) {
         final ArrayBlockingQueue<String> queue = new ArrayBlockingQueue<>(MAX_NUMBER_OF_LINES);
         try {
             fillQueue(queue, buffered);

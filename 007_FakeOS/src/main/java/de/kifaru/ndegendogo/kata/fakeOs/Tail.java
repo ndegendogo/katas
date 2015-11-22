@@ -16,7 +16,7 @@ public class Tail extends FileCommand {
     Tail(final boolean withTitle, final InputStream in, final PrintStream output) {
         this.withTitle = withTitle;
         this.output = new OutputJoiner(output);
-        setFileOperation(new TextFileOperation(in, this::printTrailingLines));
+        setFileOperation(new TextFileOperation(in, this::printLines));
     }
     
     public static void main(final String... args) throws IOException {
@@ -24,18 +24,18 @@ public class Tail extends FileCommand {
         tail.processAll(args);
     }
 
-    protected void printTrailingLines(final BufferedReader bufferedReader) {
-        final Queue<String> trailingLines = readTrailingLines(bufferedReader);
+    protected void printLines(final BufferedReader bufferedReader) {
+        final Queue<String> queue = readLines(bufferedReader);
         if (withTitle) {
             output.print(buildTitle(currentFilename));
         }
-        for (String s: trailingLines) {
+        for (String s: queue) {
             output.print(s);
         }
         output.print("");
     }
 
-    Queue<String> readTrailingLines(final BufferedReader buffered) {
+    Queue<String> readLines(final BufferedReader buffered) {
         final ArrayBlockingQueue<String> queue = new ArrayBlockingQueue<>(MAX_NUMBER_OF_LINES);
         try {
             fillQueue(queue, buffered);

@@ -99,7 +99,7 @@ public class TestHeadGoodcase {
         final PrintStream output = new PrintStream(outputStream);
 
         final Head head = new Head(false, input, output);
-        head.printLeadingLines(input);
+        head.printLines(input);
         final String expectedOutput = concatenateLines(expectedLines);
         assertEquals(expectedOutput, outputStream.toString());
         assertFalse(head.hasError());
