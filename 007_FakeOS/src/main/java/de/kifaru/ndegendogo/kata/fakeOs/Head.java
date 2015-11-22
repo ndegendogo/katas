@@ -44,15 +44,19 @@ public class Head extends FileCommand {
 
     Queue<String> readLeadingLines(final BufferedReader buffered) {
         final ArrayBlockingQueue<String> queue = new ArrayBlockingQueue<>(MAX_NUMBER_OF_LINES);
-        String line;
         try {
-            while ((line = buffered.readLine()) != null && queue.remainingCapacity() > 0) {
-                queue.add(new String(line));
-            }
+            fillQueue(queue, buffered);
         } catch (IOException e) {
             setError();
         }
         return queue;
+    }
+
+    void fillQueue(final ArrayBlockingQueue<String> queue, final BufferedReader buffered) throws IOException {
+        String line;
+        while ((line = buffered.readLine()) != null && queue.remainingCapacity() > 0) {
+            queue.add(new String(line));
+        }
     }
 
     

@@ -37,18 +37,22 @@ public class Tail extends FileCommand {
 
     Queue<String> readTrailingLines(final BufferedReader buffered) {
         final ArrayBlockingQueue<String> queue = new ArrayBlockingQueue<>(MAX_NUMBER_OF_LINES);
-        String line;
         try {
-            while ((line = buffered.readLine()) != null) {
-                if (queue.remainingCapacity() == 0) {
-                    queue.remove();
-                }
-                queue.add(new String(line));
-            }
+            fillQueue(queue, buffered);
         } catch (IOException e) {
             setError();
         }
         return queue;
+    }
+
+    void fillQueue(final ArrayBlockingQueue<String> queue, final BufferedReader buffered) throws IOException {
+        String line;
+        while ((line = buffered.readLine()) != null) {
+            if (queue.remainingCapacity() == 0) {
+                queue.remove();
+            }
+            queue.add(new String(line));
+        }
     }
 
     @Override
