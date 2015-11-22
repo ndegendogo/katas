@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.util.Queue;
 import java.util.concurrent.ArrayBlockingQueue;
 
 
@@ -24,14 +25,22 @@ public class Tail extends FileCommand {
     }
 
     protected void printTrailingLines(final BufferedReader bufferedReader) {
-        final String trailingLines = readTrailingLines(bufferedReader);
+        final Queue<String> trailingLines = readTrailingLines(bufferedReader);
         if (withTitle) {
             output.print(buildTitle(currentFilename));
         }
-        output.print(trailingLines);
+        
+        final String result = String.join(System.lineSeparator(), trailingLines);
+        
+        if (result.isEmpty()) {
+            output.print("");
+        } else {
+            output.print(result);
+            output.print("");
+        }
     }
 
-    String readTrailingLines(final BufferedReader buffered) {
+    Queue<String> readTrailingLines(final BufferedReader buffered) {
         final ArrayBlockingQueue<String> queue = new ArrayBlockingQueue<>(MAX_NUMBER_OF_LINES);
         String line;
         try {
@@ -44,9 +53,7 @@ public class Tail extends FileCommand {
         } catch (IOException e) {
             setError();
         }
-        final String result = String.join(System.lineSeparator(), queue);
-        if (!result.isEmpty()) return result + System.lineSeparator();
-        else return result;
+        return queue;
     }
 
     @Override
