@@ -30,14 +30,10 @@ public class Tail extends FileCommand {
             output.print(buildTitle(currentFilename));
         }
         
-        final String result = String.join(System.lineSeparator(), trailingLines);
-        
-        if (result.isEmpty()) {
-            output.print("");
-        } else {
-            output.print(result);
-            output.print("");
+        for (String s: trailingLines) {
+            output.print(s);
         }
+        output.print("");
     }
 
     Queue<String> readTrailingLines(final BufferedReader buffered) {
