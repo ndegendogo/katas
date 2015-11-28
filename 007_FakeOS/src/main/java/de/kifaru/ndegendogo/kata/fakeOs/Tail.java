@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
-import java.util.Queue;
 import java.util.concurrent.ArrayBlockingQueue;
 
 
@@ -25,17 +24,17 @@ public class Tail extends FileCommand {
     }
 
     protected void printLines(final BufferedReader bufferedReader) {
-        final Queue<String> queue = readLines(bufferedReader);
+        final Iterable<String> lines = readLines(bufferedReader);
         if (withTitle) {
             output.print(buildTitle(currentFilename));
         }
-        for (String s: queue) {
+        for (String s: lines) {
             output.print(s);
         }
         output.print("");
     }
 
-    Queue<String> readLines(final BufferedReader buffered) {
+    Iterable<String> readLines(final BufferedReader buffered) {
         final ArrayBlockingQueue<String> queue = new ArrayBlockingQueue<>(MAX_NUMBER_OF_LINES);
         try {
             fillQueue(queue, buffered);
