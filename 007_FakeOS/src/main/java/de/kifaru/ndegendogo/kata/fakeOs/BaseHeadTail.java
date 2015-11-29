@@ -39,10 +39,10 @@ public abstract class BaseHeadTail extends FileCommand {
 
     protected void fillQueue(final ArrayBlockingQueue<String> queue, final BufferedReader buffered) throws IOException {
         String line;
-        while ((line = buffered.readLine()) != null && bufferLineIfCapacity(line, queue));
+        while ((line = buffered.readLine()) != null && bufferLineWhileCapacity(line, queue));
     }
 
-    abstract protected boolean bufferLineIfCapacity(final String line, final ArrayBlockingQueue<String> queue);
+    abstract protected boolean bufferLineWhileCapacity(final String line, final ArrayBlockingQueue<String> queue);
 
     @Override
     protected boolean hasError() {
