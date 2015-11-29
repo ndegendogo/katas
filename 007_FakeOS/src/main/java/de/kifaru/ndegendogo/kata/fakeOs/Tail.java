@@ -24,6 +24,6 @@ public class Tail extends BaseHeadTail {
             queue.remove();
         }
         queue.add(new String(line));
-        return false;
+        return true;
     }
 }
