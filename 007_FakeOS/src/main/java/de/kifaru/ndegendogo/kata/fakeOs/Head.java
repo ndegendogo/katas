@@ -26,11 +26,15 @@ public class Head extends BaseHeadTail {
 
     @Override
     protected void fillQueue(final ArrayBlockingQueue<String> queue, final BufferedReader buffered) throws IOException {
-        String line;
         boolean finished = false;
+        String line;
         while ((line = buffered.readLine()) != null && !finished) {
-            queue.add(new String(line));
-            finished = queue.remainingCapacity() == 0;
+            finished = bufferLine(line, queue);
         }
+    }
+
+    boolean bufferLine(final String line, final ArrayBlockingQueue<String> queue) {
+        queue.add(new String(line));
+        return queue.remainingCapacity() == 0;
     }
 }
