@@ -48,7 +48,8 @@ public class Head extends BaseHeadTail {
         return queue;
     }
 
-    void fillQueue(final ArrayBlockingQueue<String> queue, final BufferedReader buffered) throws IOException {
+    @Override
+    protected void fillQueue(final ArrayBlockingQueue<String> queue, final BufferedReader buffered) throws IOException {
         String line;
         while ((line = buffered.readLine()) != null && queue.remainingCapacity() > 0) {
             queue.add(new String(line));
