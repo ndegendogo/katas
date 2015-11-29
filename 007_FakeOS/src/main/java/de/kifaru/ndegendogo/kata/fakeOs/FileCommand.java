@@ -44,10 +44,6 @@ public class FileCommand {
         }
     }
 
-    protected String buildTitle(final String filename) {
-        return "==> " + filename + " <==";
-    }
-
     protected boolean setError() {
         return hasError = true;
     }
