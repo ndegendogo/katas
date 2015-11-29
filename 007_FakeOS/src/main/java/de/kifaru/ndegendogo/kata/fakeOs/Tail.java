@@ -7,7 +7,7 @@ import java.io.PrintStream;
 import java.util.concurrent.ArrayBlockingQueue;
 
 
-public class Tail extends FileCommand {
+public class Tail extends BaseHeadTail {
     private static final int MAX_NUMBER_OF_LINES = 10;
     protected final boolean withTitle;
     protected final OutputJoiner output;
