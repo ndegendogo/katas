@@ -9,7 +9,6 @@ import java.util.concurrent.ArrayBlockingQueue;
 
 public class Head extends BaseHeadTail {
 
-    private static final int MAX_NUMBER_OF_LINES = 10;
     protected final boolean withTitle;
     protected final OutputJoiner output;
     
@@ -36,16 +35,6 @@ public class Head extends BaseHeadTail {
             output.print(buildTitle(currentFilename));
         }
         output.print(lines);
-    }
-
-    Iterable<String> readLines(final BufferedReader buffered) {
-        final ArrayBlockingQueue<String> queue = new ArrayBlockingQueue<>(MAX_NUMBER_OF_LINES);
-        try {
-            fillQueue(queue, buffered);
-        } catch (IOException e) {
-            setError();
-        }
-        return queue;
     }
 
     @Override
