@@ -41,11 +41,11 @@ public abstract class BaseHeadTail extends FileCommand {
         boolean notFinished = true;
         String line;
         while ((line = buffered.readLine()) != null && notFinished) {
-            notFinished = bufferLine(line, queue);
+            notFinished = bufferLineIfCapacity(line, queue);
         }
     }
 
-    abstract protected boolean bufferLine(final String line, final ArrayBlockingQueue<String> queue);
+    abstract protected boolean bufferLineIfCapacity(final String line, final ArrayBlockingQueue<String> queue);
 
     @Override
     protected boolean hasError() {
