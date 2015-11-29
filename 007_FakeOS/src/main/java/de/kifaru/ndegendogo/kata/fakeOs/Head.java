@@ -11,7 +11,7 @@ public class Head extends FileCommand {
 
     private static final int MAX_NUMBER_OF_LINES = 10;
     protected final boolean withTitle;
-    protected final PrintStream output;
+    protected final OutputJoiner output;
     
     Head(final boolean withTitle, final BufferedReader defaultInput, final PrintStream output) {
         this.withTitle = withTitle;
@@ -35,10 +35,7 @@ public class Head extends FileCommand {
         if (withTitle) {
             output.print(buildTitle(currentFilename));
         }
-        for (String s: lines) {
-            output.print(s);
-        }
-        output.print("");
+        output.print(lines);
     }
 
     Iterable<String> readLines(final BufferedReader buffered) {

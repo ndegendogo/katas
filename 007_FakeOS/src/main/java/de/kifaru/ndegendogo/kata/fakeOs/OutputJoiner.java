@@ -19,4 +19,11 @@ public class OutputJoiner extends PrintStream {
         super.print(s);
         isFollowing = true;
     }
+
+    void print(final Iterable<String> lines) {
+        for (String s: lines) {
+            print(s);
+        }
+        print("");
+    }
 }
