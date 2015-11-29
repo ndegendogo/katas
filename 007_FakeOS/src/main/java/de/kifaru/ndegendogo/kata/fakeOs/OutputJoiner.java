@@ -8,11 +8,11 @@ public class OutputJoiner extends PrintStream {
 
     private boolean isFollowing = false;
     
-    public OutputJoiner(PrintStream out) {
+    public OutputJoiner(final PrintStream out) {
         super(out);
     }
 
-    public void print(String s) {
+    public void print(final String s) {
         if (isFollowing) {
             super.print(DELIMITER);
         }
@@ -21,7 +21,7 @@ public class OutputJoiner extends PrintStream {
     }
 
     void print(final Iterable<String> lines) {
-        for (String s: lines) {
+        for (final String s: lines) {
             print(s);
         }
         print("");
