@@ -16,28 +16,32 @@ public abstract class BaseHeadTail extends FileCommand {
     }
 
     protected void printLines(final BufferedReader bufferedReader) {
-        final Iterable<String> lines = readLines(bufferedReader);
+        final Iterable<String> filteredLines = readAndFilterLines(bufferedReader);
+        printTitle();
+        output.print(filteredLines);
+    }
+
+    private void printTitle() {
         if (withTitle) {
             output.print(buildTitle(currentFilename));
         }
-        output.print(lines);
     }
 
     protected String buildTitle(final String filename) {
         return "==> " + filename + " <==";
     }
 
-    protected Iterable<String> readLines(final BufferedReader buffered) {
-        final ArrayBlockingQueue<String> queue = new ArrayBlockingQueue<>(MAX_NUMBER_OF_LINES);
+    protected Iterable<String> readAndFilterLines(final BufferedReader buffered) {
+        final ArrayBlockingQueue<String> lines = new ArrayBlockingQueue<>(MAX_NUMBER_OF_LINES);
         try {
-            fillQueue(queue, buffered);
+            getFilteredLines(lines, buffered);
         } catch (IOException e) {
             setError();
         }
-        return queue;
+        return lines;
     }
 
-    protected void fillQueue(final ArrayBlockingQueue<String> queue, final BufferedReader buffered) throws IOException {
+    protected void getFilteredLines(final ArrayBlockingQueue<String> queue, final BufferedReader buffered) throws IOException {
         String line;
         while ((line = buffered.readLine()) != null && bufferLineWhileCapacity(line, queue));
     }
