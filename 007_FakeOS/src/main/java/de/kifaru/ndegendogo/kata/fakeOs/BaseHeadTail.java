@@ -37,12 +37,19 @@ public abstract class BaseHeadTail extends FileCommand {
         return queue;
     }
 
-    abstract protected void fillQueue(final ArrayBlockingQueue<String> queue, final BufferedReader buffered) throws IOException;
+    protected void fillQueue(final ArrayBlockingQueue<String> queue, final BufferedReader buffered) throws IOException {
+        boolean finished = false;
+        String line;
+        while ((line = buffered.readLine()) != null && !finished) {
+            finished = bufferLine(line, queue);
+        }
+    }
 
     abstract protected boolean bufferLine(final String line, final ArrayBlockingQueue<String> queue);
 
-        @Override
+    @Override
     protected boolean hasError() {
         return (super.hasError() || output.checkError());
     }
+
 }

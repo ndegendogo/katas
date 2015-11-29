@@ -1,6 +1,5 @@
 package de.kifaru.ndegendogo.kata.fakeOs;
 
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -17,15 +16,6 @@ public class Tail extends BaseHeadTail {
     public static void main(final String... args) throws IOException {
         final FileCommand tail = new Tail((args.length >= 2), System.in, System.out);
         tail.processAll(args);
-    }
-
-    @Override
-    protected void fillQueue(final ArrayBlockingQueue<String> queue, final BufferedReader buffered) throws IOException {
-        boolean finished = false;
-        String line;
-        while ((line = buffered.readLine()) != null && !finished) {
-            finished = bufferLine(line, queue);
-        }
     }
 
     @Override
