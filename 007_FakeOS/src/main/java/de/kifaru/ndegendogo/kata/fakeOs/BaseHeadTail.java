@@ -30,4 +30,12 @@ public abstract class BaseHeadTail extends FileCommand {
     }
 
     abstract protected void fillQueue(final ArrayBlockingQueue<String> queue, final BufferedReader buffered) throws IOException;
+
+    protected void printLines(final BufferedReader bufferedReader) {
+        final Iterable<String> lines = readLines(bufferedReader);
+        if (withTitle) {
+            output.print(buildTitle(currentFilename));
+        }
+        output.print(lines);
+    }
 }

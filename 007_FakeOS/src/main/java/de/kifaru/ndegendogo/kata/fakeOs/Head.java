@@ -8,7 +8,6 @@ import java.lang.System;
 import java.util.concurrent.ArrayBlockingQueue;
 
 public class Head extends BaseHeadTail {
-
     
     Head(final boolean withTitle, final BufferedReader defaultInput, final PrintStream output) {
         super(withTitle, output);
@@ -23,14 +22,6 @@ public class Head extends BaseHeadTail {
     public static void main(final String... args) {
         final FileCommand head = new Head((args.length >= 2), System.in, System.out);
         head.processAll(args);
-    }
-
-    protected void printLines(final BufferedReader bufferedReader) {
-        final Iterable<String> lines = readLines(bufferedReader);
-        if (withTitle) {
-            output.print(buildTitle(currentFilename));
-        }
-        output.print(lines);
     }
 
     @Override
