@@ -8,12 +8,9 @@ import java.util.concurrent.ArrayBlockingQueue;
 
 
 public class Tail extends BaseHeadTail {
-    protected final boolean withTitle;
-    protected final OutputJoiner output;
 
     Tail(final boolean withTitle, final InputStream in, final PrintStream output) {
-        this.withTitle = withTitle;
-        this.output = new OutputJoiner(output);
+        super(withTitle, output);
         setFileOperation(new TextFileOperation(in, this::printLines));
     }
     

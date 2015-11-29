@@ -9,18 +9,14 @@ import java.util.concurrent.ArrayBlockingQueue;
 
 public class Head extends BaseHeadTail {
 
-    protected final boolean withTitle;
-    protected final OutputJoiner output;
     
     Head(final boolean withTitle, final BufferedReader defaultInput, final PrintStream output) {
-        this.withTitle = withTitle;
-        this.output = new OutputJoiner(output);
+        super(withTitle, output);
         setFileOperation(new TextFileOperation(defaultInput, this::printLines));
     }
 
     Head (final boolean withTitle, final InputStream in, final PrintStream out) {
-        this.withTitle = withTitle;
-        this.output = new OutputJoiner(out);
+        super(withTitle, out);
         setFileOperation(new TextFileOperation(in, this::printLines));
     }
 
