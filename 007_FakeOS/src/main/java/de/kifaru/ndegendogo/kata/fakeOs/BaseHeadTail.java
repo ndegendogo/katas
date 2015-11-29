@@ -7,7 +7,7 @@ import java.util.concurrent.ArrayBlockingQueue;
 
 public abstract class BaseHeadTail extends FileCommand {
     private static final int MAX_NUMBER_OF_LINES = 10;
-    protected final boolean withTitle;
+    private final boolean withTitle;
     protected final OutputJoiner output;
 
     BaseHeadTail(final boolean withTitle, final PrintStream output) {
@@ -37,5 +37,10 @@ public abstract class BaseHeadTail extends FileCommand {
             output.print(buildTitle(currentFilename));
         }
         output.print(lines);
+    }
+
+    @Override
+    protected boolean hasError() {
+        return (super.hasError() || output.checkError());
     }
 }

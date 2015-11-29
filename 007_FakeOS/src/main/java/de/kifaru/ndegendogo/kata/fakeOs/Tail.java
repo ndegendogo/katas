@@ -29,9 +29,4 @@ public class Tail extends BaseHeadTail {
             queue.add(new String(line));
         }
     }
-
-    @Override
-    protected boolean hasError() {
-        return (super.hasError() || output.checkError());
-    }
 }
