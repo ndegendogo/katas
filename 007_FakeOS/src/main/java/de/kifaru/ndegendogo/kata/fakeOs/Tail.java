@@ -21,12 +21,18 @@ public class Tail extends BaseHeadTail {
 
     @Override
     protected void fillQueue(final ArrayBlockingQueue<String> queue, final BufferedReader buffered) throws IOException {
+        boolean finished = false;
         String line;
-        while ((line = buffered.readLine()) != null) {
-            if (queue.remainingCapacity() == 0) {
-                queue.remove();
-            }
-            queue.add(new String(line));
+        while ((line = buffered.readLine()) != null && !finished) {
+            finished = bufferLine(line, queue);
         }
+    }
+
+    boolean bufferLine(final String line, final ArrayBlockingQueue<String> queue) {
+        if (queue.remainingCapacity() == 0) {
+            queue.remove();
+        }
+        queue.add(new String(line));
+        return false;
     }
 }
