@@ -28,7 +28,8 @@ public class Tail extends BaseHeadTail {
         }
     }
 
-    boolean bufferLine(final String line, final ArrayBlockingQueue<String> queue) {
+    @Override
+    protected boolean bufferLine(final String line, final ArrayBlockingQueue<String> queue) {
         if (queue.remainingCapacity() == 0) {
             queue.remove();
         }

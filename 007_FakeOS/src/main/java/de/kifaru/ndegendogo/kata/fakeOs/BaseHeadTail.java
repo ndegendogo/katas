@@ -15,6 +15,14 @@ public abstract class BaseHeadTail extends FileCommand {
         this.output = new OutputJoiner(output);
     }
 
+    protected void printLines(final BufferedReader bufferedReader) {
+        final Iterable<String> lines = readLines(bufferedReader);
+        if (withTitle) {
+            output.print(buildTitle(currentFilename));
+        }
+        output.print(lines);
+    }
+
     protected String buildTitle(final String filename) {
         return "==> " + filename + " <==";
     }
@@ -31,15 +39,9 @@ public abstract class BaseHeadTail extends FileCommand {
 
     abstract protected void fillQueue(final ArrayBlockingQueue<String> queue, final BufferedReader buffered) throws IOException;
 
-    protected void printLines(final BufferedReader bufferedReader) {
-        final Iterable<String> lines = readLines(bufferedReader);
-        if (withTitle) {
-            output.print(buildTitle(currentFilename));
-        }
-        output.print(lines);
-    }
+    abstract protected boolean bufferLine(final String line, final ArrayBlockingQueue<String> queue);
 
-    @Override
+        @Override
     protected boolean hasError() {
         return (super.hasError() || output.checkError());
     }

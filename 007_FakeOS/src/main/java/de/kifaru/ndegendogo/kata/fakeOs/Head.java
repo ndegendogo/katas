@@ -33,7 +33,8 @@ public class Head extends BaseHeadTail {
         }
     }
 
-    boolean bufferLine(final String line, final ArrayBlockingQueue<String> queue) {
+    @Override
+    protected boolean bufferLine(final String line, final ArrayBlockingQueue<String> queue) {
         queue.add(new String(line));
         return queue.remainingCapacity() == 0;
     }
