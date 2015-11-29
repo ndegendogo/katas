@@ -10,7 +10,7 @@ import java.util.concurrent.ArrayBlockingQueue;
 public class Tail extends FileCommand {
     private static final int MAX_NUMBER_OF_LINES = 10;
     protected final boolean withTitle;
-    protected final PrintStream output;
+    protected final OutputJoiner output;
 
     Tail(final boolean withTitle, final InputStream in, final PrintStream output) {
         this.withTitle = withTitle;
@@ -28,10 +28,7 @@ public class Tail extends FileCommand {
         if (withTitle) {
             output.print(buildTitle(currentFilename));
         }
-        for (String s: lines) {
-            output.print(s);
-        }
-        output.print("");
+        output.print(lines);
     }
 
     Iterable<String> readLines(final BufferedReader buffered) {
