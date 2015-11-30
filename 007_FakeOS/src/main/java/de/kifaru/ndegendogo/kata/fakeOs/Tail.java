@@ -23,7 +23,7 @@ public class Tail extends BaseHeadTail {
         if (collector.remainingCapacity() == 0) {
             collector.remove();
         }
-        collector.add(new String(line));
+        collector.add(line);
         return true;
     }
 }
