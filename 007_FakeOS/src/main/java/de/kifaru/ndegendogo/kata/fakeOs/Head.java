@@ -24,8 +24,8 @@ public class Head extends BaseHeadTail {
     }
 
     @Override
-    protected boolean bufferLineWhileCapacity(final String line, final ArrayBlockingQueue<String> queue) {
-        queue.add(new String(line));
-        return queue.remainingCapacity() > 0;
+    protected boolean collectLine(final ArrayBlockingQueue<String> collector, final String line) {
+        collector.add(new String(line));
+        return collector.remainingCapacity() > 0;
     }
 }

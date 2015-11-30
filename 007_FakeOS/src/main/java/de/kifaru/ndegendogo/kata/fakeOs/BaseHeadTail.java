@@ -3,6 +3,7 @@ package de.kifaru.ndegendogo.kata.fakeOs;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.ArrayList;
 import java.util.concurrent.ArrayBlockingQueue;
 
 public abstract class BaseHeadTail extends FileCommand {
@@ -16,9 +17,9 @@ public abstract class BaseHeadTail extends FileCommand {
     }
 
     protected void printLines(final BufferedReader bufferedReader) {
-        final Iterable<String> filteredLines = readAndFilterLines(bufferedReader);
+        final Iterable<String> collectedLines = readAndCollectLines(bufferedReader);
         printTitle();
-        output.print(filteredLines);
+        output.print(collectedLines);
     }
 
     private void printTitle() {
@@ -27,26 +28,23 @@ public abstract class BaseHeadTail extends FileCommand {
         }
     }
 
-    protected String buildTitle(final String filename) {
-        return "==> " + filename + " <==";
+    protected String buildTitle(final String name) {
+        return "==> " + name + " <==";
     }
 
-    protected Iterable<String> readAndFilterLines(final BufferedReader buffered) {
-        final ArrayBlockingQueue<String> lines = new ArrayBlockingQueue<>(MAX_NUMBER_OF_LINES);
+    protected Iterable<String> readAndCollectLines(final BufferedReader reader) {
         try {
-            getFilteredLines(lines, buffered);
+            final ArrayBlockingQueue<String> collector = new ArrayBlockingQueue<>(MAX_NUMBER_OF_LINES);
+            String line;
+            while ((line = reader.readLine()) != null && collectLine(collector, line));
+            return collector;
         } catch (IOException e) {
             setError();
+            return new ArrayList<String>();
         }
-        return lines;
     }
 
-    protected void getFilteredLines(final ArrayBlockingQueue<String> queue, final BufferedReader buffered) throws IOException {
-        String line;
-        while ((line = buffered.readLine()) != null && bufferLineWhileCapacity(line, queue));
-    }
-
-    abstract protected boolean bufferLineWhileCapacity(final String line, final ArrayBlockingQueue<String> queue);
+    abstract protected boolean collectLine(final ArrayBlockingQueue<String> collector, final String line);
 
     @Override
     protected boolean hasError() {

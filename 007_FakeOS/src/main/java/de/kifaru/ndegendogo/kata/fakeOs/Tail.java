@@ -19,11 +19,11 @@ public class Tail extends BaseHeadTail {
     }
 
     @Override
-    protected boolean bufferLineWhileCapacity(final String line, final ArrayBlockingQueue<String> queue) {
-        if (queue.remainingCapacity() == 0) {
-            queue.remove();
+    protected boolean collectLine(final ArrayBlockingQueue<String> collector, final String line) {
+        if (collector.remainingCapacity() == 0) {
+            collector.remove();
         }
-        queue.add(new String(line));
+        collector.add(new String(line));
         return true;
     }
 }
