@@ -3,7 +3,6 @@ package de.kifaru.ndegendogo.kata.fakeOs;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintStream;
-import java.util.ArrayList;
 import java.util.concurrent.ArrayBlockingQueue;
 
 public abstract class BaseHeadTail extends FileCommand {
@@ -17,9 +16,13 @@ public abstract class BaseHeadTail extends FileCommand {
     }
 
     protected void printLines(final BufferedReader bufferedReader) {
-        final Iterable<String> collectedLines = readAndCollectLines(bufferedReader);
-        printTitle();
-        output.print(collectedLines);
+        try {
+            final Iterable<String> collectedLines = readAndCollectLines(bufferedReader);
+            printTitle();
+            output.print(collectedLines);
+        } catch (IOException e) {
+            setError();
+        }
     }
 
     private void printTitle() {
@@ -32,16 +35,11 @@ public abstract class BaseHeadTail extends FileCommand {
         return "==> " + name + " <==";
     }
 
-    protected Iterable<String> readAndCollectLines(final BufferedReader reader) {
-        try {
-            final ArrayBlockingQueue<String> collector = new ArrayBlockingQueue<>(MAX_NUMBER_OF_LINES);
-            String line;
-            while ((line = reader.readLine()) != null && collectLine(collector, line));
-            return collector;
-        } catch (IOException e) {
-            setError();
-            return new ArrayList<String>();
-        }
+    protected Iterable<String> readAndCollectLines(final BufferedReader reader) throws IOException {
+        final ArrayBlockingQueue<String> collector = new ArrayBlockingQueue<>(MAX_NUMBER_OF_LINES);
+        String line;
+        while ((line = reader.readLine()) != null && collectLine(collector, line));
+        return collector;
     }
 
     abstract protected boolean collectLine(final ArrayBlockingQueue<String> collector, final String line);
