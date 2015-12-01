@@ -19,7 +19,7 @@ public class Tail extends BaseHeadTail {
     }
 
     @Override
-    protected boolean collectLine(final ArrayBlockingQueue<String> collector, final String line) {
+    protected boolean addTillFull(final ArrayBlockingQueue<String> collector, final String line) {
         if (collector.remainingCapacity() == 0) {
             collector.remove();
         }

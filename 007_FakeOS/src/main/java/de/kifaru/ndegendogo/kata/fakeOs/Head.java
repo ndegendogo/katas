@@ -24,7 +24,7 @@ public class Head extends BaseHeadTail {
     }
 
     @Override
-    protected boolean collectLine(final ArrayBlockingQueue<String> collector, final String line) {
+    protected boolean addTillFull(final ArrayBlockingQueue<String> collector, final String line) {
         collector.add(line);
         return collector.remainingCapacity() > 0;
     }

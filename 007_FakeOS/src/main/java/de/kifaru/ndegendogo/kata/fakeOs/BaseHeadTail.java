@@ -38,11 +38,11 @@ public abstract class BaseHeadTail extends FileCommand {
     protected Iterable<String> readAndCollectLines(final BufferedReader reader) throws IOException {
         final ArrayBlockingQueue<String> collector = new ArrayBlockingQueue<>(MAX_NUMBER_OF_LINES);
         String line;
-        while ((line = reader.readLine()) != null && collectLine(collector, line));
+        while ((line = reader.readLine()) != null && addTillFull(collector, line));
         return collector;
     }
 
-    abstract protected boolean collectLine(final ArrayBlockingQueue<String> collector, final String line);
+    abstract protected boolean addTillFull(final ArrayBlockingQueue<String> collector, final String line);
 
     @Override
     protected boolean hasError() {
