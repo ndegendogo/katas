@@ -7,14 +7,18 @@ import java.lang.System;
 import java.util.concurrent.ArrayBlockingQueue;
 
 public class Head extends BaseHeadTail {
+
+    Head(final boolean withTitle, final PrintStream out) {
+        super(withTitle, new HeadCollector(MAX_NUMBER_OF_LINES), out);
+    }
     
-    Head(final boolean withTitle, final BufferedReader defaultInput, final PrintStream output) {
-        super(withTitle, new HeadCollector(MAX_NUMBER_OF_LINES), output);
+    Head(final boolean withTitle, final BufferedReader defaultInput, final PrintStream out) {
+        this(withTitle, out);
         setFileOperation(new TextFileOperation(defaultInput, this::printLines));
     }
 
     Head (final boolean withTitle, final InputStream in, final PrintStream out) {
-        super(withTitle, new HeadCollector(MAX_NUMBER_OF_LINES), out);
+        this(withTitle, out);
         setFileOperation(new TextFileOperation(in, this::printLines));
     }
 
