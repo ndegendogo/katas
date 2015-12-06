@@ -9,7 +9,7 @@ import java.util.concurrent.ArrayBlockingQueue;
 public class Tail extends BaseHeadTail {
 
     Tail(final boolean withTitle, final InputStream in, final PrintStream output) {
-        super(withTitle, new TailCollector(MAX_NUMBER_OF_LINES), output);
+        super(withTitle, output);
         setFileOperation(new TextFileOperation(in, this::printLines));
     }
     

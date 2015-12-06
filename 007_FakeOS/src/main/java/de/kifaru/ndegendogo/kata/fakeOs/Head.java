@@ -9,7 +9,7 @@ import java.util.concurrent.ArrayBlockingQueue;
 public class Head extends BaseHeadTail {
 
     Head(final boolean withTitle, final PrintStream out) {
-        super(withTitle, new HeadCollector(MAX_NUMBER_OF_LINES), out);
+        super(withTitle, out);
     }
     
     Head(final boolean withTitle, final BufferedReader defaultInput, final PrintStream out) {
