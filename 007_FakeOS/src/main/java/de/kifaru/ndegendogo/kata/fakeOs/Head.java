@@ -9,12 +9,12 @@ import java.util.concurrent.ArrayBlockingQueue;
 public class Head extends BaseHeadTail {
     
     Head(final boolean withTitle, final BufferedReader defaultInput, final PrintStream output) {
-        super(withTitle, output);
+        super(withTitle, new HeadCollector(MAX_NUMBER_OF_LINES), output);
         setFileOperation(new TextFileOperation(defaultInput, this::printLines));
     }
 
     Head (final boolean withTitle, final InputStream in, final PrintStream out) {
-        super(withTitle, out);
+        super(withTitle, new HeadCollector(MAX_NUMBER_OF_LINES), out);
         setFileOperation(new TextFileOperation(in, this::printLines));
     }
 

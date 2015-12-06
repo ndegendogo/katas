@@ -6,12 +6,14 @@ import java.io.PrintStream;
 import java.util.concurrent.ArrayBlockingQueue;
 
 public abstract class BaseHeadTail extends FileCommand {
-    private static final int MAX_NUMBER_OF_LINES = 10;
+    protected static final int MAX_NUMBER_OF_LINES = 10;
     private final boolean withTitle;
+    private final HeadTailCollector collector;
     private final OutputJoiner output;
 
-    BaseHeadTail(final boolean withTitle, final PrintStream output) {
+    BaseHeadTail(final boolean withTitle, final HeadTailCollector collector, final PrintStream output) {
         this.withTitle = withTitle;
+        this.collector = collector;
         this.output = new OutputJoiner(output);
     }
 
