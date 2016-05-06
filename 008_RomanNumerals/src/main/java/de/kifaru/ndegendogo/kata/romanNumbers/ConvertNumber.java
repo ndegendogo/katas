@@ -13,7 +13,7 @@ public class ConvertNumber {
     }
 
     private static void createAndShowGui() {
-        JFrame frame = new JFrame("HelloWorldSwing");
+        JFrame frame = new JFrame("Roman Numbers");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         JLabel label = new JLabel("Hello World!");
