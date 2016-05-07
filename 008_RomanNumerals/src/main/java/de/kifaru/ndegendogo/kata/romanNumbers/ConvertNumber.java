@@ -22,18 +22,23 @@ public class ConvertNumber {
         JFrame frame = new JFrame("Roman Numbers");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        JLabel label = new JLabel("Hello World!");
+        JLabel label1 = new JLabel("Hello World!");
+        JLabel label2 = new JLabel("Hello World!");
+        JLabel label3 = new JLabel("Hello World!");
+        JLabel label4 = new JLabel("Hello World!");
 
         Container pane = frame.getContentPane();
         GroupLayout layout = new GroupLayout(pane);
         pane.setLayout(layout);
 
         SequentialGroup hgroup = layout.createSequentialGroup();
-        hgroup.addGroup(layout.createParallelGroup().addComponent(label));
+        hgroup.addGroup(layout.createParallelGroup().addComponent(label1).addComponent(label2));
+        hgroup.addGroup(layout.createParallelGroup().addComponent(label3).addComponent(label4));
         layout.setHorizontalGroup(hgroup);
 
         SequentialGroup vgroup = layout.createSequentialGroup();
-        vgroup.addGroup(layout.createParallelGroup(Alignment.BASELINE).addComponent(label));
+        vgroup.addGroup(layout.createParallelGroup(Alignment.BASELINE).addComponent(label1).addComponent(label3));
+        vgroup.addGroup(layout.createParallelGroup(Alignment.BASELINE).addComponent(label2).addComponent(label4));
         layout.setVerticalGroup(vgroup);
 
         frame.pack();
