@@ -29,6 +29,8 @@ public class ConvertNumber {
 
         Container pane = frame.getContentPane();
         GroupLayout layout = new GroupLayout(pane);
+        layout.setAutoCreateGaps(true);
+        layout.setAutoCreateContainerGaps(true);
         pane.setLayout(layout);
 
         SequentialGroup hgroup = layout.createSequentialGroup();
