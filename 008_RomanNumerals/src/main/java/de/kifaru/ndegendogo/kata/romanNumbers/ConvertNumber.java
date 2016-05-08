@@ -25,10 +25,20 @@ public class ConvertNumber {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         final Container pane = frame.getContentPane();
 
-        final JTextField input = new JTextField();
-        final JLabel roman = new JLabel("Roman");
-        final JLabel arabic = new JLabel("Arabic");
+        final JLabel roman = new JLabel("Roman:");
+        final JTextField input = new JTextField(20);
+        final JLabel arabic = new JLabel("Arabic:");
+        final JLabel output = new JLabel("");
+        final JButton button = makeButton();
 
+        final JComponent components[][] = {{roman, input}, {arabic, output}, {button}};
+        setupLayout(pane, components);
+
+        frame.pack();
+        frame.setVisible(true);
+    }
+
+    static JButton makeButton() {
         final JButton button = new JButton("Convert");
         final ActionListener listener = new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -36,12 +46,7 @@ public class ConvertNumber {
             }
         };
         button.addActionListener(listener);
-        final JComponent components[][] = {{input, roman}, {button, arabic}};
-
-        setupLayout(pane, components);
-
-        frame.pack();
-        frame.setVisible(true);
+        return button;
     }
 
     private static void setupLayout(final Container pane, final JComponent[][] components) {
@@ -53,10 +58,11 @@ public class ConvertNumber {
         final SequentialGroup vgroup = layout.createSequentialGroup();
         vgroup.addGroup(layout.createParallelGroup(Alignment.BASELINE).addComponent(components[0][0]).addComponent(components[0][1]));
         vgroup.addGroup(layout.createParallelGroup(Alignment.BASELINE).addComponent(components[1][0]).addComponent(components[1][1]));
+        vgroup.addGroup(layout.createParallelGroup(Alignment.BASELINE).addComponent(components[2][0]));
         layout.setVerticalGroup(vgroup);
 
         final SequentialGroup hgroup = layout.createSequentialGroup();
-        hgroup.addGroup(layout.createParallelGroup().addComponent(components[0][0]).addComponent(components[1][0]));
+        hgroup.addGroup(layout.createParallelGroup().addComponent(components[0][0]).addComponent(components[1][0]).addComponent(components[2][0]));
         hgroup.addGroup(layout.createParallelGroup().addComponent(components[0][1]).addComponent(components[1][1]));
         layout.setHorizontalGroup(hgroup);
     }
