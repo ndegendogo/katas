@@ -19,15 +19,15 @@ public class ConvertNumber {
 
     private static void createAndShowGui() {
         // top-level container
-        JFrame frame = new JFrame("Roman Numbers");
+        final JFrame frame = new JFrame("Roman Numbers");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        Container pane = frame.getContentPane();
+        final Container pane = frame.getContentPane();
 
-        JLabel label1 = new JLabel("Hello World 1!");
-        JLabel label2 = new JLabel("Hello World 2!");
-        JLabel label3 = new JLabel("Hello World 3!");
-        JLabel label4 = new JLabel("Hello World 4!");
-        JComponent components[][] = {{label1, label2}, {label3, label4}};
+        final JLabel label1 = new JLabel("Hello World 1!");
+        final JLabel label2 = new JLabel("Hello World 2!");
+        final JLabel label3 = new JLabel("Hello World 3!");
+        final JLabel label4 = new JLabel("Hello World 4!");
+        final JComponent components[][] = {{label1, label2}, {label3, label4}};
 
         setupLayout(pane, components);
 
@@ -35,18 +35,18 @@ public class ConvertNumber {
         frame.setVisible(true);
     }
 
-    private static void setupLayout(Container pane, JComponent[][] components) {
-        GroupLayout layout = new GroupLayout(pane);
+    private static void setupLayout(final Container pane, final JComponent[][] components) {
+        final GroupLayout layout = new GroupLayout(pane);
         layout.setAutoCreateGaps(true);
         layout.setAutoCreateContainerGaps(true);
         pane.setLayout(layout);
 
-        SequentialGroup vgroup = layout.createSequentialGroup();
+        final SequentialGroup vgroup = layout.createSequentialGroup();
         vgroup.addGroup(layout.createParallelGroup(Alignment.BASELINE).addComponent(components[0][0]).addComponent(components[0][1]));
         vgroup.addGroup(layout.createParallelGroup(Alignment.BASELINE).addComponent(components[1][0]).addComponent(components[1][1]));
         layout.setVerticalGroup(vgroup);
 
-        SequentialGroup hgroup = layout.createSequentialGroup();
+        final SequentialGroup hgroup = layout.createSequentialGroup();
         hgroup.addGroup(layout.createParallelGroup().addComponent(components[0][0]).addComponent(components[1][0]));
         hgroup.addGroup(layout.createParallelGroup().addComponent(components[0][1]).addComponent(components[1][1]));
         layout.setHorizontalGroup(hgroup);
