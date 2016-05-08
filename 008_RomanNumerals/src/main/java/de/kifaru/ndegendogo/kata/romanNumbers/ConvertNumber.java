@@ -2,6 +2,8 @@ package de.kifaru.ndegendogo.kata.romanNumbers;
 
 
 import java.awt.Container;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
@@ -23,11 +25,18 @@ public class ConvertNumber {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         final Container pane = frame.getContentPane();
 
-        final JLabel label1 = new JLabel("Hello World 1!");
-        final JLabel label2 = new JLabel("Hello World 2!");
-        final JLabel label3 = new JLabel("Hello World 3!");
-        final JLabel label4 = new JLabel("Hello World 4!");
-        final JComponent components[][] = {{label1, label2}, {label3, label4}};
+        final JTextField input = new JTextField();
+        final JLabel roman = new JLabel("Roman");
+        final JLabel arabic = new JLabel("Arabic");
+
+        final JButton button = new JButton("Convert");
+        final ActionListener listener = new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // TODO: add action
+            }
+        };
+        button.addActionListener(listener);
+        final JComponent components[][] = {{input, roman}, {button, arabic}};
 
         setupLayout(pane, components);
 
