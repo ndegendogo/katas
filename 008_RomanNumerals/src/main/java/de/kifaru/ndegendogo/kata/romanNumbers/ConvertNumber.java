@@ -29,6 +29,13 @@ public class ConvertNumber {
         JLabel label4 = new JLabel("Hello World 4!");
         JComponent components[][] = {{label1, label2}, {label3, label4}};
 
+        setupLayout(pane, components);
+
+        frame.pack();
+        frame.setVisible(true);
+    }
+
+    private static void setupLayout(Container pane, JComponent[][] components) {
         GroupLayout layout = new GroupLayout(pane);
         layout.setAutoCreateGaps(true);
         layout.setAutoCreateContainerGaps(true);
@@ -43,8 +50,5 @@ public class ConvertNumber {
         hgroup.addGroup(layout.createParallelGroup().addComponent(components[0][0]).addComponent(components[1][0]));
         hgroup.addGroup(layout.createParallelGroup().addComponent(components[0][1]).addComponent(components[1][1]));
         layout.setHorizontalGroup(hgroup);
-
-        frame.pack();
-        frame.setVisible(true);
     }
 }
