@@ -9,7 +9,7 @@ import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout.SequentialGroup;
 
-public class ConvertNumber {
+public class ConvertNumberGUI {
 
     public static void main(String ... args) {
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
