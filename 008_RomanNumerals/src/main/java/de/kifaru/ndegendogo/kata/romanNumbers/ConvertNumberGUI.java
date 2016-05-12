@@ -20,25 +20,33 @@ public class ConvertNumberGUI {
     }
 
     private static void createAndShowGui() {
+        
         // top-level container
         final JFrame frame = new JFrame("Roman Numbers");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        final Container pane = frame.getContentPane();
 
-        final JLabel roman = new JLabel("Roman:");
-        final JTextField input = new JTextField(20);
-        final JLabel arabic = new JLabel("Arabic:");
-        final JLabel output = new JLabel("");
-        final JButton button = makeButton();
+        final JPanel pane = makePanel();
 
-        final JComponent components[][] = {{roman, input}, {arabic, output}, {button}};
-        setupLayout(pane, components);
-
+        frame.add(pane);
         frame.pack();
         frame.setVisible(true);
     }
 
-    static JButton makeButton() {
+    static JPanel makePanel() {
+        final JPanel pane = new JPanel();
+
+        final JLabel roman = new JLabel("Roman:");
+        final JTextField inputField = new JTextField(20);
+        final JLabel arabic = new JLabel("Arabic:");
+        final JLabel outputField = new JLabel("");
+        final JButton button = makeButton();
+
+        final JComponent components[][] = {{roman, inputField}, {arabic, outputField}, {button}};
+        setupLayout(pane, components);
+        return pane;
+    }
+
+    private static JButton makeButton() {
         final JButton button = new JButton("Convert");
         final ActionListener listener = new ActionListener() {
             public void actionPerformed(ActionEvent e) {
