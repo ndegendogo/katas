@@ -9,14 +9,26 @@ import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout.SequentialGroup;
 
-public class ConvertNumberGUI {
+public class ConvertNumberGUI extends JPanel {
 
-    private static JPanel pane;
-    private static JLabel roman;
-    private static JTextField inputField;
-    private static JLabel arabic;
-    private static JLabel outputField;
-    private static JButton button;
+    private static final long serialVersionUID = 1L;
+
+    private JLabel roman;
+    private JTextField inputField;
+    private JLabel arabic;
+    private JLabel outputField;
+    private JButton button;
+
+    ConvertNumberGUI() {
+        roman = new JLabel("Roman:");
+        inputField = new JTextField(20);
+        arabic = new JLabel("Arabic:");
+        outputField = new JLabel("");
+        button = makeButton();
+
+        final JComponent components[][] = {{roman, inputField}, {arabic, outputField}, {button}};
+        setupLayout(this, components);
+    }
 
     public static void main(String ... args) {
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
@@ -32,28 +44,12 @@ public class ConvertNumberGUI {
         final JFrame frame = new JFrame("Roman Numbers");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        final JPanel pane = makePanel();
-
-        frame.add(pane);
+        frame.add(new ConvertNumberGUI());
         frame.pack();
         frame.setVisible(true);
     }
 
-    static JPanel makePanel() {
-        pane = new JPanel();
-
-        roman = new JLabel("Roman:");
-        inputField = new JTextField(20);
-        arabic = new JLabel("Arabic:");
-        outputField = new JLabel("");
-        button = makeButton();
-
-        final JComponent components[][] = {{roman, inputField}, {arabic, outputField}, {button}};
-        setupLayout(pane, components);
-        return pane;
-    }
-
-    private static JButton makeButton() {
+    private JButton makeButton() {
         final JButton button = new JButton("Convert");
         final ActionListener listener = new ActionListener() {
             public void actionPerformed(ActionEvent e) {
