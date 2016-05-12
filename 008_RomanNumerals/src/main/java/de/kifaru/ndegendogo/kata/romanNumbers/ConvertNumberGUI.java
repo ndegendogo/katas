@@ -11,6 +11,13 @@ import javax.swing.GroupLayout.SequentialGroup;
 
 public class ConvertNumberGUI {
 
+    private static JPanel pane;
+    private static JLabel roman;
+    private static JTextField inputField;
+    private static JLabel arabic;
+    private static JLabel outputField;
+    private static JButton button;
+
     public static void main(String ... args) {
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
@@ -33,13 +40,13 @@ public class ConvertNumberGUI {
     }
 
     static JPanel makePanel() {
-        final JPanel pane = new JPanel();
+        pane = new JPanel();
 
-        final JLabel roman = new JLabel("Roman:");
-        final JTextField inputField = new JTextField(20);
-        final JLabel arabic = new JLabel("Arabic:");
-        final JLabel outputField = new JLabel("");
-        final JButton button = makeButton();
+        roman = new JLabel("Roman:");
+        inputField = new JTextField(20);
+        arabic = new JLabel("Arabic:");
+        outputField = new JLabel("");
+        button = makeButton();
 
         final JComponent components[][] = {{roman, inputField}, {arabic, outputField}, {button}};
         setupLayout(pane, components);
