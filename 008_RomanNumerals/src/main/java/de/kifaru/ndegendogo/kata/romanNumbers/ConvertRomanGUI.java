@@ -14,12 +14,13 @@ public class ConvertRomanGUI extends JPanel {
 
     private static final long serialVersionUID = 1L;
 
+    private Function<String, Integer> converter;
+
     private JLabel romanLabel;
     private JTextField romanNumber;
     private JLabel arabicLabel;
     private JLabel arabicNumber;
 
-    private Function<String, Integer> converter;
 
     static void createAndShowGui(final Function<String, Integer> converter) {
         // top-level container
