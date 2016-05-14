@@ -34,22 +34,18 @@ public class ConvertRomanGUI extends JPanel {
     private ConvertRomanGUI(final Function<String, Integer> converter) {
         this.converter = converter;
         romanLabel = new JLabel("Roman:");
-        romanNumber = makeInputField();
-        arabicLabel = new JLabel("Arabic:");
-        arabicNumber = new JLabel("");
-
-        final JComponent components[][] = {{romanLabel, romanNumber}, {arabicLabel, arabicNumber}};
-        setupLayout(this, components);
-    }
-
-    private JTextField makeInputField() {
         final JTextField textField = new JTextField(20);
         textField.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 showConvertedNumber();
             }
         });
-        return textField;
+        romanNumber = textField;
+        arabicLabel = new JLabel("Arabic:");
+        arabicNumber = new JLabel("");
+
+        final JComponent components[][] = {{romanLabel, romanNumber}, {arabicLabel, arabicNumber}};
+        setupLayout(this, components);
     }
 
     private void showConvertedNumber() {
