@@ -40,18 +40,18 @@ public class ConvertRomanGUI extends JPanel {
     }
 
     private JTextField makeInputField(final Function<String, Integer> converter) {
-        final JTextField inputField = new JTextField(20);
+        final JTextField textField = new JTextField(20);
         final ActionListener listener = new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                final String input = inputField.getText();
-                final Integer outputNumber = converter.apply(input);
-                final String outputString = (outputNumber <= 0 ? "Illegal Input" : outputNumber.toString());
-                outputField.setText(outputString);
-                inputField.selectAll();
+                final String input = textField.getText();
+                final Integer convertedNumber = converter.apply(input);
+                final String convertedString = (convertedNumber <= 0 ? "Illegal Input" : convertedNumber.toString());
+                outputField.setText(convertedString);
+                textField.selectAll();
             }
         };
-        inputField.addActionListener(listener);
-        return inputField;
+        textField.addActionListener(listener);
+        return textField;
     }
 
     private static void setupLayout(final Container pane, final JComponent[][] components) {
