@@ -54,11 +54,17 @@ public class ConvertNumberGUI extends JPanel {
         final ActionListener listener = new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 final String input = inputField.getText();
-                outputField.setText(input);
+                final String output = convertRomanToArabicNumber(input);
+                outputField.setText(output);
             }
         };
         button.addActionListener(listener);
         return button;
+    }
+
+    private String convertRomanToArabicNumber(String romanNumber) {
+        // TODO: implement conversion
+        return romanNumber;
     }
 
     private static void setupLayout(final Container pane, final JComponent[][] components) {
