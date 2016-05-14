@@ -89,11 +89,12 @@ public class ConvertNumberGUI extends JPanel {
         final SequentialGroup vgroup = layout.createSequentialGroup();
         vgroup.addGroup(layout.createParallelGroup(Alignment.BASELINE).addComponent(components[0][0]).addComponent(components[0][1]));
         vgroup.addGroup(layout.createParallelGroup(Alignment.BASELINE).addComponent(components[1][0]).addComponent(components[1][1]));
-        vgroup.addGroup(layout.createParallelGroup(Alignment.BASELINE).addComponent(components[2][0]));
+//        vgroup.addGroup(layout.createParallelGroup(Alignment.BASELINE).addComponent(components[2][0]));
         layout.setVerticalGroup(vgroup);
 
         final SequentialGroup hgroup = layout.createSequentialGroup();
-        hgroup.addGroup(layout.createParallelGroup().addComponent(components[0][0]).addComponent(components[1][0]).addComponent(components[2][0]));
+//        hgroup.addGroup(layout.createParallelGroup().addComponent(components[0][0]).addComponent(components[1][0]).addComponent(components[2][0]));
+        hgroup.addGroup(layout.createParallelGroup().addComponent(components[0][0]).addComponent(components[1][0]));
         hgroup.addGroup(layout.createParallelGroup().addComponent(components[0][1]).addComponent(components[1][1]));
         layout.setHorizontalGroup(hgroup);
     }
