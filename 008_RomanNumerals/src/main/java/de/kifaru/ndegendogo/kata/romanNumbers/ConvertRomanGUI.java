@@ -46,15 +46,19 @@ public class ConvertRomanGUI extends JPanel {
         final JTextField textField = new JTextField(20);
         final ActionListener listener = new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                final String inputString = romanNumber.getText();
-                final Integer convertedNumber = converter.apply(inputString);
-                final String convertedString = (convertedNumber <= 0 ? "Illegal Input" : convertedNumber.toString());
-                arabicNumber.setText(convertedString);
-                romanNumber.selectAll();
+                showConvertedNumber();
             }
         };
         textField.addActionListener(listener);
         return textField;
+    }
+
+    private void showConvertedNumber() {
+        final String inputString = romanNumber.getText();
+        final Integer convertedNumber = converter.apply(inputString);
+        final String convertedString = (convertedNumber <= 0 ? "Illegal Input" : convertedNumber.toString());
+        arabicNumber.setText(convertedString);
+        romanNumber.selectAll();
     }
 
     private static void setupLayout(final Container pane, final JComponent[][] components) {
