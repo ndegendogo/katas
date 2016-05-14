@@ -56,6 +56,7 @@ public class ConvertNumberGUI extends JPanel {
                 final String input = inputField.getText();
                 final String output = convertRomanToArabicNumber(input);
                 outputField.setText(output);
+                inputField.transferFocus();
             }
         };
         inputField.addActionListener(listener);
@@ -67,6 +68,7 @@ public class ConvertNumberGUI extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 inputField.setText("");
                 outputField.setText("");
+                button.transferFocus();
             }
         };
         button.addActionListener(listener);
