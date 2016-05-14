@@ -14,6 +14,8 @@ run: build
 
 .PHONY: build
 build: bin $(CLASSFILES)
+
+$(CLASSPATH)%.class: $(SOURCEPATH)%.java | $(CLASSPATH)
 	javac -sourcepath $(SOURCEPATH) -d $(CLASSPATH) $(SOURCEFILES)
 
 bin:
