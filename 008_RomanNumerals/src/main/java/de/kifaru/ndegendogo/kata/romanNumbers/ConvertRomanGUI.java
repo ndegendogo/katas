@@ -43,17 +43,18 @@ public class ConvertRomanGUI extends JPanel {
         final ActionListener listener = new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 final String input = inputField.getText();
-                final String output = convertRomanToArabicNumber(input);
-                outputField.setText(output);
+                final int outputNumber = convertRomanToArabicNumber(input);
+                final String outputString = (outputNumber <= 0 ? "Illegal Input" : String.valueOf(outputNumber));
+                outputField.setText(outputString);
                 inputField.selectAll();
             }
         };
         inputField.addActionListener(listener);
     }
 
-    private String convertRomanToArabicNumber(String romanNumber) {
+    int convertRomanToArabicNumber(String romanNumber) {
         // TODO: implement conversion
-        return romanNumber;
+        return 0;
     }
 
     private static void setupLayout(final Container pane, final JComponent[][] components) {
