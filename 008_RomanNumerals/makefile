@@ -1,4 +1,7 @@
-all: compile
+all: run
+
+run: compile
+	java -cp bin/ de.kifaru.ndegendogo.kata.romanNumbers.ConvertRomanMain
 
 .PHONY: compile
 compile: bin
