@@ -30,7 +30,7 @@ public class ConvertRomanGUI extends JPanel {
 
     private ConvertRomanGUI() {
         roman = new JLabel("Roman:");
-        makeInputField();
+        inputField = makeInputField();
         arabic = new JLabel("Arabic:");
         outputField = new JLabel("");
 
@@ -38,8 +38,8 @@ public class ConvertRomanGUI extends JPanel {
         setupLayout(this, components);
     }
 
-    private void makeInputField() {
-        inputField = new JTextField(20);
+    private JTextField makeInputField() {
+        final JTextField inputField = new JTextField(20);
         final ActionListener listener = new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 final String input = inputField.getText();
@@ -50,6 +50,7 @@ public class ConvertRomanGUI extends JPanel {
             }
         };
         inputField.addActionListener(listener);
+        return inputField;
     }
 
     int convertRomanToArabicNumber(String romanNumber) {
