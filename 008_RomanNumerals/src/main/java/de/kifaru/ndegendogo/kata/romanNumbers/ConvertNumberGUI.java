@@ -53,7 +53,8 @@ public class ConvertNumberGUI extends JPanel {
         final JButton button = new JButton("Convert");
         final ActionListener listener = new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                outputField.setText("Button pressed");
+                final String input = inputField.getText();
+                outputField.setText(input);
             }
         };
         button.addActionListener(listener);
