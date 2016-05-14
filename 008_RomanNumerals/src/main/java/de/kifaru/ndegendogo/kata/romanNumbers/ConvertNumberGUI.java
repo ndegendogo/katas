@@ -51,6 +51,14 @@ public class ConvertNumberGUI extends JPanel {
 
     private void makeInputField() {
         inputField = new JTextField(20);
+        final ActionListener listener = new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                final String input = inputField.getText();
+                final String output = convertRomanToArabicNumber(input);
+                outputField.setText(output);
+            }
+        };
+        inputField.addActionListener(listener);
     }
 
     private JButton makeButton() {
