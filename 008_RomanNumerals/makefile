@@ -13,13 +13,13 @@ run: build
 	java -cp $(CLASSPATH) $(PACKAGE)ConvertRomanMain
 
 .PHONY: build
-build: bin $(CLASSFILES)
+build: $(CLASSFILES)
 
 $(CLASSPATH)%.class: $(SOURCEPATH)%.java | $(CLASSPATH)
 	javac -sourcepath $(SOURCEPATH) -d $(CLASSPATH) $(SOURCEFILES)
 
-bin:
-	mkdir $(CLASSPATH)
+$(CLASSPATH):
+	mkdir $@
 
 .PHONY: clean
 clean:
