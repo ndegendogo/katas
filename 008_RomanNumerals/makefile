@@ -2,6 +2,7 @@ SOURCEPATH=src/main/java/
 CLASSPATH=bin/
 PACKAGE=de.kifaru.ndegendogo.kata.romanNumbers.
 PACKAGEPATH=$(subst .,/,$(PACKAGE))
+SOURCEFILES=$(wildcard $(SOURCEPATH)$(PACKAGEPATH)*.java)
 
 all: run
 
@@ -10,7 +11,7 @@ run: build
 
 .PHONY: build
 build: bin
-	javac -sourcepath $(SOURCEPATH) -d $(CLASSPATH) $(SOURCEPATH)$(PACKAGEPATH)*.java
+	javac -sourcepath $(SOURCEPATH) -d $(CLASSPATH) $(SOURCEFILES)
 
 bin:
 	mkdir $(CLASSPATH)
