@@ -18,16 +18,6 @@ public class ConvertRomanGUI extends JPanel {
     private JLabel arabic;
     private JLabel outputField;
 
-    ConvertRomanGUI() {
-        roman = new JLabel("Roman:");
-        makeInputField();
-        arabic = new JLabel("Arabic:");
-        outputField = new JLabel("");
-
-        final JComponent components[][] = {{roman, inputField}, {arabic, outputField}};
-        setupLayout(this, components);
-    }
-
     static void createAndShowGui() {
         // top-level container
         final JFrame frame = new JFrame("Roman Numbers");
@@ -36,6 +26,16 @@ public class ConvertRomanGUI extends JPanel {
         frame.add(new ConvertRomanGUI());
         frame.pack();
         frame.setVisible(true);
+    }
+
+    private ConvertRomanGUI() {
+        roman = new JLabel("Roman:");
+        makeInputField();
+        arabic = new JLabel("Arabic:");
+        outputField = new JLabel("");
+
+        final JComponent components[][] = {{roman, inputField}, {arabic, outputField}};
+        setupLayout(this, components);
     }
 
     private void makeInputField() {
