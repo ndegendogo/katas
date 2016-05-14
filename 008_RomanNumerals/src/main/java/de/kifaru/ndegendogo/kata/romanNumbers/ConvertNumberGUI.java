@@ -62,12 +62,11 @@ public class ConvertNumberGUI extends JPanel {
     }
 
     private JButton makeButton() {
-        final JButton button = new JButton("Convert");
+        final JButton button = new JButton("Clear");
         final ActionListener listener = new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                final String input = inputField.getText();
-                final String output = convertRomanToArabicNumber(input);
-                outputField.setText(output);
+                inputField.setText("");
+                outputField.setText("");
             }
         };
         button.addActionListener(listener);
