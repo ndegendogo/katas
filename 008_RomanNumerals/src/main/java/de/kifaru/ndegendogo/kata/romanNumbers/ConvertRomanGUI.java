@@ -9,7 +9,7 @@ import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout.SequentialGroup;
 
-public class ConvertNumberGUI extends JPanel {
+public class ConvertRomanGUI extends JPanel {
 
     private static final long serialVersionUID = 1L;
 
@@ -18,7 +18,7 @@ public class ConvertNumberGUI extends JPanel {
     private JLabel arabic;
     private JLabel outputField;
 
-    ConvertNumberGUI() {
+    ConvertRomanGUI() {
         roman = new JLabel("Roman:");
         makeInputField();
         arabic = new JLabel("Arabic:");
@@ -37,12 +37,11 @@ public class ConvertNumberGUI extends JPanel {
     }
 
     private static void createAndShowGui() {
-        
         // top-level container
         final JFrame frame = new JFrame("Roman Numbers");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        frame.add(new ConvertNumberGUI());
+        frame.add(new ConvertRomanGUI());
         frame.pack();
         frame.setVisible(true);
     }
