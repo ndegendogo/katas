@@ -19,6 +19,8 @@ public class ConvertRomanGUI extends JPanel {
     private JLabel arabicLabel;
     private JLabel arabicNumber;
 
+    private Function<String, Integer> converter;
+
     static void createAndShowGui(final Function<String, Integer> converter) {
         // top-level container
         final JFrame frame = new JFrame("Roman Numbers");
@@ -30,8 +32,9 @@ public class ConvertRomanGUI extends JPanel {
     }
 
     private ConvertRomanGUI(final Function<String, Integer> converter) {
+        this.converter = converter;
         romanLabel = new JLabel("Roman:");
-        romanNumber = makeInputField(converter);
+        romanNumber = makeInputField();
         arabicLabel = new JLabel("Arabic:");
         arabicNumber = new JLabel("");
 
@@ -39,7 +42,7 @@ public class ConvertRomanGUI extends JPanel {
         setupLayout(this, components);
     }
 
-    private JTextField makeInputField(final Function<String, Integer> converter) {
+    private JTextField makeInputField() {
         final JTextField textField = new JTextField(20);
         final ActionListener listener = new ActionListener() {
             public void actionPerformed(ActionEvent e) {
