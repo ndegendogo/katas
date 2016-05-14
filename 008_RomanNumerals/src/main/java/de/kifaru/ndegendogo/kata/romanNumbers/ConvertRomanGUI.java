@@ -24,7 +24,7 @@ public class ConvertRomanGUI extends JPanel {
         final JFrame frame = new JFrame("Roman Numbers");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        frame.add(new ConvertRomanGUI(converter));
+        frame.add(new ConvertRomanGUI(ConvertRomanMain.converter));
         frame.pack();
         frame.setVisible(true);
     }
@@ -52,16 +52,6 @@ public class ConvertRomanGUI extends JPanel {
         };
         inputField.addActionListener(listener);
         return inputField;
-    }
-
-    final static Function<String, Integer> converter = new Function<String, Integer>() {
-        public Integer apply(String string) {
-            return convertRomanToArabicNumber(string);
-        }
-    };
-    static Integer convertRomanToArabicNumber(String romanNumber) {
-        // TODO: implement conversion
-        return 0;
     }
 
     private static void setupLayout(final Container pane, final JComponent[][] components) {
