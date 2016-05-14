@@ -21,7 +21,7 @@ public class ConvertNumberGUI extends JPanel {
 
     ConvertNumberGUI() {
         roman = new JLabel("Roman:");
-        inputField = new JTextField(20);
+        makeInputField();
         arabic = new JLabel("Arabic:");
         outputField = new JLabel("");
         button = makeButton();
@@ -47,6 +47,10 @@ public class ConvertNumberGUI extends JPanel {
         frame.add(new ConvertNumberGUI());
         frame.pack();
         frame.setVisible(true);
+    }
+
+    private void makeInputField() {
+        inputField = new JTextField(20);
     }
 
     private JButton makeButton() {
