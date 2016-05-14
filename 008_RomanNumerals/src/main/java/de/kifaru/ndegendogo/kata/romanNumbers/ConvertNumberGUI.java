@@ -17,16 +17,14 @@ public class ConvertNumberGUI extends JPanel {
     private JTextField inputField;
     private JLabel arabic;
     private JLabel outputField;
-    private JButton button;
 
     ConvertNumberGUI() {
         roman = new JLabel("Roman:");
         makeInputField();
         arabic = new JLabel("Arabic:");
         outputField = new JLabel("");
-        button = makeButton();
 
-        final JComponent components[][] = {{roman, inputField}, {arabic, outputField}, {button}};
+        final JComponent components[][] = {{roman, inputField}, {arabic, outputField}};
         setupLayout(this, components);
     }
 
@@ -56,23 +54,9 @@ public class ConvertNumberGUI extends JPanel {
                 final String input = inputField.getText();
                 final String output = convertRomanToArabicNumber(input);
                 outputField.setText(output);
-                inputField.transferFocus();
             }
         };
         inputField.addActionListener(listener);
-    }
-
-    private JButton makeButton() {
-        final JButton button = new JButton("Clear");
-        final ActionListener listener = new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                inputField.setText("");
-                outputField.setText("");
-                button.transferFocus();
-            }
-        };
-        button.addActionListener(listener);
-        return button;
     }
 
     private String convertRomanToArabicNumber(String romanNumber) {
@@ -89,11 +73,9 @@ public class ConvertNumberGUI extends JPanel {
         final SequentialGroup vgroup = layout.createSequentialGroup();
         vgroup.addGroup(layout.createParallelGroup(Alignment.BASELINE).addComponent(components[0][0]).addComponent(components[0][1]));
         vgroup.addGroup(layout.createParallelGroup(Alignment.BASELINE).addComponent(components[1][0]).addComponent(components[1][1]));
-//        vgroup.addGroup(layout.createParallelGroup(Alignment.BASELINE).addComponent(components[2][0]));
         layout.setVerticalGroup(vgroup);
 
         final SequentialGroup hgroup = layout.createSequentialGroup();
-//        hgroup.addGroup(layout.createParallelGroup().addComponent(components[0][0]).addComponent(components[1][0]).addComponent(components[2][0]));
         hgroup.addGroup(layout.createParallelGroup().addComponent(components[0][0]).addComponent(components[1][0]));
         hgroup.addGroup(layout.createParallelGroup().addComponent(components[0][1]).addComponent(components[1][1]));
         layout.setHorizontalGroup(hgroup);
