@@ -1,14 +1,19 @@
+SOURCEPATH=src/main/java/
+CLASSPATH=bin/
+PACKAGE=de.kifaru.ndegendogo.kata.romanNumbers.
+PACKAGEPATH=$(subst .,/,$(PACKAGE))
+
 all: run
 
 run: build
-	java -cp bin/ de.kifaru.ndegendogo.kata.romanNumbers.ConvertRomanMain
+	java -cp $(CLASSPATH) $(PACKAGE)ConvertRomanMain
 
 .PHONY: build
 build: bin
-	javac -sourcepath src/main/java -d bin src/main/java/de/kifaru/ndegendogo/kata/romanNumbers/*.java
+	javac -sourcepath $(SOURCEPATH) -d $(CLASSPATH) $(SOURCEPATH)$(PACKAGEPATH)*.java
 
 bin:
-	mkdir bin
+	mkdir $(CLASSPATH)
 
 .PHONY: clean
 clean:
