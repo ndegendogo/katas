@@ -4,6 +4,7 @@ package de.kifaru.ndegendogo.kata.romanNumbers;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.function.Function;
 
 import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
@@ -39,6 +40,11 @@ public class ConvertRomanGUI extends JPanel {
     }
 
     private JTextField makeInputField() {
+        final Function<String, Integer> converter = new Function<String, Integer>() {
+            public Integer apply(String string) {
+                return convertRomanToArabicNumber(string);
+            }
+        };
         final JTextField inputField = new JTextField(20);
         final ActionListener listener = new ActionListener() {
             public void actionPerformed(ActionEvent e) {
