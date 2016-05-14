@@ -28,15 +28,7 @@ public class ConvertRomanGUI extends JPanel {
         setupLayout(this, components);
     }
 
-    public static void main(String ... args) {
-        javax.swing.SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                createAndShowGui();
-            }
-        });
-    }
-
-    private static void createAndShowGui() {
+    static void createAndShowGui() {
         // top-level container
         final JFrame frame = new JFrame("Roman Numbers");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
