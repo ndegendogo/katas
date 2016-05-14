@@ -54,6 +54,7 @@ public class ConvertNumberGUI extends JPanel {
                 final String input = inputField.getText();
                 final String output = convertRomanToArabicNumber(input);
                 outputField.setText(output);
+                inputField.selectAll();
             }
         };
         inputField.addActionListener(listener);
