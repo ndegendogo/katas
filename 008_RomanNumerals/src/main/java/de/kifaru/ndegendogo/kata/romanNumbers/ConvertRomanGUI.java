@@ -49,7 +49,7 @@ public class ConvertRomanGUI extends JPanel {
         final ActionListener listener = new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 final String input = inputField.getText();
-                final Integer outputNumber = convertRomanToArabicNumber(input);
+                final Integer outputNumber = converter.apply(input);
                 final String outputString = (outputNumber <= 0 ? "Illegal Input" : outputNumber.toString());
                 outputField.setText(outputString);
                 inputField.selectAll();
