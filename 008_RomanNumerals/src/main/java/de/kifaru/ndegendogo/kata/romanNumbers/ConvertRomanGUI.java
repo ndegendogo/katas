@@ -14,10 +14,10 @@ public class ConvertRomanGUI extends JPanel {
 
     private static final long serialVersionUID = 1L;
 
-    private JLabel roman;
-    private JTextField inputField;
-    private JLabel arabic;
-    private JLabel outputField;
+    private JLabel romanLabel;
+    private JTextField romanNumber;
+    private JLabel arabicLabel;
+    private JLabel arabicNumber;
 
     static void createAndShowGui(final Function<String, Integer> converter) {
         // top-level container
@@ -30,12 +30,12 @@ public class ConvertRomanGUI extends JPanel {
     }
 
     private ConvertRomanGUI(final Function<String, Integer> converter) {
-        roman = new JLabel("Roman:");
-        inputField = makeInputField(converter);
-        arabic = new JLabel("Arabic:");
-        outputField = new JLabel("");
+        romanLabel = new JLabel("Roman:");
+        romanNumber = makeInputField(converter);
+        arabicLabel = new JLabel("Arabic:");
+        arabicNumber = new JLabel("");
 
-        final JComponent components[][] = {{roman, inputField}, {arabic, outputField}};
+        final JComponent components[][] = {{romanLabel, romanNumber}, {arabicLabel, arabicNumber}};
         setupLayout(this, components);
     }
 
@@ -43,10 +43,10 @@ public class ConvertRomanGUI extends JPanel {
         final JTextField textField = new JTextField(20);
         final ActionListener listener = new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                final String input = textField.getText();
-                final Integer convertedNumber = converter.apply(input);
+                final String inputString = textField.getText();
+                final Integer convertedNumber = converter.apply(inputString);
                 final String convertedString = (convertedNumber <= 0 ? "Illegal Input" : convertedNumber.toString());
-                outputField.setText(convertedString);
+                arabicNumber.setText(convertedString);
                 textField.selectAll();
             }
         };
