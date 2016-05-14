@@ -5,11 +5,14 @@ PACKAGEPATH=$(subst .,/,$(PACKAGE))
 SOURCEFILES=$(wildcard $(SOURCEPATH)$(PACKAGEPATH)*.java)
 CLASSFILES=$(patsubst $(SOURCEPATH)%.java,$(CLASSPATH)%.class,$(SOURCEFILES))
 
+.PHONY: all
 all: build run
 
+.PHONY: run
 run: build
 	java -cp $(CLASSPATH) $(PACKAGE)ConvertRomanMain
 
+.PHONY: build
 build: bin $(CLASSFILES)
 	javac -sourcepath $(SOURCEPATH) -d $(CLASSPATH) $(SOURCEFILES)
 
