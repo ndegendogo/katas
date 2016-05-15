@@ -7,6 +7,7 @@ CLASSFILES=$(patsubst $(SOURCEPATH)%.java,$(CLASSPATH)%.class,$(SOURCEFILES))
 SOURCEPATH_TEST=src/test/java/
 SOURCEFILES_TEST=$(wildcard $(SOURCEPATH_TEST)$(PACKAGEPATH)*.java)
 CLASSFILES_TEST=$(patsubst $(SOURCEPATH_TEST)%.java,$(CLASSPATH)%.class,$(SOURCEFILES_TEST))
+CLASSES_TEST=$(subst /,.,$(patsubst $(CLASSPATH)%.class,%,$(CLASSFILES_TEST)))
 LIBPATH_JUNIT=$(JUNIT_HOME)/
 LIB_JUNIT=$(LIBPATH_JUNIT)junit.jar
 LIBPATH_HAMCREST=/Applications/eclipse/plugins/
@@ -24,7 +25,7 @@ build: $(CLASSFILES)
 
 .PHONY: unittest
 unittest: build_test
-	java -cp $(CLASSPATH):$(LIB_JUNIT):$(LIB_HAMCREST) org.junit.runner.JUnitCore de.kifaru.ndegendogo.kata.romanNumbers.RomanNumbersConverterTest
+	java -cp $(CLASSPATH):$(LIB_JUNIT):$(LIB_HAMCREST) org.junit.runner.JUnitCore $(CLASSES_TEST)
 
 .PHONY: build_test
 build_test: $(CLASSFILES) $(CLASSFILES_TEST)
