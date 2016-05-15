@@ -5,11 +5,11 @@ import java.util.function.Function;
 public class RomanNumbersConverter implements Function<String, Integer> {
 
     @Override
-    public Integer apply(String string) {
-        return convertRomanToArabicNumber(string);
+    public Integer apply(String romanNumber) {
+        return convertToArabicNumber(romanNumber);
     }
 
-    static Integer convertRomanToArabicNumber(String romanNumber) {
+    static Integer convertToArabicNumber(String romanNumber) {
         // TODO: implement conversion
         return 0;
     }
