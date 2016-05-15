@@ -22,7 +22,7 @@ run: build
 build: $(CLASSFILES)
 
 .PHONY: unittest
-unitest: build_test
+unittest: build_test
 
 .PHONY: build_test
 build_test: $(CLASSFILES) $(CLASSFILES_TEST)
