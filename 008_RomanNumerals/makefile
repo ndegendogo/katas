@@ -1,3 +1,6 @@
+# setup environment. You may overide this with your own UserConfig.mak file.
+include $(or $(wildcard UserConfig.mak),DefaultUserConfig.mak)
+
 BASEPATH_SOURCE:=src/main/java/
 BASEPATH_TEST:=src/test/java/
 BASEPATH_CLASSES:=bin/
@@ -19,11 +22,6 @@ CLASSES_TEST:=$(call ClassnamesFromSourcefiles,$(SOURCEFILES_TEST),$(BASEPATH_TE
 ClassfilesFromClassnames=$(patsubst %,$(BASEPATH_CLASSES)%.class,$(call PackageToPath,$(1)))
 CLASSFILES:=$(call ClassfilesFromClassnames,$(CLASSES))
 CLASSFILES_TEST:=$(call ClassfilesFromClassnames,$(CLASSES_TEST))
-
-LIBPATH_JUNIT:=$(JUNIT_HOME)/
-LIB_JUNIT:=$(LIBPATH_JUNIT)junit.jar
-LIBPATH_HAMCREST:=/Applications/eclipse/plugins/
-LIB_HAMCREST:=$(LIBPATH_HAMCREST)org.hamcrest.core_1.3.0.v201303031735.jar
 
 .PHONY: all
 all: build run unittest
