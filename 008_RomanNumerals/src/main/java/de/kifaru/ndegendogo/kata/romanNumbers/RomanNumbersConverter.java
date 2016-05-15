@@ -13,6 +13,4 @@ public class RomanNumbersConverter implements Function<String, Integer> {
         // TODO: implement conversion
         return 0;
     }
-
-
 }
