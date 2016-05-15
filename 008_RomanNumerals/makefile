@@ -12,12 +12,13 @@ FindSourcefiles=$(wildcard $(1)$(PACKAGEPATH)*.java)
 SOURCEFILES:=$(call FindSourcefiles,$(BASEPATH_SOURCE))
 SOURCEFILES_TEST:=$(call FindSourcefiles,$(BASEPATH_TEST))
 
-ClassesFromSourcefiles=$(call PathToPackage,$(patsubst $(2)%.java,%,$(1)))
-CLASSES:=$(call ClassesFromSourcefiles,$(SOURCEFILES),$(BASEPATH_SOURCE))
-CLASSES_TEST:=$(call ClassesFromSourcefiles,$(SOURCEFILES_TEST),$(BASEPATH_TEST))
+ClassnamesFromSourcefiles=$(call PathToPackage,$(patsubst $(2)%.java,%,$(1)))
+CLASSES:=$(call ClassnamesFromSourcefiles,$(SOURCEFILES),$(BASEPATH_SOURCE))
+CLASSES_TEST:=$(call ClassnamesFromSourcefiles,$(SOURCEFILES_TEST),$(BASEPATH_TEST))
 
-CLASSFILES:=$(patsubst $(BASEPATH_SOURCE)%.java,$(BASEPATH_CLASSES)%.class,$(SOURCEFILES))
-CLASSFILES_TEST:=$(patsubst $(BASEPATH_TEST)%.java,$(BASEPATH_CLASSES)%.class,$(SOURCEFILES_TEST))
+ClassfilesFromClassnames=$(patsubst %,$(BASEPATH_CLASSES)%.class,$(call PackageToPath,$(1)))
+CLASSFILES:=$(call ClassfilesFromClassnames,$(CLASSES))
+CLASSFILES_TEST:=$(call ClassfilesFromClassnames,$(CLASSES_TEST))
 
 LIBPATH_JUNIT:=$(JUNIT_HOME)/
 LIB_JUNIT:=$(LIBPATH_JUNIT)junit.jar
