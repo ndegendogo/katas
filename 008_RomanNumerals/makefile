@@ -1,17 +1,20 @@
-BASEPATH_SOURCE=src/main/java/
-BASEPATH_CLASSES=bin/
-PACKAGE=de.kifaru.ndegendogo.kata.romanNumbers.
-PACKAGEPATH=$(subst .,/,$(PACKAGE))
-SOURCEFILES=$(wildcard $(BASEPATH_SOURCE)$(PACKAGEPATH)*.java)
-CLASSFILES=$(patsubst $(BASEPATH_SOURCE)%.java,$(BASEPATH_CLASSES)%.class,$(SOURCEFILES))
-BASEPATH_TEST=src/test/java/
-SOURCEFILES_TEST=$(wildcard $(BASEPATH_TEST)$(PACKAGEPATH)*.java)
-CLASSFILES_TEST=$(patsubst $(BASEPATH_TEST)%.java,$(BASEPATH_CLASSES)%.class,$(SOURCEFILES_TEST))
-CLASSES_TEST=$(subst /,.,$(patsubst $(BASEPATH_CLASSES)%.class,%,$(CLASSFILES_TEST)))
-LIBPATH_JUNIT=$(JUNIT_HOME)/
-LIB_JUNIT=$(LIBPATH_JUNIT)junit.jar
-LIBPATH_HAMCREST=/Applications/eclipse/plugins/
-LIB_HAMCREST=$(LIBPATH_HAMCREST)org.hamcrest.core_1.3.0.v201303031735.jar
+BASEPATH_SOURCE:=src/main/java/
+BASEPATH_TEST:=src/test/java/
+BASEPATH_CLASSES:=bin/
+
+
+PACKAGE:=de.kifaru.ndegendogo.kata.romanNumbers.
+PACKAGEPATH:=$(subst .,/,$(PACKAGE))
+SOURCEFILES:=$(wildcard $(BASEPATH_SOURCE)$(PACKAGEPATH)*.java)
+CLASSFILES:=$(patsubst $(BASEPATH_SOURCE)%.java,$(BASEPATH_CLASSES)%.class,$(SOURCEFILES))
+SOURCEFILES_TEST:=$(wildcard $(BASEPATH_TEST)$(PACKAGEPATH)*.java)
+CLASSFILES_TEST:=$(patsubst $(BASEPATH_TEST)%.java,$(BASEPATH_CLASSES)%.class,$(SOURCEFILES_TEST))
+CLASSES_TEST:=$(subst /,.,$(patsubst $(BASEPATH_CLASSES)%.class,%,$(CLASSFILES_TEST)))
+
+LIBPATH_JUNIT:=$(JUNIT_HOME)/
+LIB_JUNIT:=$(LIBPATH_JUNIT)junit.jar
+LIBPATH_HAMCREST:=/Applications/eclipse/plugins/
+LIB_HAMCREST:=$(LIBPATH_HAMCREST)org.hamcrest.core_1.3.0.v201303031735.jar
 
 .PHONY: all
 all: build run unittest
