@@ -10,7 +10,9 @@ public class RomanNumbersConverter implements Function<String, Integer> {
     }
 
     static Integer convertToArabicNumber(String romanNumber) {
-        // TODO: implement conversion
+        if (romanNumber.charAt(0) == 'I') {
+            return 1;
+        }
         return 0;
     }
 }
