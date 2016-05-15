@@ -9,7 +9,8 @@ SOURCEFILES_TEST=$(wildcard $(SOURCEPATH_TEST)$(PACKAGEPATH)*.java)
 CLASSFILES_TEST=$(patsubst $(SOURCEPATH_TEST)%.java,$(CLASSPATH)%.class,$(SOURCEFILES_TEST))
 LIBPATH_JUNIT=$(JUNIT_HOME)/
 LIB_JUNIT=$(LIBPATH_JUNIT)junit.jar
-#LIBPATH_HAMCREST=/Applications/eclipse/plugins
+LIBPATH_HAMCREST=/Applications/eclipse/plugins/
+LIB_HAMCREST=$(LIBPATH_HAMCREST)org.hamcrest.core_1.3.0.v201303031735.jar
 
 .PHONY: all
 all: build run unittest
@@ -23,6 +24,7 @@ build: $(CLASSFILES)
 
 .PHONY: unittest
 unittest: build_test
+	java -cp $(CLASSPATH):$(LIB_JUNIT):$(LIB_HAMCREST) org.junit.runner.JUnitCore 
 
 .PHONY: build_test
 build_test: $(CLASSFILES) $(CLASSFILES_TEST)
