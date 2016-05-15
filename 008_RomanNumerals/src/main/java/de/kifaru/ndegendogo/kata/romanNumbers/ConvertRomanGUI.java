@@ -1,6 +1,5 @@
 package de.kifaru.ndegendogo.kata.romanNumbers;
 
-
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,12 +20,10 @@ public class ConvertRomanGUI extends JPanel {
     private JLabel arabicLabel;
     private JLabel arabicNumber;
 
-
     static void createAndShowGui(final Function<String, Integer> converter) {
         // top-level container
         final JFrame frame = new JFrame("Roman Numbers");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
         frame.add(new ConvertRomanGUI(converter));
         frame.pack();
         frame.setVisible(true);
