@@ -2,9 +2,12 @@ BASEPATH_SOURCE:=src/main/java/
 BASEPATH_TEST:=src/test/java/
 BASEPATH_CLASSES:=bin/
 
+PACKAGE_TO_PATH=$(subst .,/,$(1))
+PATH_TO_PACKAGE=$(subst /,.,$(1))
 
 PACKAGE:=de.kifaru.ndegendogo.kata.romanNumbers.
-PACKAGEPATH:=$(subst .,/,$(PACKAGE))
+PACKAGEPATH:=$(call PACKAGE_TO_PATH,$(PACKAGE))
+
 SOURCEFILES:=$(wildcard $(BASEPATH_SOURCE)$(PACKAGEPATH)*.java)
 CLASSFILES:=$(patsubst $(BASEPATH_SOURCE)%.java,$(BASEPATH_CLASSES)%.class,$(SOURCEFILES))
 SOURCEFILES_TEST:=$(wildcard $(BASEPATH_TEST)$(PACKAGEPATH)*.java)
