@@ -7,7 +7,7 @@ CLASSFILES=$(patsubst $(SOURCEPATH)%.java,$(CLASSPATH)%.class,$(SOURCEFILES))
 SOURCEPATH_TEST=src/test/java/
 SOURCEFILES_TEST=$(wildcard $(SOURCEPATH_TEST)$(PACKAGEPATH)*.java)
 CLASSFILES_TEST=$(patsubst $(SOURCEPATH_TEST)%.java,$(CLASSPATH)%.class,$(SOURCEFILES_TEST))
-LIBPATH_JUNIT=/Applications/eclipse/plugins/org.junit_4.11.0.v201303080030/
+LIBPATH_JUNIT=$(JUNIT_HOME)/
 LIB_JUNIT=$(LIBPATH_JUNIT)junit.jar
 #LIBPATH_HAMCREST=/Applications/eclipse/plugins
 
