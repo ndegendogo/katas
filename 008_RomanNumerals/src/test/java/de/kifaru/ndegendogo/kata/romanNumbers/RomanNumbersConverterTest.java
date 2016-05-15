@@ -8,7 +8,7 @@ public class RomanNumbersConverterTest {
 
     @Test
     public void testConvertToArabicNumber() {
-        fail("Not yet implemented");
+        assertEquals(1, RomanNumbersConverter.convertToArabicNumber("I").intValue());
     }
 
 }
