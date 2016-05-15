@@ -8,7 +8,9 @@ public class RomanNumbersConverterTest {
 
     @Test
     public void testConvertToArabicNumber() {
-        assertEquals(1, RomanNumbersConverter.convertToArabicNumber("I").intValue());
+        final int expectedResult = 1;
+        final Integer actualResult = RomanNumbersConverter.convertToArabicNumber("I");
+        assertEquals(expectedResult, actualResult.intValue());
     }
 
 }
