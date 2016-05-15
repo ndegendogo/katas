@@ -1,13 +1,13 @@
-SOURCEPATH=src/main/java/
-CLASSPATH=bin/
+BASEPATH_SOURCE=src/main/java/
+BASEPATH_CLASSES=bin/
 PACKAGE=de.kifaru.ndegendogo.kata.romanNumbers.
 PACKAGEPATH=$(subst .,/,$(PACKAGE))
-SOURCEFILES=$(wildcard $(SOURCEPATH)$(PACKAGEPATH)*.java)
-CLASSFILES=$(patsubst $(SOURCEPATH)%.java,$(CLASSPATH)%.class,$(SOURCEFILES))
-SOURCEPATH_TEST=src/test/java/
-SOURCEFILES_TEST=$(wildcard $(SOURCEPATH_TEST)$(PACKAGEPATH)*.java)
-CLASSFILES_TEST=$(patsubst $(SOURCEPATH_TEST)%.java,$(CLASSPATH)%.class,$(SOURCEFILES_TEST))
-CLASSES_TEST=$(subst /,.,$(patsubst $(CLASSPATH)%.class,%,$(CLASSFILES_TEST)))
+SOURCEFILES=$(wildcard $(BASEPATH_SOURCE)$(PACKAGEPATH)*.java)
+CLASSFILES=$(patsubst $(BASEPATH_SOURCE)%.java,$(BASEPATH_CLASSES)%.class,$(SOURCEFILES))
+BASEPATH_TEST=src/test/java/
+SOURCEFILES_TEST=$(wildcard $(BASEPATH_TEST)$(PACKAGEPATH)*.java)
+CLASSFILES_TEST=$(patsubst $(BASEPATH_TEST)%.java,$(BASEPATH_CLASSES)%.class,$(SOURCEFILES_TEST))
+CLASSES_TEST=$(subst /,.,$(patsubst $(BASEPATH_CLASSES)%.class,%,$(CLASSFILES_TEST)))
 LIBPATH_JUNIT=$(JUNIT_HOME)/
 LIB_JUNIT=$(LIBPATH_JUNIT)junit.jar
 LIBPATH_HAMCREST=/Applications/eclipse/plugins/
@@ -18,25 +18,25 @@ all: build run unittest
 
 .PHONY: run
 run: build
-	java -cp $(CLASSPATH) $(PACKAGE)ConvertRomanMain
+	java -cp $(BASEPATH_CLASSES) $(PACKAGE)ConvertRomanMain
 
 .PHONY: build
 build: $(CLASSFILES)
 
 .PHONY: unittest
 unittest: build_test
-	java -cp $(CLASSPATH):$(LIB_JUNIT):$(LIB_HAMCREST) org.junit.runner.JUnitCore $(CLASSES_TEST)
+	java -cp $(BASEPATH_CLASSES):$(LIB_JUNIT):$(LIB_HAMCREST) org.junit.runner.JUnitCore $(CLASSES_TEST)
 
 .PHONY: build_test
 build_test: $(CLASSFILES) $(CLASSFILES_TEST)
 
-$(CLASSPATH)%.class: $(SOURCEPATH)%.java | $(CLASSPATH)
-	javac -sourcepath $(SOURCEPATH) -d $(CLASSPATH) $(SOURCEFILES)
+$(BASEPATH_CLASSES)%.class: $(BASEPATH_SOURCE)%.java | $(BASEPATH_CLASSES)
+	javac -sourcepath $(BASEPATH_SOURCE) -d $(BASEPATH_CLASSES) $(SOURCEFILES)
 
-$(CLASSPATH)%.class: $(SOURCEPATH_TEST)%.java | $(CLASSPATH)
-	javac -sourcepath $(SOURCEPATH_TEST) -cp $(LIB_JUNIT) -d $(CLASSPATH) $(SOURCEFILES_TEST)
+$(BASEPATH_CLASSES)%.class: $(BASEPATH_TEST)%.java | $(BASEPATH_CLASSES)
+	javac -sourcepath $(BASEPATH_TEST) -cp $(LIB_JUNIT) -d $(BASEPATH_CLASSES) $(SOURCEFILES_TEST)
 
-$(CLASSPATH):
+$(BASEPATH_CLASSES):
 	mkdir $@
 
 .PHONY: clean
