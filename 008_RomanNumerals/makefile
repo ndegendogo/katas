@@ -24,7 +24,7 @@ build: $(CLASSFILES)
 
 .PHONY: unittest
 unittest: build_test
-	java -cp $(CLASSPATH):$(LIB_JUNIT):$(LIB_HAMCREST) org.junit.runner.JUnitCore 
+	java -cp $(CLASSPATH):$(LIB_JUNIT):$(LIB_HAMCREST) org.junit.runner.JUnitCore de.kifaru.ndegendogo.kata.romanNumbers.RomanNumbersConverterTest
 
 .PHONY: build_test
 build_test: $(CLASSFILES) $(CLASSFILES_TEST)
