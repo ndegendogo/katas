@@ -15,21 +15,12 @@ public class RomanNumbersConverter implements Function<String, Integer> {
             result = matchDigit(romanNumber, 0);
         }
         if (romanNumber.length() > 1) {
-            result += matchDigit1(romanNumber, 1);
+            result += matchDigit(romanNumber, 1);
         }
         return result;
     }
 
     private static int matchDigit(final String romanNumber, final int offset) {
-        int result;
-        if (romanNumber.charAt(offset) == 'I') {
-            result = 1;
-        } else {
-            result = 0;
-        }
-        return result;
-    }
-    private static int matchDigit1(final String romanNumber, final int offset) {
         int result;
         if (romanNumber.charAt(offset) == 'I') {
             result = 1;
