@@ -20,12 +20,12 @@ public class RomanNumbersConverter implements Function<String, Integer> {
     }
 
     private static int matchDigit(final String romanNumber, final int offset) {
-        int result;
+        int value;
         if (romanNumber.charAt(offset) == 'I') {
-            result = 1;
+            value = 1;
         } else {
-            result = 0;
+            value = 0;
         }
-        return result;
+        return value;
     }
 }
