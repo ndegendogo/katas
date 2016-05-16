@@ -21,8 +21,9 @@ public class RomanNumbersConverter implements Function<String, Integer> {
     }
 
     private static int matchDigit(final String romanNumber) {
+        final int offset = 0;
         int result;
-        if (romanNumber.charAt(0) == 'I') {
+        if (romanNumber.charAt(offset) == 'I') {
             result = 1;
         } else {
             result = 0;
@@ -30,8 +31,9 @@ public class RomanNumbersConverter implements Function<String, Integer> {
         return result;
     }
     private static int matchDigit1(final String romanNumber) {
+        final int offset = 1;
         int result;
-        if (romanNumber.charAt(1) == 'I') {
+        if (romanNumber.charAt(offset) == 'I') {
             result = 1;
         } else {
             result = 0;
