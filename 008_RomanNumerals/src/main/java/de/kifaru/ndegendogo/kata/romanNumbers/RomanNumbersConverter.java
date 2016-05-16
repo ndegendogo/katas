@@ -34,12 +34,12 @@ public class RomanNumbersConverter implements Function<String, Integer> {
         offset = 0;
         this.romanNumber = romanNumber;
         for (RomanDigit romanDigit: RomanDigit.values()) {
-            consumeDigits(romanDigit.getDigit(), romanDigit.getValue());
+            consumeDigits(romanDigit, romanDigit.getDigit(), romanDigit.getValue());
         }
         return result;
     }
 
-    private void consumeDigits(char digit, int value) {
+    private void consumeDigits(RomanDigit romanDigit, char digit, int value) {
         while (digitFound(digit)) {
             consumeDigit(value);
         }
