@@ -15,11 +15,11 @@ public class RomanNumbersConverter implements Function<String, Integer> {
         if (romanNumber.length() > offset) {
             result += matchDigit(romanNumber, offset);
         }
-        offset = 1;
+        offset += 1;
         if (romanNumber.length() > offset) {
             result += matchDigit(romanNumber, offset);
         }
-        offset = 2;
+        offset += 1;
         if (romanNumber.length() > offset) {
             result += matchDigit(romanNumber, offset);
         }
