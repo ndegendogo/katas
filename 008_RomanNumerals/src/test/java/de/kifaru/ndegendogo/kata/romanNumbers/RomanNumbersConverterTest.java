@@ -22,6 +22,7 @@ public class RomanNumbersConverterTest {
                 {"II", 2},
                 {"III", 3},
                 {"V", 5},
+                {"VI", 6},
         });
     }
 
