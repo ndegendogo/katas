@@ -29,6 +29,7 @@ public class RomanNumbersConverterTest {
                 {"XX", 20},
                 {"L", 50},
                 {"C", 100},
+                {"D", 500},
         });
     }
 
