@@ -14,7 +14,7 @@ public class RomanNumbersConverter implements Function<String, Integer> {
         int result = 0;
         offset = 0;
         if (romanNumber.length() > offset) {
-            result += matchDigit10(romanNumber, 'X');
+            result += matchDigit10(romanNumber, 'X', 10);
         }
         if (romanNumber.length() > offset) {
             result += matchDigit(romanNumber, 'V', 5);
@@ -33,14 +33,12 @@ public class RomanNumbersConverter implements Function<String, Integer> {
             return 0;
         }
     }
-    private int matchDigit10(final String romanNumber, char digit) {
-        int value;
+    private int matchDigit10(final String romanNumber, char digit, int value) {
         if (romanNumber.charAt(offset) == digit) {
             offset += 1;
-            value = 10;
+            return value;
         } else {
-            value = 0;
+            return 0;
         }
-        return value;
     }
 }
