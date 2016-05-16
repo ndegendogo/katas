@@ -33,8 +33,8 @@ public class RomanNumbersConverter implements Function<String, Integer> {
         result = 0;
         offset = 0;
         this.romanNumber = romanNumber;
-        for (RomanDigit digit: RomanDigit.values()) {
-            consumeDigits(digit.getDigit(), digit.getValue());
+        for (RomanDigit romanDigit: RomanDigit.values()) {
+            consumeDigits(romanDigit.getDigit(), romanDigit.getValue());
         }
         return result;
     }
