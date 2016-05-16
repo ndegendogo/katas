@@ -24,7 +24,9 @@ public class RomanNumbersConverter implements Function<String, Integer> {
     }
 
     private void consumeDigits(char digit, int value) {
-        while (matchDigit(digit, value));
+        while (matchDigit(digit, value)) {
+            consumeDigit(value);
+        }
     }
 
     private boolean matchDigit(char digit, int value) {
@@ -32,7 +34,6 @@ public class RomanNumbersConverter implements Function<String, Integer> {
             return false;
         }
         if (romanNumber.charAt(offset) == digit) {
-            consumeDigit(value);
             return true;
         } else {
             return false;
