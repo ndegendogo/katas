@@ -28,8 +28,8 @@ public class RomanNumbersConverter implements Function<String, Integer> {
     private int matchDigit(final String romanNumber, char digit) {
         int value;
         if (romanNumber.charAt(offset) == digit) {
-            value = 1;
             offset += 1;
+            value = 1;
         } else {
             value = 0;
         }
@@ -38,8 +38,8 @@ public class RomanNumbersConverter implements Function<String, Integer> {
     private int matchDigit5(final String romanNumber, char digit) {
         int value;
         if (romanNumber.charAt(offset) == digit) {
-            value = 5;
             offset += 1;
+            value = 5;
         } else {
             value = 0;
         }
@@ -48,8 +48,8 @@ public class RomanNumbersConverter implements Function<String, Integer> {
     private int matchDigit10(final String romanNumber, char digit) {
         int value;
         if (romanNumber.charAt(offset) == digit) {
-            value = 10;
             offset += 1;
+            value = 10;
         } else {
             value = 0;
         }
