@@ -9,6 +9,7 @@ public class RomanNumbersConverter implements Function<String, Integer> {
     private String romanNumber;
 
     public enum RomanDigit {
+        DIGIT_M('M', 1000),
         DIGIT_D('D', 500), DIGIT_C('C', 100),
         DIGIT_L('L', 50), DIGIT_X('X', 10),
         DIGIT_V('V', 5), DIGIT_I('I', 1);
