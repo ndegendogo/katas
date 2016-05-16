@@ -24,6 +24,7 @@ public class RomanNumbersConverterTest {
                 {"V", 5},
                 {"VI", 6},
                 {"X", 10},
+                {"XV", 15},
                 {"XVIII", 18},
         });
     }
