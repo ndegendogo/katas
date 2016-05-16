@@ -18,8 +18,8 @@ public class RomanNumbersConverter implements Function<String, Integer> {
         offset = 0;
         this.romanNumber = romanNumber;
         consumeDigits('X', 10);
-        while (matchDigit('V', 5));
-        while (matchDigit('I', 1));
+        consumeDigits('V', 5);
+        consumeDigits('I', 1);
         return result;
     }
 
