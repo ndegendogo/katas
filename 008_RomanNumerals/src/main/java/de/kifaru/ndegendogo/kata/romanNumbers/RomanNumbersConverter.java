@@ -18,7 +18,6 @@ public class RomanNumbersConverter implements Function<String, Integer> {
         }
         while (romanNumber.length() > offset) {
             result += matchDigit(romanNumber);
-            offset += 1;
         }
         return result;
     }
@@ -27,6 +26,7 @@ public class RomanNumbersConverter implements Function<String, Integer> {
         int value;
         if (romanNumber.charAt(offset) == 'I') {
             value = 1;
+            offset += 1;
         } else {
             value = 0;
         }
