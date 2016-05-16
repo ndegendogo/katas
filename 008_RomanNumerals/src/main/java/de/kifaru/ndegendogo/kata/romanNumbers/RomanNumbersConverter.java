@@ -12,16 +12,15 @@ public class RomanNumbersConverter implements Function<String, Integer> {
     static Integer convertToArabicNumber(final String romanNumber) {
         int result = 0;
         if (romanNumber.length() > 0) {
-            result = matchDigit(romanNumber);
+            result = matchDigit(romanNumber, 0);
         }
         if (romanNumber.length() > 1) {
-            result += matchDigit1(romanNumber);
+            result += matchDigit1(romanNumber, 1);
         }
         return result;
     }
 
-    private static int matchDigit(final String romanNumber) {
-        final int offset = 0;
+    private static int matchDigit(final String romanNumber, final int offset) {
         int result;
         if (romanNumber.charAt(offset) == 'I') {
             result = 1;
@@ -30,8 +29,7 @@ public class RomanNumbersConverter implements Function<String, Integer> {
         }
         return result;
     }
-    private static int matchDigit1(final String romanNumber) {
-        final int offset = 1;
+    private static int matchDigit1(final String romanNumber, final int offset) {
         int result;
         if (romanNumber.charAt(offset) == 'I') {
             result = 1;
