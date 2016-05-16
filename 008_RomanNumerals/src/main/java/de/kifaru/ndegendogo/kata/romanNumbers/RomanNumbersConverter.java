@@ -11,7 +11,9 @@ public class RomanNumbersConverter implements Function<String, Integer> {
 
     static Integer convertToArabicNumber(String romanNumber) {
         int result = 0;
-        result = matchDigit(romanNumber);
+        if (romanNumber.length() > 0) {
+            result = matchDigit(romanNumber);
+        }
         return result;
     }
 
