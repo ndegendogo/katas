@@ -8,6 +8,22 @@ public class RomanNumbersConverter implements Function<String, Integer> {
     private int result;
     private String romanNumber;
 
+    public enum RomanDigit {
+        DIGIT_X('X', 10), DIGIT_V('V', 5), DIGIT_I('I', 1);
+        private final char digit;
+        private final int value;
+        private RomanDigit(char digit, int value) {
+            this.digit = digit;
+            this.value = value;
+        }
+        int getValue() {
+            return value;
+        }
+        char getDigit() {
+            return digit;
+        }
+    };
+
     @Override
     public Integer apply(final String romanNumber) {
         return convertToArabicNumber(romanNumber);
