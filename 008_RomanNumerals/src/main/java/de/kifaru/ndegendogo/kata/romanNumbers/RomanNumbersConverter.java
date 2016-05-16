@@ -17,13 +17,13 @@ public class RomanNumbersConverter implements Function<String, Integer> {
         result = 0;
         offset = 0;
         this.romanNumber = romanNumber;
-        while (matchDigit(romanNumber, 'X', 10));
-        while (matchDigit(romanNumber, 'V', 5));
-        while (matchDigit(romanNumber, 'I', 1));
+        while (matchDigit('X', 10));
+        while (matchDigit('V', 5));
+        while (matchDigit('I', 1));
         return result;
     }
 
-    private boolean matchDigit(final String romanNumber, char digit, int value) {
+    private boolean matchDigit(char digit, int value) {
         if (romanNumber.length() <= offset) {
             return false;
         }
