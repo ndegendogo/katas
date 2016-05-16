@@ -20,20 +20,18 @@ public class RomanNumbersConverter implements Function<String, Integer> {
             result += matchDigit5(romanNumber, 'V');
         }
         while (romanNumber.length() > offset) {
-            result += matchDigit(romanNumber, 'I');
+            result += matchDigit(romanNumber, 'I', 1);
         }
         return result;
     }
 
-    private int matchDigit(final String romanNumber, char digit) {
-        int value;
+    private int matchDigit(final String romanNumber, char digit, int value) {
         if (romanNumber.charAt(offset) == digit) {
             offset += 1;
-            value = 1;
+            return value;
         } else {
-            value = 0;
+            return 0;
         }
-        return value;
     }
     private int matchDigit5(final String romanNumber, char digit) {
         int value;
