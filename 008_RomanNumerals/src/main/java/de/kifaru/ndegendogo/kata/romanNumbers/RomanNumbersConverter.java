@@ -13,6 +13,8 @@ public class RomanNumbersConverter implements Function<String, Integer> {
         int result = 0;
         if (romanNumber.charAt(0) == 'I') {
             result = 1;
+        } else {
+            result = 0;
         }
         return result;
     }
