@@ -6,6 +6,7 @@ public class RomanNumbersConverter implements Function<String, Integer> {
 
     private int offset;
     private int result;
+    private String romanNumber;
 
     @Override
     public Integer apply(final String romanNumber) {
@@ -15,6 +16,7 @@ public class RomanNumbersConverter implements Function<String, Integer> {
     Integer convertToArabicNumber(final String romanNumber) {
         result = 0;
         offset = 0;
+        this.romanNumber = romanNumber;
         while (matchDigit(romanNumber, 'X', 10));
         while (matchDigit(romanNumber, 'V', 5));
         while (matchDigit(romanNumber, 'I', 1));
