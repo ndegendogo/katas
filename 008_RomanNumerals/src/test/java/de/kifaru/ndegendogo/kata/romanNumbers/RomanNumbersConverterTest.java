@@ -17,7 +17,8 @@ public class RomanNumbersConverterTest {
     @Parameters
     public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][] {
-                {"I", 1}
+                {"I", 1},
+                {"", 0},
         });
     }
 
