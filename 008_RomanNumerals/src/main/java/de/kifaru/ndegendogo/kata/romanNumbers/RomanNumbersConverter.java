@@ -19,6 +19,10 @@ public class RomanNumbersConverter implements Function<String, Integer> {
         if (romanNumber.length() > offset) {
             result += matchDigit(romanNumber, offset);
         }
+        offset = 2;
+        if (romanNumber.length() > offset) {
+            result += matchDigit(romanNumber, offset);
+        }
         return result;
     }
 
