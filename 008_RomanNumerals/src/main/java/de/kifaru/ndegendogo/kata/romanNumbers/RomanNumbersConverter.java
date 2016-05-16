@@ -5,13 +5,15 @@ import java.util.function.Function;
 public class RomanNumbersConverter implements Function<String, Integer> {
 
     private int offset;
+    private int result;
+
     @Override
     public Integer apply(final String romanNumber) {
         return convertToArabicNumber(romanNumber);
     }
 
     Integer convertToArabicNumber(final String romanNumber) {
-        int result = 0;
+        result = 0;
         offset = 0;
         if (romanNumber.length() > offset) {
             result += matchDigit(romanNumber, 'X', 10);
