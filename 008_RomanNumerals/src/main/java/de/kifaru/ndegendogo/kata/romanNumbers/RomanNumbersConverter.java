@@ -30,7 +30,7 @@ public class RomanNumbersConverter implements Function<String, Integer> {
     }
 
     private boolean digitFound(char digit) {
-        if (romanNumber.length() <= offset) {
+        if (offset >= romanNumber.length()) {
             return false;
         }
         if (romanNumber.charAt(offset) == digit) {
