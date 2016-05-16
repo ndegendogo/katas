@@ -17,10 +17,14 @@ public class RomanNumbersConverter implements Function<String, Integer> {
         result = 0;
         offset = 0;
         this.romanNumber = romanNumber;
-        while (matchDigit('X', 10));
+        consumeDigits('X', 10);
         while (matchDigit('V', 5));
         while (matchDigit('I', 1));
         return result;
+    }
+
+    private void consumeDigits(char digit, int value) {
+        while (matchDigit(digit, value));
     }
 
     private boolean matchDigit(char digit, int value) {
