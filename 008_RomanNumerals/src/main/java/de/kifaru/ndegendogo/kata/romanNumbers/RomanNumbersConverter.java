@@ -12,18 +12,10 @@ public class RomanNumbersConverter implements Function<String, Integer> {
     static Integer convertToArabicNumber(final String romanNumber) {
         int result = 0;
         int offset = 0;
-        if (romanNumber.length() > offset) {
+        while (romanNumber.length() > offset) {
             result += matchDigit(romanNumber, offset);
+            offset += 1;
         }
-        offset += 1;
-        if (romanNumber.length() > offset) {
-            result += matchDigit(romanNumber, offset);
-        }
-        offset += 1;
-        if (romanNumber.length() > offset) {
-            result += matchDigit(romanNumber, offset);
-        }
-        offset += 1;
         return result;
     }
 
