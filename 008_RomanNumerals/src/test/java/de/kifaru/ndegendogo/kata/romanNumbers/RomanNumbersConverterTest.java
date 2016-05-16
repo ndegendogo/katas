@@ -19,6 +19,7 @@ public class RomanNumbersConverterTest {
         return Arrays.asList(new Object[][] {
                 {"", 0},
                 {"I", 1},
+                {"II", 2},
         });
     }
 
