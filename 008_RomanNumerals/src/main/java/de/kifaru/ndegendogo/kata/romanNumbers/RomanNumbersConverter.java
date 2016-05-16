@@ -5,11 +5,11 @@ import java.util.function.Function;
 public class RomanNumbersConverter implements Function<String, Integer> {
 
     @Override
-    public Integer apply(String romanNumber) {
+    public Integer apply(final String romanNumber) {
         return convertToArabicNumber(romanNumber);
     }
 
-    static Integer convertToArabicNumber(String romanNumber) {
+    static Integer convertToArabicNumber(final String romanNumber) {
         int result = 0;
         if (romanNumber.length() > 0) {
             result = matchDigit(romanNumber);
@@ -20,7 +20,7 @@ public class RomanNumbersConverter implements Function<String, Integer> {
         return result;
     }
 
-    private static int matchDigit(String romanNumber) {
+    private static int matchDigit(final String romanNumber) {
         int result;
         if (romanNumber.charAt(0) == 'I') {
             result = 1;
@@ -29,7 +29,7 @@ public class RomanNumbersConverter implements Function<String, Integer> {
         }
         return result;
     }
-    private static int matchDigit1(String romanNumber) {
+    private static int matchDigit1(final String romanNumber) {
         int result;
         if (romanNumber.charAt(1) == 'I') {
             result = 1;
