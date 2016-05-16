@@ -9,7 +9,7 @@ public class RomanNumbersConverter implements Function<String, Integer> {
         return convertToArabicNumber(romanNumber);
     }
 
-    static Integer convertToArabicNumber(final String romanNumber) {
+    Integer convertToArabicNumber(final String romanNumber) {
         int result = 0;
         int offset = 0;
         while (romanNumber.length() > offset) {

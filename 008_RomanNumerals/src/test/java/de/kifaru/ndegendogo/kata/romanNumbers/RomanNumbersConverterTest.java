@@ -32,7 +32,7 @@ public class RomanNumbersConverterTest {
 
     @Test
     public void testConvertToArabicNumber() {
-        final Integer actualResult = RomanNumbersConverter.convertToArabicNumber(actualInput);
+        final Integer actualResult = new RomanNumbersConverter().convertToArabicNumber(actualInput);
         assertEquals(expectedResult, actualResult.intValue());
     }
 }
