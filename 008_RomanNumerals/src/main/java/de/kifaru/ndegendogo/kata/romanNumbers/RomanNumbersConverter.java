@@ -12,7 +12,7 @@ public class RomanNumbersConverter implements Function<String, Integer> {
     static Integer convertToArabicNumber(final String romanNumber) {
         int result = 0;
         if (romanNumber.length() > 0) {
-            result = matchDigit(romanNumber, 0);
+            result += matchDigit(romanNumber, 0);
         }
         if (romanNumber.length() > 1) {
             result += matchDigit(romanNumber, 1);
