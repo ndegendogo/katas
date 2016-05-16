@@ -4,6 +4,7 @@ import java.util.function.Function;
 
 public class RomanNumbersConverter implements Function<String, Integer> {
 
+    private int offset;
     @Override
     public Integer apply(final String romanNumber) {
         return convertToArabicNumber(romanNumber);
@@ -11,7 +12,10 @@ public class RomanNumbersConverter implements Function<String, Integer> {
 
     Integer convertToArabicNumber(final String romanNumber) {
         int result = 0;
-        int offset = 0;
+        offset = 0;
+        if (romanNumber.length() > offset) {
+            result += matchDigit5(romanNumber);
+        }
         while (romanNumber.length() > offset) {
             result += matchDigit(romanNumber, offset);
             offset += 1;
@@ -23,6 +27,16 @@ public class RomanNumbersConverter implements Function<String, Integer> {
         int value;
         if (romanNumber.charAt(offset) == 'I') {
             value = 1;
+        } else {
+            value = 0;
+        }
+        return value;
+    }
+    private int matchDigit5(final String romanNumber) {
+        int value;
+        if (romanNumber.charAt(offset) == 'V') {
+            value = 5;
+            offset += 1;
         } else {
             value = 0;
         }
