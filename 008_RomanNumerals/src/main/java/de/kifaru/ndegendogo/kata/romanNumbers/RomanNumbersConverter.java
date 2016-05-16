@@ -24,12 +24,12 @@ public class RomanNumbersConverter implements Function<String, Integer> {
     }
 
     private void consumeDigits(char digit, int value) {
-        while (matchDigit(digit, value)) {
+        while (matchDigit(digit)) {
             consumeDigit(value);
         }
     }
 
-    private boolean matchDigit(char digit, int value) {
+    private boolean matchDigit(char digit) {
         if (romanNumber.length() <= offset) {
             return false;
         }
