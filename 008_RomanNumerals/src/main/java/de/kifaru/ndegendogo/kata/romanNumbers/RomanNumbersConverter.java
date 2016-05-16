@@ -32,11 +32,15 @@ public class RomanNumbersConverter implements Function<String, Integer> {
             return false;
         }
         if (romanNumber.charAt(offset) == digit) {
-            offset += 1;
-            result += value;
+            consumeDigit(value);
             return true;
         } else {
             return false;
         }
+    }
+
+    private void consumeDigit(int value) {
+        offset += 1;
+        result += value;
     }
 }
