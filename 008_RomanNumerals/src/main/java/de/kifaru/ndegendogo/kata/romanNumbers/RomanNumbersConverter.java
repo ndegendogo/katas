@@ -33,9 +33,9 @@ public class RomanNumbersConverter implements Function<String, Integer> {
         result = 0;
         offset = 0;
         this.romanNumber = romanNumber;
-        consumeDigits('X', 10);
-        consumeDigits('V', 5);
-        consumeDigits('I', 1);
+        for (RomanDigit digit: RomanDigit.values()) {
+            consumeDigits(digit.getDigit(), digit.getValue());
+        }
         return result;
     }
 
