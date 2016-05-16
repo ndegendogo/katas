@@ -14,12 +14,24 @@ public class RomanNumbersConverter implements Function<String, Integer> {
         if (romanNumber.length() > 0) {
             result = matchDigit(romanNumber);
         }
+        if (romanNumber.length() > 1) {
+            result += matchDigit1(romanNumber);
+        }
         return result;
     }
 
     private static int matchDigit(String romanNumber) {
         int result;
         if (romanNumber.charAt(0) == 'I') {
+            result = 1;
+        } else {
+            result = 0;
+        }
+        return result;
+    }
+    private static int matchDigit1(String romanNumber) {
+        int result;
+        if (romanNumber.charAt(1) == 'I') {
             result = 1;
         } else {
             result = 0;
