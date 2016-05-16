@@ -23,7 +23,7 @@ public class RomanNumbersConverter implements Function<String, Integer> {
         return result;
     }
 
-    private static int matchDigit(final String romanNumber, final int offset) {
+    private int matchDigit(final String romanNumber, final int offset) {
         int value;
         if (romanNumber.charAt(offset) == 'I') {
             value = 1;
