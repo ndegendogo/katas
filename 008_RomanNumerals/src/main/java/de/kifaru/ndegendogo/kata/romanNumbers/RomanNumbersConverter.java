@@ -58,11 +58,7 @@ public class RomanNumbersConverter implements Function<String, Integer> {
     }
 
     private boolean found(String glyphe) {
-        if (romanNumber.startsWith(glyphe, offset)) {
-            return true;
-        } else {
-            return false;
-        }
+        return romanNumber.startsWith(glyphe, offset);
     }
 
     private void consume(RomanDigit digit) {
