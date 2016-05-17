@@ -16,7 +16,7 @@ public class RomanNumbersConverter implements Function<String, Integer> {
 
         private final String glyphe;
         private final int value;
-        private RomanDigit(String glyphe, int value) {
+        private RomanDigit(final String glyphe, final int value) {
             this.glyphe = glyphe;
             this.value = value;
         }
@@ -51,7 +51,7 @@ public class RomanNumbersConverter implements Function<String, Integer> {
         this.romanNumber = romanNumber;
     }
 
-    private void consumeAll(RomanDigit digit) {
+    private void consumeAll(final RomanDigit digit) {
         while (found(digit.getGlyphe())) {
             consume(digit);
         }
