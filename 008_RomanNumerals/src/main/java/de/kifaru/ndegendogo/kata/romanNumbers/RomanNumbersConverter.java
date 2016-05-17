@@ -14,17 +14,17 @@ public class RomanNumbersConverter implements Function<String, Integer> {
         DIGIT_L('L', 50), DIGIT_X('X', 10),
         DIGIT_V('V', 5), DIGIT_I('I', 1);
 
-        private final char digit;
+        private final char glyphe;
         private final int value;
-        private RomanDigit(char digit, int value) {
-            this.digit = digit;
+        private RomanDigit(char glyphe, int value) {
+            this.glyphe = glyphe;
             this.value = value;
         }
         int getValue() {
             return value;
         }
-        char getDigit() {
-            return digit;
+        char getGlyphe() {
+            return glyphe;
         }
     };
 
@@ -38,29 +38,29 @@ public class RomanNumbersConverter implements Function<String, Integer> {
         offset = 0;
         this.romanNumber = romanNumber;
         for (RomanDigit romanDigit: RomanDigit.values()) {
-            consumeDigits(romanDigit);
+            consumeAll(romanDigit);
         }
         return result;
     }
 
-    private void consumeDigits(RomanDigit romanDigit) {
-        while (digitFound(romanDigit.getDigit())) {
-            consumeDigit(romanDigit.getValue());
+    private void consumeAll(RomanDigit romanDigit) {
+        while (found(romanDigit.getGlyphe())) {
+            consume(romanDigit.getValue());
         }
     }
 
-    private boolean digitFound(char digit) {
+    private boolean found(char glyphe) {
         if (offset >= romanNumber.length()) {
             return false;
         }
-        if (romanNumber.charAt(offset) == digit) {
+        if (romanNumber.charAt(offset) == glyphe) {
             return true;
         } else {
             return false;
         }
     }
 
-    private void consumeDigit(int value) {
+    private void consume(int value) {
         offset += 1;
         result += value;
     }
