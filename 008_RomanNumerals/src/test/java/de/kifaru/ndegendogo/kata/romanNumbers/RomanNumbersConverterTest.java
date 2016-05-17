@@ -38,6 +38,7 @@ public class RomanNumbersConverterTest {
                 {"D", 500},
                 {"CM", 900},
                 {"M", 1000},
+                {"MCMXC", 1990},
         });
     }
 
