@@ -54,10 +54,7 @@ public class RomanNumbersConverter implements Function<String, Integer> {
     }
 
     private boolean found(char glyphe) {
-        if (offset >= romanNumber.length()) {
-            return false;
-        }
-        if (romanNumber.charAt(offset) == glyphe) {
+        if (offset < romanNumber.length() && romanNumber.charAt(offset) == glyphe) {
             return true;
         } else {
             return false;
