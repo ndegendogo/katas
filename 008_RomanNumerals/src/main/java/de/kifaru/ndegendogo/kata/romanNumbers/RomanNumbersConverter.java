@@ -37,15 +37,15 @@ public class RomanNumbersConverter implements Function<String, Integer> {
         result = 0;
         offset = 0;
         this.romanNumber = romanNumber;
-        for (RomanDigit romanDigit: RomanDigit.values()) {
-            consumeAll(romanDigit);
+        for (RomanDigit digit: RomanDigit.values()) {
+            consumeAll(digit);
         }
         return result;
     }
 
-    private void consumeAll(RomanDigit romanDigit) {
-        while (found(romanDigit.getGlyphe())) {
-            consume(romanDigit);
+    private void consumeAll(RomanDigit digit) {
+        while (found(digit.getGlyphe())) {
+            consume(digit);
         }
     }
 
