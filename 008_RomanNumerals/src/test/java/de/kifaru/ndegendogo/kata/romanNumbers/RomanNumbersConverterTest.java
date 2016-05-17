@@ -39,6 +39,7 @@ public class RomanNumbersConverterTest {
                 {"CM", 900},
                 {"M", 1000},
                 {"MCMXC", 1990},
+                {"MCMXCIX", 1999},
         });
     }
 
