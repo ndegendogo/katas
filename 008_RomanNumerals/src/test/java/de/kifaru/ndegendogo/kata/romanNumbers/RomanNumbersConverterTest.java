@@ -34,6 +34,7 @@ public class RomanNumbersConverterTest {
                 {"L", 50},
                 {"XC", 90},
                 {"C", 100},
+                {"CD", 400},
                 {"D", 500},
                 {"M", 1000},
         });
