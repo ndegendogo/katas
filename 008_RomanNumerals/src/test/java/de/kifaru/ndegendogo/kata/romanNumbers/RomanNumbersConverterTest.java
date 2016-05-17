@@ -40,6 +40,7 @@ public class RomanNumbersConverterTest {
                 {"M", 1000},
                 {"MCMXC", 1990},
                 {"MCMXCIX", 1999},
+                {"TATA", 0},
         });
     }
 
