@@ -9,21 +9,21 @@ public class RomanNumbersConverter implements Function<String, Integer> {
     private String romanNumber;
 
     public enum RomanDigit {
-        DIGIT_M('M', 1000),
-        DIGIT_D('D', 500), DIGIT_C('C', 100),
-        DIGIT_L('L', 50), DIGIT_X('X', 10),
-        DIGIT_V('V', 5), DIGIT_I('I', 1);
+        DIGIT_M("M", 1000),
+        DIGIT_D("D", 500), DIGIT_C("C", 100),
+        DIGIT_L("L", 50), DIGIT_X("X", 10),
+        DIGIT_V("V", 5), DIGIT_I("I", 1);
 
-        private final char glyphe;
+        private final String glyphe;
         private final int value;
-        private RomanDigit(char glyphe, int value) {
+        private RomanDigit(String glyphe, int value) {
             this.glyphe = glyphe;
             this.value = value;
         }
         int getValue() {
             return value;
         }
-        char getGlyphe() {
+        String getGlyphe() {
             return glyphe;
         }
     };
@@ -53,8 +53,8 @@ public class RomanNumbersConverter implements Function<String, Integer> {
         }
     }
 
-    private boolean found(char glyphe) {
-        if (offset < romanNumber.length() && romanNumber.charAt(offset) == glyphe) {
+    private boolean found(String glyphe) {
+        if (offset < romanNumber.length() && romanNumber.startsWith(glyphe, offset)) {
             return true;
         } else {
             return false;
