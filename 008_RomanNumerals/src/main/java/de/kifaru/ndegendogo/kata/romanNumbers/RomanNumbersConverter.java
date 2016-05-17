@@ -38,11 +38,7 @@ public class RomanNumbersConverter implements Function<String, Integer> {
         for (RomanDigit digit: RomanDigit.values()) {
             consumeAll(digit);
         }
-        if (allDigitsConsumed()) {
-            return result;
-        } else {
-            return 0;
-        }
+        return (allDigitsConsumed() ? result : 0);
     }
 
     private void init(final String romanNumber) {
