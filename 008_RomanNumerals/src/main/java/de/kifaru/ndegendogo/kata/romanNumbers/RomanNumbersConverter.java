@@ -45,7 +45,7 @@ public class RomanNumbersConverter implements Function<String, Integer> {
 
     private void consumeAll(RomanDigit romanDigit) {
         while (found(romanDigit.getGlyphe())) {
-            consume(romanDigit.getValue());
+            consume(romanDigit);
         }
     }
 
@@ -60,8 +60,8 @@ public class RomanNumbersConverter implements Function<String, Integer> {
         }
     }
 
-    private void consume(int value) {
+    private void consume(RomanDigit digit) {
         offset += 1;
-        result += value;
+        result += digit.getValue();
     }
 }
