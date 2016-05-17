@@ -62,7 +62,7 @@ public class RomanNumbersConverter implements Function<String, Integer> {
     }
 
     private void consume(RomanDigit digit) {
-        offset += 1;
+        offset += digit.getGlyphe().length();
         result += digit.getValue();
     }
 }
