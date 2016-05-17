@@ -34,13 +34,17 @@ public class RomanNumbersConverter implements Function<String, Integer> {
     }
 
     Integer convertToArabicNumber(final String romanNumber) {
-        result = 0;
-        offset = 0;
-        this.romanNumber = romanNumber;
+        init(romanNumber);
         for (RomanDigit digit: RomanDigit.values()) {
             consumeAll(digit);
         }
         return result;
+    }
+
+    private void init(final String romanNumber) {
+        result = 0;
+        offset = 0;
+        this.romanNumber = romanNumber;
     }
 
     private void consumeAll(RomanDigit digit) {
