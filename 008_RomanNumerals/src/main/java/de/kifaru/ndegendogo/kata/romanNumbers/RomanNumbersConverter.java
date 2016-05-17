@@ -38,7 +38,7 @@ public class RomanNumbersConverter implements Function<String, Integer> {
         for (RomanDigit digit: RomanDigit.values()) {
             consumeAll(digit);
         }
-        if (offset == romanNumber.length()) {
+        if (allDigitsConsumed()) {
             return result;
         } else {
             return 0;
@@ -65,4 +65,9 @@ public class RomanNumbersConverter implements Function<String, Integer> {
         offset += digit.getGlyphe().length();
         result += digit.getValue();
     }
+
+    private boolean allDigitsConsumed() {
+        return offset == romanNumber.length();
+    }
+
 }
