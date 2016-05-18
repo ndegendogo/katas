@@ -49,7 +49,7 @@ public class RomanNumbersConverter implements Function<String, Integer> {
 
     private void consumeAll(final RomanDigit digit) {
         while (found(digit.getGlyphe())) {
-            consume(digit);
+            consumeSingle(digit);
         }
     }
 
@@ -57,7 +57,7 @@ public class RomanNumbersConverter implements Function<String, Integer> {
         return romanNumber.startsWith(glyphe, offset);
     }
 
-    private void consume(RomanDigit digit) {
+    private void consumeSingle(RomanDigit digit) {
         offset += digit.getGlyphe().length();
         result += digit.getValue();
     }
