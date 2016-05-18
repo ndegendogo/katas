@@ -36,7 +36,7 @@ public class RomanNumbersConverter implements Function<String, Integer> {
     Integer convertToArabicNumber(final String romanNumber) {
         init(romanNumber);
         for (RomanDigit digit: RomanDigit.values()) {
-            consumeAll(digit);
+            consume(digit);
         }
         return (allDigitsConsumed() ? result : 0);
     }
@@ -47,7 +47,7 @@ public class RomanNumbersConverter implements Function<String, Integer> {
         this.romanNumber = romanNumber;
     }
 
-    private void consumeAll(final RomanDigit digit) {
+    private void consume(final RomanDigit digit) {
         while (found(digit.getGlyphe())) {
             consumeSingle(digit);
         }
