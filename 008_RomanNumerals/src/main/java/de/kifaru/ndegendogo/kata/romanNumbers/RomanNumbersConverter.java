@@ -8,7 +8,7 @@ public class RomanNumbersConverter implements Function<String, Integer> {
     private int result;
     private String romanNumber;
 
-    public enum RomanDigit {
+    private enum RomanDigit {
         DIGIT_M("M", 1000), DIGIT_CM("CM", 900),
         DIGIT_D("D", 500), DIGIT_CD("CD", 400), DIGIT_C("C", 100), DIGIT_XC("XC", 90),
         DIGIT_L("L", 50), DIGIT_XL("XL", 40), DIGIT_X("X", 10), DIGIT_IX("IX", 9),
