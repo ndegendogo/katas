@@ -2,7 +2,7 @@ package de.kifaru.ndegendogo.kata.romanNumbers;
 
 import java.util.function.Function;
 
-public class RomanNumbersConverterImpl implements Function<String, Integer> {
+public class RomanNumbersConverterImpl implements Function<String, Integer>, RomanNumbersConverter {
 
     private int offset;
     private int result;
@@ -33,7 +33,8 @@ public class RomanNumbersConverterImpl implements Function<String, Integer> {
         return convertToArabicNumber(romanNumber);
     }
 
-    Integer convertToArabicNumber(final String romanNumber) {
+    @Override
+    public Integer convertToArabicNumber(final String romanNumber) {
         init(romanNumber);
         for (RomanDigit digit: RomanDigit.values()) {
             consume(digit);
