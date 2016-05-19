@@ -1,17 +1,13 @@
 package de.kifaru.ndegendogo.kata.romanNumbers;
 
-//import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-//import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.function.Function;
 
 import javax.swing.*;
-//import javax.swing.GroupLayout.Alignment;
-//import javax.swing.GroupLayout.SequentialGroup;
 
 public class ConvertRomanGUI extends JPanel {
 
