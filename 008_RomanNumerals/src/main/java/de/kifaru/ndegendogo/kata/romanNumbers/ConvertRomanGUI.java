@@ -12,14 +12,14 @@ public class ConvertRomanGUI extends JPanel {
 
     private static final long serialVersionUID = 1L;
 
-    private RomanNumbersConverterImpl converter;
+    private RomanNumbersConverter converter;
 
     private JLabel romanLabel;
     private JTextField romanNumber;
     private JLabel arabicLabel;
     private JLabel arabicNumber;
 
-    static void createAndShowGui(final RomanNumbersConverterImpl converter) {
+    static void createAndShowGui(final RomanNumbersConverter converter) {
         // top-level container
         final JFrame frame = new JFrame("Roman Numbers");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -28,7 +28,7 @@ public class ConvertRomanGUI extends JPanel {
         frame.setVisible(true);
     }
 
-    private ConvertRomanGUI(final RomanNumbersConverterImpl converter) {
+    private ConvertRomanGUI(final RomanNumbersConverter converter) {
         this.converter = converter;
         romanLabel = new JLabel("Roman:");
         romanNumber = new JTextField(20);
