@@ -53,6 +53,31 @@ public class ConvertRomanGUI extends JPanel {
     }
 
     private static void setupLayout(final JPanel pane, final JComponent[][] components) {
+     // vertical and horizontal Box
+        Box vbox0 = Box.createVerticalBox();
+        vbox0.add(Box.createGlue());
+        vbox0.add(components[0][0]);
+        vbox0.add(Box.createGlue());
+        vbox0.add(components[1][0]);
+        vbox0.add(Box.createGlue());
+
+        Box vbox1 = Box.createVerticalBox();
+        vbox1.add(Box.createGlue());
+        vbox1.add(components[0][1]);
+        vbox1.add(Box.createGlue());
+        vbox1.add(components[1][1]);
+        components[1][1].setAlignmentX(LEFT_ALIGNMENT);
+        vbox1.add(Box.createGlue());
+
+        Box hbox = Box.createHorizontalBox();
+        hbox.add(Box.createGlue());
+        hbox.add(vbox0);
+        hbox.add(Box.createGlue());
+        hbox.add(vbox1);
+        hbox.add(Box.createGlue());
+
+        pane.add(hbox);
+/*
 // BoxLayout
         BoxLayout layout = new BoxLayout(pane, BoxLayout.PAGE_AXIS);
         pane.setLayout(layout);
@@ -65,7 +90,7 @@ public class ConvertRomanGUI extends JPanel {
             }
             pane.add(panelLine);
         }
-        
+*/
 /*
 // GroupLayout 
         final GroupLayout layout = new GroupLayout(pane);
