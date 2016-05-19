@@ -1,13 +1,13 @@
 package de.kifaru.ndegendogo.kata.romanNumbers;
 
-import java.awt.Container;
+//import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.function.Function;
 
 import javax.swing.*;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.GroupLayout.SequentialGroup;
+//import javax.swing.GroupLayout.Alignment;
+//import javax.swing.GroupLayout.SequentialGroup;
 
 public class ConvertRomanGUI extends JPanel {
 
@@ -52,7 +52,22 @@ public class ConvertRomanGUI extends JPanel {
         romanNumber.selectAll();
     }
 
-    private static void setupLayout(final Container pane, final JComponent[][] components) {
+    private static void setupLayout(final JPanel pane, final JComponent[][] components) {
+// BoxLayout
+        BoxLayout layout = new BoxLayout(pane, BoxLayout.PAGE_AXIS);
+        pane.setLayout(layout);
+        for (JComponent[] line : components) {
+            final JPanel panelLine = new JPanel();
+            panelLine.setLayout(new BoxLayout(panelLine, BoxLayout.LINE_AXIS));
+            panelLine.setAlignmentX(LEFT_ALIGNMENT);
+            for (JComponent element : line) {
+                panelLine.add(element);
+            }
+            pane.add(panelLine);
+        }
+        
+/*
+// GroupLayout 
         final GroupLayout layout = new GroupLayout(pane);
         layout.setAutoCreateGaps(true);
         layout.setAutoCreateContainerGaps(true);
@@ -67,5 +82,6 @@ public class ConvertRomanGUI extends JPanel {
         hgroup.addGroup(layout.createParallelGroup().addComponent(components[0][0]).addComponent(components[1][0]));
         hgroup.addGroup(layout.createParallelGroup().addComponent(components[0][1]).addComponent(components[1][1]));
         layout.setHorizontalGroup(hgroup);
+*/
     }
 }
