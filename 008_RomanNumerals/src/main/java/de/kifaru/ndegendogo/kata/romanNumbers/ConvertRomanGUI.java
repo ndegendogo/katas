@@ -1,6 +1,7 @@
 package de.kifaru.ndegendogo.kata.romanNumbers;
 
 //import java.awt.Container;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.function.Function;
@@ -53,7 +54,16 @@ public class ConvertRomanGUI extends JPanel {
     }
 
     private static void setupLayout(final JPanel pane, final JComponent[][] components) {
-     // vertical and horizontal Box
+// GridLayout
+        GridLayout layout = new GridLayout(0,components.length, 5, 5);
+        pane.setLayout(layout);
+        for (JComponent[] line : components) {
+            for (JComponent element : line) {
+                pane.add(element);
+            }
+        }
+/*
+// vertical and horizontal Box
         Box vbox0 = Box.createVerticalBox();
         vbox0.add(Box.createGlue());
         vbox0.add(components[0][0]);
@@ -77,6 +87,7 @@ public class ConvertRomanGUI extends JPanel {
         hbox.add(Box.createGlue());
 
         pane.add(hbox);
+*/
 /*
 // BoxLayout
         BoxLayout layout = new BoxLayout(pane, BoxLayout.PAGE_AXIS);
