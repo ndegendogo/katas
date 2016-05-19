@@ -1,8 +1,6 @@
 package de.kifaru.ndegendogo.kata.romanNumbers;
 
-import java.util.function.Function;
-
-public class RomanNumbersConverterImpl implements Function<String, Integer>, RomanNumbersConverter {
+public class RomanNumbersConverterImpl implements RomanNumbersConverter {
 
     private int offset;
     private int result;
@@ -28,7 +26,6 @@ public class RomanNumbersConverterImpl implements Function<String, Integer>, Rom
         }
     };
 
-    @Override
     public Integer apply(final String romanNumber) {
         return convertToArabicNumber(romanNumber);
     }
