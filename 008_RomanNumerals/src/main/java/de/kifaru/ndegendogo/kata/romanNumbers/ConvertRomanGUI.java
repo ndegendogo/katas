@@ -1,7 +1,10 @@
 package de.kifaru.ndegendogo.kata.romanNumbers;
 
 //import java.awt.Container;
-import java.awt.GridLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+//import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.function.Function;
@@ -54,70 +57,18 @@ public class ConvertRomanGUI extends JPanel {
     }
 
     private static void setupLayout(final JPanel pane, final JComponent[][] components) {
-// GridLayout
-        GridLayout layout = new GridLayout(0,components.length, 5, 5);
+        GridBagLayout layout = new GridBagLayout();
         pane.setLayout(layout);
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.insets = new Insets (5, 5, 5, 5);
+        constraints.anchor = GridBagConstraints.BASELINE_LEADING;
         for (JComponent[] line : components) {
-            for (JComponent element : line) {
+            for (int i = 0; i < line.length; i ++) {
+                JComponent element = line[i];
+                constraints.gridwidth = (i == line.length -1 ? GridBagConstraints.REMAINDER : 1);
+                layout.setConstraints(element, constraints);
                 pane.add(element);
             }
         }
-/*
-// vertical and horizontal Box
-        Box vbox0 = Box.createVerticalBox();
-        vbox0.add(Box.createGlue());
-        vbox0.add(components[0][0]);
-        vbox0.add(Box.createGlue());
-        vbox0.add(components[1][0]);
-        vbox0.add(Box.createGlue());
-
-        Box vbox1 = Box.createVerticalBox();
-        vbox1.add(Box.createGlue());
-        vbox1.add(components[0][1]);
-        vbox1.add(Box.createGlue());
-        vbox1.add(components[1][1]);
-        components[1][1].setAlignmentX(LEFT_ALIGNMENT);
-        vbox1.add(Box.createGlue());
-
-        Box hbox = Box.createHorizontalBox();
-        hbox.add(Box.createGlue());
-        hbox.add(vbox0);
-        hbox.add(Box.createGlue());
-        hbox.add(vbox1);
-        hbox.add(Box.createGlue());
-
-        pane.add(hbox);
-*/
-/*
-// BoxLayout
-        BoxLayout layout = new BoxLayout(pane, BoxLayout.PAGE_AXIS);
-        pane.setLayout(layout);
-        for (JComponent[] line : components) {
-            final JPanel panelLine = new JPanel();
-            panelLine.setLayout(new BoxLayout(panelLine, BoxLayout.LINE_AXIS));
-            panelLine.setAlignmentX(LEFT_ALIGNMENT);
-            for (JComponent element : line) {
-                panelLine.add(element);
-            }
-            pane.add(panelLine);
-        }
-*/
-/*
-// GroupLayout 
-        final GroupLayout layout = new GroupLayout(pane);
-        layout.setAutoCreateGaps(true);
-        layout.setAutoCreateContainerGaps(true);
-        pane.setLayout(layout);
-
-        final SequentialGroup vgroup = layout.createSequentialGroup();
-        vgroup.addGroup(layout.createParallelGroup(Alignment.BASELINE).addComponent(components[0][0]).addComponent(components[0][1]));
-        vgroup.addGroup(layout.createParallelGroup(Alignment.BASELINE).addComponent(components[1][0]).addComponent(components[1][1]));
-        layout.setVerticalGroup(vgroup);
-
-        final SequentialGroup hgroup = layout.createSequentialGroup();
-        hgroup.addGroup(layout.createParallelGroup().addComponent(components[0][0]).addComponent(components[1][0]));
-        hgroup.addGroup(layout.createParallelGroup().addComponent(components[0][1]).addComponent(components[1][1]));
-        layout.setHorizontalGroup(hgroup);
-*/
     }
 }
