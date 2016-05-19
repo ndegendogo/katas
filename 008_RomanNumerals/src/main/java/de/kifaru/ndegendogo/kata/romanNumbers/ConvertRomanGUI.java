@@ -45,7 +45,7 @@ public class ConvertRomanGUI extends JPanel {
     }
 
     private void showConvertedNumber() {
-        final Integer convertedNumber = converter.apply(romanNumber.getText());
+        final Integer convertedNumber = converter.convertToArabicNumber(romanNumber.getText());
         final String convertedString = (convertedNumber <= 0 ? "Illegal Input" : convertedNumber.toString());
         arabicNumber.setText(convertedString);
         romanNumber.selectAll();

@@ -26,10 +26,6 @@ public class RomanNumbersConverterImpl implements RomanNumbersConverter {
         }
     };
 
-    public Integer apply(final String romanNumber) {
-        return convertToArabicNumber(romanNumber);
-    }
-
     @Override
     public Integer convertToArabicNumber(final String romanNumber) {
         init(romanNumber);
