@@ -2,7 +2,7 @@ package de.kifaru.ndegendogo.kata.romanNumbers;
 
 import java.util.function.Function;
 
-public class RomanNumbersConverter implements Function<String, Integer> {
+public class RomanNumbersConverterImpl implements Function<String, Integer> {
 
     private int offset;
     private int result;

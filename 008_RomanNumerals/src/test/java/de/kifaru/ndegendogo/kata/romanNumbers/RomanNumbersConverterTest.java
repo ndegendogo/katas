@@ -54,7 +54,7 @@ public class RomanNumbersConverterTest {
 
     @Test
     public void testConvertToArabicNumber() {
-        final Integer actualResult = new RomanNumbersConverter().convertToArabicNumber(actualInput);
+        final Integer actualResult = new RomanNumbersConverterImpl().convertToArabicNumber(actualInput);
         assertEquals(expectedResult, actualResult.intValue());
     }
 }
