@@ -1,0 +1,5 @@
+Marketing has decided to get into the business of Bowling Machines.
+Your task will be to implement the rule engine which scores a player.
+
+Given a sequence of rolls, your program shall yield the correct bowling score.
+
