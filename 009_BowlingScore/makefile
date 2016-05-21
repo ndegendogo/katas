@@ -1,12 +1,12 @@
-BASEPATH_SOURCE=src/main/java/
-BASEPATH_TEST=src/test/java/
-BASEPATH_CLASS=bin/
-PATH_PACKAGE=de/kifaru/ndegendogo/kata/bowling/
+BASEPATH_SOURCE:=src/main/java/
+BASEPATH_TEST:=src/test/java/
+BASEPATH_CLASS:=bin/
+PATH_PACKAGE:=de/kifaru/ndegendogo/kata/bowling/
 PathToClass=$(subst /,.,$(1))
-FILES_SOURCE=$(wildcard $(BASEPATH_SOURCE)$(PATH_PACKAGE)*.java)
+FILES_SOURCE:=$(wildcard $(BASEPATH_SOURCE)$(PATH_PACKAGE)*.java)
 #FILES_TEST=$(BASEPATH_TEST)$(PATH_PACKAGE)*.java
-CLASSFILES=$(patsubst $(BASEPATH_SOURCE)$(PATH_PACKAGE)%.java,$(BASEPATH_CLASS)$(PATH_PACKAGE)%.class,$(FILES_SOURCE))
-MAIN_CLASS=$(call PathToClass,$(PATH_PACKAGE))BowlingScore
+CLASSFILES:=$(patsubst $(BASEPATH_SOURCE)$(PATH_PACKAGE)%.java,$(BASEPATH_CLASS)$(PATH_PACKAGE)%.class,$(FILES_SOURCE))
+MAIN_CLASS:=$(call PathToClass,$(PATH_PACKAGE))BowlingScore
 
 .PHONY: all
 all: build run #test
