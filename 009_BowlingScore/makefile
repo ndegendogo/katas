@@ -1,3 +1,5 @@
+include DefaultUserConfig.mak
+
 BASEPATH_SOURCE:=src/main/java/
 BASEPATH_TEST:=src/test/java/
 BASEPATH_CLASS:=bin/
@@ -9,8 +11,6 @@ CLASSFILES:=$(patsubst $(BASEPATH_SOURCE)$(PATH_PACKAGE)%.java,$(BASEPATH_CLASS)
 CLASSFILES_TEST:=$(patsubst $(BASEPATH_TEST)$(PATH_PACKAGE)%.java,$(BASEPATH_CLASS)$(PATH_PACKAGE)%.class,$(FILES_TEST))
 MAIN_CLASS:=$(call PathToClass,$(PATH_PACKAGE))BowlingScore
 CLASSES_TEST:=$(call PathToClass,$(patsubst $(BASEPATH_CLASS)%.class,%,$(CLASSFILES_TEST)))
-LIB_JUNIT:=$(JUNIT_HOME)/junit.jar
-LIB_HAMCREST:=$(HAMCREST_HOME)/org.hamcrest.core_1.3.0.v201303031735.jar
 
 .PHONY: all
 all: build run test
