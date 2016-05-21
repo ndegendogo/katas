@@ -33,7 +33,7 @@ public class BowlingScoreTest {
         assertArrayEquals(expectedScores, actualScores);
     }
 
-    Integer[] calculateScores(final Integer[][] rolls) {
+    static Integer[] calculateScores(final Integer[][] rolls) {
         return new Integer[]{0};
     }
 }
