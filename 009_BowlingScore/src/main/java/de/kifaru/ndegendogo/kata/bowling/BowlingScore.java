@@ -6,4 +6,8 @@ public class BowlingScore {
         System.out.println("Hello World!");
     }
 
+    public static Integer[] calculateScores(final Integer[][] rolls) {
+        return new Integer[]{0};
+    }
+
 }

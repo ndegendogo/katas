@@ -29,11 +29,7 @@ public class BowlingScoreTest {
 
     @Test
     public void testCalculateScores() {
-        final Integer[] actualScores = calculateScores(rolls);
+        final Integer[] actualScores = BowlingScore.calculateScores(rolls);
         assertArrayEquals(expectedScores, actualScores);
-    }
-
-    static Integer[] calculateScores(final Integer[][] rolls) {
-        return new Integer[]{0};
     }
 }
