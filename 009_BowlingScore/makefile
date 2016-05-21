@@ -6,12 +6,17 @@ PathToClass=$(subst /,.,$(1))
 FILES_SOURCE=$(wildcard $(BASEPATH_SOURCE)$(PATH_PACKAGE)*.java)
 #FILES_TEST=$(BASEPATH_TEST)$(PATH_PACKAGE)*.java
 CLASSFILES=$(patsubst $(BASEPATH_SOURCE)$(PATH_PACKAGE)%.java,$(BASEPATH_CLASS)$(PATH_PACKAGE)%.class,$(FILES_SOURCE))
+MAIN_CLASS=$(call PathToClass,$(PATH_PACKAGE))BowlingScore
 
 .PHONY: all
-all: build #run test
+all: build run #test
 
 .PHONY: build
 build: $(CLASSFILES) | $(BASEPATH_CLASS)
+
+.PHONY: run
+run: build
+	java -cp $(BASEPATH_CLASS) $(MAIN_CLASS)
 
 $(BASEPATH_CLASS):
 	mkdir $@ 
