@@ -8,7 +8,9 @@ FILES_TEST=$(wildcard $(BASEPATH_TEST)$(PATH_PACKAGE)*.java)
 CLASSFILES:=$(patsubst $(BASEPATH_SOURCE)$(PATH_PACKAGE)%.java,$(BASEPATH_CLASS)$(PATH_PACKAGE)%.class,$(FILES_SOURCE))
 CLASSFILES_TEST:=$(patsubst $(BASEPATH_TEST)$(PATH_PACKAGE)%.java,$(BASEPATH_CLASS)$(PATH_PACKAGE)%.class,$(FILES_TEST))
 MAIN_CLASS:=$(call PathToClass,$(PATH_PACKAGE))BowlingScore
+CLASSES_TEST:=$(call PathToClass,$(patsubst $(BASEPATH_CLASS)%.class,%,$(CLASSFILES_TEST)))
 LIB_JUNIT:=$(JUNIT_HOME)/junit.jar
+LIB_HAMCREST:=$(HAMCREST_HOME)/org.hamcrest.core_1.3.0.v201303031735.jar
 
 .PHONY: all
 all: build run test
@@ -22,7 +24,7 @@ run: build
 
 .PHONY: test
 test: build_all
-	echo TEST
+	java -cp $(BASEPATH_CLASS):$(LIB_JUNIT):$(LIB_HAMCREST) org.junit.runner.JUnitCore $(CLASSES_TEST)
 
 .PHONY: build_all
 build_all: $(CLASSFILES) $(CLASSFILES_TEST) | $(BASEPATH_CLASS)
