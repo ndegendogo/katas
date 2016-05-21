@@ -1,4 +1,4 @@
-include DefaultUserConfig.mak
+include $(or $(wildcard UserConfig.mak),DefaultUserConfig.mak)
 
 BASEPATH_SOURCE:=src/main/java/
 BASEPATH_TEST:=src/test/java/
