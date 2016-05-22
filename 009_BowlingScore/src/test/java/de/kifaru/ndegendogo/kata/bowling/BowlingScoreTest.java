@@ -12,7 +12,7 @@ import org.junit.runners.Parameterized.Parameters;
 
 @RunWith(Parameterized.class)
 public class BowlingScoreTest {
-    @Parameters
+    @Parameters(name="{index}: rolls = {0}: score = {1}")
     public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][]{
                 {new Integer[][]{{0}}, new Integer[]{0}},
