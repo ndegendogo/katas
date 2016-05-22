@@ -7,7 +7,9 @@ public class BowlingScore {
     }
 
     public static Integer[] calculateScores(final Integer[][] rolls) {
-        return new Integer[]{rolls[0][0]};
+        Integer score = rolls[0][0];
+        Integer[] result = new Integer[]{score};
+        return result;
     }
 
 }
