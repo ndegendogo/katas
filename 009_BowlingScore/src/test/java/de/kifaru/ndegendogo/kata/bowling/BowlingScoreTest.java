@@ -38,8 +38,12 @@ public class BowlingScoreTest {
     }
 
     private static Object[] constructTestcase(final Integer[][] rolls, final Integer[] expectedScores) {
-        final String message = "rolls = " + Arrays.toString(rolls) + ": scores = " + Arrays.toString(expectedScores);
+        final String message = "rolls = " + toString(rolls) + ": scores = " + Arrays.toString(expectedScores);
         Object[] testcase1 = new Object[]{rolls, expectedScores, message};
         return testcase1;
+    }
+
+    private static String toString(final Integer[][] rolls) {
+        return Arrays.toString(rolls);
     }
 }
