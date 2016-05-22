@@ -7,6 +7,6 @@ public class BowlingScore {
     }
 
     static int calculateScore(final Integer[] rolls) {
-        return 0;
+        return rolls[0];
     }
 }
