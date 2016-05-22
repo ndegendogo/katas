@@ -47,8 +47,8 @@ public class BowlingScoreTest {
         });
     }
 
-    private static Object[] constructSingleTestcase(final Integer[][] input1, final Integer[] output1) {
-        Object[] testcase1 = new Object[]{input1, output1};
+    private static Object[] constructSingleTestcase(final Integer[][] rolls, final Integer[] expectedScores) {
+        Object[] testcase1 = new Object[]{rolls, expectedScores};
         return testcase1;
     }
 }
