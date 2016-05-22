@@ -22,32 +22,32 @@ public class BowlingScoreTest {
         });
     }
 
-    private Integer[][] rolls;
+    private Integer[][] game;
     private Integer[] expectedScores;
     private String message;
 
-    public BowlingScoreTest(final Integer[][] rolls, final Integer[] expectedScores, final String message) {
-        this.rolls = rolls;
+    public BowlingScoreTest(final Integer[][] game, final Integer[] expectedScores, final String message) {
+        this.game = game;
         this.expectedScores = expectedScores;
         this.message = message;
     }
 
     @Test
     public void testCalculateScores() {
-        final Integer[] actualScores = BowlingScore.calculateScores(rolls);
+        final Integer[] actualScores = BowlingScore.calculateScores(game);
         assertArrayEquals(expectedScores, actualScores);
     }
 
-    private static Object[] constructTestcase(final Integer[][] rolls, final Integer[] expectedScores) {
-        final String message = "rolls = " + toString(rolls) + ", expected scores = " + Arrays.toString(expectedScores);
-        Object[] testcase1 = new Object[]{rolls, expectedScores, message};
+    private static Object[] constructTestcase(final Integer[][] game, final Integer[] expectedScores) {
+        final String message = "game = " + toString(game) + ", expected scores = " + Arrays.toString(expectedScores);
+        Object[] testcase1 = new Object[]{game, expectedScores, message};
         return testcase1;
     }
 
-    private static String toString(final Integer[][] rolls) {
+    private static String toString(final Integer[][] game) {
         StringBuilder result = new StringBuilder();
         result.append("[");
-        for (Integer[] frame: rolls) {
+        for (Integer[] frame: game) {
             result.append(Arrays.toString(frame));
         }
         result.append("]");
