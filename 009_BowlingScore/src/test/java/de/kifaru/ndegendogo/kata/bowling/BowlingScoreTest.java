@@ -15,45 +15,29 @@ public class BowlingScoreTest {
     @Parameters(name="testcase {index}: {2}")
     public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][]{
-                constructTestcase(new Integer[][]{}, new Integer[]{}),
-                constructTestcase(new Integer[][]{{0}}, new Integer[]{0}),
-                constructTestcase(new Integer[][]{{1}}, new Integer[]{1}),
-                constructTestcase(new Integer[][]{{1, 2}}, new Integer[]{3}),
-                constructTestcase(new Integer[][]{{1, 2}, {3}}, new Integer[]{3, 6}),
-                constructTestcase(new Integer[][]{{1, 2}, {3, 4}}, new Integer[]{3, 10}),
-//                constructTestcase(new Integer[][]{{1, 9}, {3}}, new Integer[]{13, 16}),
+                constructTestcase(new Integer[]{0}, 0),
         });
     }
 
-    private Integer[][] game;
-    private Integer[] expectedScores;
+    private Integer[] rolls;
+    private Integer expectedScore;
     private String message;
 
-    public BowlingScoreTest(final Integer[][] game, final Integer[] expectedScores, final String message) {
-        this.game = game;
-        this.expectedScores = expectedScores;
+    public BowlingScoreTest(final Integer[] rolls, final Integer expectedScore, final String message) {
+        this.rolls = rolls;
+        this.expectedScore = expectedScore;
         this.message = message;
     }
 
     @Test
-    public void testCalculateScores() {
-        final Integer[] actualScores = BowlingScore.calculateScores(game);
-        assertArrayEquals(expectedScores, actualScores);
+    public void testCalculateScore() {
+        final Integer actualScore = 0;
+        assertEquals(expectedScore, actualScore);
     }
 
-    private static Object[] constructTestcase(final Integer[][] game, final Integer[] expectedScores) {
-        final String message = "game = " + toString(game) + ", expected scores = " + Arrays.toString(expectedScores);
-        Object[] testcase1 = new Object[]{game, expectedScores, message};
+    private static Object[] constructTestcase(final Integer[] rolls, final Integer expectedScore) {
+        final String message = "rolls = " + Arrays.toString(rolls) + ", expected score = " + expectedScore;
+        Object[] testcase1 = new Object[]{rolls, expectedScore, message};
         return testcase1;
-    }
-
-    private static String toString(final Integer[][] game) {
-        StringBuilder result = new StringBuilder();
-        result.append("[");
-        for (Integer[] frame: game) {
-            result.append(Arrays.toString(frame));
-        }
-        result.append("]");
-        return result.toString();
     }
 }
