@@ -6,19 +6,19 @@ public class BowlingScore {
         System.out.println("Hello World!");
     }
 
-    public static Integer[] calculateScores(final Integer[][] rolls) {
-        Integer[] result = constructResultsArray(rolls);
+    public static Integer[] calculateScores(final Integer[][] game) {
+        Integer[] result = constructResultsArray(game);
         int score = 0;
-        for (int frameNumber = 0; frameNumber < rolls.length; frameNumber ++) {
-            final Integer[] frame = rolls[frameNumber];
+        for (int frameNumber = 0; frameNumber < game.length; frameNumber ++) {
+            final Integer[] frame = game[frameNumber];
             score += calcScoreForFrame(frame);
             result[frameNumber] = score;
         }
         return result;
     }
 
-    private static Integer[] constructResultsArray(final Integer[][] rolls) {
-        Integer[] result = new Integer[rolls.length];
+    private static Integer[] constructResultsArray(final Integer[][] game) {
+        Integer[] result = new Integer[game.length];
         return result;
     }
 
