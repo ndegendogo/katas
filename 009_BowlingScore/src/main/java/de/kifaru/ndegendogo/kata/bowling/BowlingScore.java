@@ -36,11 +36,15 @@ public class BowlingScore {
         int maxIndex = rolls.length;
         List<Integer> slice = new ArrayList<Integer>();
         for (int index = baseIndex; index < baseIndex + sliceLength; index ++) {
-            if (index >= minIndex && index < maxIndex) {
+            if (isInRange(index, minIndex, maxIndex)) {
                 slice.add(rolls[index]);
             }
         }
         return slice;
+    }
+
+    private static boolean isInRange(int index, int minIndex, int maxIndex) {
+        return index >= minIndex && index < maxIndex;
     }
 
     private static boolean isStrike(final Integer[] rolls, int index) {
