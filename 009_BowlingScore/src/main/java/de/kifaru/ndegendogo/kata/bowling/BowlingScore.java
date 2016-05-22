@@ -19,6 +19,10 @@ public class BowlingScore {
         return score;
     }
 
+    private static boolean isStrike(final Integer[] rolls, int index) {
+        return rolls[index] == 10;
+    }
+
     private static int calculateBonusForStrike(final Integer[] rolls, int index) {
         int sliceLength = 2;
         int baseIndex = index + 1;
@@ -45,9 +49,5 @@ public class BowlingScore {
 
     private static boolean isInRange(int index, int minIndex, int maxIndex) {
         return index >= minIndex && index < maxIndex;
-    }
-
-    private static boolean isStrike(final Integer[] rolls, int index) {
-        return rolls[index] == 10;
     }
 }
