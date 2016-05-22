@@ -14,15 +14,9 @@ import org.junit.runners.Parameterized.Parameters;
 public class BowlingScoreTest {
     @Parameters(name="{index}: {2}")
     public static Collection<Object[]> data() {
-        final Integer[][] input1 = new Integer[][]{{0}};
-        final Integer[] output1 = new Integer[]{0};
-        Object[] testcase1 = constructTestcase(input1, output1);
-        final Integer[][] input2 = new Integer[][]{{1}};
-        final Integer[] output2 = new Integer[]{1};
-        Object[] testcase2 = constructTestcase(input2, output2);
         return Arrays.asList(new Object[][]{
-                testcase1,
-                testcase2,
+                constructTestcase(new Integer[][]{{0}}, new Integer[]{0}),
+                constructTestcase(new Integer[][]{{1}}, new Integer[]{1}),
 //                {new Integer[][]{{1, 2}}, new Integer[]{3}},
         });
     }
