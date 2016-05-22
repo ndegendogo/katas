@@ -15,7 +15,7 @@ public class BowlingScoreTest {
     @Parameters(name="testcase {index}: {2}")
     public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][]{
-                constructTestcase(new Integer[][]{{}}, new Integer[]{}),
+                constructTestcase(new Integer[][]{}, new Integer[]{}),
                 constructTestcase(new Integer[][]{{0}}, new Integer[]{0}),
                 constructTestcase(new Integer[][]{{1}}, new Integer[]{1}),
                 constructTestcase(new Integer[][]{{1, 2}}, new Integer[]{3}),
