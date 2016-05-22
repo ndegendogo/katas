@@ -43,6 +43,6 @@ public class SplitFramesTest {
     }
 
     static Object[] constructTestcase(Integer[] rolls, Integer[][] expectedFrames) {
-        return null;
+        return new Object[]{rolls, expectedFrames, null};
     }
 }
