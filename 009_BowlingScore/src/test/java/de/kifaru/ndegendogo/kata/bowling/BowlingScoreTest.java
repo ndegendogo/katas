@@ -17,7 +17,7 @@ public class BowlingScoreTest {
         return Arrays.asList(new Object[][]{
                 {new Integer[][]{{0}}, new Integer[]{0}},
                 {new Integer[][]{{1}}, new Integer[]{1}},
-                {new Integer[][]{{1, 2}}, new Integer[]{3}},
+//                {new Integer[][]{{1, 2}}, new Integer[]{3}},
         });
     }
 
