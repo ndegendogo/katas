@@ -26,10 +26,7 @@ public class BowlingScore {
     private static int calculateBonusForStrike(final Integer[] rolls, int index) {
         List<Integer> slice = makeSlice(rolls, index + 1, 2);
 
-        int bonus = 0;
-        for (Integer element: slice) {
-            bonus += element;
-        }
+        int bonus = addElements(slice);
         return bonus;
     }
 
@@ -45,5 +42,13 @@ public class BowlingScore {
 
     private static boolean isInRange(int index, int minIndex, int maxIndex) {
         return index >= minIndex && index < maxIndex;
+    }
+
+    private static int addElements(List<Integer> slice) {
+        int bonus = 0;
+        for (Integer element: slice) {
+            bonus += element;
+        }
+        return bonus;
     }
 }
