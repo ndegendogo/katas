@@ -14,11 +14,7 @@ import org.junit.runners.Parameterized.Parameters;
 public class BowlingScoreTest {
     @Parameters(name="{index}: {2}")
     public static Collection<Object[]> data() {
-        return Arrays.asList(new Object[][]{
-                {new Integer[][]{{0}}, new Integer[]{0}},
-                {new Integer[][]{{1}}, new Integer[]{1}},
-//                {new Integer[][]{{1, 2}}, new Integer[]{3}},
-        });
+        return constructTestCases();
     }
 
     private Integer[][] rolls;
@@ -35,5 +31,13 @@ public class BowlingScoreTest {
     public void testCalculateScores() {
         final Integer[] actualScores = BowlingScore.calculateScores(rolls);
         assertArrayEquals(expectedScores, actualScores);
+    }
+
+    private static Collection<Object[]> constructTestCases() {
+        return Arrays.asList(new Object[][]{
+                {new Integer[][]{{0}}, new Integer[]{0}},
+                {new Integer[][]{{1}}, new Integer[]{1}},
+//                {new Integer[][]{{1, 2}}, new Integer[]{3}},
+        });
     }
 }
