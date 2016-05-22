@@ -10,12 +10,12 @@ public class BowlingScore {
         Integer[] result = constructResultsArray();
         int frameNumber = 0;
         final Integer[] frame = rolls[frameNumber];
-        Integer score = calcScoreForFrame(frameNumber, rolls, frame);
+        Integer score = calcScoreForFrame(frame);
         result[frameNumber] = score;
         return result;
     }
 
-    private static Integer calcScoreForFrame(final int frameNumber, final Integer[][] rolls, Integer[] frame) {
+    private static Integer calcScoreForFrame(Integer[] frame) {
         Integer score = 0;
         for (Integer pins: frame) {
             score += pins;
