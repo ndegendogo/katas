@@ -16,6 +16,7 @@ public class BowlingScoreTest {
     public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][]{
                 constructTestcase(new Integer[]{0}, 0),
+                constructTestcase(new Integer[]{1}, 1),
         });
     }
 
