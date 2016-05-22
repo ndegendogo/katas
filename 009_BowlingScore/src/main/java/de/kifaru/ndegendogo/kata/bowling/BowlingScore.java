@@ -36,8 +36,9 @@ public class BowlingScore {
         int maxIndex = rolls.length;
         List<Integer> slice = new ArrayList<Integer>();
         for (int i = 0; i < sliceLength; i ++) {
-            if (baseIndex + i >= minIndex && baseIndex + i < maxIndex) {
-                slice.add(rolls[baseIndex + i]);
+            int index = baseIndex + i;
+            if (index >= minIndex && index < maxIndex) {
+                slice.add(rolls[index]);
             }
         }
         return slice;
