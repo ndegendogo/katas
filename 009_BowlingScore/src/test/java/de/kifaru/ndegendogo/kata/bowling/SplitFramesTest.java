@@ -13,7 +13,12 @@ import org.junit.runners.Parameterized.Parameters;
 public class SplitFramesTest {
     @Parameters(name = "testcase {index}:")
     public static Iterable<Object[]> data() {
+        Integer[] rolls = new Integer[] {0};
+        Integer[] frame1 = new Integer[] {0};
+        Integer[][] expectedFrames = new Integer[][]{frame1};
+        Object[] testcase1 = constructTestcase(rolls, expectedFrames);
         return Arrays.asList(new Object[][] {
+            testcase1,
         });
     }
 
@@ -34,6 +39,10 @@ public class SplitFramesTest {
     }
 
     Integer[][] splitToFrames(Integer[] rolls) {
+        return null;
+    }
+
+    static Object[] constructTestcase(Integer[] rolls, Integer[][] expectedFrames) {
         return null;
     }
 }
