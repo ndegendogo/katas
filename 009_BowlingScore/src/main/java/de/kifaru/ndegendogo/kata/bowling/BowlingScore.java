@@ -17,7 +17,13 @@ public class BowlingScore {
     }
 
     private static int calculateBonusForStrike(final Integer[] rolls, int index) {
-        return rolls[index +1] + rolls[index +2];
+        if (index + 2 < rolls.length) {
+            return rolls[index +1] + rolls[index +2];
+        } else if (index + 1 < rolls.length) {
+            return rolls[index +1];
+        } else {
+            return 0;
+        }
     }
 
     private static boolean isStrike(final Integer[] rolls, int index) {
