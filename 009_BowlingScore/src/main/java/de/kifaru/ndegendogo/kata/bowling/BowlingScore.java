@@ -25,9 +25,7 @@ public class BowlingScore {
 
     private static int calculateBonusForStrike(final Integer[] rolls, int index) {
         final List<Integer> slice = makeSlice(rolls, index + 1, 2);
-
-        final int bonus = addElements(slice);
-        return bonus;
+        return addElements(slice);
     }
 
     private static List<Integer> makeSlice(final Integer[] array, int baseIndex, int sliceLength) {
