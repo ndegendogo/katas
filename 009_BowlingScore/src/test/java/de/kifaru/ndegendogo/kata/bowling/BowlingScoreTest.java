@@ -31,10 +31,10 @@ public class BowlingScoreTest {
     private Integer[] expectedScores;
     private String message;
 
-    public BowlingScoreTest(final Integer[][] rolls, final Integer[] expectedScores) {
+    public BowlingScoreTest(final Integer[][] rolls, final Integer[] expectedScores, final String message) {
         this.rolls = rolls;
         this.expectedScores = expectedScores;
-        this.message = "rolls = " + Arrays.toString(rolls) + ": expected score = " + Arrays.toString(expectedScores);
+        this.message = message;
     }
 
     @Test
@@ -44,7 +44,8 @@ public class BowlingScoreTest {
     }
 
     private static Object[] constructTestcase(final Integer[][] rolls, final Integer[] expectedScores) {
-        Object[] testcase1 = new Object[]{rolls, expectedScores};
+        final String message = "rolls = " + Arrays.toString(rolls) + ": scores = " + Arrays.toString(expectedScores);
+        Object[] testcase1 = new Object[]{rolls, expectedScores, message};
         return testcase1;
     }
 }
