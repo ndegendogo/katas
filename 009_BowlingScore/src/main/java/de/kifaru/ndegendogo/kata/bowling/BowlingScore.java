@@ -11,14 +11,13 @@ public class BowlingScore {
         final Integer[] baseScores = new Integer[frameCount];
         for (int frameIndex = 0; frameIndex < frameCount; frameIndex ++) {
             final Integer[] frame = game[frameIndex];
-            final int score = baseScoreForFrame(frame);
-            baseScores[frameIndex] = score;
+            baseScores[frameIndex] = baseScoreForFrame(frame);
         }
+
         final Integer[] totalScores = new Integer[frameCount];
         int totalScore = 0;
         for (int frameIndex = 0; frameIndex < frameCount; frameIndex ++) {
-            final int score = baseScores[frameIndex];
-            totalScore += score;
+            totalScore += baseScores[frameIndex];
             totalScores[frameIndex] = totalScore;
         }
         return totalScores;
