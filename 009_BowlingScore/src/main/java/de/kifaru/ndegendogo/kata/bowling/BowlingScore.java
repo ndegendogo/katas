@@ -10,9 +10,8 @@ public class BowlingScore {
         int score = 0;
         for (int index = 0; index < rolls.length; index ++) {
             score += rolls[index];
-            if (isStrike(rolls, index)) {
-                score += calculateBonusForStrike(rolls, index);
-            }
+            final int bonus = isStrike(rolls, index) ? calculateBonusForStrike(rolls, index) : 0;
+            score += bonus;
         }
         return score;
     }
