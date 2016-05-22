@@ -22,6 +22,16 @@ public class BowlingScore {
     private static int calculateBonusForStrike(final Integer[] rolls, int index) {
         int sliceLength = 2;
         int baseIndex = index + 1;
+        List<Integer> slice = makeSlice(rolls, baseIndex, sliceLength);
+
+        int bonus = 0;
+        for (Integer element: slice) {
+            bonus += element;
+        }
+        return bonus;
+    }
+
+    private static List<Integer> makeSlice(final Integer[] rolls, int baseIndex, int sliceLength) {
         int minIndex = 0;
         int maxIndex = rolls.length;
         List<Integer> slice = new ArrayList<Integer>();
@@ -30,12 +40,7 @@ public class BowlingScore {
                 slice.add(rolls[baseIndex + i]);
             }
         }
-
-        int bonus = 0;
-        for (Integer element: slice) {
-            bonus += element;
-        }
-        return bonus;
+        return slice;
     }
 
     private static boolean isStrike(final Integer[] rolls, int index) {
