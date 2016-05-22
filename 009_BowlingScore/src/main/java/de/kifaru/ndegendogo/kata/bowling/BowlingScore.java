@@ -7,23 +7,19 @@ public class BowlingScore {
     }
 
     public static Integer[] calculateScores(final Integer[][] game) {
-        Integer[] result = constructResultsArray(game);
+        final int frameCount = game.length;
+        final Integer[] totalScores = new Integer[frameCount];
         int totalScore = 0;
-        for (int frameNumber = 0; frameNumber < game.length; frameNumber ++) {
-            final Integer[] frame = game[frameNumber];
-            final int score = calcScoreForFrame(frame);
+        for (int frameIndex = 0; frameIndex < frameCount; frameIndex ++) {
+            final Integer[] frame = game[frameIndex];
+            final int score = baseScoreForFrame(frame);
             totalScore += score;
-            result[frameNumber] = totalScore;
+            totalScores[frameIndex] = totalScore;
         }
-        return result;
+        return totalScores;
     }
 
-    private static Integer[] constructResultsArray(final Integer[][] game) {
-        Integer[] result = new Integer[game.length];
-        return result;
-    }
-
-    private static int calcScoreForFrame(final Integer[] frame) {
+    private static int baseScoreForFrame(final Integer[] frame) {
         int score = 0;
         for (int pins: frame) {
             score += pins;
