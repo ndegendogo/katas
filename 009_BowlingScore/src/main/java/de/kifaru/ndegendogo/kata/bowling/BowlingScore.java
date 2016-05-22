@@ -11,11 +11,14 @@ public class BowlingScore {
         for (int index = 0; index < rolls.length; index ++) {
             score += rolls[index];
             if (isStrike(rolls, index)) {
-                score += rolls[index +1];
-                score += rolls[index +2];
+                score += calculateBonusForStrike(rolls, index);
             }
         }
         return score;
+    }
+
+    private static int calculateBonusForStrike(final Integer[] rolls, int index) {
+        return rolls[index +1] + rolls[index +2];
     }
 
     private static boolean isStrike(final Integer[] rolls, int index) {
