@@ -8,11 +8,12 @@ public class BowlingScore {
 
     public static Integer[] calculateScores(final Integer[][] game) {
         Integer[] result = constructResultsArray(game);
-        int score = 0;
+        int totalScore = 0;
         for (int frameNumber = 0; frameNumber < game.length; frameNumber ++) {
             final Integer[] frame = game[frameNumber];
-            score += calcScoreForFrame(frame);
-            result[frameNumber] = score;
+            final int score = calcScoreForFrame(frame);
+            totalScore += score;
+            result[frameNumber] = totalScore;
         }
         return result;
     }
