@@ -34,9 +34,11 @@ public class BowlingScoreTest {
     }
 
     private static Collection<Object[]> constructTestCases() {
+        Object[] testcase1 = new Object[]{new Integer[][]{{0}}, new Integer[]{0}};
+        Object[] testcase2 = new Object[]{new Integer[][]{{1}}, new Integer[]{1}};
         return Arrays.asList(new Object[][]{
-                {new Integer[][]{{0}}, new Integer[]{0}},
-                {new Integer[][]{{1}}, new Integer[]{1}},
+                testcase1,
+                testcase2,
 //                {new Integer[][]{{1, 2}}, new Integer[]{3}},
         });
     }
