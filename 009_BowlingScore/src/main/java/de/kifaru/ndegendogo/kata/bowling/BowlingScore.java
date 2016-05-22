@@ -15,7 +15,10 @@ public class BowlingScore {
     }
 
     private static Integer calcScoreForFrame(final int frame, final Integer[][] rolls) {
-        Integer score = rolls[frame][0];
+        Integer score = 0;
+        for (Integer pins: rolls[frame]) {
+            score += pins;
+        }
         return score;
     }
 
