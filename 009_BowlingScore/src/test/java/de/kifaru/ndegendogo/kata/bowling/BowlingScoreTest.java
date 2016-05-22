@@ -12,7 +12,7 @@ import org.junit.runners.Parameterized.Parameters;
 
 @RunWith(Parameterized.class)
 public class BowlingScoreTest {
-    @Parameters(name="{index}: {2}")
+    @Parameters(name="testcase {index}: {2}")
     public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][]{
                 constructTestcase(new Integer[][]{{0}}, new Integer[]{0}),
@@ -38,12 +38,18 @@ public class BowlingScoreTest {
     }
 
     private static Object[] constructTestcase(final Integer[][] rolls, final Integer[] expectedScores) {
-        final String message = "rolls = " + toString(rolls) + ": scores = " + Arrays.toString(expectedScores);
+        final String message = "rolls = " + toString(rolls) + ", expected scores = " + Arrays.toString(expectedScores);
         Object[] testcase1 = new Object[]{rolls, expectedScores, message};
         return testcase1;
     }
 
     private static String toString(final Integer[][] rolls) {
-        return Arrays.toString(rolls);
+        StringBuilder result = new StringBuilder();
+        result.append("[");
+        for (Integer[] frame: rolls) {
+            result.append(Arrays.toString(frame));
+        }
+        result.append("]");
+        return result.toString();
     }
 }
