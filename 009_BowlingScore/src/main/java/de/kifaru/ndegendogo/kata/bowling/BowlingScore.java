@@ -8,8 +8,9 @@ public class BowlingScore {
 
     public static Integer[] calculateScores(final Integer[][] rolls) {
         Integer[] result = constructResultsArray();
-        Integer score = rolls[0][0];
-        result[0] = score;
+        int frame = 0;
+        Integer score = rolls[frame][0];
+        result[frame] = score;
         return result;
     }
 
