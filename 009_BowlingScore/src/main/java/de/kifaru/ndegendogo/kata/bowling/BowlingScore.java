@@ -31,13 +31,13 @@ public class BowlingScore {
         return bonus;
     }
 
-    private static List<Integer> makeSlice(final Integer[] rolls, int baseIndex, int sliceLength) {
+    private static List<Integer> makeSlice(final Integer[] array, int baseIndex, int sliceLength) {
         int minIndex = 0;
-        int maxIndex = rolls.length;
+        int maxIndex = array.length;
         List<Integer> slice = new ArrayList<Integer>();
         for (int index = baseIndex; index < baseIndex + sliceLength; index ++) {
             if (isInRange(index, minIndex, maxIndex)) {
-                slice.add(rolls[index]);
+                slice.add(array[index]);
             }
         }
         return slice;
