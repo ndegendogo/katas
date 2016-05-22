@@ -1,5 +1,8 @@
 package de.kifaru.ndegendogo.kata.bowling;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BowlingScore {
 
     public static void main(String... args) {
@@ -17,14 +20,20 @@ public class BowlingScore {
     }
 
     private static int calculateBonusForStrike(final Integer[] rolls, int index) {
-        int bonus = 0;
-        index ++;
-        if (index < rolls.length) { 
-            bonus += rolls[index];
+        int sliceLength = 2;
+        int baseIndex = index + 1;
+        int minIndex = 0;
+        int maxIndex = rolls.length;
+        List<Integer> slice = new ArrayList<Integer>();
+        for (int i = 0; i < sliceLength; i ++) {
+            if (baseIndex + i >= minIndex && baseIndex + i < maxIndex) {
+                slice.add(rolls[baseIndex + i]);
+            }
         }
-        index ++;
-        if (index < rolls.length) { 
-            bonus += rolls[index];
+
+        int bonus = 0;
+        for (Integer element: slice) {
+            bonus += element;
         }
         return bonus;
     }
