@@ -15,16 +15,16 @@ public class BowlingScore {
         return result;
     }
 
+    private static Integer[] constructResultsArray() {
+        Integer[] result = new Integer[1];
+        return result;
+    }
+
     private static Integer calcScoreForFrame(Integer[] frame) {
         Integer score = 0;
         for (Integer pins: frame) {
             score += pins;
         }
         return score;
-    }
-
-    private static Integer[] constructResultsArray() {
-        Integer[] result = new Integer[1];
-        return result;
     }
 }
