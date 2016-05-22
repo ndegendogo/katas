@@ -18,11 +18,13 @@ public class BowlingScore {
 
     private static int calculateBonusForStrike(final Integer[] rolls, int index) {
         int bonus = 0;
-        if (index + 1 < rolls.length) {
-            bonus += rolls[index +1];
+        index ++;
+        if (index < rolls.length) { 
+            bonus += rolls[index];
         }
-        if (index + 2 < rolls.length) {
-            bonus += rolls[index +2];
+        index ++;
+        if (index < rolls.length) { 
+            bonus += rolls[index];
         }
         return bonus;
     }
