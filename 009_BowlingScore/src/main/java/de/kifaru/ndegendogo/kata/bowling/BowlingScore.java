@@ -7,7 +7,7 @@ public class BowlingScore {
     }
 
     public static Integer[] calculateScores(final Integer[][] rolls) {
-        Integer[] result = constructResultsArray();
+        Integer[] result = constructResultsArray(rolls);
         int frameNumber = 0;
         final Integer[] frame = rolls[frameNumber];
         Integer score = calcScoreForFrame(frame);
@@ -15,8 +15,8 @@ public class BowlingScore {
         return result;
     }
 
-    private static Integer[] constructResultsArray() {
-        Integer[] result = new Integer[1];
+    private static Integer[] constructResultsArray(final Integer[][] rolls) {
+        Integer[] result = new Integer[rolls.length];
         return result;
     }
 
