@@ -31,7 +31,7 @@ public class BowlingScoreTest {
 
     @Test
     public void testCalculateScore() {
-        final Integer actualScore = 0;
+        final Integer actualScore = 1;
         assertEquals(expectedScore, actualScore);
     }
 
