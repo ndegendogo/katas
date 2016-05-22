@@ -8,8 +8,8 @@ public class BowlingScore {
 
     static int calculateScore(final Integer[] rolls) {
         int score = 0;
-        for (final Integer roll : rolls) {
-            score += roll;
+        for (int index = 0; index < rolls.length; index ++) {
+            score += rolls[index];
         }
         return score;
     }
