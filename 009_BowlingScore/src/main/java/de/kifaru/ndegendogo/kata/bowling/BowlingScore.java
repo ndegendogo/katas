@@ -7,6 +7,10 @@ public class BowlingScore {
     }
 
     static int calculateScore(final Integer[] rolls) {
-        return rolls[0];
+        int score = 0;
+        for (final Integer roll : rolls) {
+            score += roll;
+        }
+        return score;
     }
 }
