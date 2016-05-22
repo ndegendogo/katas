@@ -19,19 +19,19 @@ public class BowlingScore {
         return score;
     }
 
-    private static boolean isStrike(final Integer[] rolls, int index) {
+    private static boolean isStrike(final Integer[] rolls, final int index) {
         return rolls[index] == 10;
     }
 
     private static int calculateBonusForStrike(final Integer[] rolls, int index) {
-        List<Integer> slice = makeSlice(rolls, index + 1, 2);
+        final List<Integer> slice = makeSlice(rolls, index + 1, 2);
 
-        int bonus = addElements(slice);
+        final int bonus = addElements(slice);
         return bonus;
     }
 
     private static List<Integer> makeSlice(final Integer[] array, int baseIndex, int sliceLength) {
-        List<Integer> slice = new ArrayList<Integer>();
+        final List<Integer> slice = new ArrayList<Integer>();
         for (int index = baseIndex; index < baseIndex + sliceLength; index ++) {
             if (isInRange(index, 0, array.length)) {
                 slice.add(array[index]);
@@ -40,11 +40,11 @@ public class BowlingScore {
         return slice;
     }
 
-    private static boolean isInRange(int index, int minIndex, int maxIndex) {
+    private static boolean isInRange(final int index, final int minIndex, final int maxIndex) {
         return index >= minIndex && index < maxIndex;
     }
 
-    private static int addElements(List<Integer> slice) {
+    private static int addElements(final List<Integer> slice) {
         int bonus = 0;
         for (Integer element: slice) {
             bonus += element;
