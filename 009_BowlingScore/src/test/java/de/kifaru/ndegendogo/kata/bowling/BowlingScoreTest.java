@@ -16,10 +16,10 @@ public class BowlingScoreTest {
     public static Collection<Object[]> data() {
         final Integer[][] input1 = new Integer[][]{{0}};
         final Integer[] output1 = new Integer[]{0};
-        Object[] testcase1 = constructSingleTestcase(input1, output1);
+        Object[] testcase1 = constructTestcase(input1, output1);
         final Integer[][] input2 = new Integer[][]{{1}};
         final Integer[] output2 = new Integer[]{1};
-        Object[] testcase2 = constructSingleTestcase(input2, output2);
+        Object[] testcase2 = constructTestcase(input2, output2);
         return Arrays.asList(new Object[][]{
                 testcase1,
                 testcase2,
@@ -43,7 +43,7 @@ public class BowlingScoreTest {
         assertArrayEquals(expectedScores, actualScores);
     }
 
-    private static Object[] constructSingleTestcase(final Integer[][] rolls, final Integer[] expectedScores) {
+    private static Object[] constructTestcase(final Integer[][] rolls, final Integer[] expectedScores) {
         Object[] testcase1 = new Object[]{rolls, expectedScores};
         return testcase1;
     }
