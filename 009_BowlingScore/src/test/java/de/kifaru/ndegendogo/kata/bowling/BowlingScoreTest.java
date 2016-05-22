@@ -22,6 +22,7 @@ public class BowlingScoreTest {
                 constructTestcase(new Integer[]{10, 2, 5}, 24),
                 constructTestcase(new Integer[]{10, 2, }, 14),
                 constructTestcase(new Integer[]{2, 7, 10, }, 19),
+                constructTestcase(new Integer[]{2, 8, 5, }, 20),
         });
     }
 
