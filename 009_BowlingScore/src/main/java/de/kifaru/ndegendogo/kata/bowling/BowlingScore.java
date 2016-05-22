@@ -20,7 +20,7 @@ public class BowlingScore {
         return result;
     }
 
-    private static Integer calcScoreForFrame(Integer[] frame) {
+    private static Integer calcScoreForFrame(final Integer[] frame) {
         Integer score = 0;
         for (Integer pins: frame) {
             score += pins;
