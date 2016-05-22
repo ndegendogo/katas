@@ -8,7 +8,7 @@ public class BowlingScore {
 
     public static Integer[] calculateScores(final Integer[][] rolls) {
         Integer[] result = constructResultsArray(rolls);
-        Integer score = 0;
+        int score = 0;
         for (int frameNumber = 0; frameNumber < rolls.length; frameNumber ++) {
             final Integer[] frame = rolls[frameNumber];
             score += calcScoreForFrame(frame);
@@ -22,9 +22,9 @@ public class BowlingScore {
         return result;
     }
 
-    private static Integer calcScoreForFrame(final Integer[] frame) {
-        Integer score = 0;
-        for (Integer pins: frame) {
+    private static int calcScoreForFrame(final Integer[] frame) {
+        int score = 0;
+        for (int pins: frame) {
             score += pins;
         }
         return score;
