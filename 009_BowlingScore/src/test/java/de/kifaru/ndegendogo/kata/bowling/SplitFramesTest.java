@@ -11,7 +11,7 @@ import org.junit.runners.Parameterized.Parameters;
 
 @RunWith(Parameterized.class)
 public class SplitFramesTest {
-    @Parameters(name = "testcase {index}:")
+    @Parameters(name = "testcase {index}: {2}")
     public static Iterable<Object[]> data() {
         Integer[] rolls = new Integer[] {0};
         Integer[] frame1 = new Integer[] {0};
@@ -43,6 +43,8 @@ public class SplitFramesTest {
     }
 
     static Object[] constructTestcase(Integer[] rolls, Integer[][] expectedFrames) {
-        return new Object[]{rolls, expectedFrames, null};
+        final StringBuilder builder = new StringBuilder();
+        builder.append("rolls = " + Arrays.toString(rolls) + ", expectedFrames = " + Arrays.toString(expectedFrames));
+        return new Object[]{rolls, expectedFrames, builder.toString()};
     }
 }
