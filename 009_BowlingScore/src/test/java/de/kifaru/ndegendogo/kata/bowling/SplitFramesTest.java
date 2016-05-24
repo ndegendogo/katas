@@ -48,7 +48,13 @@ public class SplitFramesTest {
         return new Object[]{rolls, expectedFrames, builder.toString()};
     }
 
-    private static String printFrames(Integer[][] expectedFrames) {
-        return Arrays.toString(expectedFrames);
+    private static String printFrames(final Integer[][] frames) {
+        final StringBuilder builder = new StringBuilder();
+        builder.append("[");
+        for (Integer[] frame : frames) {
+            builder.append(Arrays.toString(frame));
+        }
+        builder.append("]");
+        return builder.toString();
     }
 }
