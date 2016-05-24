@@ -2,7 +2,9 @@ package de.kifaru.ndegendogo.kata.bowling;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -40,6 +42,11 @@ public class SplitFramesTest {
 
     Integer[][] splitToFrames(Integer[] rolls) {
         return null;
+/*
+        ArrayList<Integer[]> frames = new ArrayList<Integer[]>();
+        frames.add(rolls);
+        return (Integer[][]) frames.toArray();
+*/
     }
 
     static Object[] constructTestcase(Integer[] rolls, Integer[][] expectedFrames) {
