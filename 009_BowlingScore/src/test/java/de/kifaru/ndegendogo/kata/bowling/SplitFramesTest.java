@@ -44,7 +44,8 @@ public class SplitFramesTest {
 
     static Object[] constructTestcase(Integer[] rolls, Integer[][] expectedFrames) {
         final StringBuilder builder = new StringBuilder();
-        builder.append("rolls = " + Arrays.toString(rolls) + ", expectedFrames = " + printFrames(expectedFrames));
+        String message = "rolls = " + Arrays.toString(rolls) + ", expectedFrames = " + printFrames(expectedFrames);
+        builder.append(message);
         return new Object[]{rolls, expectedFrames, builder.toString()};
     }
 
