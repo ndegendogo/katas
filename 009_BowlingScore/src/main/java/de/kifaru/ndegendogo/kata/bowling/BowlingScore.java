@@ -51,7 +51,7 @@ public class BowlingScore {
         return bonus;
     }
 
-    static List<List<Integer>> splitToFrames(Integer[] rolls) {
+    static List<List<Integer>> splitToFrames(final Integer[] rolls) {
         ArrayList<List<Integer>> frames = new ArrayList<List<Integer>>();
         frames.add(Arrays.asList(rolls));
         return (frames);
