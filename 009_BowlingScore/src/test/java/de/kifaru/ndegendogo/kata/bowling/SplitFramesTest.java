@@ -39,8 +39,8 @@ public class SplitFramesTest {
     @Test
     public void testSplitToFrames() {
         ArrayList<Integer[]> actualFrames = splitToFrames(rolls);
-        Matcher<ArrayList<Integer[]>> matcher = new IsEqual<ArrayList<Integer[]>>(expectedFrames);
-        assertThat(actualFrames, matcher);
+        assertEquals(actualFrames, expectedFrames);
+//        assertThat(actualFrames, IsEqual.equalTo(expectedFrames));
     }
 
     ArrayList<Integer[]> splitToFrames(Integer[] rolls) {
