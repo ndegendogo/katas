@@ -16,9 +16,14 @@ public class SplitFramesTest {
     @Parameters(name = "testcase {index}: {2}")
     public static Iterable<Object[]> data() {
         List<Object[]> result = new ArrayList<Object[]>();
-        result.add(constructTestcase(new Integer[] {0}, Arrays.asList(new Integer[] {0})));
-        result.add(constructTestcase(new Integer[] {1, 2}, Arrays.asList(new Integer[] {1, 2})));
+        result.add(constructTestcase(new Integer[] {0},
+                Arrays.asList(new Integer[] {0})));
+        result.add(constructTestcase(new Integer[] {1, 2},
+                Arrays.asList(new Integer[] {1, 2})));
         result.add(constructTestcase(new Integer[] {} ));
+        result.add(constructTestcase(new Integer[] {1, 2, 3, 4},
+                Arrays.asList(new Integer[] {1, 2}),
+                Arrays.asList(new Integer[] {3, 4})));
         return result;
     }
 
