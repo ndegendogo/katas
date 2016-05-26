@@ -37,14 +37,8 @@ public class SplitFramesTest {
 
     @Test
     public void testSplitToFrames() {
-        List<List<Integer>> actualFrames = splitToFrames(rolls);
+        List<List<Integer>> actualFrames = BowlingScore.splitToFrames(rolls);
         assertEquals(expectedFrames, actualFrames);
-    }
-
-    static List<List<Integer>> splitToFrames(Integer[] rolls) {
-        ArrayList<List<Integer>> frames = new ArrayList<List<Integer>>();
-        frames.add(Arrays.asList(rolls));
-        return (frames);
     }
 
     static Object[] constructTestcase(Integer[] rolls, List<List<Integer>> expectedFrames) {

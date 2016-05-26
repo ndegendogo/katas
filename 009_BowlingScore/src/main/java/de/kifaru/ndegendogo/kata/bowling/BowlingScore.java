@@ -1,6 +1,7 @@
 package de.kifaru.ndegendogo.kata.bowling;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class BowlingScore {
@@ -48,5 +49,11 @@ public class BowlingScore {
             bonus += element;
         }
         return bonus;
+    }
+
+    static List<List<Integer>> splitToFrames(Integer[] rolls) {
+        ArrayList<List<Integer>> frames = new ArrayList<List<Integer>>();
+        frames.add(Arrays.asList(rolls));
+        return (frames);
     }
 }
