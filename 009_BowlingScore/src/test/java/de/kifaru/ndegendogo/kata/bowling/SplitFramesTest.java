@@ -41,7 +41,7 @@ public class SplitFramesTest {
         assertEquals(expectedFrames, actualFrames);
     }
 
-    List<List<Integer>> splitToFrames(Integer[] rolls) {
+    static List<List<Integer>> splitToFrames(Integer[] rolls) {
         ArrayList<List<Integer>> frames = new ArrayList<List<Integer>>();
         frames.add(Arrays.asList(rolls));
         return (frames);
