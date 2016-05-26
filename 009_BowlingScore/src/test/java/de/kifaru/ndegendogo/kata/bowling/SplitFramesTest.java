@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.hamcrest.Matcher;
-import org.hamcrest.core.IsEqual;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -40,8 +38,7 @@ public class SplitFramesTest {
     @Test
     public void testSplitToFrames() {
         List<List<Integer>> actualFrames = splitToFrames(rolls);
-        assertEquals(actualFrames, actualFrames);
-//        assertThat(actualFrames, IsEqual.equalTo(expectedFrames));
+        assertEquals(expectedFrames, actualFrames);
     }
 
     List<List<Integer>> splitToFrames(Integer[] rolls) {
