@@ -40,16 +40,13 @@ public class SplitFramesTest {
     public void testSplitToFrames() {
         ArrayList<Integer[]> actualFrames = splitToFrames(rolls);
         Matcher<ArrayList<Integer[]>> matcher = new IsEqual<ArrayList<Integer[]>>(expectedFrames);
-        assertThat(actualFrames, matcher); //expectedFrames,
+        assertThat(actualFrames, matcher);
     }
 
     ArrayList<Integer[]> splitToFrames(Integer[] rolls) {
-        return null;
-/*
         ArrayList<Integer[]> frames = new ArrayList<Integer[]>();
         frames.add(rolls);
-        return (Integer[][]) frames.toArray();
-*/
+        return (frames);
     }
 
     static Object[] constructTestcase(Integer[] rolls, ArrayList<Integer[]> expectedFrames) {
