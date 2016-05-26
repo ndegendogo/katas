@@ -19,7 +19,7 @@ public class SplitFramesTest {
         List<Integer> frame1 = Arrays.asList(new Integer[] {0});
         ArrayList<List<Integer>> expectedFrames = new ArrayList<List<Integer>>();
         expectedFrames.add(frame1);
-        Object[] testcase1 = constructTestcase(rolls, frame1, expectedFrames);
+        Object[] testcase1 = constructTestcase(rolls, frame1);
         return Arrays.asList(new Object[][] {
             testcase1,
         });
@@ -41,7 +41,7 @@ public class SplitFramesTest {
         assertEquals(expectedFrames, actualFrames);
     }
 
-    static Object[] constructTestcase(Integer[] rolls, List<Integer> frame, List<List<Integer>> dummy) {
+    static Object[] constructTestcase(Integer[] rolls, List<Integer> frame) {
         ArrayList<List<Integer>> expectedFrames = new ArrayList<List<Integer>>();
         expectedFrames.add(frame);
         final String message = "rolls = " + Arrays.toString(rolls) + ", expectedFrames = " + printFrames(expectedFrames);
