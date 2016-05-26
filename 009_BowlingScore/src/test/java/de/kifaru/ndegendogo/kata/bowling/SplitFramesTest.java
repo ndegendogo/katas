@@ -18,6 +18,7 @@ public class SplitFramesTest {
         List<Object[]> result = new ArrayList<Object[]>();
         result.add(constructTestcase(new Integer[] {0}, Arrays.asList(new Integer[] {0})));
         result.add(constructTestcase(new Integer[] {1, 2}, Arrays.asList(new Integer[] {1, 2})));
+        result.add(constructTestcase(new Integer[] {} ));
         return result;
     }
 
@@ -37,9 +38,12 @@ public class SplitFramesTest {
         assertEquals(expectedFrames, actualFrames);
     }
 
-    static Object[] constructTestcase(final Integer[] rolls, final List<Integer> frame) {
+    @SafeVarargs
+    static Object[] constructTestcase(final Integer[] rolls, final List<Integer>... frames) {
         ArrayList<List<Integer>> expectedFrames = new ArrayList<List<Integer>>();
-        expectedFrames.add(frame);
+        for (final List<Integer> frame : frames) {
+            expectedFrames.add(frame);
+        }
         final String message = "rolls = " + Arrays.toString(rolls) + ", expectedFrames = " + printFrames(expectedFrames);
         return new Object[]{rolls, expectedFrames, message};
     }
