@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import org.hamcrest.Matcher;
 import org.hamcrest.core.IsEqual;
@@ -17,8 +18,8 @@ public class SplitFramesTest {
     @Parameters(name = "testcase {index}: {2}")
     public static Iterable<Object[]> data() {
         Integer[] rolls = new Integer[] {0};
-        Integer[] frame1 = new Integer[] {0};
-        ArrayList<Integer[]> expectedFrames = new ArrayList<Integer[]>();
+        List<Integer> frame1 = Arrays.asList(new Integer[] {0});
+        ArrayList<List<Integer>> expectedFrames = new ArrayList<List<Integer>>();
         expectedFrames.add(frame1);
         Object[] testcase1 = constructTestcase(rolls, expectedFrames);
         return Arrays.asList(new Object[][] {
@@ -27,10 +28,10 @@ public class SplitFramesTest {
     }
 
     private Integer[] rolls;
-    private ArrayList<Integer[]> expectedFrames;
+    private List<List<Integer>> expectedFrames;
     private String message;
 
-    public SplitFramesTest(final Integer[] rolls, final ArrayList<Integer[]> expectedFrames, final String message) {
+    public SplitFramesTest(final Integer[] rolls, final List<List<Integer>> expectedFrames, final String message) {
         this.rolls = rolls;
         this.expectedFrames = expectedFrames;
         this.message = message;
@@ -38,27 +39,30 @@ public class SplitFramesTest {
 
     @Test
     public void testSplitToFrames() {
-        ArrayList<Integer[]> actualFrames = splitToFrames(rolls);
+        List<List<Integer>> actualFrames = splitToFrames(rolls);
         assertEquals(actualFrames, actualFrames);
 //        assertThat(actualFrames, IsEqual.equalTo(expectedFrames));
     }
 
-    ArrayList<Integer[]> splitToFrames(Integer[] rolls) {
+    List<List<Integer>> splitToFrames(Integer[] rolls) {
+        return null;
+/*
         ArrayList<Integer[]> frames = new ArrayList<Integer[]>();
         frames.add(rolls);
         return (frames);
+*/
     }
 
-    static Object[] constructTestcase(Integer[] rolls, ArrayList<Integer[]> expectedFrames) {
+    static Object[] constructTestcase(Integer[] rolls, List<List<Integer>> expectedFrames) {
         final String message = "rolls = " + Arrays.toString(rolls) + ", expectedFrames = " + printFrames(expectedFrames);
         return new Object[]{rolls, expectedFrames, message};
     }
 
-    private static String printFrames(final ArrayList<Integer[]> frames) {
+    private static String printFrames(final List<List<Integer>> frames) {
         final StringBuilder builder = new StringBuilder();
         builder.append("[");
-        for (Integer[] frame : frames) {
-            builder.append(Arrays.toString(frame));
+        for (List<Integer> frame : frames) {
+            builder.append(Arrays.toString(frame.toArray()));
         }
         builder.append("]");
         return builder.toString();
