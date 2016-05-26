@@ -15,12 +15,12 @@ import org.junit.runners.Parameterized.Parameters;
 public class SplitFramesTest {
     @Parameters(name = "testcase {index}: {2}")
     public static Iterable<Object[]> data() {
+        List<Object[]> result = new ArrayList<Object[]>();
         Integer[] rolls = new Integer[] {0};
         List<Integer> frame1 = Arrays.asList(new Integer[] {0});
         Object[] testcase1 = constructTestcase(rolls, frame1);
-        return Arrays.asList(new Object[][] {
-            testcase1,
-        });
+        result.add(testcase1);
+        return result;
     }
 
     private Integer[] rolls;
