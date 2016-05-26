@@ -42,12 +42,9 @@ public class SplitFramesTest {
     }
 
     List<List<Integer>> splitToFrames(Integer[] rolls) {
-        return null;
-/*
-        ArrayList<Integer[]> frames = new ArrayList<Integer[]>();
-        frames.add(rolls);
+        ArrayList<List<Integer>> frames = new ArrayList<List<Integer>>();
+        frames.add(Arrays.asList(rolls));
         return (frames);
-*/
     }
 
     static Object[] constructTestcase(Integer[] rolls, List<List<Integer>> expectedFrames) {
