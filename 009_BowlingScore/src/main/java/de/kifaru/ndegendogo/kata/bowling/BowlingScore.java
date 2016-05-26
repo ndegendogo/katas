@@ -57,6 +57,10 @@ public class BowlingScore {
         if (slice.size() > 0) {
             frames.add(slice);
         }
+        List<Integer> slice2 = makeSlice(rolls, 2, 4);
+        if (slice2.size() > 0) {
+            frames.add(slice2);
+        }
         return (frames);
     }
 }
