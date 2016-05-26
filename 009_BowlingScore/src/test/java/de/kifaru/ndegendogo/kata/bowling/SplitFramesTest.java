@@ -19,7 +19,7 @@ public class SplitFramesTest {
         List<Integer> frame1 = Arrays.asList(new Integer[] {0});
         ArrayList<List<Integer>> expectedFrames = new ArrayList<List<Integer>>();
         expectedFrames.add(frame1);
-        Object[] testcase1 = constructTestcase(rolls, null, expectedFrames);
+        Object[] testcase1 = constructTestcase(rolls, frame1, expectedFrames);
         return Arrays.asList(new Object[][] {
             testcase1,
         });
