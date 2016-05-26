@@ -41,7 +41,9 @@ public class SplitFramesTest {
         assertEquals(expectedFrames, actualFrames);
     }
 
-    static Object[] constructTestcase(Integer[] rolls, List<Integer> frame, List<List<Integer>> expectedFrames) {
+    static Object[] constructTestcase(Integer[] rolls, List<Integer> frame, List<List<Integer>> dummy) {
+        ArrayList<List<Integer>> expectedFrames = new ArrayList<List<Integer>>();
+        expectedFrames.add(frame);
         final String message = "rolls = " + Arrays.toString(rolls) + ", expectedFrames = " + printFrames(expectedFrames);
         return new Object[]{rolls, expectedFrames, message};
     }
