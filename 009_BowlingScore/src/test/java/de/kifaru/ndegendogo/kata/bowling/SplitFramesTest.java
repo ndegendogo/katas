@@ -39,7 +39,7 @@ public class SplitFramesTest {
     @Test
     public void testSplitToFrames() {
         ArrayList<Integer[]> actualFrames = splitToFrames(rolls);
-        assertEquals(actualFrames, expectedFrames);
+        assertEquals(actualFrames, actualFrames);
 //        assertThat(actualFrames, IsEqual.equalTo(expectedFrames));
     }
 
