@@ -55,20 +55,21 @@ public class BowlingScore {
         ArrayList<List<Integer>> frames = new ArrayList<List<Integer>>();
         int offset = 0;
         while (offset < rolls.length) {
-            List<Integer> slice = makeFrame(rolls, offset, 2);
+            int sliceLength = 2;
+            List<Integer> slice = makeFrame(rolls, offset, sliceLength);
             if (slice.size() > 0) {
                 frames.add(slice);
             }
-            offset += 2;
+            offset += sliceLength;
         }
         return (frames);
     }
 
-    private static List<Integer> makeFrame(final Integer[] array, int baseIndex, int sliceLength) {
+    private static List<Integer> makeFrame(final Integer[] rolls, int baseIndex, int sliceLength) {
         final List<Integer> slice = new ArrayList<Integer>();
         for (int index = baseIndex; index < baseIndex + sliceLength; index ++) {
-            if (isInRange(index, 0, array.length)) {
-                slice.add(array[index]);
+            if (isInRange(index, 0, rolls.length)) {
+                slice.add(rolls[index]);
             }
         }
         return slice;
