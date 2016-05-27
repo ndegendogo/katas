@@ -7,6 +7,7 @@ import java.util.List;
 public class Frame {
     private static List<Frame> frames;
     private Integer roll1;
+    private Integer roll2;
 
     static void initFrames() {
         frames = new ArrayList<Frame>();
@@ -17,7 +18,11 @@ public class Frame {
     }
 
     static void rollTheBall(Integer pins) {
-        frames.add(new Frame(pins));
+        if (frames.isEmpty()) {
+            frames.add(new Frame(pins));
+        } else {
+            frames.get(0).roll2 = pins;
+        }
     }
 
     private Frame(Integer pins) {
@@ -25,6 +30,11 @@ public class Frame {
     }
 
     public String toString() {
-        return "[" + roll1.toString() + "]";
+        if (roll2 == null) {
+            return "[" + roll1.toString() + "]";
+        } else {
+            return "[" + roll1.toString() + "|" + roll2.toString() + "]";
+        }
+
     }
 }
