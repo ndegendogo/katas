@@ -10,7 +10,7 @@ import org.junit.Test;
 public class FrameTest {
 
     @Test
-    public void testFrames() {
+    public void testFramesNoRoll() {
         List<Frame> frames = Frame.initFrames();
         assertEquals(0, frames.size());
     }
