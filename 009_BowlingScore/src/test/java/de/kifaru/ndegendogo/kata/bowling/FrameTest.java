@@ -14,6 +14,7 @@ public class FrameTest {
         Frame.initFrames();
         List<Frame> frames = Frame.getFrames();
         assertEquals(0, frames.size());
+        assertEquals("[]", frames.toString());
     }
 
     @Test
@@ -23,6 +24,7 @@ public class FrameTest {
         List<Frame> frames = Frame.getFrames();
         assertEquals(1, frames.size());
         assertEquals("[1]", frames.get(0).toString());
+        assertEquals("[[1]]", frames.toString());
     }
 
     @Test
@@ -33,6 +35,7 @@ public class FrameTest {
         List<Frame> frames = Frame.getFrames();
         assertEquals(1, frames.size());
         assertEquals("[1|2]", frames.get(0).toString());
+        assertEquals("[[1|2]]", frames.toString());
     }
 
     @Test
