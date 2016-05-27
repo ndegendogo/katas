@@ -6,8 +6,8 @@ import java.util.List;
 
 public class Frame {
     private static List<Frame> frames;
-    private Integer roll1;
-    private Integer roll2;
+    private Integer score1;
+    private Integer score2;
 
     static void initFrames() {
         frames = new ArrayList<Frame>();
@@ -23,8 +23,8 @@ public class Frame {
         } else {
             int lastIndex = frames.size() -1;
             Frame lastFrame = frames.get(lastIndex);
-            if (lastFrame.roll2 == null) {
-                lastFrame.roll2 = pins;
+            if (lastFrame.score2 == null) {
+                lastFrame.score2 = pins;
             } else {
                 frames.add(new Frame(pins));
             }
@@ -32,14 +32,14 @@ public class Frame {
     }
 
     private Frame(Integer pins) {
-        roll1 = pins;
+        score1 = pins;
     }
 
     public String toString() {
-        if (roll2 == null) {
-            return "[" + roll1.toString() + "]";
+        if (score2 == null) {
+            return "[" + score1.toString() + "]";
         } else {
-            return "[" + roll1.toString() + "|" + roll2.toString() + "]";
+            return "[" + score1.toString() + "|" + score2.toString() + "]";
         }
 
     }
