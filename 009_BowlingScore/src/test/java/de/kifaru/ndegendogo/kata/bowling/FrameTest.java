@@ -22,5 +22,6 @@ public class FrameTest {
         Frame.rollTheBall(1);
         List<Frame> frames = Frame.getFrames();
         assertEquals(1, frames.size());
+        assertEquals("[1]", frames.get(0).toString());
     }
 }
