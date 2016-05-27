@@ -43,6 +43,6 @@ public class FrameTest {
         Frame.rollTheBall(3);
         List<Frame> frames = Frame.getFrames();
         assertEquals(2, frames.size());
-//        assertEquals("[1|2]", frames.get(0).toString());
+        assertEquals("[[1|2], [3]]", frames.toString());
     }
 }
