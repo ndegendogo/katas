@@ -15,4 +15,12 @@ public class FrameTest {
         List<Frame> frames = Frame.getFrames();
         assertEquals(0, frames.size());
     }
+
+    @Test
+    public void testFramesFirstRoll() {
+        Frame.initFrames();
+        Frame.rollTheBall(1);
+        List<Frame> frames = Frame.getFrames();
+        assertEquals(1, frames.size());
+    }
 }

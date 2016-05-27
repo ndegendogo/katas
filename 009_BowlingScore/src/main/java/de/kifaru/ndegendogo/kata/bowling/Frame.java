@@ -14,4 +14,7 @@ public class Frame {
     static List<Frame> getFrames() {
         return frames;
     }
+
+    static void rollTheBall(Integer pins) {
+    }
 }
