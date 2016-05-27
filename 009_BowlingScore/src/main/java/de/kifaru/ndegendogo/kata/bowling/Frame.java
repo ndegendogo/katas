@@ -16,5 +16,6 @@ public class Frame {
     }
 
     static void rollTheBall(Integer pins) {
+        frames.add(new Frame());
     }
 }
