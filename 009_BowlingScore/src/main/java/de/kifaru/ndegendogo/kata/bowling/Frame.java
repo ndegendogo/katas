@@ -9,4 +9,7 @@ public class Frame {
         List<Frame> frames = new ArrayList<Frame>();
         return frames;
     }
+    static List<Frame> getFrames() {
+        return null;
+    }
 }
