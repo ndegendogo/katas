@@ -11,9 +11,8 @@ public class FrameTest {
 
     @Test
     public void testFramesNoRoll() {
-        List<Frame> frames = Frame.initFrames();
-        assertEquals(0, frames.size());
-        frames = Frame.getFrames();
+        Frame.initFrames();
+        List<Frame> frames = Frame.getFrames();
         assertEquals(0, frames.size());
     }
 }
