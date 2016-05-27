@@ -38,7 +38,7 @@ public class BowlingScore {
         return slice;
     }
 
-    private static boolean isInRange(final int index, final int minIndex, final int maxIndex) {
+    static boolean isInRange(final int index, final int minIndex, final int maxIndex) {
         return index >= minIndex && index < maxIndex;
     }
 
@@ -48,15 +48,5 @@ public class BowlingScore {
             bonus += element;
         }
         return bonus;
-    }
-
-    static List<Integer> makeFrame(final Integer[] rolls, int baseIndex, int sliceLength) {
-        final List<Integer> slice = new ArrayList<Integer>();
-        for (int index = baseIndex; index < baseIndex + sliceLength; index ++) {
-            if (isInRange(index, 0, rolls.length)) {
-                slice.add(rolls[index]);
-            }
-        }
-        return slice;
     }
 }
