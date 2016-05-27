@@ -13,7 +13,6 @@ public class FrameTest {
     public void testFramesNoRoll() {
         Frame.initFrames();
         List<Frame> frames = Frame.getFrames();
-        assertEquals(0, frames.size());
         assertEquals("[]", frames.toString());
     }
 
@@ -22,8 +21,6 @@ public class FrameTest {
         Frame.initFrames();
         Frame.rollTheBall(1);
         List<Frame> frames = Frame.getFrames();
-        assertEquals(1, frames.size());
-        assertEquals("[1]", frames.get(0).toString());
         assertEquals("[[1]]", frames.toString());
     }
 
@@ -33,8 +30,6 @@ public class FrameTest {
         Frame.rollTheBall(1);
         Frame.rollTheBall(2);
         List<Frame> frames = Frame.getFrames();
-        assertEquals(1, frames.size());
-        assertEquals("[1|2]", frames.get(0).toString());
         assertEquals("[[1|2]]", frames.toString());
     }
 
@@ -45,7 +40,6 @@ public class FrameTest {
         Frame.rollTheBall(2);
         Frame.rollTheBall(3);
         List<Frame> frames = Frame.getFrames();
-        assertEquals(2, frames.size());
         assertEquals("[[1|2], [3]]", frames.toString());
     }
 }
