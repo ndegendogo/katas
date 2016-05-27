@@ -39,7 +39,7 @@ public class SplitFramesTest {
 
     @Test
     public void testSplitToFrames() {
-        List<List<Integer>> actualFrames = BowlingScore.splitToFrames(rolls);
+        List<List<Integer>> actualFrames = Frame.splitToFrames(rolls);
         assertEquals(expectedFrames, actualFrames);
     }
 
