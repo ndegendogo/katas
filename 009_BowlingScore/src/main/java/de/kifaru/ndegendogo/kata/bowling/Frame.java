@@ -21,7 +21,13 @@ public class Frame {
         if (frames.isEmpty()) {
             frames.add(new Frame(pins));
         } else {
-            frames.get(0).roll2 = pins;
+            int lastIndex = frames.size() -1;
+            Frame lastFrame = frames.get(lastIndex);
+            if (lastFrame.roll2 == null) {
+                lastFrame.roll2 = pins;
+            } else {
+                frames.add(new Frame(pins));
+            }
         }
     }
 
