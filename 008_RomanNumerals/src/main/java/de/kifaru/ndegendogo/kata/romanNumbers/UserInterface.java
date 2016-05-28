@@ -14,7 +14,6 @@ public class UserInterface extends JPanel {
 
     private RomanNumbersConverter converter;
 
-    private JLabel romanLabel;
     private JTextField romanNumber;
     private JLabel arabicLabel;
     private JLabel arabicNumber;
@@ -30,7 +29,7 @@ public class UserInterface extends JPanel {
 
     private UserInterface(final RomanNumbersConverter converter) {
         this.converter = converter;
-        romanLabel = new JLabel("Roman:");
+        final JLabel romanLabel = new JLabel("Roman:");
         romanNumber = new JTextField(20);
         romanNumber.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
