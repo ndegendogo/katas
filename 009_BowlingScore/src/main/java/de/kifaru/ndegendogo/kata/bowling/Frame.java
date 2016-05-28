@@ -8,6 +8,9 @@ public class Frame {
         public String toString() {
             return symbol;
         }
+        boolean isEmpty() {
+            return this instanceof EmptyScore;
+        }
     };
     class EmptyScore extends Score {
         EmptyScore() {
@@ -52,6 +55,6 @@ public class Frame {
     }
 
     boolean isFinished() {
-        return !(score2 instanceof EmptyScore);
+        return !score2.isEmpty();
     }
 }
