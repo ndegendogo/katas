@@ -31,14 +31,10 @@ public class Frame {
 
     static void rollTheBall(final Integer pins) {
         Frame currentFrame = Game.getCurrentFrame();
-        if (currentFrame == null) {
+        if (currentFrame == null || currentFrame.isFinished()) {
             Game.frames.add(new Frame(pins));
         } else {
-            if (currentFrame.isFinished()) {
-                Game.frames.add(new Frame(pins));
-            } else {
-                currentFrame.score2 = pins;
-            }
+            currentFrame.score2 = pins;
         }
     }
 
