@@ -35,11 +35,11 @@ public class FrameTest {
 
     @Test
     public void testFrames() {
-        Frame.initFrames();
+        Game.initFrames();
         for (Integer roll : rolls) {
             Frame.rollTheBall(roll);
         }
-        List<Frame> frames = Frame.getFrames();
+        List<Frame> frames = Game.getFrames();
         assertEquals(expectedFrames, frames.toString());
     }
 

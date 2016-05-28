@@ -1,37 +1,26 @@
 package de.kifaru.ndegendogo.kata.bowling;
 
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class Frame {
-    private static List<Frame> frames;
     private Integer score1;
     private Integer score2;
 
-    static void initFrames() {
-        frames = new ArrayList<Frame>();
-    }
-
-    static List<Frame> getFrames() {
-        return frames;
-    }
-
     static void rollTheBall(Integer pins) {
-        if (frames.isEmpty()) {
-            frames.add(new Frame(pins));
+        if (Game.frames.isEmpty()) {
+            Game.frames.add(new Frame(pins));
         } else {
-            int lastIndex = frames.size() -1;
-            Frame lastFrame = frames.get(lastIndex);
+            int lastIndex = Game.frames.size() -1;
+            Frame lastFrame = Game.frames.get(lastIndex);
             if (lastFrame.score2 == null) {
                 lastFrame.score2 = pins;
             } else {
-                frames.add(new Frame(pins));
+                Game.frames.add(new Frame(pins));
             }
         }
     }
 
-    private Frame(Integer pins) {
+    Frame(Integer pins) {
         score1 = pins;
     }
 
