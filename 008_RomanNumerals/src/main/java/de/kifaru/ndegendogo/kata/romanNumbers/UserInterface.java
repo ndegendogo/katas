@@ -14,8 +14,8 @@ public class UserInterface extends JPanel {
 
     private RomanNumbersConverter converter;
 
-    private JTextField romanNumber;
-    private JLabel arabicNumber;
+    private final JTextField romanNumber;
+    private final JLabel arabicNumber;
 
     static void createAndShowGui(final RomanNumbersConverter converter) {
         // top-level container
