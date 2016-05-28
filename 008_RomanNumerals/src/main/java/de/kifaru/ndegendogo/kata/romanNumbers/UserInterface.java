@@ -1,5 +1,8 @@
 package de.kifaru.ndegendogo.kata.romanNumbers;
 
+import static java.awt.GridBagConstraints.*;
+import static javax.swing.WindowConstants.*;
+
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -19,7 +22,7 @@ public class UserInterface extends JPanel {
 
     static void createAndShowGui(final RomanNumbersConverter converter) {
         final JFrame frame = new JFrame("Roman Numbers");
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         frame.add(new UserInterface(converter));
         frame.pack();
         frame.setVisible(true);
@@ -53,11 +56,11 @@ public class UserInterface extends JPanel {
         pane.setLayout(layout);
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.insets = new Insets (5, 5, 5, 5);
-        constraints.anchor = GridBagConstraints.BASELINE_LEADING;
+        constraints.anchor = BASELINE_LEADING;
         for (JComponent[] line : components) {
             for (int i = 0; i < line.length; i ++) {
                 JComponent element = line[i];
-                constraints.gridwidth = (i == line.length -1 ? GridBagConstraints.REMAINDER : 1);
+                constraints.gridwidth = (i == line.length -1 ? REMAINDER : 1);
                 layout.setConstraints(element, constraints);
                 pane.add(element);
             }
