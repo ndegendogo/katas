@@ -26,15 +26,7 @@ public class Frame {
     private Score score1 = new EmptyScore();
     private Score score2 = new EmptyScore();
 
-    void setScore1(Integer score) {
-        if (score1.isEmpty()) {
-            score1 = new NumberScore(score);
-        } else {
-            score2 = new NumberScore(score);
-        }
-    }
-
-    void setScore2(Integer score) {
+    void setScore(Integer score) {
         if (score1.isEmpty()) {
             score1 = new NumberScore(score);
         } else {
@@ -46,10 +38,10 @@ public class Frame {
         Frame currentFrame = Game.getCurrentFrame();
         if (currentFrame == null || currentFrame.isFinished()) {
             final Frame newFrame = new Frame();
-            newFrame.setScore1(pins);
+            newFrame.setScore(pins);
             Game.frames.add(newFrame);
         } else {
-            currentFrame.setScore2(pins);
+            currentFrame.setScore(pins);
         }
     }
 
