@@ -29,17 +29,25 @@ public class Frame {
     private Integer score1;
     private Integer score2;
 
+    void setScore1(Integer score1) {
+        this.score1 = score1;
+    }
+
+    void setScore2(Integer score2) {
+        this.score2 = score2;
+    }
+
     static void rollTheBall(final Integer pins) {
         Frame currentFrame = Game.getCurrentFrame();
         if (currentFrame == null || currentFrame.isFinished()) {
             Game.frames.add(new Frame(pins));
         } else {
-            currentFrame.score2 = pins;
+            currentFrame.setScore2(pins);
         }
     }
 
     Frame(final Integer pins) {
-        score1 = pins;
+        setScore1(pins);
     }
 
     public String toString() {
