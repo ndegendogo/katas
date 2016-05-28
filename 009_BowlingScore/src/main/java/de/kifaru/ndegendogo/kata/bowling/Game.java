@@ -17,8 +17,7 @@ public class Game {
 
     static Frame getCurrentFrame() {
         int lastIndex = frames.size() -1;
-        Frame lastFrame = frames.get(lastIndex);
-        return lastFrame;
+        return frames.get(lastIndex);
     }
 
 }
