@@ -15,4 +15,10 @@ public class Game {
         return frames;
     }
 
+    static Frame getCurrentFrame() {
+        int lastIndex = frames.size() -1;
+        Frame lastFrame = frames.get(lastIndex);
+        return lastFrame;
+    }
+
 }
