@@ -14,7 +14,7 @@ public class RomanNumbersConverterImpl implements RomanNumbersConverter {
 
         private final String glyph;
         private final int value;
-        private RomanDigit(final String glyph, final int value) {
+        RomanDigit(final String glyph, final int value) {
             this.glyph = glyph;
             this.value = value;
         }
