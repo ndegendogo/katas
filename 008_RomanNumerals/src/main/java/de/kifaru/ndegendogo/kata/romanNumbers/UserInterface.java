@@ -33,11 +33,7 @@ public class UserInterface {
         this.converter = converter;
         final JLabel romanLabel = new JLabel("Roman:");
         romanNumber = new JTextField(20);
-        romanNumber.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                showConvertedNumber();
-            }
-        });
+        romanNumber.addActionListener( (ActionEvent e) -> showConvertedNumber());
         final JLabel arabicLabel = new JLabel("Arabic:");
         arabicNumber = new JLabel("");
 
