@@ -27,11 +27,19 @@ public class Frame {
     private Score score2 = new EmptyScore();
 
     void setScore1(Integer score) {
-        score1 = new NumberScore(score);
+        if (score1.isEmpty()) {
+            score1 = new NumberScore(score);
+        } else {
+            score2 = new NumberScore(score);
+        }
     }
 
     void setScore2(Integer score) {
-        score2 = new NumberScore(score);
+        if (score1.isEmpty()) {
+            score1 = new NumberScore(score);
+        } else {
+            score2 = new NumberScore(score);
+        }
     }
 
     static void rollTheBall(final Integer pins) {
