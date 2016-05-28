@@ -18,17 +18,14 @@ public class UserInterface {
     private final JLabel arabicNumber;
 
     static void createAndShowGui(final RomanNumbersConverter converter) {
+        // TODO: prevent the UserInterface instance from being garbage collected
+        new UserInterface(converter);
+    }
+
+    private UserInterface(final RomanNumbersConverter converter) {
         final JFrame frame = new JFrame("Roman Numbers");
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         final JPanel panel = new JPanel();
-        // TODO: prevent the UserInterface instance from being garbage collected
-        new UserInterface(converter, panel);
-        frame.add(panel);
-        frame.pack();
-        frame.setVisible(true);
-    }
-
-    private UserInterface(final RomanNumbersConverter converter, final JPanel panel) {
         this.converter = converter;
         final JLabel romanLabel = new JLabel("Roman:");
         romanNumber = new JTextField(20);
@@ -38,6 +35,9 @@ public class UserInterface {
 
         final JComponent components[][] = {{romanLabel, romanNumber}, {arabicLabel, arabicNumber}};
         setupLayout(panel, components);
+        frame.add(panel);
+        frame.pack();
+        frame.setVisible(true);
     }
 
     private void showConvertedNumber(ActionEvent dummy) {
