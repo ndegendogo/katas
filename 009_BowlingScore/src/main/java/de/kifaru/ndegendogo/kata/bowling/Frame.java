@@ -3,26 +3,20 @@ package de.kifaru.ndegendogo.kata.bowling;
 
 
 public class Frame {
-    enum Score {
-        EMPTY(' '),
-        MISS('-'),
-        ONE('1'),
-        TWO('2'),
-        THREE('3'),
-        FOUR('4'),
-        FIVE('5'),
-        SIX('6'),
-        SEVEN('7'),
-        EIGHT('8'),
-        NINE('9'),
-        STRIKE('X'),
-        SPARE('/'),
-        FOUL('F');
-
-        private char symbol;
-
-        private Score(char symbol) {
-            this.symbol = symbol;
+    abstract class Score {
+        String symbol;
+        public String toString() {
+            return symbol;
+        }
+    };
+    class EmptyScore extends Score {
+        EmptyScore() {
+            symbol = " ";
+        }
+    };
+    class NumberScore extends Score {
+        NumberScore(Integer score) {
+            symbol = score.toString();
         }
     };
 
