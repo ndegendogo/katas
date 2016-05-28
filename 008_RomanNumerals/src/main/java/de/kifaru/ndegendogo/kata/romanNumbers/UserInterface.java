@@ -33,7 +33,7 @@ public class UserInterface {
         this.converter = converter;
         final JLabel romanLabel = new JLabel("Roman:");
         romanNumber = new JTextField(20);
-        romanNumber.addActionListener( (ActionEvent e) -> showConvertedNumber());
+        romanNumber.addActionListener( (ActionEvent e) -> showConvertedNumber(null));
         final JLabel arabicLabel = new JLabel("Arabic:");
         arabicNumber = new JLabel("");
 
@@ -41,7 +41,7 @@ public class UserInterface {
         setupLayout(panel, components);
     }
 
-    private void showConvertedNumber() {
+    private void showConvertedNumber(ActionEvent dummy) {
         final Integer convertedNumber = converter.convertToArabicNumber(romanNumber.getText());
         final String convertedString = (convertedNumber <= 0 ? "Illegal Input" : convertedNumber.toString());
         arabicNumber.setText(convertedString);
