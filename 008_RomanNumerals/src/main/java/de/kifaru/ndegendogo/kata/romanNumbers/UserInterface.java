@@ -16,9 +16,8 @@ public class UserInterface {
     private final JTextField romanNumber;
     private final JLabel arabicNumber;
 
-    static void createAndShowGui(final RomanNumbersConverter converter) {
-        // TODO: prevent the UserInterface instance from being garbage collected
-        new UserInterface(converter);
+    static UserInterface createAndShowGui(final RomanNumbersConverter converter) {
+        return new UserInterface(converter);
     }
 
     private UserInterface(final RomanNumbersConverter converter) {
