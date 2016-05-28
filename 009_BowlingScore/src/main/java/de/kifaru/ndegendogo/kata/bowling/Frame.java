@@ -47,11 +47,15 @@ public class Frame {
     }
 
     public String toString() {
-        if (score2 == null) {
+        if (isNotFinished()) {
             return "[" + score1.toString() + "]";
         } else {
             return "[" + score1.toString() + "|" + score2.toString() + "]";
         }
 
+    }
+
+    boolean isNotFinished() {
+        return score2 == null;
     }
 }
