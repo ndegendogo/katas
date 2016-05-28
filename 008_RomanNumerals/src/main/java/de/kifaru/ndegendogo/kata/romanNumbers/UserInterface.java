@@ -18,7 +18,6 @@ public class UserInterface extends JPanel {
     private final JLabel arabicNumber;
 
     static void createAndShowGui(final RomanNumbersConverter converter) {
-        // top-level container
         final JFrame frame = new JFrame("Roman Numbers");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(new UserInterface(converter));
