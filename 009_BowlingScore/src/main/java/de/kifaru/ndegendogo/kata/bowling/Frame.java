@@ -34,7 +34,7 @@ public class Frame {
         if (currentFrame == null) {
             Game.frames.add(new Frame(pins));
         } else {
-            if (currentFrame.score2 == null) {
+            if (currentFrame.isNotFinished()) {
                 currentFrame.score2 = pins;
             } else {
                 Game.frames.add(new Frame(pins));
