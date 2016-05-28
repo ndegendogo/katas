@@ -60,7 +60,7 @@ public class UserInterface extends JPanel {
         for (JComponent[] line : components) {
             for (int i = 0; i < line.length; i ++) {
                 JComponent element = line[i];
-                constraints.gridwidth = (i == line.length -1 ? REMAINDER : 1);
+                constraints.gridwidth = (i == line.length - 1 ? REMAINDER : 1);
                 layout.setConstraints(element, constraints);
                 pane.add(element);
             }
