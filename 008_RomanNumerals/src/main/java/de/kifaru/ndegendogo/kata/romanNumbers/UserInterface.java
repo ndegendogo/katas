@@ -40,7 +40,7 @@ public class UserInterface {
         frame.setVisible(true);
     }
 
-    private void showConvertedNumber(ActionEvent dummy) {
+    private void showConvertedNumber(final ActionEvent dummy) {
         final Integer convertedNumber = converter.convertToArabicNumber(romanNumber.getText());
         final String convertedString = (convertedNumber <= 0 ? "Illegal Input" : convertedNumber.toString());
         arabicNumber.setText(convertedString);
