@@ -1,6 +1,6 @@
 package de.kifaru.ndegendogo.kata.romanNumbers;
 
-public class RomanNumbersConverterImpl {
+public class RomanNumbersConverter {
 
     private int offset;
     private int result;
