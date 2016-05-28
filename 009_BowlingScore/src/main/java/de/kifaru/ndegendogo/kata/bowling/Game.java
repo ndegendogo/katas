@@ -16,11 +16,7 @@ public class Game {
     }
 
     static Frame getCurrentFrame() {
-        if (frames.isEmpty()) {
-            return null;
-        }
-        int lastIndex = frames.size() -1;
-        return frames.get(lastIndex);
+        return frames.isEmpty() ? null : frames.get(frames.size() -1);
     }
 
 }
