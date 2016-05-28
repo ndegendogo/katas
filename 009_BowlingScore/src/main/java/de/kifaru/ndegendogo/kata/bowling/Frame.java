@@ -34,15 +34,12 @@ public class Frame {
     static void rollTheBall(final Integer pins) {
         Frame currentFrame = Game.getCurrentFrame();
         if (currentFrame == null || currentFrame.isFinished()) {
-            final Frame newFrame = new Frame(pins);
+            final Frame newFrame = new Frame();
+            newFrame.setScore1(pins);
             Game.frames.add(newFrame);
         } else {
             currentFrame.setScore2(pins);
         }
-    }
-
-    Frame(final Integer pins) {
-        setScore1(pins);
     }
 
     public String toString() {
