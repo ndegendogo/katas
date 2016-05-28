@@ -29,7 +29,7 @@ public class Frame {
     private Integer score1;
     private Integer score2;
 
-    static void rollTheBall(Integer pins) {
+    static void rollTheBall(final Integer pins) {
         if (Game.frames.isEmpty()) {
             Game.frames.add(new Frame(pins));
         } else {
@@ -43,7 +43,7 @@ public class Frame {
         }
     }
 
-    Frame(Integer pins) {
+    Frame(final Integer pins) {
         score1 = pins;
     }
 
