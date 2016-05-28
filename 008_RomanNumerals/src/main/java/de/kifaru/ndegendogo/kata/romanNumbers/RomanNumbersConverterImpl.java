@@ -12,17 +12,17 @@ public class RomanNumbersConverterImpl implements RomanNumbersConverter {
         DIGIT_L("L", 50), DIGIT_XL("XL", 40), DIGIT_X("X", 10), DIGIT_IX("IX", 9),
         DIGIT_V("V", 5), DIGIT_IV("IV", 4), DIGIT_I("I", 1);
 
-        private final String glyphe;
+        private final String glyph;
         private final int value;
-        private RomanDigit(final String glyphe, final int value) {
-            this.glyphe = glyphe;
+        private RomanDigit(final String glyph, final int value) {
+            this.glyph = glyph;
             this.value = value;
         }
         int getValue() {
             return value;
         }
-        String getGlyphe() {
-            return glyphe;
+        String getGlyph() {
+            return glyph;
         }
     };
 
@@ -42,17 +42,17 @@ public class RomanNumbersConverterImpl implements RomanNumbersConverter {
     }
 
     private void consume(final RomanDigit digit) {
-        while (found(digit.getGlyphe())) {
+        while (found(digit.getGlyph())) {
             consumeSingle(digit);
         }
     }
 
-    private boolean found(String glyphe) {
-        return romanNumber.startsWith(glyphe, offset);
+    private boolean found(String glyph) {
+        return romanNumber.startsWith(glyph, offset);
     }
 
     private void consumeSingle(RomanDigit digit) {
-        offset += digit.getGlyphe().length();
+        offset += digit.getGlyph().length();
         result += digit.getValue();
     }
 
