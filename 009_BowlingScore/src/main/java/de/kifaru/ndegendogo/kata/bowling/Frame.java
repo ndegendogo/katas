@@ -34,10 +34,10 @@ public class Frame {
         if (currentFrame == null) {
             Game.frames.add(new Frame(pins));
         } else {
-            if (currentFrame.isNotFinished()) {
-                currentFrame.score2 = pins;
-            } else {
+            if (currentFrame.isFinished()) {
                 Game.frames.add(new Frame(pins));
+            } else {
+                currentFrame.score2 = pins;
             }
         }
     }
@@ -47,15 +47,15 @@ public class Frame {
     }
 
     public String toString() {
-        if (isNotFinished()) {
-            return "[" + score1.toString() + "]";
-        } else {
+        if (isFinished()) {
             return "[" + score1.toString() + "|" + score2.toString() + "]";
+        } else {
+            return "[" + score1.toString() + "]";
         }
 
     }
 
-    boolean isNotFinished() {
-        return score2 == null;
+    boolean isFinished() {
+        return score2 != null;
     }
 }
