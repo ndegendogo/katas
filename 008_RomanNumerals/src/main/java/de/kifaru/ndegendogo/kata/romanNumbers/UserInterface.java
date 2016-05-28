@@ -13,8 +13,6 @@ import javax.swing.*;
 
 public class UserInterface {
 
-    private static final long serialVersionUID = 1L;
-
     private final RomanNumbersConverter converter;
 
     private final JTextField romanNumber;
