@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-public class ConvertRomanGUI extends JPanel {
+public class UserInterface extends JPanel {
 
     private static final long serialVersionUID = 1L;
 
@@ -23,12 +23,12 @@ public class ConvertRomanGUI extends JPanel {
         // top-level container
         final JFrame frame = new JFrame("Roman Numbers");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.add(new ConvertRomanGUI(converter));
+        frame.add(new UserInterface(converter));
         frame.pack();
         frame.setVisible(true);
     }
 
-    private ConvertRomanGUI(final RomanNumbersConverter converter) {
+    private UserInterface(final RomanNumbersConverter converter) {
         this.converter = converter;
         romanLabel = new JLabel("Roman:");
         romanNumber = new JTextField(20);
