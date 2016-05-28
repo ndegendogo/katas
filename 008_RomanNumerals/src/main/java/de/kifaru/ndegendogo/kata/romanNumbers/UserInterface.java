@@ -13,12 +13,12 @@ import javax.swing.*;
 
 public class UserInterface {
 
-    private final RomanNumbersConverter converter;
+    private final RomanNumbersConverterImpl converter;
 
     private final JTextField romanNumber;
     private final JLabel arabicNumber;
 
-    static void createAndShowGui(final RomanNumbersConverter converter) {
+    static void createAndShowGui(final RomanNumbersConverterImpl converter) {
         final JFrame frame = new JFrame("Roman Numbers");
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         final JPanel panel = new JPanel();
@@ -29,7 +29,7 @@ public class UserInterface {
         frame.setVisible(true);
     }
 
-    private UserInterface(final RomanNumbersConverter converter, final JPanel panel) {
+    private UserInterface(final RomanNumbersConverterImpl converter, final JPanel panel) {
         this.converter = converter;
         final JLabel romanLabel = new JLabel("Roman:");
         romanNumber = new JTextField(20);
