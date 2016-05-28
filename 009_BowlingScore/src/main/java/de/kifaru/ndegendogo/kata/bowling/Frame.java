@@ -30,10 +30,10 @@ public class Frame {
     private Integer score2;
 
     static void rollTheBall(final Integer pins) {
-        if (Game.frames.isEmpty()) {
+        Frame currentFrame = Game.getCurrentFrame();
+        if (currentFrame == null) {
             Game.frames.add(new Frame(pins));
         } else {
-            Frame currentFrame = Game.getCurrentFrame();
             if (currentFrame.score2 == null) {
                 currentFrame.score2 = pins;
             } else {
