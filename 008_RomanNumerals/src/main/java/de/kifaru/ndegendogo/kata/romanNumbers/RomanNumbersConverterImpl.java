@@ -25,7 +25,7 @@ public class RomanNumbersConverterImpl implements RomanNumbersConverter {
         String getGlyph() {
             return glyph;
         }
-    };
+    }
 
     @Override
     public Integer convertToArabicNumber(final String romanNumber) {
