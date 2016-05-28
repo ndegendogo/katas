@@ -20,15 +20,15 @@ public class Frame {
         }
     };
 
-    private Integer score1;
-    private Integer score2;
+    private Score score1 = new EmptyScore();
+    private Score score2 = new EmptyScore();
 
-    void setScore1(Integer score1) {
-        this.score1 = score1;
+    void setScore1(Integer score) {
+        score1 = new NumberScore(score);
     }
 
-    void setScore2(Integer score2) {
-        this.score2 = score2;
+    void setScore2(Integer score) {
+        score2 = new NumberScore(score);
     }
 
     static void rollTheBall(final Integer pins) {
@@ -54,6 +54,6 @@ public class Frame {
     }
 
     boolean isFinished() {
-        return score2 != null;
+        return !(score2 instanceof EmptyScore);
     }
 }
