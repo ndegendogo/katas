@@ -19,7 +19,7 @@ public class UserInterface extends JPanel {
 
     static void createAndShowGui(final RomanNumbersConverter converter) {
         final JFrame frame = new JFrame("Roman Numbers");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.add(new UserInterface(converter));
         frame.pack();
         frame.setVisible(true);
