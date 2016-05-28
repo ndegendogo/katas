@@ -11,11 +11,11 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-public class UserInterface extends JPanel {
+public class UserInterface {
 
     private static final long serialVersionUID = 1L;
 
-    private RomanNumbersConverter converter;
+    private final RomanNumbersConverter converter;
 
     private final JTextField romanNumber;
     private final JLabel arabicNumber;
@@ -23,12 +23,15 @@ public class UserInterface extends JPanel {
     static void createAndShowGui(final RomanNumbersConverter converter) {
         final JFrame frame = new JFrame("Roman Numbers");
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        frame.add(new UserInterface(converter));
+        final JPanel panel = new JPanel();
+        // TODO: prevent the UserInterface instance from being garbage collected
+        new UserInterface(converter, panel);
+        frame.add(panel);
         frame.pack();
         frame.setVisible(true);
     }
 
-    private UserInterface(final RomanNumbersConverter converter) {
+    private UserInterface(final RomanNumbersConverter converter, final JPanel panel) {
         this.converter = converter;
         final JLabel romanLabel = new JLabel("Roman:");
         romanNumber = new JTextField(20);
@@ -41,7 +44,7 @@ public class UserInterface extends JPanel {
         arabicNumber = new JLabel("");
 
         final JComponent components[][] = {{romanLabel, romanNumber}, {arabicLabel, arabicNumber}};
-        setupLayout(this, components);
+        setupLayout(panel, components);
     }
 
     private void showConvertedNumber() {
@@ -51,9 +54,9 @@ public class UserInterface extends JPanel {
         romanNumber.selectAll();
     }
 
-    private static void setupLayout(final JPanel pane, final JComponent[][] components) {
+    private static void setupLayout(final JPanel panel, final JComponent[][] components) {
         GridBagLayout layout = new GridBagLayout();
-        pane.setLayout(layout);
+        panel.setLayout(layout);
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.insets = new Insets (5, 5, 5, 5);
         constraints.anchor = BASELINE_LEADING;
@@ -62,7 +65,7 @@ public class UserInterface extends JPanel {
                 JComponent element = line[i];
                 constraints.gridwidth = (i == line.length - 1 ? REMAINDER : 1);
                 layout.setConstraints(element, constraints);
-                pane.add(element);
+                panel.add(element);
             }
         }
     }
