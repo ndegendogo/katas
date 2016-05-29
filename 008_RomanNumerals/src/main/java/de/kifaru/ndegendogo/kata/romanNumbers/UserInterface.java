@@ -27,7 +27,11 @@ public class UserInterface {
         romanNumber = new JTextField(20);
         romanNumber.addActionListener( this::showConvertedNumber);
         arabicNumber = new JLabel("");
-        final Container container = createGui();
+        final JLabel romanLabel = new JLabel("Roman:");
+        final JLabel arabicLabel = new JLabel("Arabic:");
+        final Component components[][] = {{romanLabel, romanNumber}, {arabicLabel, arabicNumber}};
+        final Container container = new JPanel();
+        layoutComponents(components, container);
         showGui(container);
     }
 
@@ -36,15 +40,6 @@ public class UserInterface {
         final String convertedString = (convertedNumber <= 0 ? "Illegal Input" : convertedNumber.toString());
         arabicNumber.setText(convertedString);
         romanNumber.selectAll();
-    }
-
-    private Container createGui() {
-        final JLabel romanLabel = new JLabel("Roman:");
-        final JLabel arabicLabel = new JLabel("Arabic:");
-        final Component components[][] = {{romanLabel, romanNumber}, {arabicLabel, arabicNumber}};
-        final Container container = new JPanel();
-        layoutComponents(components, container);
-        return container;
     }
 
     private void showGui(final Container container) {
