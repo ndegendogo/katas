@@ -4,6 +4,7 @@ import static java.awt.GridBagConstraints.*;
 import static javax.swing.WindowConstants.*;
 
 import java.awt.Component;
+import java.awt.Container;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -50,7 +51,7 @@ public class UserInterface {
         frame.setVisible(true);
     }
 
-    private static void layoutComponents(final Component[][] components, final JPanel panel) {
+    private static void layoutComponents(final Component[][] components, final Container panel) {
         GridBagLayout layout = new GridBagLayout();
         panel.setLayout(layout);
         GridBagConstraints constraints = new GridBagConstraints();
@@ -61,7 +62,7 @@ public class UserInterface {
         }
     }
 
-    private static void layoutLine(final Component[] components, final JPanel panel, final GridBagLayout layout, final GridBagConstraints constraints) {
+    private static void layoutLine(final Component[] components, final Container panel, final GridBagLayout layout, final GridBagConstraints constraints) {
         for (int i = 0; i < components.length; i ++) {
             Component element = components[i];
             constraints.gridwidth = (i == components.length - 1 ? REMAINDER : 1);
