@@ -41,12 +41,12 @@ public class UserInterface {
     }
 
     private static void makeFrameForComponents(final Component[][] components) {
-        final JPanel panel = new JPanel();
-        layoutComponents(components, panel);
+        final Container container = new JPanel();
+        layoutComponents(components, container);
 
         final JFrame frame = new JFrame("Roman Numbers");
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        frame.add(panel);
+        frame.add(container);
         frame.pack();
         frame.setVisible(true);
     }
