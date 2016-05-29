@@ -41,9 +41,18 @@ public class UserInterface {
     }
 
     private static void makeFrameForComponents(final Component[][] components) {
+        final Container container = createGui(components);
+
+        showGui(container);
+    }
+
+    private static Container createGui(final Component[][] components) {
         final Container container = new JPanel();
         layoutComponents(components, container);
+        return container;
+    }
 
+    private static void showGui(final Container container) {
         final JFrame frame = new JFrame("Roman Numbers");
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         frame.add(container);
