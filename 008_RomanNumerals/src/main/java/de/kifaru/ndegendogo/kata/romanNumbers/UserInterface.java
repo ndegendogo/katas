@@ -64,9 +64,8 @@ public class UserInterface {
 
     private static void layoutLine(final Component[] components, final Container container, final GridBagLayout layout, final GridBagConstraints constraints) {
         for (int i = 0; i < components.length; i ++) {
-            Component element = components[i];
             constraints.gridwidth = (i == components.length - 1 ? REMAINDER : 1);
-            layout.setConstraints(container.add(element), constraints);
+            layout.setConstraints(container.add(components[i]), constraints);
         }
     }
 }
