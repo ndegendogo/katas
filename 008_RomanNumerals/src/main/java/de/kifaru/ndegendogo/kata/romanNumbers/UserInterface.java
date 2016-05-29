@@ -19,9 +19,8 @@ public class UserInterface {
     private final JLabel arabicNumber;
     private final Container container;
 
-    static UserInterface createAndShowGui(final RomanNumbersConverter converter) {
-        final UserInterface ui = new UserInterface(converter);
-        return ui;
+    static UserInterface createGui(final RomanNumbersConverter converter) {
+        return new UserInterface(converter);
     }
 
     private UserInterface(final RomanNumbersConverter converter) {

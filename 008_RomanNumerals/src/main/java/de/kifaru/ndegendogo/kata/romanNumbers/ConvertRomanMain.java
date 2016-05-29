@@ -7,7 +7,7 @@ public class ConvertRomanMain {
     public static void main(String ... args) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                UserInterface ui = UserInterface.createAndShowGui(new RomanNumbersConverter());
+                UserInterface ui = UserInterface.createGui(new RomanNumbersConverter());
                 ui.showGui();
             }
         });
