@@ -24,13 +24,10 @@ public class UserInterface {
 
     private UserInterface(final RomanNumbersConverter converter) {
         this.converter = converter;
-        final JLabel romanLabel = new JLabel("Roman:");
         romanNumber = new JTextField(20);
         romanNumber.addActionListener( this::showConvertedNumber);
-        final JLabel arabicLabel = new JLabel("Arabic:");
         arabicNumber = new JLabel("");
-        final Component components[][] = {{romanLabel, romanNumber}, {arabicLabel, arabicNumber}};
-        final Container container = createGui(components);
+        final Container container = createGui();
         showGui(container);
     }
 
@@ -41,7 +38,10 @@ public class UserInterface {
         romanNumber.selectAll();
     }
 
-    private Container createGui(final Component[][] components) {
+    private Container createGui() {
+        final JLabel romanLabel = new JLabel("Roman:");
+        final JLabel arabicLabel = new JLabel("Arabic:");
+        final Component components[][] = {{romanLabel, romanNumber}, {arabicLabel, arabicNumber}};
         final Container container = new JPanel();
         layoutComponents(components, container);
         return container;
