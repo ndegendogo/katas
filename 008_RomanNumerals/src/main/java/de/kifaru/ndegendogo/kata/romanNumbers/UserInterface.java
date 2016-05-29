@@ -30,7 +30,8 @@ public class UserInterface {
         final JLabel arabicLabel = new JLabel("Arabic:");
         arabicNumber = new JLabel("");
         final Component components[][] = {{romanLabel, romanNumber}, {arabicLabel, arabicNumber}};
-        makeFrameForComponents(components);
+        final Container container = createGui(components);
+        showGui(container);
     }
 
     private void showConvertedNumber(final ActionEvent dummy) {
@@ -40,13 +41,7 @@ public class UserInterface {
         romanNumber.selectAll();
     }
 
-    private static void makeFrameForComponents(final Component[][] components) {
-        final Container container = createGui(components);
-
-        showGui(container);
-    }
-
-    private static Container createGui(final Component[][] components) {
+    private Container createGui(final Component[][] components) {
         final Container container = new JPanel();
         layoutComponents(components, container);
         return container;
