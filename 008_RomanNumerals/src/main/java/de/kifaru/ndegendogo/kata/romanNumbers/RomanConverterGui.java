@@ -19,19 +19,19 @@ public class RomanConverterGui {
     private final JLabel arabicNumber;
     private final Container container;
 
-    static RomanConverterGui createGui(final RomanNumbersConverter converter) {
-        return new RomanConverterGui(converter);
+    static void createAndLaunch(final RomanNumbersConverter converter) {
+        new RomanConverterGui(converter).launch();
     }
 
     private RomanConverterGui(final RomanNumbersConverter converter) {
         this.converter = converter;
+        final JLabel romanLabel = new JLabel("Roman:");
         romanNumber = new JTextField(20);
         romanNumber.addActionListener( this::showConvertedNumber);
-        arabicNumber = new JLabel("");
-        final JLabel romanLabel = new JLabel("Roman:");
         final JLabel arabicLabel = new JLabel("Arabic:");
-        final Component components[][] = {{romanLabel, romanNumber}, {arabicLabel, arabicNumber}};
+        arabicNumber = new JLabel("");
         container = new JPanel();
+        final Component components[][] = {{romanLabel, romanNumber}, {arabicLabel, arabicNumber}};
         layoutComponents(components, container);
     }
 
@@ -42,7 +42,7 @@ public class RomanConverterGui {
         romanNumber.selectAll();
     }
 
-    void showGui() {
+    void launch() {
         final JFrame frame = new JFrame("Roman Numbers");
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         frame.add(container);
