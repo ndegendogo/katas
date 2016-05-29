@@ -47,7 +47,7 @@ public class UserInterface {
         return container;
     }
 
-    private static void showGui(final Container container) {
+    private void showGui(final Container container) {
         final JFrame frame = new JFrame("Roman Numbers");
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         frame.add(container);
