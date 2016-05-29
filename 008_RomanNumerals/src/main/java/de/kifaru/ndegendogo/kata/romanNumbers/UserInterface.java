@@ -38,7 +38,7 @@ public class UserInterface {
         romanNumber.selectAll();
     }
 
-    private void layoutComponents(final JComponent[][] components) {
+    private static void layoutComponents(final JComponent[][] components) {
         final JPanel panel = new JPanel();
         setupLayout(panel, components);
 
