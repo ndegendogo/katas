@@ -40,7 +40,7 @@ public class UserInterface {
 
     private static void layoutComponents(final JComponent[][] components) {
         final JPanel panel = new JPanel();
-        setupLayout(panel, components);
+        layoutGrid(components, panel);
 
         final JFrame frame = new JFrame("Roman Numbers");
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -49,7 +49,7 @@ public class UserInterface {
         frame.setVisible(true);
     }
 
-    private static void setupLayout(final JPanel panel, final JComponent[][] components) {
+    private static void layoutGrid(final JComponent[][] components, final JPanel panel) {
         GridBagLayout layout = new GridBagLayout();
         panel.setLayout(layout);
         GridBagConstraints constraints = new GridBagConstraints();
