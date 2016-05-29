@@ -61,7 +61,7 @@ public class UserInterface {
         }
     }
 
-    private static void layoutLine(Component[] components, final JPanel panel, GridBagLayout layout, GridBagConstraints constraints) {
+    private static void layoutLine(final Component[] components, final JPanel panel, final GridBagLayout layout, final GridBagConstraints constraints) {
         for (int i = 0; i < components.length; i ++) {
             Component element = components[i];
             constraints.gridwidth = (i == components.length - 1 ? REMAINDER : 1);
