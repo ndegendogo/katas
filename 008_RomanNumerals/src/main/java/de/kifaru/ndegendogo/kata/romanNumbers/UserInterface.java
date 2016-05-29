@@ -28,7 +28,7 @@ public class UserInterface {
         final JLabel arabicLabel = new JLabel("Arabic:");
         arabicNumber = new JLabel("");
         final JComponent components[][] = {{romanLabel, romanNumber}, {arabicLabel, arabicNumber}};
-        layoutComponents(components);
+        makeFrameForComponents(components);
     }
 
     private void showConvertedNumber(final ActionEvent dummy) {
@@ -38,9 +38,9 @@ public class UserInterface {
         romanNumber.selectAll();
     }
 
-    private static void layoutComponents(final JComponent[][] components) {
+    private static void makeFrameForComponents(final JComponent[][] components) {
         final JPanel panel = new JPanel();
-        layoutGrid(components, panel);
+        layoutComponents(components, panel);
 
         final JFrame frame = new JFrame("Roman Numbers");
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -49,7 +49,7 @@ public class UserInterface {
         frame.setVisible(true);
     }
 
-    private static void layoutGrid(final JComponent[][] components, final JPanel panel) {
+    private static void layoutComponents(final JComponent[][] components, final JPanel panel) {
         GridBagLayout layout = new GridBagLayout();
         panel.setLayout(layout);
         GridBagConstraints constraints = new GridBagConstraints();
