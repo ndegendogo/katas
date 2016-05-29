@@ -17,6 +17,7 @@ public class UserInterface {
     private final RomanNumbersConverter converter;
     private final JTextField romanNumber;
     private final JLabel arabicNumber;
+    private final Container container;
 
     static UserInterface createAndShowGui(final RomanNumbersConverter converter) {
         return new UserInterface(converter);
@@ -30,9 +31,9 @@ public class UserInterface {
         final JLabel romanLabel = new JLabel("Roman:");
         final JLabel arabicLabel = new JLabel("Arabic:");
         final Component components[][] = {{romanLabel, romanNumber}, {arabicLabel, arabicNumber}};
-        final Container container = new JPanel();
+        container = new JPanel();
         layoutComponents(components, container);
-        showGui(container);
+        showGui();
     }
 
     private void showConvertedNumber(final ActionEvent dummy) {
@@ -42,7 +43,7 @@ public class UserInterface {
         romanNumber.selectAll();
     }
 
-    private void showGui(final Container container) {
+    private void showGui() {
         final JFrame frame = new JFrame("Roman Numbers");
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         frame.add(container);
