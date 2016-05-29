@@ -6,11 +6,7 @@ public class RomanConverterMain {
 
     public static void main(String ... args) {
         final RomanConverterGui gui = new RomanConverterGui(new RomanNumbersConverter());
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                gui.launch();
-            }
-        });
+        SwingUtilities.invokeLater(gui::launch);
     }
 
 }
