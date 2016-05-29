@@ -56,12 +56,16 @@ public class UserInterface {
         constraints.insets = new Insets (5, 5, 5, 5);
         constraints.anchor = BASELINE_LEADING;
         for (JComponent[] line : components) {
-            for (int i = 0; i < line.length; i ++) {
-                JComponent element = line[i];
-                constraints.gridwidth = (i == line.length - 1 ? REMAINDER : 1);
-                layout.setConstraints(element, constraints);
-                panel.add(element);
-            }
+            layoutLine(panel, layout, constraints, line);
+        }
+    }
+
+    private static void layoutLine(final JPanel panel, GridBagLayout layout, GridBagConstraints constraints, JComponent[] line) {
+        for (int i = 0; i < line.length; i ++) {
+            JComponent element = line[i];
+            constraints.gridwidth = (i == line.length - 1 ? REMAINDER : 1);
+            layout.setConstraints(element, constraints);
+            panel.add(element);
         }
     }
 }
