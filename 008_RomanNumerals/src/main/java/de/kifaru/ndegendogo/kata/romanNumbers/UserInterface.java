@@ -28,7 +28,7 @@ public class UserInterface {
         romanNumber.addActionListener( this::showConvertedNumber);
         final JLabel arabicLabel = new JLabel("Arabic:");
         arabicNumber = new JLabel("");
-        final JComponent components[][] = {{romanLabel, romanNumber}, {arabicLabel, arabicNumber}};
+        final Component components[][] = {{romanLabel, romanNumber}, {arabicLabel, arabicNumber}};
         makeFrameForComponents(components);
     }
 
@@ -39,7 +39,7 @@ public class UserInterface {
         romanNumber.selectAll();
     }
 
-    private static void makeFrameForComponents(final JComponent[][] components) {
+    private static void makeFrameForComponents(final Component[][] components) {
         final JPanel panel = new JPanel();
         layoutComponents(components, panel);
 
@@ -50,18 +50,18 @@ public class UserInterface {
         frame.setVisible(true);
     }
 
-    private static void layoutComponents(final JComponent[][] components, final JPanel panel) {
+    private static void layoutComponents(final Component[][] components, final JPanel panel) {
         GridBagLayout layout = new GridBagLayout();
         panel.setLayout(layout);
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.insets = new Insets (5, 5, 5, 5);
         constraints.anchor = BASELINE_LEADING;
-        for (JComponent[] line : components) {
+        for (Component[] line : components) {
             layoutLine(line, panel, layout, constraints);
         }
     }
 
-    private static void layoutLine(JComponent[] components, final JPanel panel, GridBagLayout layout, GridBagConstraints constraints) {
+    private static void layoutLine(Component[] components, final JPanel panel, GridBagLayout layout, GridBagConstraints constraints) {
         for (int i = 0; i < components.length; i ++) {
             Component element = components[i];
             constraints.gridwidth = (i == components.length - 1 ? REMAINDER : 1);
