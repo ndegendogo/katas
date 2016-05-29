@@ -51,22 +51,22 @@ public class UserInterface {
         frame.setVisible(true);
     }
 
-    private static void layoutComponents(final Component[][] components, final Container panel) {
+    private static void layoutComponents(final Component[][] components, final Container container) {
         GridBagLayout layout = new GridBagLayout();
-        panel.setLayout(layout);
+        container.setLayout(layout);
         GridBagConstraints constraints = new GridBagConstraints();
         constraints.insets = new Insets (5, 5, 5, 5);
         constraints.anchor = BASELINE_LEADING;
         for (Component[] line : components) {
-            layoutLine(line, panel, layout, constraints);
+            layoutLine(line, container, layout, constraints);
         }
     }
 
-    private static void layoutLine(final Component[] components, final Container panel, final GridBagLayout layout, final GridBagConstraints constraints) {
+    private static void layoutLine(final Component[] components, final Container container, final GridBagLayout layout, final GridBagConstraints constraints) {
         for (int i = 0; i < components.length; i ++) {
             Component element = components[i];
             constraints.gridwidth = (i == components.length - 1 ? REMAINDER : 1);
-            layout.setConstraints(panel.add(element), constraints);
+            layout.setConstraints(container.add(element), constraints);
         }
     }
 }
