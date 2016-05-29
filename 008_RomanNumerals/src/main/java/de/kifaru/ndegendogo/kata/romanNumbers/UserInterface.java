@@ -60,10 +60,10 @@ public class UserInterface {
         }
     }
 
-    private static void layoutLine(JComponent[] line, final JPanel panel, GridBagLayout layout, GridBagConstraints constraints) {
-        for (int i = 0; i < line.length; i ++) {
-            JComponent element = line[i];
-            constraints.gridwidth = (i == line.length - 1 ? REMAINDER : 1);
+    private static void layoutLine(JComponent[] components, final JPanel panel, GridBagLayout layout, GridBagConstraints constraints) {
+        for (int i = 0; i < components.length; i ++) {
+            JComponent element = components[i];
+            constraints.gridwidth = (i == components.length - 1 ? REMAINDER : 1);
             layout.setConstraints(element, constraints);
             panel.add(element);
         }
