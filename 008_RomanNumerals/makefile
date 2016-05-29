@@ -28,7 +28,7 @@ all: build run unittest
 
 .PHONY: run
 run: build
-	java -cp $(BASEPATH_CLASSES) $(PACKAGE)ConvertRomanMain
+	java -cp $(BASEPATH_CLASSES) $(PACKAGE)RomanConverterMain
 
 .PHONY: build
 build: $(CLASSFILES)

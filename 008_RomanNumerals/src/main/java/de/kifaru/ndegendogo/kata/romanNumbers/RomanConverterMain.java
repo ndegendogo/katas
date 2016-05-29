@@ -2,12 +2,12 @@ package de.kifaru.ndegendogo.kata.romanNumbers;
 
 import javax.swing.SwingUtilities;
 
-public class ConvertRomanMain {
+public class RomanConverterMain {
 
     public static void main(String ... args) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                UserInterface ui = UserInterface.createGui(new RomanNumbersConverter());
+                RomanConverterGui ui = RomanConverterGui.createGui(new RomanNumbersConverter());
                 ui.showGui();
             }
         });

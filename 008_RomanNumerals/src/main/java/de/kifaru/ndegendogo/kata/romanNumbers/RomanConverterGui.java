@@ -12,18 +12,18 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.*;
 
-public class UserInterface {
+public class RomanConverterGui {
 
     private final RomanNumbersConverter converter;
     private final JTextField romanNumber;
     private final JLabel arabicNumber;
     private final Container container;
 
-    static UserInterface createGui(final RomanNumbersConverter converter) {
-        return new UserInterface(converter);
+    static RomanConverterGui createGui(final RomanNumbersConverter converter) {
+        return new RomanConverterGui(converter);
     }
 
-    private UserInterface(final RomanNumbersConverter converter) {
+    private RomanConverterGui(final RomanNumbersConverter converter) {
         this.converter = converter;
         romanNumber = new JTextField(20);
         romanNumber.addActionListener( this::showConvertedNumber);
