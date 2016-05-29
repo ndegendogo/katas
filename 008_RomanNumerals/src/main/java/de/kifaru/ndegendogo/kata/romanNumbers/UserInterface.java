@@ -3,6 +3,7 @@ package de.kifaru.ndegendogo.kata.romanNumbers;
 import static java.awt.GridBagConstraints.*;
 import static javax.swing.WindowConstants.*;
 
+import java.awt.Component;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -62,10 +63,9 @@ public class UserInterface {
 
     private static void layoutLine(JComponent[] components, final JPanel panel, GridBagLayout layout, GridBagConstraints constraints) {
         for (int i = 0; i < components.length; i ++) {
-            JComponent element = components[i];
+            Component element = components[i];
             constraints.gridwidth = (i == components.length - 1 ? REMAINDER : 1);
-            layout.setConstraints(element, constraints);
-            panel.add(element);
+            layout.setConstraints(panel.add(element), constraints);
         }
     }
 }
