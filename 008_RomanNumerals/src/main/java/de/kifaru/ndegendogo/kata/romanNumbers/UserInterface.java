@@ -12,17 +12,21 @@ import javax.swing.*;
 
 public class UserInterface {
 
-    static void createAndShowGui(final RomanNumbersConverter converter) {
-        final JLabel arabicLabel = new JLabel("Arabic:");
-        final JLabel arabicNumber = new JLabel("");
+    private final RomanNumbersConverter converter;
+    private final JTextField romanNumber;
+    private final JLabel arabicNumber;
+
+    static UserInterface createAndShowGui(final RomanNumbersConverter converter) {
+        return new UserInterface(converter);
+    }
+
+    private UserInterface(final RomanNumbersConverter converter) {
+        this.converter = converter;
         final JLabel romanLabel = new JLabel("Roman:");
-        final JTextField romanNumber = new JTextField(20);
-        romanNumber.addActionListener( (ActionEvent e) -> {
-            final Integer convertedNumber = converter.convertToArabicNumber(romanNumber.getText());
-            final String convertedString = (convertedNumber <= 0 ? "Illegal Input" : convertedNumber.toString());
-            arabicNumber.setText(convertedString);
-            romanNumber.selectAll();
-        });
+        romanNumber = new JTextField(20);
+        romanNumber.addActionListener( this::showConvertedNumber);
+        final JLabel arabicLabel = new JLabel("Arabic:");
+        arabicNumber = new JLabel("");
 
         final JComponent components[][] = {{romanLabel, romanNumber}, {arabicLabel, arabicNumber}};
         final JPanel panel = new JPanel();
@@ -33,6 +37,13 @@ public class UserInterface {
         frame.add(panel);
         frame.pack();
         frame.setVisible(true);
+    }
+
+    private void showConvertedNumber(final ActionEvent dummy) {
+        final Integer convertedNumber = converter.convertToArabicNumber(romanNumber.getText());
+        final String convertedString = (convertedNumber <= 0 ? "Illegal Input" : convertedNumber.toString());
+        arabicNumber.setText(convertedString);
+        romanNumber.selectAll();
     }
 
     private static void setupLayout(final JPanel panel, final JComponent[][] components) {
