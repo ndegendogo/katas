@@ -27,8 +27,18 @@ public class UserInterface {
         romanNumber.addActionListener( this::showConvertedNumber);
         final JLabel arabicLabel = new JLabel("Arabic:");
         arabicNumber = new JLabel("");
-
         final JComponent components[][] = {{romanLabel, romanNumber}, {arabicLabel, arabicNumber}};
+        layoutComponents(components);
+    }
+
+    private void showConvertedNumber(final ActionEvent dummy) {
+        final Integer convertedNumber = converter.convertToArabicNumber(romanNumber.getText());
+        final String convertedString = (convertedNumber <= 0 ? "Illegal Input" : convertedNumber.toString());
+        arabicNumber.setText(convertedString);
+        romanNumber.selectAll();
+    }
+
+    private void layoutComponents(final JComponent[][] components) {
         final JPanel panel = new JPanel();
         setupLayout(panel, components);
 
@@ -37,13 +47,6 @@ public class UserInterface {
         frame.add(panel);
         frame.pack();
         frame.setVisible(true);
-    }
-
-    private void showConvertedNumber(final ActionEvent dummy) {
-        final Integer convertedNumber = converter.convertToArabicNumber(romanNumber.getText());
-        final String convertedString = (convertedNumber <= 0 ? "Illegal Input" : convertedNumber.toString());
-        arabicNumber.setText(convertedString);
-        romanNumber.selectAll();
     }
 
     private static void setupLayout(final JPanel panel, final JComponent[][] components) {
