@@ -1,10 +1,10 @@
 package de.kifaru.ndegendogo.kata.romanNumbers;
 
-import javax.swing.SwingUtilities;
+import static javax.swing.SwingUtilities.invokeLater;
 
 public class RomanConverterMain {
     public static void main(final String ... args) {
-        SwingUtilities.invokeLater(RomanConverterMain::constructAndLaunchGui);
+        invokeLater(RomanConverterMain::constructAndLaunchGui);
     }
 
     private static void constructAndLaunchGui() {
