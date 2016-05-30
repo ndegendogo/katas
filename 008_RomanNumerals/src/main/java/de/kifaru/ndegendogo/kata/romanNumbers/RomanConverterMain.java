@@ -4,10 +4,7 @@ import javax.swing.SwingUtilities;
 
 public class RomanConverterMain {
     public static void main(final String ... args) {
-        SwingUtilities.invokeLater(() -> 
-        {
-            constructAndLaunchGui();
-        });
+        SwingUtilities.invokeLater(RomanConverterMain::constructAndLaunchGui);
     }
 
     private static void constructAndLaunchGui() {
