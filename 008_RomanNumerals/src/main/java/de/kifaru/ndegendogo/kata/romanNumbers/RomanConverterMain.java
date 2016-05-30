@@ -6,8 +6,12 @@ public class RomanConverterMain {
     public static void main(final String ... args) {
         SwingUtilities.invokeLater(() -> 
         {
-            final RomanConverterGui gui = new RomanConverterGui(new RomanNumbersConverter());
-            gui.launch();
+            constructAndLaunchGui();
         });
+    }
+
+    private static void constructAndLaunchGui() {
+        final RomanConverterGui gui = new RomanConverterGui(new RomanNumbersConverter());
+        gui.launch();
     }
 }
