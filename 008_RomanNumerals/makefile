@@ -1,4 +1,4 @@
-# setup environment. You may overide this with your own UserConfig.mak file.
+# setup environment. You may override this with your own UserConfig.mak file.
 include $(or $(wildcard UserConfig.mak),DefaultUserConfig.mak)
 
 BASEPATH_SOURCE:=src/main/java/
@@ -51,4 +51,4 @@ $(BASEPATH_CLASSES):
 
 .PHONY: clean
 clean:
-	rm -rf bin
+	$(RM) -r bin
