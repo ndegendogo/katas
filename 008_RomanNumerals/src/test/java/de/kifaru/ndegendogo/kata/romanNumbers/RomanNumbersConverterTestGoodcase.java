@@ -12,7 +12,7 @@ import org.junit.runners.Parameterized.Parameter;
 import org.junit.runners.Parameterized.Parameters;
 
 @RunWith(Parameterized.class)
-public class RomanNumbersConverterTest {
+public class RomanNumbersConverterTestGoodcase {
 
     @Parameters
     public static Collection<Object[]> data() {
@@ -40,9 +40,6 @@ public class RomanNumbersConverterTest {
                 {"M", 1000},
                 {"MCMXC", 1990},
                 {"MCMXCIX", 1999},
-                {"TATA", 0},
-                {"MCMXCIXT", 0},
-                {"MCMXCTIX", 0},
         });
     }
 
