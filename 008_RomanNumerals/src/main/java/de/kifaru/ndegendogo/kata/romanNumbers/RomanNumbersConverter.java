@@ -27,12 +27,16 @@ public class RomanNumbersConverter {
         }
     }
 
-    public Integer convertToArabicNumber(final String romanNumber) {
+    public Integer convertToArabicNumber(final String romanNumber) throws RomanNumberFormatException {
         init(romanNumber);
         for (RomanDigit digit: RomanDigit.values()) {
             consume(digit);
         }
-        return (allDigitsConsumed() ? result : 0);
+        if (allDigitsConsumed()) {
+            return result;
+        } else {
+            throw new RomanNumberFormatException();
+        }
     }
 
     private void init(final String romanNumber) {

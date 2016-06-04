@@ -32,8 +32,13 @@ public class RomanConverterGui {
     }
 
     private void showConvertedNumber(final ActionEvent dummy) {
-        final Integer convertedNumber = converter.convertToArabicNumber(romanNumber.getText());
-        final String convertedString = (convertedNumber <= 0 ? "Illegal Input" : convertedNumber.toString());
+        String convertedString;
+        try {
+            final Integer convertedNumber = converter.convertToArabicNumber(romanNumber.getText());
+            convertedString = convertedNumber.toString();
+        } catch (RomanNumberFormatException e) {
+            convertedString = "Illegal Input";
+        }
         arabicNumber.setText(convertedString);
         romanNumber.selectAll();
     }
