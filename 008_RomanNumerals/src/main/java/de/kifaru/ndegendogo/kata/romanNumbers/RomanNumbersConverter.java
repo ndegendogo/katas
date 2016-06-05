@@ -63,6 +63,11 @@ public class RomanNumbersConverter {
             throw new RomanNumberFormatException();
         }
 
+        int result = addDigits(digitList);
+        return result;
+    }
+
+    private int addDigits(final List<RomanDigit> digitList) {
         int result = 0;
         for (RomanDigit digit: digitList) {
             result += digit.value;
