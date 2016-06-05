@@ -14,8 +14,6 @@ public class RomanNumbersConverter {
         }
     }
 
-    private ConverterState state;
-
     private enum RomanDigit {
         // The order of digits must be descending for the algorithm to work correctly.
         DIGIT_M("M", 1000), DIGIT_CM("CM", 900),
@@ -38,7 +36,7 @@ public class RomanNumbersConverter {
     }
 
     public synchronized Integer convertToArabicNumber(final String romanNumber) throws RomanNumberFormatException {
-        state = new ConverterState(romanNumber);
+        final ConverterState state = new ConverterState(romanNumber);
         for (RomanDigit digit: RomanDigit.values()) {
             consume(digit, state);
         }
