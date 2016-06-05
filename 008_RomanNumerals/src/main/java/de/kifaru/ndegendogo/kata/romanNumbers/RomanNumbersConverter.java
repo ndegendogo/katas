@@ -5,16 +5,6 @@ import java.util.List;
 
 public class RomanNumbersConverter {
 
-    class ConverterState {
-        private int offset;
-        private int result;
-
-        ConverterState() {
-            result = 0;
-            offset = 0;
-        }
-    }
-
     enum RomanDigit {
         // The order of digits must be descending for the algorithm to work correctly.
         DIGIT_M("M", 1000), DIGIT_CM("CM", 900),
