@@ -2,7 +2,7 @@ package de.kifaru.ndegendogo.kata.romanNumbers;
 
 public class RomanNumbersConverter {
 
-    private class ConverterState {
+    class ConverterState {
         private int offset;
         private int result;
 
@@ -34,6 +34,11 @@ public class RomanNumbersConverter {
         boolean found(final String romanNumber, int offset) {
             return romanNumber.startsWith(glyph, offset);
         }
+
+        void consumeSingle(ConverterState state) {
+            state.offset += length();
+            state.result += value;
+        }
     }
 
     public int convertToArabicNumber(final String romanNumber) throws RomanNumberFormatException {
@@ -50,13 +55,8 @@ public class RomanNumbersConverter {
 
     private void consume(final RomanDigit digit, final ConverterState state, final String romanNumber) {
         while (digit.found(romanNumber, state.offset)) {
-            consumeSingle(digit, state);
+            digit.consumeSingle(state);
         }
-    }
-
-    private void consumeSingle(final RomanDigit digit, ConverterState state) {
-        state.offset += digit.length();
-        state.result += digit.value;
     }
 
     private boolean allDigitsConsumed(final String romanNumber, final ConverterState state) {
