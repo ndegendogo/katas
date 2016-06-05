@@ -52,6 +52,10 @@ public class RomanNumbersConverter {
         for (RomanDigit digit: RomanDigit.values()) {
             digit.consume(romanNumber, state);
         }
+        return finishConversion(romanNumber, state);
+    }
+
+    private int finishConversion(final String romanNumber, final ConverterState state) throws RomanNumberFormatException {
         if (allDigitsConsumed(romanNumber, state)) {
             return state.result;
         } else {
