@@ -12,7 +12,7 @@ public class RomanNumbersConverter {
         }
     }
 
-    private enum RomanDigit {
+    enum RomanDigit {
         // The order of digits must be descending for the algorithm to work correctly.
         DIGIT_M("M", 1000), DIGIT_CM("CM", 900),
         DIGIT_D("D", 500), DIGIT_CD("CD", 400), DIGIT_C("C", 100), DIGIT_XC("XC", 90),
@@ -21,12 +21,18 @@ public class RomanNumbersConverter {
 
         private final String glyph;
         private final int value;
+
         RomanDigit(final String glyph, final int value) {
             this.glyph = glyph;
             this.value = value;
         }
+
         int length() {
             return glyph.length();
+        }
+
+        boolean found(final String romanNumber, int offset) {
+            return romanNumber.startsWith(glyph, offset);
         }
     }
 
@@ -43,13 +49,9 @@ public class RomanNumbersConverter {
     }
 
     private void consume(final RomanDigit digit, final ConverterState state, final String romanNumber) {
-        while (found(digit, romanNumber, state.offset)) {
+        while (digit.found(romanNumber, state.offset)) {
             consumeSingle(digit, state);
         }
-    }
-
-    private boolean found(RomanDigit digit, final String romanNumber, int offset) {
-        return romanNumber.startsWith(digit.glyph, offset);
     }
 
     private void consumeSingle(final RomanDigit digit, ConverterState state) {
