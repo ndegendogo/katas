@@ -35,14 +35,11 @@ public class RomanNumbersConverter {
         }
 
         private boolean isNextDigitAt(String romanNumber) {
-            final int arrayOffset = 0;
-            final int arrayLength = romanNumber.length();
-            final int tailLength = arrayLength - arrayOffset;
-            if (tailLength <= 0 || tailLength < length()) {
+            if (romanNumber.length() < length()) {
                 return false;
             }
             for (int i = 0; i < length(); i ++) {
-                if (romanNumber.charAt(arrayOffset + i) != glyph.charAt(i)) {
+                if (romanNumber.charAt(i) != glyph.charAt(i)) {
                     return false;
                 }
             }
