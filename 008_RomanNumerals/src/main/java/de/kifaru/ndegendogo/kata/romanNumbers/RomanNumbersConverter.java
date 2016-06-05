@@ -11,16 +11,16 @@ public class RomanNumbersConverter {
             offset = 0;
         }
 
-        private int finishConversion(final String romanNumber) throws RomanNumberFormatException {
-            if (allDigitsConsumed(romanNumber)) {
+        private int finishConversion(int length) throws RomanNumberFormatException {
+            if (allDigitsConsumed(length)) {
                 return result;
             } else {
                 throw new RomanNumberFormatException();
             }
         }
 
-        private boolean allDigitsConsumed(final String romanNumber) {
-            return offset == romanNumber.length();
+        private boolean allDigitsConsumed(int length) {
+            return offset == length;
         }
     }
 
@@ -64,6 +64,6 @@ public class RomanNumbersConverter {
         for (RomanDigit digit: RomanDigit.values()) {
             digit.addDigits(romanNumber, state);
         }
-        return state.finishConversion(romanNumber);
+        return state.finishConversion(romanNumber.length());
     }
 }
