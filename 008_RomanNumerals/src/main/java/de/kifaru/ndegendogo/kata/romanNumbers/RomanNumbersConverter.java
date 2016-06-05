@@ -27,7 +27,7 @@ public class RomanNumbersConverter {
             this.value = value;
         }
 
-        int length() {
+        private int length() {
             return glyph.length();
         }
 
@@ -37,11 +37,11 @@ public class RomanNumbersConverter {
             }
         }
 
-        boolean found(final String romanNumber, final int offset) {
+        private boolean found(final String romanNumber, final int offset) {
             return romanNumber.startsWith(glyph, offset);
         }
 
-        void consumeSingle(final ConverterState state) {
+        private void consumeSingle(final ConverterState state) {
             state.offset += length();
             state.result += value;
         }
