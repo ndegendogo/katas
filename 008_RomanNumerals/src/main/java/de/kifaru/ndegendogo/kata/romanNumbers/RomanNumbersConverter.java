@@ -5,10 +5,16 @@ public class RomanNumbersConverter {
     private class ConverterState {
         private int offset;
         private int result;
-        private String romanNumber;
+        private final String romanNumber;
+
+        ConverterState(final String romanNumber) {
+            result = 0;
+            offset = 0;
+            this.romanNumber = romanNumber;
+        }
     }
 
-    private ConverterState state = new ConverterState();
+    private ConverterState state;
 
     private enum RomanDigit {
         // The order of digits must be descending for the algorithm to work correctly.
@@ -32,7 +38,7 @@ public class RomanNumbersConverter {
     }
 
     public synchronized Integer convertToArabicNumber(final String romanNumber) throws RomanNumberFormatException {
-        init(romanNumber);
+        state = new ConverterState(romanNumber);
         for (RomanDigit digit: RomanDigit.values()) {
             consume(digit);
         }
@@ -41,12 +47,6 @@ public class RomanNumbersConverter {
         } else {
             throw new RomanNumberFormatException();
         }
-    }
-
-    private void init(final String romanNumber) {
-        state.result = 0;
-        state.offset = 0;
-        state.romanNumber = romanNumber;
     }
 
     private void consume(final RomanDigit digit) {
