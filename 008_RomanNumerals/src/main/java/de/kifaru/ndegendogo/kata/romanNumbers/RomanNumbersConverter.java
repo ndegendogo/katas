@@ -50,15 +50,14 @@ public class RomanNumbersConverter {
     }
 
     public int convertToArabicNumber(String romanNumber) throws RomanNumberFormatException {
-        int offset = 0;
         final List<RomanDigit> digitList = new ArrayList<RomanDigit>();
         for (RomanDigit digit: RomanDigit.values()) {
-            while (digit.isNextDigitAt(offset, romanNumber)) {
+            while (digit.isNextDigitAt(0, romanNumber)) {
                 romanNumber = romanNumber.substring(digit.length());
                 digitList.add(digit);
             }
         }
-        if (offset != romanNumber.length()) {
+        if (0 != romanNumber.length()) {
             throw new RomanNumberFormatException();
         }
 
