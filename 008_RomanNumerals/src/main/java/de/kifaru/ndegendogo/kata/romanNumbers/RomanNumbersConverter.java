@@ -10,18 +10,6 @@ public class RomanNumbersConverter {
             result = 0;
             offset = 0;
         }
-
-        private int finishConversion(int length) throws RomanNumberFormatException {
-            if (allDigitsConsumed(length)) {
-                return result;
-            } else {
-                throw new RomanNumberFormatException();
-            }
-        }
-
-        private boolean allDigitsConsumed(int length) {
-            return offset == length;
-        }
     }
 
     enum RomanDigit {
@@ -43,12 +31,6 @@ public class RomanNumbersConverter {
             return glyph.length();
         }
 
-        private void addDigits(final char[] romanNumberArray, final ConverterState state) {
-            while (isNextDigitAt(romanNumberArray, state.offset)) {
-                add(state);
-            }
-        }
-
         private boolean isNextDigitAt(final char[] romanNumberArray, final int arrayOffset) {
             final int arrayLength = romanNumberArray.length;
             final int tailLength = arrayLength - arrayOffset;
@@ -62,19 +44,21 @@ public class RomanNumbersConverter {
             }
             return true;
         }
-
-        private void add(final ConverterState state) {
-            state.offset += length();
-            state.result += value;
-        }
     }
 
     public int convertToArabicNumber(final String romanNumber) throws RomanNumberFormatException {
-        final ConverterState state = new ConverterState();
         final char[] romanNumberArray = romanNumber.toCharArray();
+        final ConverterState state = new ConverterState();
         for (RomanDigit digit: RomanDigit.values()) {
-            digit.addDigits(romanNumberArray, state);
+            while (digit.isNextDigitAt(romanNumberArray, state.offset)) {
+                state.offset += digit.length();
+                state.result += digit.value;
+            }
         }
-        return state.finishConversion(romanNumberArray.length);
+        if (state.offset == romanNumberArray.length) {
+            return state.result;
+        } else {
+            throw new RomanNumberFormatException();
+        }
     }
 }
