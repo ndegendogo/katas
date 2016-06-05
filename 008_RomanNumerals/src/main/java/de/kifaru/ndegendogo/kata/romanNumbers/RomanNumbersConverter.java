@@ -27,7 +27,7 @@ public class RomanNumbersConverter {
         }
     }
 
-    public Integer convertToArabicNumber(final String romanNumber) throws RomanNumberFormatException {
+    public synchronized Integer convertToArabicNumber(final String romanNumber) throws RomanNumberFormatException {
         init(romanNumber);
         for (RomanDigit digit: RomanDigit.values()) {
             consume(digit);
