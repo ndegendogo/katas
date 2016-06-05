@@ -29,7 +29,12 @@ public class RomanNumbersConverter {
         }
     }
 
-    public int convertToArabicNumber(String romanNumber) throws RomanNumberFormatException {
+    public int convertToArabicNumber(final String romanNumber) throws RomanNumberFormatException {
+        final List<RomanDigit> digits = parseDigits(romanNumber);
+        return addDigits(digits);
+    }
+
+    private List<RomanDigit> parseDigits(String romanNumber) throws RomanNumberFormatException {
         final List<RomanDigit> digitList = new ArrayList<RomanDigit>();
         for (RomanDigit digit: RomanDigit.values()) {
             while (digit.isFirstDigitOf(romanNumber)) {
@@ -40,9 +45,7 @@ public class RomanNumbersConverter {
         if (0 != romanNumber.length()) {
             throw new RomanNumberFormatException();
         }
-
-        int result = addDigits(digitList);
-        return result;
+        return digitList;
     }
 
     private int addDigits(final List<RomanDigit> digitList) {
