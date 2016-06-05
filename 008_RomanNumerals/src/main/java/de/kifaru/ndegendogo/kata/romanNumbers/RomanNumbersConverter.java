@@ -43,17 +43,17 @@ public class RomanNumbersConverter {
             return glyph.length();
         }
 
-        private void consume(final String romanNumber, final ConverterState state) {
-            while (found(romanNumber, state.offset)) {
-                consumeSingle(state);
+        private void addDigits(final String romanNumber, final ConverterState state) {
+            while (isNextDigitAt(romanNumber, state.offset)) {
+                add(state);
             }
         }
 
-        private boolean found(final String romanNumber, final int offset) {
+        private boolean isNextDigitAt(final String romanNumber, final int offset) {
             return romanNumber.startsWith(glyph, offset);
         }
 
-        private void consumeSingle(final ConverterState state) {
+        private void add(final ConverterState state) {
             state.offset += length();
             state.result += value;
         }
@@ -62,7 +62,7 @@ public class RomanNumbersConverter {
     public int convertToArabicNumber(final String romanNumber) throws RomanNumberFormatException {
         final ConverterState state = new ConverterState();
         for (RomanDigit digit: RomanDigit.values()) {
-            digit.consume(romanNumber, state);
+            digit.addDigits(romanNumber, state);
         }
         return state.finishConversion(romanNumber);
     }
