@@ -29,7 +29,7 @@ public class RomanNumbersConverter {
         }
     }
 
-    public Integer convertToArabicNumber(final String romanNumber) throws RomanNumberFormatException {
+    public int convertToArabicNumber(final String romanNumber) throws RomanNumberFormatException {
         final ConverterState state = new ConverterState(romanNumber);
         for (RomanDigit digit: RomanDigit.values()) {
             consume(digit, state);

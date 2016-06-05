@@ -52,8 +52,8 @@ public class RomanNumbersConverterTestGoodcase {
     @Test
     public void testConvertToArabicNumber() {
         try {
-            final Integer actualResult = new RomanNumbersConverter().convertToArabicNumber(actualInput);
-            assertEquals(expectedResult, actualResult.intValue());
+            final int actualResult = new RomanNumbersConverter().convertToArabicNumber(actualInput);
+            assertEquals(expectedResult, actualResult);
         } catch (RomanNumberFormatException e) {
             fail();
         }
