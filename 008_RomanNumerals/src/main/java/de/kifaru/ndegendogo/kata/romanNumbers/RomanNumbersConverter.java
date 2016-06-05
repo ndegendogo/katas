@@ -35,23 +35,23 @@ public class RomanNumbersConverter {
     public int convertToArabicNumber(final String romanNumber) throws RomanNumberFormatException {
         final ConverterState state = new ConverterState(romanNumber);
         for (RomanDigit digit: RomanDigit.values()) {
-            consume(digit, state);
+            consume(digit, state, romanNumber);
         }
-        if (allDigitsConsumed(state)) {
+        if (allDigitsConsumed(state, romanNumber)) {
             return state.result;
         } else {
             throw new RomanNumberFormatException();
         }
     }
 
-    private void consume(final RomanDigit digit, final ConverterState state) {
-        while (found(digit.glyph, state)) {
+    private void consume(final RomanDigit digit, final ConverterState state, final String romanNumber) {
+        while (found(digit.glyph, state, romanNumber)) {
             consumeSingle(digit, state);
         }
     }
 
-    private boolean found(final String glyph, final ConverterState state) {
-        return state.romanNumber.startsWith(glyph, state.offset);
+    private boolean found(final String glyph, final ConverterState state, final String romanNumber) {
+        return romanNumber.startsWith(glyph, state.offset);
     }
 
     private void consumeSingle(final RomanDigit digit, ConverterState state) {
@@ -59,8 +59,8 @@ public class RomanNumbersConverter {
         state.result += digit.value;
     }
 
-    private boolean allDigitsConsumed(final ConverterState state) {
-        return state.offset == state.romanNumber.length();
+    private boolean allDigitsConsumed(final ConverterState state, final String romanNumber) {
+        return state.offset == romanNumber.length();
     }
 
 }
