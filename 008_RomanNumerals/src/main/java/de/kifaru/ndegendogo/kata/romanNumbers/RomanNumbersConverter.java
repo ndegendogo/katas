@@ -35,13 +35,13 @@ public class RomanNumbersConverter {
         }
 
         private boolean isNextDigitAt(final char[] romanNumberArray, final int arrayOffset, String romanNumber) {
-            final int arrayLength = romanNumberArray.length;
+            final int arrayLength = romanNumber.length();
             final int tailLength = arrayLength - arrayOffset;
             if (tailLength <= 0 || tailLength < length()) {
                 return false;
             }
             for (int i = 0; i < length(); i ++) {
-                if (romanNumberArray[arrayOffset + i] != glyph.charAt(i)) {
+                if (romanNumber.charAt(arrayOffset + i) != glyph.charAt(i)) {
                     return false;
                 }
             }
