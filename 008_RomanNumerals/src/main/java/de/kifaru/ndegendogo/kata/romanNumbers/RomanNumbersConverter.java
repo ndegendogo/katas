@@ -34,7 +34,7 @@ public class RomanNumbersConverter {
             return glyph.length();
         }
 
-        private boolean isNextDigitAt(final char[] romanNumberArray, final int arrayOffset, String romanNumber) {
+        private boolean isNextDigitAt(final int arrayOffset, String romanNumber) {
             final int arrayLength = romanNumber.length();
             final int tailLength = arrayLength - arrayOffset;
             if (tailLength <= 0 || tailLength < length()) {
@@ -50,11 +50,10 @@ public class RomanNumbersConverter {
     }
 
     public int convertToArabicNumber(final String romanNumber) throws RomanNumberFormatException {
-        final char[] romanNumberArray = romanNumber.toCharArray();
         int offset = 0;
         final List<RomanDigit> digitList = new ArrayList<RomanDigit>();
         for (RomanDigit digit: RomanDigit.values()) {
-            while (digit.isNextDigitAt(romanNumberArray, offset, romanNumber)) {
+            while (digit.isNextDigitAt(offset, romanNumber)) {
                 offset += digit.length();
                 digitList.add(digit);
             }
