@@ -48,15 +48,16 @@ public class RomanNumbersConverter {
 
     public int convertToArabicNumber(final String romanNumber) throws RomanNumberFormatException {
         final char[] romanNumberArray = romanNumber.toCharArray();
-        final ConverterState state = new ConverterState();
+        int offset = 0;
+        int result = 0;
         for (RomanDigit digit: RomanDigit.values()) {
-            while (digit.isNextDigitAt(romanNumberArray, state.offset)) {
-                state.offset += digit.length();
-                state.result += digit.value;
+            while (digit.isNextDigitAt(romanNumberArray, offset)) {
+                offset += digit.length();
+                result += digit.value;
             }
         }
-        if (state.offset == romanNumberArray.length) {
-            return state.result;
+        if (offset == romanNumberArray.length) {
+            return result;
         } else {
             throw new RomanNumberFormatException();
         }
