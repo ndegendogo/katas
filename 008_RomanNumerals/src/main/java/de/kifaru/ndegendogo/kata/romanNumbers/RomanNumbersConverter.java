@@ -34,7 +34,7 @@ public class RomanNumbersConverter {
             return glyph.length();
         }
 
-        private boolean isNextDigitAt(final char[] romanNumberArray, final int arrayOffset) {
+        private boolean isNextDigitAt(final char[] romanNumberArray, final int arrayOffset, String romanNumber) {
             final int arrayLength = romanNumberArray.length;
             final int tailLength = arrayLength - arrayOffset;
             if (tailLength <= 0 || tailLength < length()) {
@@ -54,12 +54,12 @@ public class RomanNumbersConverter {
         int offset = 0;
         final List<RomanDigit> digitList = new ArrayList<RomanDigit>();
         for (RomanDigit digit: RomanDigit.values()) {
-            while (digit.isNextDigitAt(romanNumberArray, offset)) {
+            while (digit.isNextDigitAt(romanNumberArray, offset, romanNumber)) {
                 offset += digit.length();
                 digitList.add(digit);
             }
         }
-        if (offset != romanNumberArray.length) {
+        if (offset != romanNumber.length()) {
             throw new RomanNumberFormatException();
         }
 
