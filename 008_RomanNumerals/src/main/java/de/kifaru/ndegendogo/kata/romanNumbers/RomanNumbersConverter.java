@@ -40,31 +40,31 @@ public class RomanNumbersConverter {
     public synchronized Integer convertToArabicNumber(final String romanNumber) throws RomanNumberFormatException {
         state = new ConverterState(romanNumber);
         for (RomanDigit digit: RomanDigit.values()) {
-            consume(digit);
+            consume(digit, state);
         }
-        if (allDigitsConsumed()) {
+        if (allDigitsConsumed(state)) {
             return state.result;
         } else {
             throw new RomanNumberFormatException();
         }
     }
 
-    private void consume(final RomanDigit digit) {
-        while (found(digit.getGlyph())) {
-            consumeSingle(digit);
+    private void consume(final RomanDigit digit, final ConverterState state) {
+        while (found(digit.getGlyph(), state)) {
+            consumeSingle(digit, state);
         }
     }
 
-    private boolean found(String glyph) {
+    private boolean found(final String glyph, final ConverterState state) {
         return state.romanNumber.startsWith(glyph, state.offset);
     }
 
-    private void consumeSingle(RomanDigit digit) {
+    private void consumeSingle(final RomanDigit digit, ConverterState state) {
         state.offset += digit.getGlyph().length();
         state.result += digit.getValue();
     }
 
-    private boolean allDigitsConsumed() {
+    private boolean allDigitsConsumed(final ConverterState state) {
         return state.offset == state.romanNumber.length();
     }
 
