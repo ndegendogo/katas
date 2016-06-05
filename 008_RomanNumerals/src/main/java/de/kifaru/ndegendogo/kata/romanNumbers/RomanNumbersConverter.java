@@ -35,7 +35,7 @@ public class RomanNumbersConverter {
         }
     }
 
-    public synchronized Integer convertToArabicNumber(final String romanNumber) throws RomanNumberFormatException {
+    public Integer convertToArabicNumber(final String romanNumber) throws RomanNumberFormatException {
         final ConverterState state = new ConverterState(romanNumber);
         for (RomanDigit digit: RomanDigit.values()) {
             consume(digit, state);
