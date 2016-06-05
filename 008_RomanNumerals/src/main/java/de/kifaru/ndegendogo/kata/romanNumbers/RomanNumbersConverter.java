@@ -34,19 +34,15 @@ public class RomanNumbersConverter {
             return glyph.length();
         }
 
-        private boolean isNextDigitAt(String romanNumber) {
-            if (romanNumber.startsWith(glyph)) {
-                return true;
-            } else {
-                return false;
-            }
+        private boolean isFirstDigitOf(String romanNumber) {
+            return (romanNumber.startsWith(glyph));
         }
     }
 
     public int convertToArabicNumber(String romanNumber) throws RomanNumberFormatException {
         final List<RomanDigit> digitList = new ArrayList<RomanDigit>();
         for (RomanDigit digit: RomanDigit.values()) {
-            while (digit.isNextDigitAt(romanNumber)) {
+            while (digit.isFirstDigitOf(romanNumber)) {
                 romanNumber = romanNumber.substring(digit.length());
                 digitList.add(digit);
             }
