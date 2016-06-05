@@ -10,6 +10,18 @@ public class RomanNumbersConverter {
             result = 0;
             offset = 0;
         }
+
+        private int finishConversion(final String romanNumber) throws RomanNumberFormatException {
+            if (allDigitsConsumed(romanNumber)) {
+                return result;
+            } else {
+                throw new RomanNumberFormatException();
+            }
+        }
+
+        private boolean allDigitsConsumed(final String romanNumber) {
+            return offset == romanNumber.length();
+        }
     }
 
     enum RomanDigit {
@@ -31,7 +43,7 @@ public class RomanNumbersConverter {
             return glyph.length();
         }
 
-        void consume(final String romanNumber, final ConverterState state) {
+        private void consume(final String romanNumber, final ConverterState state) {
             while (found(romanNumber, state.offset)) {
                 consumeSingle(state);
             }
@@ -52,18 +64,6 @@ public class RomanNumbersConverter {
         for (RomanDigit digit: RomanDigit.values()) {
             digit.consume(romanNumber, state);
         }
-        return finishConversion(romanNumber, state);
-    }
-
-    private int finishConversion(final String romanNumber, final ConverterState state) throws RomanNumberFormatException {
-        if (allDigitsConsumed(romanNumber, state)) {
-            return state.result;
-        } else {
-            throw new RomanNumberFormatException();
-        }
-    }
-
-    private boolean allDigitsConsumed(final String romanNumber, final ConverterState state) {
-        return state.offset == romanNumber.length();
+        return state.finishConversion(romanNumber);
     }
 }
