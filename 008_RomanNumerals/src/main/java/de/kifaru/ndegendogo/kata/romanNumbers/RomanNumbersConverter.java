@@ -35,15 +35,11 @@ public class RomanNumbersConverter {
         }
 
         private boolean isNextDigitAt(String romanNumber) {
-            if (romanNumber.length() < length()) {
+            if (romanNumber.startsWith(glyph)) {
+                return true;
+            } else {
                 return false;
             }
-            for (int i = 0; i < length(); i ++) {
-                if (romanNumber.charAt(i) != glyph.charAt(i)) {
-                    return false;
-                }
-            }
-            return true;
         }
     }
 
