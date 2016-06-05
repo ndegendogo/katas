@@ -27,12 +27,6 @@ public class RomanNumbersConverter {
             this.glyph = glyph;
             this.value = value;
         }
-        int getValue() {
-            return value;
-        }
-        String getGlyph() {
-            return glyph;
-        }
     }
 
     public Integer convertToArabicNumber(final String romanNumber) throws RomanNumberFormatException {
@@ -48,7 +42,7 @@ public class RomanNumbersConverter {
     }
 
     private void consume(final RomanDigit digit, final ConverterState state) {
-        while (found(digit.getGlyph(), state)) {
+        while (found(digit.glyph, state)) {
             consumeSingle(digit, state);
         }
     }
@@ -58,8 +52,8 @@ public class RomanNumbersConverter {
     }
 
     private void consumeSingle(final RomanDigit digit, ConverterState state) {
-        state.offset += digit.getGlyph().length();
-        state.result += digit.getValue();
+        state.offset += digit.glyph.length();
+        state.result += digit.value;
     }
 
     private boolean allDigitsConsumed(final ConverterState state) {
