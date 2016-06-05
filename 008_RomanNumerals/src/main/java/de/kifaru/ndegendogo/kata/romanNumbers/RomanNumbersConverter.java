@@ -49,12 +49,12 @@ public class RomanNumbersConverter {
         }
     }
 
-    public int convertToArabicNumber(final String romanNumber) throws RomanNumberFormatException {
+    public int convertToArabicNumber(String romanNumber) throws RomanNumberFormatException {
         int offset = 0;
         final List<RomanDigit> digitList = new ArrayList<RomanDigit>();
         for (RomanDigit digit: RomanDigit.values()) {
             while (digit.isNextDigitAt(offset, romanNumber)) {
-                offset += digit.length();
+                romanNumber = romanNumber.substring(digit.length());
                 digitList.add(digit);
             }
         }
