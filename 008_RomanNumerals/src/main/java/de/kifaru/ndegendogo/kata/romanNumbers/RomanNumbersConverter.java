@@ -51,11 +51,8 @@ public class RomanNumbersConverter {
 
         private boolean isNextDigitAt(final char[] romanNumberArray, final int arrayOffset) {
             final int arrayLength = romanNumberArray.length;
-            if (arrayOffset >= arrayLength) {
-                return false;
-            }
             final int tailLength = arrayLength - arrayOffset;
-            if (tailLength < length()) {
+            if (tailLength <= 0 || tailLength < length()) {
                 return false;
             }
             for (int i = 0; i < length(); i ++) {
