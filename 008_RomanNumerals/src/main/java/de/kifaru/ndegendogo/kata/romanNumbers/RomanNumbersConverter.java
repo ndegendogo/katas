@@ -43,13 +43,13 @@ public class RomanNumbersConverter {
     }
 
     private void consume(final RomanDigit digit, final ConverterState state, final String romanNumber) {
-        while (found(digit.glyph, romanNumber, state.offset)) {
+        while (found(digit, romanNumber, state.offset)) {
             consumeSingle(digit, state);
         }
     }
 
-    private boolean found(final String glyph, final String romanNumber, int offset) {
-        return romanNumber.startsWith(glyph, offset);
+    private boolean found(RomanDigit digit, final String romanNumber, int offset) {
+        return romanNumber.startsWith(digit.glyph, offset);
     }
 
     private void consumeSingle(final RomanDigit digit, ConverterState state) {
