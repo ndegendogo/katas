@@ -1,5 +1,8 @@
 package de.kifaru.ndegendogo.kata.romanNumbers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class RomanNumbersConverter {
 
     class ConverterState {
@@ -50,9 +53,11 @@ public class RomanNumbersConverter {
         final char[] romanNumberArray = romanNumber.toCharArray();
         int offset = 0;
         int result = 0;
+        final List<RomanDigit> digitList = new ArrayList<RomanDigit>();
         for (RomanDigit digit: RomanDigit.values()) {
             while (digit.isNextDigitAt(romanNumberArray, offset)) {
                 offset += digit.length();
+                digitList.add(digit);
                 result += digit.value;
             }
         }
