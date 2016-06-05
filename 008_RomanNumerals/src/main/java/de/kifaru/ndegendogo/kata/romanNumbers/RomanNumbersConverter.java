@@ -2,9 +2,13 @@ package de.kifaru.ndegendogo.kata.romanNumbers;
 
 public class RomanNumbersConverter {
 
-    private int offset;
-    private int result;
-    private String romanNumber;
+    private class ConverterState {
+        private int offset;
+        private int result;
+        private String romanNumber;
+    }
+
+    private ConverterState state = new ConverterState();
 
     private enum RomanDigit {
         // The order of digits must be descending for the algorithm to work correctly.
@@ -33,16 +37,16 @@ public class RomanNumbersConverter {
             consume(digit);
         }
         if (allDigitsConsumed()) {
-            return result;
+            return state.result;
         } else {
             throw new RomanNumberFormatException();
         }
     }
 
     private void init(final String romanNumber) {
-        result = 0;
-        offset = 0;
-        this.romanNumber = romanNumber;
+        state.result = 0;
+        state.offset = 0;
+        state.romanNumber = romanNumber;
     }
 
     private void consume(final RomanDigit digit) {
@@ -52,16 +56,16 @@ public class RomanNumbersConverter {
     }
 
     private boolean found(String glyph) {
-        return romanNumber.startsWith(glyph, offset);
+        return state.romanNumber.startsWith(glyph, state.offset);
     }
 
     private void consumeSingle(RomanDigit digit) {
-        offset += digit.getGlyph().length();
-        result += digit.getValue();
+        state.offset += digit.getGlyph().length();
+        state.result += digit.getValue();
     }
 
     private boolean allDigitsConsumed() {
-        return offset == romanNumber.length();
+        return state.offset == state.romanNumber.length();
     }
 
 }
