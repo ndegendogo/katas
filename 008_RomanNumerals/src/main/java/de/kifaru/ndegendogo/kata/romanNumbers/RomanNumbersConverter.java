@@ -49,8 +49,21 @@ public class RomanNumbersConverter {
             }
         }
 
-        private boolean isNextDigitAt(final String romanNumber, final char[] romanNumberArray, final int offset) {
-            return romanNumber.startsWith(glyph, offset);
+        private boolean isNextDigitAt(final String romanNumber, final char[] romanNumberArray, final int arrayOffset) {
+            final int arrayLength = romanNumberArray.length;
+            if (arrayOffset >= arrayLength) {
+                return false;
+            }
+            final int tailLength = arrayLength - arrayOffset;
+            if (tailLength < length()) {
+                return false;
+            }
+            for (int i = 0; i < length(); i ++) {
+                if (romanNumberArray[arrayOffset + i] != glyph.charAt(i)) {
+                    return false;
+                }
+            }
+            return true;
         }
 
         private void add(final ConverterState state) {
