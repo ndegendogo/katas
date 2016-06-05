@@ -35,7 +35,7 @@ public class RomanNumbersConverter {
         for (RomanDigit digit: RomanDigit.values()) {
             consume(digit, state, romanNumber);
         }
-        if (allDigitsConsumed(state, romanNumber)) {
+        if (allDigitsConsumed(romanNumber, state)) {
             return state.result;
         } else {
             throw new RomanNumberFormatException();
@@ -57,8 +57,7 @@ public class RomanNumbersConverter {
         state.result += digit.value;
     }
 
-    private boolean allDigitsConsumed(final ConverterState state, final String romanNumber) {
+    private boolean allDigitsConsumed(final String romanNumber, final ConverterState state) {
         return state.offset == romanNumber.length();
     }
-
 }
