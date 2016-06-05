@@ -59,14 +59,14 @@ public class RomanNumbersConverter {
                 digitList.add(digit);
             }
         }
+        if (offset != romanNumberArray.length) {
+            throw new RomanNumberFormatException();
+        }
+
         int result = 0;
         for (RomanDigit digit: digitList) {
             result += digit.value;
         }
-        if (offset == romanNumberArray.length) {
-            return result;
-        } else {
-            throw new RomanNumberFormatException();
-        }
+        return result;
     }
 }
