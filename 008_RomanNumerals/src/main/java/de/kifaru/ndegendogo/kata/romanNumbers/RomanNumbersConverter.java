@@ -5,12 +5,10 @@ public class RomanNumbersConverter {
     private class ConverterState {
         private int offset;
         private int result;
-        private final String romanNumber;
 
-        ConverterState(final String romanNumber) {
+        ConverterState() {
             result = 0;
             offset = 0;
-            this.romanNumber = romanNumber;
         }
     }
 
@@ -33,7 +31,7 @@ public class RomanNumbersConverter {
     }
 
     public int convertToArabicNumber(final String romanNumber) throws RomanNumberFormatException {
-        final ConverterState state = new ConverterState(romanNumber);
+        final ConverterState state = new ConverterState();
         for (RomanDigit digit: RomanDigit.values()) {
             consume(digit, state, romanNumber);
         }
