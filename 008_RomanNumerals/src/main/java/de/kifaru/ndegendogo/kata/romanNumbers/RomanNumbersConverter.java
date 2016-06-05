@@ -43,13 +43,13 @@ public class RomanNumbersConverter {
             return glyph.length();
         }
 
-        private void addDigits(final String romanNumber, final char[] romanNumberArray, final ConverterState state) {
-            while (isNextDigitAt(romanNumber, romanNumberArray, state.offset)) {
+        private void addDigits(final char[] romanNumberArray, final ConverterState state) {
+            while (isNextDigitAt(romanNumberArray, state.offset)) {
                 add(state);
             }
         }
 
-        private boolean isNextDigitAt(final String romanNumber, final char[] romanNumberArray, final int arrayOffset) {
+        private boolean isNextDigitAt(final char[] romanNumberArray, final int arrayOffset) {
             final int arrayLength = romanNumberArray.length;
             if (arrayOffset >= arrayLength) {
                 return false;
@@ -76,8 +76,8 @@ public class RomanNumbersConverter {
         final ConverterState state = new ConverterState();
         final char[] romanNumberArray = romanNumber.toCharArray();
         for (RomanDigit digit: RomanDigit.values()) {
-            digit.addDigits(romanNumber, romanNumberArray, state);
+            digit.addDigits(romanNumberArray, state);
         }
-        return state.finishConversion(romanNumber.length());
+        return state.finishConversion(romanNumberArray.length);
     }
 }
