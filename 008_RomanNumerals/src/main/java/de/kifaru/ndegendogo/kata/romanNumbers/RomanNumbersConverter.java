@@ -31,11 +31,17 @@ public class RomanNumbersConverter {
             return glyph.length();
         }
 
-        boolean found(final String romanNumber, int offset) {
+        void consume(final String romanNumber, final ConverterState state) {
+            while (found(romanNumber, state.offset)) {
+                consumeSingle(state);
+            }
+        }
+
+        boolean found(final String romanNumber, final int offset) {
             return romanNumber.startsWith(glyph, offset);
         }
 
-        void consumeSingle(ConverterState state) {
+        void consumeSingle(final ConverterState state) {
             state.offset += length();
             state.result += value;
         }
@@ -44,18 +50,12 @@ public class RomanNumbersConverter {
     public int convertToArabicNumber(final String romanNumber) throws RomanNumberFormatException {
         final ConverterState state = new ConverterState();
         for (RomanDigit digit: RomanDigit.values()) {
-            consume(digit, state, romanNumber);
+            digit.consume(romanNumber, state);
         }
         if (allDigitsConsumed(romanNumber, state)) {
             return state.result;
         } else {
             throw new RomanNumberFormatException();
-        }
-    }
-
-    private void consume(final RomanDigit digit, final ConverterState state, final String romanNumber) {
-        while (digit.found(romanNumber, state.offset)) {
-            digit.consumeSingle(state);
         }
     }
 
