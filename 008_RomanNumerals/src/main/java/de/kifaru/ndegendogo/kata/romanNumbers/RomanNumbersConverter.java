@@ -30,22 +30,26 @@ public class RomanNumbersConverter {
     }
 
     public int convertToArabicNumber(final String romanNumber) throws RomanNumberFormatException {
-        final List<RomanDigit> digits = parseDigits(romanNumber);
+        final List<RomanDigit> digits = splitDigits(romanNumber);
         return addDigits(digits);
     }
 
-    private List<RomanDigit> parseDigits(String romanNumber) throws RomanNumberFormatException {
+    private List<RomanDigit> splitDigits(String romanNumber) throws RomanNumberFormatException {
         final List<RomanDigit> digitList = new ArrayList<RomanDigit>();
         for (RomanDigit digit: RomanDigit.values()) {
             while (digit.isFirstDigitOf(romanNumber)) {
-                romanNumber = romanNumber.substring(digit.length());
-                digitList.add(digit);
+                romanNumber = removeDigit(romanNumber, digit, digitList);
             }
         }
         if (0 != romanNumber.length()) {
             throw new RomanNumberFormatException();
         }
         return digitList;
+    }
+
+    private String removeDigit(final String romanNumber, final RomanDigit digit, final List<RomanDigit> digitList) {
+        digitList.add(digit);
+        return romanNumber.substring(digit.length());
     }
 
     private int addDigits(final List<RomanDigit> digitList) {
