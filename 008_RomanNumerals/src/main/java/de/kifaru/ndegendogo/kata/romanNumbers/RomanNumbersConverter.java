@@ -35,7 +35,7 @@ public class RomanNumbersConverter {
         return addDigits(digits);
     }
 
-    private void splitDigits(String romanNumber, final List<RomanDigit> digitList) throws RomanNumberFormatException {
+    private void splitDigits(final String romanNumber, final List<RomanDigit> digitList) throws RomanNumberFormatException {
         RomanDigit digit = getFirstDigitOf(romanNumber);
         if (digit.equals(RomanDigit.DIGIT_NONE)) {
             if (isNotConsumedCompletely(romanNumber)) {
