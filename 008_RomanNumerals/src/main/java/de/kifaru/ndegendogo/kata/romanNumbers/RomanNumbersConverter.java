@@ -37,7 +37,10 @@ public class RomanNumbersConverter {
 
     private void splitDigits(String romanNumber, final List<RomanDigit> digitList) throws RomanNumberFormatException {
         for (RomanDigit digit: RomanDigit.values()) {
-            while (digit.isFirstDigitOf(romanNumber)) {
+            while (true) {
+                if (!digit.isFirstDigitOf(romanNumber)) {
+                    break;
+                }
                 if (digit.equals(RomanDigit.DIGIT_NONE)) {
                     break;
                 }
