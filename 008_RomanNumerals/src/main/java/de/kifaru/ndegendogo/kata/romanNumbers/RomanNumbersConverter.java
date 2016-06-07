@@ -36,21 +36,24 @@ public class RomanNumbersConverter {
     }
 
     private void splitDigits(String romanNumber, final List<RomanDigit> digitList) throws RomanNumberFormatException {
+        RomanDigit digit = getFirstDigitOf(romanNumber);
+        if (digit.equals(RomanDigit.DIGIT_NONE)) {
+            if (isNotConsumedCompletely(romanNumber)) {
+                throw new RomanNumberFormatException();
+            }
+            return;
+        }
+        digitList.add(digit);
+        splitDigits(romanNumber.substring(digit.length()), digitList);
+    }
+    
+    private RomanDigit getFirstDigitOf(final String romanNumber) {
         for (RomanDigit digit: RomanDigit.values()) {
-            while (true) {
-                if (digit.equals(RomanDigit.DIGIT_NONE)) {
-                    break;
-                }
-                if (!digit.isFirstDigitOf(romanNumber)) {
-                    break;
-                }
-                digitList.add(digit);
-                romanNumber = romanNumber.substring(digit.length());
+            if (digit.isFirstDigitOf(romanNumber)) {
+                return digit;
             }
         }
-        if (isNotConsumedCompletely(romanNumber)) {
-            throw new RomanNumberFormatException();
-        }
+        return RomanDigit.DIGIT_NONE;
     }
 
     private boolean isNotConsumedCompletely(final String romanNumber) {
