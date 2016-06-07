@@ -38,18 +38,22 @@ public class RomanNumbersConverter {
         final List<RomanDigit> digitList = new ArrayList<RomanDigit>();
         for (RomanDigit digit: RomanDigit.values()) {
             while (digit.isFirstDigitOf(romanNumber)) {
-                romanNumber = removeDigit(romanNumber, digit, digitList);
+                romanNumber = consumeDigit(romanNumber, digit, digitList);
             }
         }
-        if (0 != romanNumber.length()) {
+        if (isNotConsumedCompletely(romanNumber)) {
             throw new RomanNumberFormatException();
         }
         return digitList;
     }
 
-    private String removeDigit(final String romanNumber, final RomanDigit digit, final List<RomanDigit> digitList) {
+    private String consumeDigit(final String romanNumber, final RomanDigit digit, final List<RomanDigit> digitList) {
         digitList.add(digit);
         return romanNumber.substring(digit.length());
+    }
+
+    private boolean isNotConsumedCompletely(final String romanNumber) {
+        return romanNumber.length() > 0;
     }
 
     private int addDigits(final List<RomanDigit> digitList) {
