@@ -58,12 +58,4 @@ public class RomanNumbersConverter {
     private boolean isNotConsumedCompletely(final String romanNumber) {
         return romanNumber.length() > 0;
     }
-
-    private int addDigits(final List<RomanDigit> digitList) {
-        int result = 0;
-        for (RomanDigit digit: digitList) {
-            result += digit.value;
-        }
-        return result;
-    }
 }
