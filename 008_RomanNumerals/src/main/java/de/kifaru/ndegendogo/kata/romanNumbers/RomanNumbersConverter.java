@@ -31,20 +31,19 @@ public class RomanNumbersConverter {
 
     public int convertToArabicNumber(final String romanNumber) throws RomanNumberFormatException {
         final List<RomanDigit> digits = new ArrayList<RomanDigit>();
-        splitDigits(romanNumber, digits);
-        return addDigits(digits);
+        return splitDigits(romanNumber, digits);
     }
 
-    private void splitDigits(final String romanNumber, final List<RomanDigit> digitList) throws RomanNumberFormatException {
+    private int splitDigits(final String romanNumber, final List<RomanDigit> digitList) throws RomanNumberFormatException {
         RomanDigit digit = getFirstDigitOf(romanNumber);
         if (digit.equals(RomanDigit.DIGIT_NONE)) {
             if (isNotConsumedCompletely(romanNumber)) {
                 throw new RomanNumberFormatException();
             }
-            return;
+            return digit.value;
         }
         digitList.add(digit);
-        splitDigits(romanNumber.substring(digit.length()), digitList);
+        return digit.value + splitDigits(romanNumber.substring(digit.length()), digitList);
     }
     
     private RomanDigit getFirstDigitOf(final String romanNumber) {
