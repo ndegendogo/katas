@@ -24,7 +24,7 @@ public class RomanNumbersConverter {
             return glyph.length();
         }
 
-        private boolean isFirstDigitOf(String romanNumber) {
+        private boolean isFirstDigitOf(final String romanNumber) {
             return (romanNumber.startsWith(glyph));
         }
     }
