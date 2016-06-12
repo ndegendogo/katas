@@ -40,7 +40,6 @@ public class RomanNumbersConverter {
         RomanDigit digit = getFirstDigitOf(romanNumber);
         if (digit.equals(RomanDigit.DIGIT_NONE)) {
             if (!isConsumedCompletely(romanNumber)) {
-                throw new RomanNumberFormatException();
             }
             return digit.value;
         }
@@ -48,13 +47,16 @@ public class RomanNumbersConverter {
         return digit.value + splitDigits(remainder);
     }
     
-    private RomanDigit getFirstDigitOf(final String romanNumber) {
+    private RomanDigit getFirstDigitOf(final String romanNumber) throws RomanNumberFormatException {
         for (RomanDigit digit: RomanDigit.values()) {
             if (digit.isFirstDigitOf(romanNumber)) {
+                if (digit.equals(RomanDigit.DIGIT_NONE)) {
+                    throw new RomanNumberFormatException();
+                }
                 return digit;
             }
         }
-        return RomanDigit.DIGIT_NONE;
+        throw new RomanNumberFormatException();
     }
 
     private boolean isConsumedCompletely(final String romanNumber) {
