@@ -41,6 +41,10 @@ public class RomanNumbersConverter {
         final String remainder = romanNumber.substring(digit.length());
         return digit.value + splitDigits(remainder);
     }
+
+    private boolean isConsumedCompletely(final String romanNumber) {
+        return romanNumber.isEmpty();
+    }
     
     private RomanDigit getFirstDigitOf(final String romanNumber) throws RomanNumberFormatException {
         for (RomanDigit digit: RomanDigit.values()) {
@@ -49,9 +53,5 @@ public class RomanNumbersConverter {
             }
         }
         throw new RomanNumberFormatException();
-    }
-
-    private boolean isConsumedCompletely(final String romanNumber) {
-        return romanNumber.isEmpty();
     }
 }
