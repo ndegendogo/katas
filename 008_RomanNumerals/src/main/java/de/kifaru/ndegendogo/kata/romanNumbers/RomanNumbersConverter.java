@@ -39,8 +39,6 @@ public class RomanNumbersConverter {
         }
         RomanDigit digit = getFirstDigitOf(romanNumber);
         if (digit.equals(RomanDigit.DIGIT_NONE)) {
-            if (!isConsumedCompletely(romanNumber)) {
-            }
             return digit.value;
         }
         final String remainder = romanNumber.substring(digit.length());
