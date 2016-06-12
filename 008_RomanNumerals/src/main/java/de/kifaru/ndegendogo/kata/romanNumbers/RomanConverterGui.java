@@ -14,13 +14,11 @@ import javax.swing.*;
 
 public class RomanConverterGui {
 
-    private final RomanNumbersConverter converter;
     private final JTextField romanNumber;
     private final JLabel arabicNumber;
     private final Container container;
 
     RomanConverterGui(final RomanNumbersConverter converter) {
-        this.converter = converter;
         final JLabel romanLabel = new JLabel("Roman:");
         romanNumber = new JTextField(20);
         romanNumber.addActionListener( this::showConvertedNumber);
