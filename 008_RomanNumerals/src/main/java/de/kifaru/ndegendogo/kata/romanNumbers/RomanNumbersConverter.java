@@ -1,8 +1,5 @@
 package de.kifaru.ndegendogo.kata.romanNumbers;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class RomanNumbersConverter {
 
     enum RomanDigit {
