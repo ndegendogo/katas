@@ -38,9 +38,6 @@ public class RomanNumbersConverter {
             return 0;
         }
         RomanDigit digit = getFirstDigitOf(romanNumber);
-        if (digit.equals(RomanDigit.DIGIT_NONE)) {
-            return digit.value;
-        }
         final String remainder = romanNumber.substring(digit.length());
         return digit.value + splitDigits(remainder);
     }
