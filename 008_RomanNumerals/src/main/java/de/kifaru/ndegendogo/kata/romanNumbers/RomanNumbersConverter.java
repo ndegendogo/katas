@@ -27,15 +27,15 @@ public class RomanNumbersConverter {
     }
 
     public int convertToArabicNumber(final String romanNumber) throws RomanNumberFormatException {
-        return splitDigits(romanNumber);
+        return consumeDigits(romanNumber);
     }
 
-    private static int splitDigits(final String romanNumber) throws RomanNumberFormatException {
+    private static int consumeDigits(final String romanNumber) throws RomanNumberFormatException {
         if (isConsumedCompletely(romanNumber)) {
             return 0;
         }
         final RomanDigit digit = getFirstDigitOf(romanNumber);
-        return digit.value + splitDigits(remainderAfterDigit(romanNumber, digit));
+        return digit.value + consumeDigits(remainderAfterDigit(romanNumber, digit));
     }
 
     private static boolean isConsumedCompletely(final String romanNumber) {
