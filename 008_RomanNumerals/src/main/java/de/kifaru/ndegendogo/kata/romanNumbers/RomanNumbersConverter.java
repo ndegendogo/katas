@@ -41,7 +41,8 @@ public class RomanNumbersConverter {
             }
             return digit.value;
         }
-        return digit.value + splitDigits(romanNumber.substring(digit.length()));
+        final String remainder = romanNumber.substring(digit.length());
+        return digit.value + splitDigits(remainder);
     }
     
     private RomanDigit getFirstDigitOf(final String romanNumber) {
