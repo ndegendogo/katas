@@ -26,7 +26,7 @@ public class RomanNumbersConverter {
         }
     }
 
-    public int convertToArabicNumber(final String romanNumber) throws RomanNumberFormatException {
+    public static int convertToArabicNumber(final String romanNumber) throws RomanNumberFormatException {
         return convertDigits(romanNumber);
     }
 

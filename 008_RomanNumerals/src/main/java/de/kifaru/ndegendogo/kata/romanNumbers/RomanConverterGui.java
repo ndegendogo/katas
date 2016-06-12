@@ -34,7 +34,7 @@ public class RomanConverterGui {
     private void showConvertedNumber(final ActionEvent dummy) {
         String convertedString;
         try {
-            final int convertedNumber = converter.convertToArabicNumber(romanNumber.getText());
+            final int convertedNumber = RomanNumbersConverter.convertToArabicNumber(romanNumber.getText());
             convertedString = String.valueOf(convertedNumber);
         } catch (RomanNumberFormatException e) {
             convertedString = "Illegal Input";

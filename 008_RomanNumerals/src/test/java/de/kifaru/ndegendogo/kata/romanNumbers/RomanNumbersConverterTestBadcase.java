@@ -29,7 +29,7 @@ public class RomanNumbersConverterTestBadcase {
     @Test
     public void testConvertToArabicNumber() {
         try {
-            new RomanNumbersConverter().convertToArabicNumber(actualInput);
+            RomanNumbersConverter.convertToArabicNumber(actualInput);
             fail();
         } catch (RomanNumberFormatException e) {
             // this is expected
