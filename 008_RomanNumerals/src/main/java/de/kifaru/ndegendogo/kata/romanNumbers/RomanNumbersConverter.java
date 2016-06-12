@@ -34,6 +34,9 @@ public class RomanNumbersConverter {
     }
 
     private int splitDigits(final String romanNumber) throws RomanNumberFormatException {
+        if (isConsumedCompletely(romanNumber)) {
+            return 0;
+        }
         RomanDigit digit = getFirstDigitOf(romanNumber);
         if (digit.equals(RomanDigit.DIGIT_NONE)) {
             if (!isConsumedCompletely(romanNumber)) {
