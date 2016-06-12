@@ -37,7 +37,7 @@ public class RomanNumbersConverter {
         if (isConsumedCompletely(romanNumber)) {
             return 0;
         }
-        RomanDigit digit = getFirstDigitOf(romanNumber);
+        final RomanDigit digit = getFirstDigitOf(romanNumber);
         final String remainder = romanNumber.substring(digit.length());
         return digit.value + splitDigits(remainder);
     }
