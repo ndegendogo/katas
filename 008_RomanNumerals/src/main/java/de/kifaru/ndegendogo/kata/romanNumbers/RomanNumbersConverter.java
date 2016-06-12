@@ -55,6 +55,6 @@ public class RomanNumbersConverter {
     }
 
     private boolean isConsumedCompletely(final String romanNumber) {
-        return romanNumber.length() == 0;
+        return romanNumber.isEmpty();
     }
 }
