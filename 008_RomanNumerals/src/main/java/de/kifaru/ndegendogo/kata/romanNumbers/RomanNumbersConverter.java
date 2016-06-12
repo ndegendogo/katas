@@ -35,7 +35,7 @@ public class RomanNumbersConverter {
             return 0;
         }
         final RomanDigit digit = getFirstDigitOf(romanNumber);
-        final String remainder = romanNumber.substring(digit.length());
+        final String remainder = remainderAfterDigit(romanNumber, digit);
         return digit.value + splitDigits(remainder);
     }
 
@@ -50,5 +50,10 @@ public class RomanNumbersConverter {
             }
         }
         throw new RomanNumberFormatException();
+    }
+
+    private static String remainderAfterDigit(final String romanNumber, final RomanDigit digit) {
+        final String remainder = romanNumber.substring(digit.length());
+        return remainder;
     }
 }
