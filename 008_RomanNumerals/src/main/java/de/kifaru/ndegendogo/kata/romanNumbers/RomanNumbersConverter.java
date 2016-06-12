@@ -35,8 +35,7 @@ public class RomanNumbersConverter {
             return 0;
         }
         final RomanDigit digit = getFirstDigitOf(romanNumber);
-        final String remainder = remainderAfterDigit(romanNumber, digit);
-        return digit.value + splitDigits(remainder);
+        return digit.value + splitDigits(remainderAfterDigit(romanNumber, digit));
     }
 
     private static boolean isConsumedCompletely(final String romanNumber) {
@@ -53,7 +52,6 @@ public class RomanNumbersConverter {
     }
 
     private static String remainderAfterDigit(final String romanNumber, final RomanDigit digit) {
-        final String remainder = romanNumber.substring(digit.length());
-        return remainder;
+        return romanNumber.substring(digit.length());
     }
 }
