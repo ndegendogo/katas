@@ -30,7 +30,7 @@ public class RomanNumbersConverter {
         return splitDigits(romanNumber);
     }
 
-    private int splitDigits(final String romanNumber) throws RomanNumberFormatException {
+    private static int splitDigits(final String romanNumber) throws RomanNumberFormatException {
         if (isConsumedCompletely(romanNumber)) {
             return 0;
         }
@@ -39,11 +39,11 @@ public class RomanNumbersConverter {
         return digit.value + splitDigits(remainder);
     }
 
-    private boolean isConsumedCompletely(final String romanNumber) {
+    private static boolean isConsumedCompletely(final String romanNumber) {
         return romanNumber.isEmpty();
     }
     
-    private RomanDigit getFirstDigitOf(final String romanNumber) throws RomanNumberFormatException {
+    private static RomanDigit getFirstDigitOf(final String romanNumber) throws RomanNumberFormatException {
         for (RomanDigit digit: RomanDigit.values()) {
             if (digit.isFirstDigitOf(romanNumber)) {
                 return digit;
