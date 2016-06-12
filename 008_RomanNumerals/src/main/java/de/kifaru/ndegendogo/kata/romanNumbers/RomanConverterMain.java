@@ -8,7 +8,7 @@ public class RomanConverterMain {
     }
 
     private static void constructAndLaunchGui() {
-        final RomanConverterGui gui = new RomanConverterGui(new RomanNumbersConverter());
+        final RomanConverterGui gui = new RomanConverterGui();
         gui.launch();
     }
 }

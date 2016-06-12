@@ -18,7 +18,7 @@ public class RomanConverterGui {
     private final JLabel arabicNumber;
     private final Container container;
 
-    RomanConverterGui(final RomanNumbersConverter converter) {
+    RomanConverterGui() {
         final JLabel romanLabel = new JLabel("Roman:");
         romanNumber = new JTextField(20);
         romanNumber.addActionListener( this::showConvertedNumber);
