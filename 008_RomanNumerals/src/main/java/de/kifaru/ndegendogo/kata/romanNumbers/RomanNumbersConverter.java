@@ -27,18 +27,18 @@ public class RomanNumbersConverter {
     }
 
     public int convertToArabicNumber(final String romanNumber) throws RomanNumberFormatException {
-        return consumeDigits(romanNumber);
+        return convertDigits(romanNumber);
     }
 
-    private static int consumeDigits(final String romanNumber) throws RomanNumberFormatException {
-        if (isConsumedCompletely(romanNumber)) {
+    private static int convertDigits(final String romanNumber) throws RomanNumberFormatException {
+        if (isConvertedCompletely(romanNumber)) {
             return 0;
         }
         final RomanDigit digit = getFirstDigitOf(romanNumber);
-        return digit.value + consumeDigits(remainderAfterDigit(romanNumber, digit));
+        return digit.value + convertDigits(remainderAfterDigit(romanNumber, digit));
     }
 
-    private static boolean isConsumedCompletely(final String romanNumber) {
+    private static boolean isConvertedCompletely(final String romanNumber) {
         return romanNumber.isEmpty();
     }
     
