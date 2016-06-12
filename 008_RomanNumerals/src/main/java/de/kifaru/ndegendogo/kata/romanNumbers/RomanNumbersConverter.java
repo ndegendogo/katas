@@ -36,7 +36,7 @@ public class RomanNumbersConverter {
     private int splitDigits(final String romanNumber) throws RomanNumberFormatException {
         RomanDigit digit = getFirstDigitOf(romanNumber);
         if (digit.equals(RomanDigit.DIGIT_NONE)) {
-            if (isNotConsumedCompletely(romanNumber)) {
+            if (!isConsumedCompletely(romanNumber)) {
                 throw new RomanNumberFormatException();
             }
             return digit.value;
@@ -54,7 +54,7 @@ public class RomanNumbersConverter {
         return RomanDigit.DIGIT_NONE;
     }
 
-    private boolean isNotConsumedCompletely(final String romanNumber) {
-        return romanNumber.length() > 0;
+    private boolean isConsumedCompletely(final String romanNumber) {
+        return romanNumber.length() == 0;
     }
 }
